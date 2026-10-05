@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact — Malka Nono Project</title>
+    <meta
+      name="description"
+      content="Get in touch with the Malka Nono Islamic Affairs Council."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Ethiopic:wght@300;400;500;600;700;800&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div id="site-nav"></div>
+
+    <!-- ============ PAGE HERO ============ -->
+    <header class="page-hero">
+      <div class="container">
+        <span class="page-tag" data-i18n="contact.hero.tag"></span>
+        <h1 data-i18n="contact.hero.title"></h1>
+        <p data-i18n="contact.hero.lede"></p>
+        <div class="breadcrumb">
+          <a href="index.html" data-i18n="nav.home"></a>
+          <span>/</span>
+          <span data-i18n="nav.contact"></span>
+        </div>
+      </div>
+    </header>
+
+    <!-- ============ CONTACT CARDS ============ -->
+    <section>
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-tag" data-i18n="contact.info.tag"></span>
+          <h2 data-i18n="contact.info.title"></h2>
+          <p data-i18n="contact.info.lede"></p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-card reveal">
+            <div class="ci">📍</div>
+            <h3 data-i18n="contact.address.title"></h3>
+            <p data-i18n="contact.address.line1"></p>
+            <p data-i18n="contact.address.line2"></p>
+          </div>
+          <div class="contact-card reveal">
+            <div class="ci">📞</div>
+            <h3 data-i18n="contact.phone.title"></h3>
+            <p><a href="tel:+251911234567">+251 91 123 4567</a></p>
+            <p><a href="tel:+251917654321">+251 91 765 4321</a></p>
+          </div>
+          <div class="contact-card reveal">
+            <div class="ci">✉️</div>
+            <h3 data-i18n="contact.email.title"></h3>
+            <p><a href="mailto:info@malkanono.org">info@malkanono.org</a></p>
+            <p>
+              <a href="mailto:project@malkanono.org">project@malkanono.org</a>
+            </p>
+          </div>
+          <div class="contact-card reveal">
+            <div class="ci">🕐</div>
+            <h3 data-i18n="contact.hours.title"></h3>
+            <p data-i18n="contact.hours.line1"></p>
+            <p data-i18n="contact.hours.line2"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ LOCATION ============ -->
+    <section style="background: var(--g50)">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-tag" data-i18n="contact.location.tag"></span>
+          <h2 data-i18n="contact.location.title"></h2>
+        </div>
+
+        <div class="location-box reveal">
+          <div class="pin">📍</div>
+          <h3 data-i18n="contact.location.place"></h3>
+          <p data-i18n="contact.location.desc"></p>
+          <div style="margin-top: 24px; position: relative">
+            <a
+              href="https://maps.google.com/?q=Sheger+City+Malka+Nono"
+              target="_blank"
+              rel="noopener"
+              class="btn btn-primary"
+              data-i18n="contact.location.open"
+            ></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT FORM ============ -->
+    <section>
+      <div class="container" style="max-width: 820px">
+        <div class="section-head reveal">
+          <span class="section-tag" data-i18n="contact.form.tag"></span>
+          <h2 data-i18n="contact.form.title"></h2>
+          <p data-i18n="contact.form.lede"></p>
+        </div>
+
+        <div class="table-wrap reveal" style="padding: 36px 32px">
+          <form id="contactForm" novalidate>
+            <div class="form-grid">
+              <div class="form-group">
+                <label
+                  class="form-label"
+                  for="cName"
+                  data-i18n="common.name"
+                ></label>
+                <input class="form-input" type="text" id="cName" required />
+              </div>
+              <div class="form-group">
+                <label
+                  class="form-label"
+                  for="cPhone"
+                  data-i18n="common.phone"
+                ></label>
+                <input class="form-input" type="tel" id="cPhone" required />
+              </div>
+              <div class="form-group full">
+                <label
+                  class="form-label"
+                  for="cEmail"
+                  data-i18n="common.email"
+                ></label>
+                <input class="form-input" type="email" id="cEmail" required />
+              </div>
+              <div class="form-group full">
+                <label
+                  class="form-label"
+                  for="cSubject"
+                  data-i18n="contact.form.subject"
+                ></label>
+                <select class="form-select" id="cSubject">
+                  <option data-i18n="contact.form.subject.general"></option>
+                  <option data-i18n="contact.form.subject.donation"></option>
+                  <option data-i18n="contact.form.subject.volunteer"></option>
+                  <option data-i18n="contact.form.subject.partner"></option>
+                  <option data-i18n="contact.form.subject.other"></option>
+                </select>
+              </div>
+              <div class="form-group full">
+                <label
+                  class="form-label"
+                  for="cMessage"
+                  data-i18n="common.message"
+                ></label>
+                <textarea
+                  class="form-textarea"
+                  id="cMessage"
+                  required
+                ></textarea>
+              </div>
+              <div class="form-group full">
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                  style="width: 100%; justify-content: center"
+                  data-i18n="common.send"
+                ></button>
+              </div>
+            </div>
+
+            <div
+              class="form-success"
+              id="contactSuccess"
+              data-i18n="contact.form.success"
+            ></div>
+          </form>
+        </div>
+
+        <!-- Social links -->
+        <div class="reveal" style="text-align: center; margin-top: 40px">
+          <h3
+            style="
+              font-size: 17px;
+              font-weight: 700;
+              color: var(--g900);
+              margin-bottom: 6px;
+            "
+            data-i18n="contact.social.title"
+          ></h3>
+          <p
+            style="color: var(--ink500); font-size: 14.5px"
+            data-i18n="contact.social.lede"
+          ></p>
+          <div class="social-links">
+            <a href="#" aria-label="Telegram" title="Telegram">✈️</a>
+            <a href="#" aria-label="Facebook" title="Facebook">📘</a>
+            <a href="#" aria-label="YouTube" title="YouTube">▶️</a>
+            <a href="#" aria-label="WhatsApp" title="WhatsApp">💬</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ OFFICE HOURS ============ -->
+    <section style="background: var(--g50)">
+      <div class="container" style="max-width: 640px">
+        <div class="section-head reveal">
+          <span class="section-tag" data-i18n="contact.office.tag"></span>
+          <h2 data-i18n="contact.office.title"></h2>
+        </div>
+        <ul class="hours-list reveal">
+          <li>
+            <span data-i18n="contact.office.mon"></span
+            ><span>9:00 AM — 6:00 PM</span>
+          </li>
+          <li>
+            <span data-i18n="contact.office.tue"></span
+            ><span>9:00 AM — 6:00 PM</span>
+          </li>
+          <li>
+            <span data-i18n="contact.office.wed"></span
+            ><span>9:00 AM — 6:00 PM</span>
+          </li>
+          <li>
+            <span data-i18n="contact.office.thu"></span
+            ><span>9:00 AM — 6:00 PM</span>
+          </li>
+          <li>
+            <span data-i18n="contact.office.fri"></span
+            ><span>9:00 AM — 12:00 PM</span>
+          </li>
+          <li>
+            <span data-i18n="contact.office.sat"></span
+            ><span>10:00 AM — 4:00 PM</span>
+          </li>
+          <li class="closed">
+            <span data-i18n="contact.office.sun"></span
+            ><span data-i18n="contact.office.closed"></span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ CTA ============ -->
+    <section style="padding-top: 0">
+      <div class="cta-banner reveal">
+        <h2 data-i18n="cta.title"></h2>
+        <p data-i18n="cta.desc"></p>
+        <a href="donate.html" class="btn btn-gold" data-i18n="cta.btn"></a>
+      </div>
+    </section>
+
+    <div id="site-footer"></div>
+
+    <script src="js/translations.js"></script>
+    <script src="js/i18n.js"></script>
+    <script src="js/layout.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+      const contactForm = document.getElementById("contactForm");
+      if (contactForm) {
+        contactForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const success = document.getElementById("contactSuccess");
+          success.classList.add("show");
+          contactForm.reset();
+          setTimeout(() => success.classList.remove("show"), 5000);
+        });
+      }
+    </script>
+  </body>
+</html>

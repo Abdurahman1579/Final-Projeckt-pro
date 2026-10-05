@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reports — Malka Nono Project</title>
+    <meta
+      name="description"
+      content="Financial, progress, and audit reports for the Malka Nono project."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Ethiopic:wght@300;400;500;600;700;800&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div id="site-nav"></div>
+
+    <!-- ============ PAGE HERO ============ -->
+    <header class="page-hero">
+      <div class="container">
+        <span class="page-tag" data-i18n="reports.hero.tag"></span>
+        <h1 data-i18n="reports.hero.title"></h1>
+        <p data-i18n="reports.hero.lede"></p>
+        <div class="breadcrumb">
+          <a href="index.html" data-i18n="nav.home"></a>
+          <span>/</span>
+          <span data-i18n="nav.reports"></span>
+        </div>
+      </div>
+    </header>
+
+    <!-- ============ REPORT STATS ============ -->
+    <section>
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-tag" data-i18n="reports.stats.tag"></span>
+          <h2 data-i18n="reports.stats.title"></h2>
+        </div>
+
+        <div class="report-stats">
+          <div class="report-stat reveal">
+            <div class="rs-icon">📊</div>
+            <div class="rs-num">
+              190<small data-i18n="unit.million"></small>
+            </div>
+            <div class="rs-lbl" data-i18n="reports.stat.total"></div>
+          </div>
+          <div class="report-stat reveal">
+            <div class="rs-icon">💰</div>
+            <div class="rs-num">
+              45.2<small data-i18n="unit.million"></small>
+            </div>
+            <div class="rs-lbl" data-i18n="reports.stat.raised"></div>
+          </div>
+          <div class="report-stat reveal">
+            <div class="rs-icon">📈</div>
+            <div class="rs-num">23.8<small>%</small></div>
+            <div class="rs-lbl" data-i18n="reports.stat.progress"></div>
+          </div>
+          <div class="report-stat reveal">
+            <div class="rs-icon">🧾</div>
+            <div class="rs-num">12</div>
+            <div class="rs-lbl" data-i18n="reports.stat.published"></div>
+          </div>
+        </div>
+
+        <!-- Overall progress bar -->
+        <div
+          class="reveal"
+          style="
+            background: var(--white);
+            border-radius: var(--r);
+            padding: 26px 28px;
+            box-shadow: var(--sh-sm);
+            border: 1px solid rgba(13, 59, 46, 0.06);
+          "
+        >
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              margin-bottom: 10px;
+            "
+          >
+            <strong
+              style="color: var(--g900); font-size: 15px"
+              data-i18n="reports.progress.title"
+            ></strong>
+            <span style="color: var(--g700); font-weight: 700; font-size: 14px"
+              >23.8%</span
+            >
+          </div>
+          <div class="progress-bar">
+            <div class="fill" style="width: 23.8%"></div>
+          </div>
+          <div class="progress-info">
+            <span data-i18n="reports.progress.raised"></span>
+            <strong>190,000,000 ብር</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ REPORT CARDS ============ -->
+    <section style="background: var(--g50)">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-tag" data-i18n="reports.list.tag"></span>
+          <h2 data-i18n="reports.list.title"></h2>
+          <p data-i18n="reports.list.lede"></p>
+        </div>
+
+        <div class="reports-grid">
+          <div class="report-card reveal">
+            <div class="rc-head">
+              <div class="rc-icon fin">💰</div>
+              <div>
+                <div class="rc-type" data-i18n="reports.type.financial"></div>
+                <h3 data-i18n="reports.r1.title"></h3>
+              </div>
+            </div>
+            <p data-i18n="reports.r1.desc"></p>
+            <div class="rc-meta">
+              <span>📅 <strong data-i18n="reports.r1.date"></strong></span>
+              <span>📄 <strong>2.4 MB</strong></span>
+              <span
+                >📑 <strong>18 <span data-i18n="reports.pages"></span></strong
+              ></span>
+            </div>
+            <a href="#" class="rc-action"
+              >📥 <span data-i18n="reports.download"></span
+            ></a>
+          </div>
+
+          <div class="report-card reveal">
+            <div class="rc-head">
+              <div class="rc-icon prog">📊</div>
+              <div>
+                <div class="rc-type" data-i18n="reports.type.progress"></div>
+                <h3 data-i18n="reports.r2.title"></h3>
+              </div>
+            </div>
+            <p data-i18n="reports.r2.desc"></p>
+            <div class="rc-meta">
+              <span>📅 <strong data-i18n="reports.r2.date"></strong></span>
+              <span>📄 <strong>1.8 MB</strong></span>
+              <span
+                >📑 <strong>24 <span data-i18n="reports.pages"></span></strong
+              ></span>
+            </div>
+            <a href="#" class="rc-action"
+              >📥 <span data-i18n="reports.download"></span
+            ></a>
+          </div>
+
+          <div class="report-card reveal">
+            <div class="rc-head">
+              <div class="rc-icon audit">🔍</div>
+              <div>
+                <div class="rc-type" data-i18n="reports.type.audit"></div>
+                <h3 data-i18n="reports.r3.title"></h3>
+              </div>
+            </div>
+            <p data-i18n="reports.r3.desc"></p>
+            <div class="rc-meta">
+              <span>📅 <strong data-i18n="reports.r3.date"></strong></span>
+              <span>📄 <strong>3.1 MB</strong></span>
+              <span
+                >📑 <strong>42 <span data-i18n="reports.pages"></span></strong
+              ></span>
+            </div>
+            <a href="#" class="rc-action"
+              >📥 <span data-i18n="reports.download"></span
+            ></a>
+          </div>
+
+          <div class="report-card reveal">
+            <div class="rc-head">
+              <div class="rc-icon q">📆</div>
+              <div>
+                <div class="rc-type" data-i18n="reports.type.quarterly"></div>
+                <h3 data-i18n="reports.r4.title"></h3>
+              </div>
+            </div>
+            <p data-i18n="reports.r4.desc"></p>
+            <div class="rc-meta">
+              <span>📅 <strong data-i18n="reports.r4.date"></strong></span>
+              <span>📄 <strong>1.2 MB</strong></span>
+              <span
+                >📑 <strong>12 <span data-i18n="reports.pages"></span></strong
+              ></span>
+            </div>
+            <a href="#" class="rc-action"
+              >📥 <span data-i18n="reports.download"></span
+            ></a>
+          </div>
+
+          <div class="report-card reveal">
+            <div class="rc-head">
+              <div class="rc-icon fin">📋</div>
+              <div>
+                <div class="rc-type" data-i18n="reports.type.financial"></div>
+                <h3 data-i18n="reports.r5.title"></h3>
+              </div>
+            </div>
+            <p data-i18n="reports.r5.desc"></p>
+            <div class="rc-meta">
+              <span>📅 <strong data-i18n="reports.r5.date"></strong></span>
+              <span>📄 <strong>2.1 MB</strong></span>
+              <span
+                >📑 <strong>16 <span data-i18n="reports.pages"></span></strong
+              ></span>
+            </div>
+            <a href="#" class="rc-action"
+              >📥 <span data-i18n="reports.download"></span
+            ></a>
+          </div>
+
+          <div class="report-card reveal">
+            <div class="rc-head">
+              <div class="rc-icon prog">🎯</div>
+              <div>
+                <div class="rc-type" data-i18n="reports.type.progress"></div>
+                <h3 data-i18n="reports.r6.title"></h3>
+              </div>
+            </div>
+            <p data-i18n="reports.r6.desc"></p>
+            <div class="rc-meta">
+              <span>📅 <strong data-i18n="reports.r6.date"></strong></span>
+              <span>📄 <strong>2.6 MB</strong></span>
+              <span
+                >📑 <strong>28 <span data-i18n="reports.pages"></span></strong
+              ></span>
+            </div>
+            <a href="#" class="rc-action"
+              >📥 <span data-i18n="reports.download"></span
+            ></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TRANSPARENCY COMMITMENT ============ -->
+    <section>
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-tag" data-i18n="reports.transparency.tag"></span>
+          <h2 data-i18n="reports.transparency.title"></h2>
+          <p data-i18n="reports.transparency.lede"></p>
+        </div>
+        <div class="grid grid-3">
+          <div class="card reveal">
+            <div class="card-icon">📅</div>
+            <h3 data-i18n="reports.commit.c1.title"></h3>
+            <p data-i18n="reports.commit.c1.desc"></p>
+          </div>
+          <div class="card reveal">
+            <div class="card-icon">🔍</div>
+            <h3 data-i18n="reports.commit.c2.title"></h3>
+            <p data-i18n="reports.commit.c2.desc"></p>
+          </div>
+          <div class="card reveal">
+            <div class="card-icon">📢</div>
+            <h3 data-i18n="reports.commit.c3.title"></h3>
+            <p data-i18n="reports.commit.c3.desc"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CTA ============ -->
+    <section style="padding-top: 0">
+      <div class="cta-banner reveal">
+        <h2 data-i18n="reports.cta.title"></h2>
+        <p data-i18n="reports.cta.desc"></p>
+        <a href="donate.html" class="btn btn-gold" data-i18n="cta.btn"></a>
+      </div>
+    </section>
+
+    <div id="site-footer"></div>
+
+    <script src="js/translations.js"></script>
+    <script src="js/i18n.js"></script>
+    <script src="js/layout.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

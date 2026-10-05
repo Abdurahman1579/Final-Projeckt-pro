@@ -1,0 +1,1981 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin — Malka Nono Project</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Ethiopic:wght@300;400;500;600;700;800&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- ============ LOGIN SCREEN ============ -->
+    <div class="login-screen" id="loginScreen">
+      <div class="lang-switcher login-lang" id="langSwitcherLogin">
+        <button class="lang-btn" id="langBtnLogin" aria-label="Change language">
+          🌐 <span class="lang-current">AM</span>
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+            <path
+              d="M1 3l4 4 4-4"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+            />
+          </svg>
+        </button>
+        <div class="lang-dropdown">
+          <button class="lang-option" data-lang="en">
+            <span class="lang-flag">🇬🇧</span> English
+          </button>
+          <button class="lang-option" data-lang="am">
+            <span class="lang-flag">🇪🇹</span> አማርኛ
+          </button>
+          <button class="lang-option" data-lang="om">
+            <span class="lang-flag">🌳</span> Oromoo
+          </button>
+          <button class="lang-option" data-lang="ar">
+            <span class="lang-flag">🇸🇦</span> العربية
+          </button>
+        </div>
+      </div>
+
+      <div class="login-card">
+        <div class="login-brand">
+          <div class="logo">☪</div>
+          <h1 data-i18n="admin.login.title"></h1>
+          <p data-i18n="admin.login.subtitle"></p>
+        </div>
+        <div class="login-hint">
+          <strong data-i18n="admin.login.demoLabel"></strong>
+          <span data-i18n="admin.login.demoText"></span>
+        </div>
+        <div
+          class="login-error"
+          id="loginError"
+          data-i18n="admin.login.error"
+        ></div>
+        <form id="loginForm" novalidate>
+          <div class="form-group">
+            <label
+              class="form-label"
+              for="adminUser"
+              data-i18n="admin.login.username"
+            ></label>
+            <input
+              class="form-input"
+              type="text"
+              id="adminUser"
+              autocomplete="username"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label
+              class="form-label"
+              for="adminPass"
+              data-i18n="admin.login.password"
+            ></label>
+            <input
+              class="form-input"
+              type="password"
+              id="adminPass"
+              autocomplete="current-password"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <button
+              type="submit"
+              class="btn btn-primary"
+              style="width: 100%; justify-content: center"
+              data-i18n="admin.login.submit"
+            ></button>
+          </div>
+        </form>
+        <div class="login-footer">
+          <a href="index.html" data-i18n="admin.login.back"></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ ADMIN DASHBOARD ============ -->
+    <div class="admin-app" id="adminApp">
+      <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+          <div class="admin-brand">
+            <div class="logo">☪</div>
+            <div class="txt">
+              <span data-i18n="admin.brand"></span>
+              <small data-i18n="admin.brandSub"></small>
+            </div>
+          </div>
+          <ul class="admin-nav" id="adminNav">
+            <li>
+              <a href="#" data-view="dashboard" class="active"
+                ><span class="ic">📊</span>
+                <span data-i18n="admin.nav.dashboard"></span
+              ></a>
+            </li>
+            <li>
+              <a href="#" data-view="news"
+                ><span class="ic">📰</span>
+                <span data-i18n="admin.nav.news"></span
+              ></a>
+            </li>
+            <li>
+              <a href="#" data-view="reports"
+                ><span class="ic">📁</span>
+                <span data-i18n="admin.nav.reports"></span
+              ></a>
+            </li>
+            <li>
+              <a href="#" data-view="donations"
+                ><span class="ic">💰</span>
+                <span data-i18n="admin.nav.donations"></span
+              ></a>
+            </li>
+            <li>
+              <a href="#" data-view="donors"
+                ><span class="ic">👥</span>
+                <span data-i18n="admin.nav.donors"></span
+              ></a>
+            </li>
+            <li>
+              <a href="#" data-view="messages"
+                ><span class="ic">✉️</span>
+                <span data-i18n="admin.nav.messages"></span
+              ></a>
+            </li>
+            <li>
+              <a href="#" data-view="users"
+                ><span class="ic">🔐</span>
+                <span data-i18n="admin.nav.users"></span
+              ></a>
+            </li>
+            <li>
+              <a href="#" data-view="settings"
+                ><span class="ic">⚙️</span>
+                <span data-i18n="admin.nav.settings"></span
+              ></a>
+            </li>
+          </ul>
+          <div class="sidebar-user">
+            <div class="avatar">AD</div>
+            <div class="info">
+              <strong data-i18n="admin.user.name"></strong>
+              <small data-i18n="admin.user.role"></small>
+            </div>
+            <button class="logout" id="logoutBtn" title="Logout">⎋</button>
+          </div>
+        </aside>
+
+        <!-- Main -->
+        <main class="admin-main">
+          <!-- Topbar (contextual buttons injected by JS) -->
+          <div class="admin-topbar">
+            <div>
+              <h1 id="viewTitle" data-i18n="admin.dashboard.title"></h1>
+              <p id="viewSubtitle" data-i18n="admin.dashboard.welcome"></p>
+            </div>
+            <div class="admin-topbar-right">
+              <div class="lang-switcher admin-lang" id="langSwitcherAdmin">
+                <button
+                  class="lang-btn"
+                  id="langBtnAdmin"
+                  aria-label="Change language"
+                >
+                  🌐 <span class="lang-current">AM</span>
+                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                    <path
+                      d="M1 3l4 4 4-4"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                </button>
+                <div class="lang-dropdown">
+                  <button class="lang-option" data-lang="en">
+                    <span class="lang-flag">🇬🇧</span> English
+                  </button>
+                  <button class="lang-option" data-lang="am">
+                    <span class="lang-flag">🇪🇹</span> አማርኛ
+                  </button>
+                  <button class="lang-option" data-lang="om">
+                    <span class="lang-flag">🌳</span> Oromoo
+                  </button>
+                  <button class="lang-option" data-lang="ar">
+                    <span class="lang-flag">🇸🇦</span> العربية
+                  </button>
+                </div>
+              </div>
+              <button class="admin-btn" id="topExportBtn">
+                📥 <span data-i18n="admin.actions.export"></span>
+              </button>
+              <button
+                class="admin-btn primary"
+                id="topAddBtn"
+                style="display: none"
+              ></button>
+            </div>
+          </div>
+
+          <!-- ==================== VIEW: DASHBOARD ==================== -->
+          <div class="admin-view active" id="view-dashboard">
+            <div class="dash-stats">
+              <div class="dash-stat">
+                <div class="ds-icon green">💰</div>
+                <div class="ds-num">45,200,000<small> ብር</small></div>
+                <div class="ds-lbl" data-i18n="admin.stat.raised"></div>
+                <span class="ds-trend up">↑ 12.5%</span>
+              </div>
+              <div class="dash-stat">
+                <div class="ds-icon gold">🎯</div>
+                <div class="ds-num">23.8<small>%</small></div>
+                <div class="ds-lbl" data-i18n="admin.stat.progress"></div>
+                <span class="ds-trend up">↑ 3.2%</span>
+              </div>
+              <div class="dash-stat">
+                <div class="ds-icon blue">👥</div>
+                <div class="ds-num">1,247</div>
+                <div class="ds-lbl" data-i18n="admin.stat.donors"></div>
+                <span class="ds-trend up">↑ 45</span>
+              </div>
+              <div class="dash-stat">
+                <div class="ds-icon purple">📰</div>
+                <div class="ds-num">18</div>
+                <div class="ds-lbl" data-i18n="admin.stat.news"></div>
+                <span class="ds-trend up">↑ 2</span>
+              </div>
+            </div>
+            <div class="admin-cols">
+              <div>
+                <div class="admin-panel">
+                  <div class="admin-panel-head">
+                    <h2 data-i18n="admin.panel.recent"></h2>
+                    <a
+                      href="#"
+                      data-goto="donations"
+                      data-i18n="admin.viewAll"
+                    ></a>
+                  </div>
+                  <div style="overflow-x: auto">
+                    <table class="admin-table">
+                      <thead>
+                        <tr>
+                          <th data-i18n="admin.tbl.donor"></th>
+                          <th data-i18n="admin.tbl.amount"></th>
+                          <th data-i18n="admin.tbl.method"></th>
+                          <th data-i18n="admin.tbl.status"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Ahmed Mohammed</td>
+                          <td><strong>50,000 ብር</strong></td>
+                          <td>CBE</td>
+                          <td>
+                            <span
+                              class="status-badge approved"
+                              data-i18n="admin.status.approved"
+                            ></span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Fatima Ibrahim</td>
+                          <td><strong>100,000 ብር</strong></td>
+                          <td>Awash</td>
+                          <td>
+                            <span
+                              class="status-badge approved"
+                              data-i18n="admin.status.approved"
+                            ></span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Business Group A</td>
+                          <td><strong>500,000 ብር</strong></td>
+                          <td>CBE</td>
+                          <td>
+                            <span
+                              class="status-badge pending"
+                              data-i18n="admin.status.pending"
+                            ></span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="admin-panel">
+                  <div class="admin-panel-head">
+                    <h2 data-i18n="admin.panel.reports"></h2>
+                    <a
+                      href="#"
+                      data-goto="reports"
+                      data-i18n="admin.viewAll"
+                    ></a>
+                  </div>
+                  <div style="overflow-x: auto">
+                    <table class="admin-table">
+                      <thead>
+                        <tr>
+                          <th data-i18n="admin.tbl.report"></th>
+                          <th data-i18n="admin.tbl.date"></th>
+                          <th data-i18n="admin.tbl.status"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Monthly Financial — Jan 2026</td>
+                          <td>Feb 5, 2026</td>
+                          <td>
+                            <span
+                              class="status-badge approved"
+                              data-i18n="admin.status.published"
+                            ></span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Project Progress — Q1 2026</td>
+                          <td>Apr 10, 2026</td>
+                          <td>
+                            <span
+                              class="status-badge draft"
+                              data-i18n="admin.status.draft"
+                            ></span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="admin-panel">
+                  <div class="admin-panel-head">
+                    <h2 data-i18n="admin.panel.quick"></h2>
+                  </div>
+                  <div class="quick-actions">
+                    <button class="quick-action" data-add="news">
+                      <span class="qa-ic">📝</span
+                      ><span class="qa-lbl" data-i18n="admin.quick.news"></span>
+                    </button>
+                    <button class="quick-action" data-add="reports">
+                      <span class="qa-ic">📤</span
+                      ><span
+                        class="qa-lbl"
+                        data-i18n="admin.quick.report"
+                      ></span>
+                    </button>
+                    <button class="quick-action" data-add="donors">
+                      <span class="qa-ic">👤</span
+                      ><span
+                        class="qa-lbl"
+                        data-i18n="admin.quick.donor"
+                      ></span>
+                    </button>
+                    <button class="quick-action" data-export>
+                      <span class="qa-ic">📊</span
+                      ><span
+                        class="qa-lbl"
+                        data-i18n="admin.quick.export"
+                      ></span>
+                    </button>
+                  </div>
+                </div>
+                <div class="admin-panel">
+                  <div class="admin-panel-head">
+                    <h2 data-i18n="admin.panel.activity"></h2>
+                  </div>
+                  <ul class="activity-list">
+                    <li class="activity-item">
+                      <div class="av g">💰</div>
+                      <div class="info">
+                        <strong data-i18n="admin.act.a1"></strong
+                        ><small data-i18n="admin.act.a1t"></small>
+                      </div>
+                    </li>
+                    <li class="activity-item">
+                      <div class="av b">📝</div>
+                      <div class="info">
+                        <strong data-i18n="admin.act.a2"></strong
+                        ><small data-i18n="admin.act.a2t"></small>
+                      </div>
+                    </li>
+                    <li class="activity-item">
+                      <div class="av y">👤</div>
+                      <div class="info">
+                        <strong data-i18n="admin.act.a3"></strong
+                        ><small data-i18n="admin.act.a3t"></small>
+                      </div>
+                    </li>
+                    <li class="activity-item">
+                      <div class="av p">📤</div>
+                      <div class="info">
+                        <strong data-i18n="admin.act.a4"></strong
+                        ><small data-i18n="admin.act.a4t"></small>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ==================== VIEW: NEWS ==================== -->
+          <div class="admin-view" id="view-news">
+            <div class="admin-panel">
+              <div class="admin-panel-head">
+                <h2 data-i18n="admin.news.list"></h2>
+                <button class="admin-btn primary" data-add="news">
+                  + <span data-i18n="admin.news.new"></span>
+                </button>
+              </div>
+              <div class="panel-tabs">
+                <button
+                  class="panel-tab active"
+                  data-i18n="admin.filter.all"
+                ></button>
+                <button
+                  class="panel-tab"
+                  data-i18n="admin.filter.published"
+                ></button>
+                <button
+                  class="panel-tab"
+                  data-i18n="admin.filter.draft"
+                ></button>
+              </div>
+              <div style="overflow-x: auto">
+                <table class="admin-table" data-table="news">
+                  <thead>
+                    <tr>
+                      <th data-i18n="admin.news.th.title"></th>
+                      <th data-i18n="admin.news.th.category"></th>
+                      <th data-i18n="admin.tbl.date"></th>
+                      <th data-i18n="admin.tbl.status"></th>
+                      <th data-i18n="admin.tbl.actions"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr data-id="n1" data-cat="announcement">
+                      <td>Project Officially Approved</td>
+                      <td data-i18n="news.filter.announcement"></td>
+                      <td>Jan 15, 2026</td>
+                      <td>
+                        <span
+                          class="status-badge approved"
+                          data-i18n="admin.status.published"
+                        ></span>
+                      </td>
+                      <td>
+                        <div class="row-actions">
+                          <button
+                            class="icon-btn edit"
+                            data-edit="news"
+                            title="Edit"
+                          >
+                            ✏️
+                          </button>
+                          <button
+                            class="icon-btn danger"
+                            data-delete="news"
+                            title="Delete"
+                          >
+                            🗑️
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr data-id="n2" data-cat="progress">
+                      <td>Building Site Evaluation Completed</td>
+                      <td data-i18n="news.filter.progress"></td>
+                      <td>Jan 10, 2026</td>
+                      <td>
+                        <span
+                          class="status-badge approved"
+                          data-i18n="admin.status.published"
+                        ></span>
+                      </td>
+                      <td>
+                        <div class="row-actions">
+                          <button class="icon-btn edit" data-edit="news">
+                            ✏️
+                          </button>
+                          <button class="icon-btn danger" data-delete="news">
+                            🗑️
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr data-id="n3" data-cat="fundraising">
+                      <td>First Major Pledge Received</td>
+                      <td data-i18n="news.filter.fundraising"></td>
+                      <td>Jan 5, 2026</td>
+                      <td>
+                        <span
+                          class="status-badge approved"
+                          data-i18n="admin.status.published"
+                        ></span>
+                      </td>
+                      <td>
+                        <div class="row-actions">
+                          <button class="icon-btn edit" data-edit="news">
+                            ✏️
+                          </button>
+                          <button class="icon-btn danger" data-delete="news">
+                            🗑️
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr data-id="n4" data-cat="progress">
+                      <td>Q1 Progress Update</td>
+                      <td data-i18n="news.filter.progress"></td>
+                      <td>Apr 8, 2026</td>
+                      <td>
+                        <span
+                          class="status-badge draft"
+                          data-i18n="admin.status.draft"
+                        ></span>
+                      </td>
+                      <td>
+                        <div class="row-actions">
+                          <button class="icon-btn edit" data-edit="news">
+                            ✏️
+                          </button>
+                          <button class="icon-btn danger" data-delete="news">
+                            🗑️
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- ==================== VIEW: REPORTS ==================== -->
+          <div class="admin-view" id="view-reports">
+            <div class="admin-panel">
+              <div class="admin-panel-head">
+                <h2 data-i18n="admin.reports.list"></h2>
+                <button class="admin-btn primary" data-add="reports">
+                  📤 <span data-i18n="admin.reports.upload"></span>
+                </button>
+              </div>
+              <div style="overflow-x: auto">
+                <table class="admin-table" data-table="reports">
+                  <thead>
+                    <tr>
+                      <th data-i18n="admin.tbl.report"></th>
+                      <th data-i18n="admin.reports.th.type"></th>
+                      <th data-i18n="admin.tbl.date"></th>
+                      <th data-i18n="admin.reports.th.size"></th>
+                      <th data-i18n="admin.tbl.status"></th>
+                      <th data-i18n="admin.tbl.actions"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr data-id="r1">
+                      <td>Monthly Financial — Jan 2026</td>
+                      <td data-i18n="reports.type.financial"></td>
+                      <td>Feb 5, 2026</td>
+                      <td>2.4 MB</td>
+                      <td>
+                        <span
+                          class="status-badge approved"
+                          data-i18n="admin.status.published"
+                        ></span>
+                      </td>
+                      <td>
+                        <div class="row-actions">
+                          <button class="icon-btn edit" data-edit="reports">
+                            ✏️
+                          </button>
+                          <button class="icon-btn danger" data-delete="reports">
+                            🗑️
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr data-id="r2">
+                      <td>Project Progress — Q1 2026</td>
+                      <td data-i18n="reports.type.progress"></td>
+                      <td>Apr 10, 2026</td>
+                      <td>1.8 MB</td>
+                      <td>
+                        <span
+                          class="status-badge draft"
+                          data-i18n="admin.status.draft"
+                        ></span>
+                      </td>
+                      <td>
+                        <div class="row-actions">
+                          <button class="icon-btn edit" data-edit="reports">
+                            ✏️
+                          </button>
+                          <button class="icon-btn danger" data-delete="reports">
+                            🗑️
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr data-id="r3">
+                      <td>Independent Audit — 2025</td>
+                      <td data-i18n="reports.type.audit"></td>
+                      <td>Mar 15, 2026</td>
+                      <td>3.1 MB</td>
+                      <td>
+                        <span
+                          class="status-badge approved"
+                          data-i18n="admin.status.published"
+                        ></span>
+                      </td>
+                      <td>
+                        <div class="row-actions">
+                          <button class="icon-btn edit" data-edit="reports">
+                            ✏️
+                          </button>
+                          <button class="icon-btn danger" data-delete="reports">
+                            🗑️
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr data-id="r4">
+                      <td>Quarterly Report — Q4 2025</td>
+                      <td data-i18n="reports.type.quarterly"></td>
+                      <td>Jan 20, 2026</td>
+                      <td>1.2 MB</td>
+                      <td>
+                        <span
+                          class="status-badge approved"
+                          data-i18n="admin.status.published"
+                        ></span>
+                      </td>
+                      <td>
+                        <div class="row-actions">
+                          <button class="icon-btn edit" data-edit="reports">
+                            ✏️
+                          </button>
+                          <button class="icon-btn danger" data-delete="reports">
+                            🗑️
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- ==================== VIEW: DONATIONS ==================== -->
+          <div class="admin-view" id="view-donations">
+            <div class="admin-panel">
+              <div class="admin-panel-head">
+                <h2 data-i18n="admin.donations.list"></h2>
+                <button class="admin-btn primary" data-add="donations">
+                  + <span data-i18n="admin.donations.new"></span>
+                </button>
+              </div>
+              <div class="panel-tabs">
+                <button
+                  class="panel-tab active"
+                  data-i18n="admin.filter.all"
+                ></button>
+                <button
+                  class="panel-tab"
+                  data-i18n="admin.status.approved"
+                ></button>
+                <button
+                  class="panel-tab"
+                  data-i18n="admin.status.pending"
+                ></button>
+              </div>
+              <div style="overflow-x: auto">
+                <table class="admin-table" data-table="donations">
+                  <thead>
+                    <tr>
+                      <th data-i18n="admin.donations.th.id"></th>
+                      <th data-i18n="admin.tbl.donor"></th>
+                      <th data-i18n="admin.tbl.amount"></th>
+                      <th data-i18n="admin.tbl.method"></th>
+                      <th data-i18n="admin.tbl.date"></th>
+                      <th data-i18n="admin.tbl.status"></th>
+                      <th data-i18n="admin.tbl.actions"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr data-id="d1">
+                      <td>#1024</td>
+                      <td>Ahmed Mohammed</td>
+                      <td><strong>50,000 ብር</strong></td>
+                      <td>CBE</td>
+                      <td>Feb 8, 2026</td>
+                      <td>
+                        <span
+                          class="status-badge approved"
+                          data-i18n="admin.status.approved"
+                        ></span>
+                      </td>
+                      <td>
+                        <div class="row-actions">
+                          <button class="icon-btn edit" data-edit="donations">
+                            ✏️</button
+                          ><button
+                            class="icon-btn danger"
+                            data-delete="donations"
+                          >
+                            🗑️
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr data-id="d2">
+                      <td>#1023</td>
+                      <td>Fatima Ibrahim</td>
+                      <td><strong>100,000 ብር</strong></td>
+                      <td>Awash</td>
+                      <td>Feb 7, 2026</td>
+                      <td>
+                        <span
+                          class="status-badge approved"
+                          data-i18n="admin.status.approved"
+                        ></span>
+                      </td>
+                      <td>
+                        <div class="row-actions">
+                          <button class="icon-btn edit" data-edit="donations">
+                            ✏️</button
+                          ><button
+                            class="icon-btn danger"
+                            data-delete="donations"
+                          >
+                            🗑️
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr data-id="d3">
+                      <td>#1022</td>
+                      <td>Business Group A</td>
+                      <td><strong>500,000 ብር</strong></td>
+                      <td>CBE</td>
+                      <td>Feb 6, 2026</td>
+                      <td>
+                        <span
+                          class="status-badge pending"
+                          data-i18n="admin.status.pending"
+                        ></span>
+                      </td>
+                      <td>
+                        <div class="row-actions">
+                          <button class="icon-btn edit" data-edit="donations">
+                            ✏️</button
+                          ><button
+                            class="icon-btn danger"
+                            data-delete="donations"
+                          >
+                            🗑️
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr data-id="d4">
+                      <td>#1021</td>
+                      <td>Anonymous</td>
+                      <td><strong>25,000 ብር</strong></td>
+                      <td>Telebirr</td>
+                      <td>Feb 5, 2026</td>
+                      <td>
+                        <span
+                          class="status-badge approved"
+                          data-i18n="admin.status.approved"
+                        ></span>
+                      </td>
+                      <td>
+                        <div class="row-actions">
+                          <button class="icon-btn edit" data-edit="donations">
+                            ✏️</button
+                          ><button
+                            class="icon-btn danger"
+                            data-delete="donations"
+                          >
+                            🗑️
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr data-id="d5">
+                      <td>#1020</td>
+                      <td>Hassan Ali</td>
+                      <td><strong>75,000 ብር</strong></td>
+                      <td>Dashen</td>
+                      <td>Feb 4, 2026</td>
+                      <td>
+                        <span
+                          class="status-badge review"
+                          data-i18n="admin.status.review"
+                        ></span>
+                      </td>
+                      <td>
+                        <div class="row-actions">
+                          <button class="icon-btn edit" data-edit="donations">
+                            ✏️</button
+                          ><button
+                            class="icon-btn danger"
+                            data-delete="donations"
+                          >
+                            🗑️
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- ==================== VIEW: DONORS ==================== -->
+          <div class="admin-view" id="view-donors">
+            <div class="admin-panel">
+              <div class="admin-panel-head">
+                <h2 data-i18n="admin.donors.list"></h2>
+                <button class="admin-btn primary" data-add="donors">
+                  + <span data-i18n="admin.donors.new"></span>
+                </button>
+              </div>
+              <div style="overflow-x: auto">
+                <table class="admin-table" data-table="donors">
+                  <thead>
+                    <tr>
+                      <th data-i18n="admin.donors.th.name"></th>
+                      <th data-i18n="admin.donors.th.phone"></th>
+                      <th data-i18n="admin.donors.th.total"></th>
+                      <th data-i18n="admin.donors.th.count"></th>
+                      <th data-i18n="admin.donors.th.last"></th>
+                      <th data-i18n="admin.tbl.actions"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr data-id="dn1">
+                      <td>
+                        <div class="user-cell">
+                          <div class="u-av">AM</div>
+                          <div class="u-info">
+                            <strong>Ahmed Mohammed</strong
+                            ><small>ahmed@example.com</small>
+                          </div>
+                        </div>
+                      </td>
+                      <td>+251 911 234 567</td>
+                      <td><strong>250,000 ብር</strong></td>
+                      <td>5</td>
+                      <td>Feb 8, 2026</td>
+                      <td>
+                        <div class="row-actions">
+                          <button class="icon-btn edit" data-edit="donors">
+                            ✏️</button
+                          ><button class="icon-btn danger" data-delete="donors">
+                            🗑️
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr data-id="dn2">
+                      <td>
+                        <div class="user-cell">
+                          <div class="u-av">FI</div>
+                          <div class="u-info">
+                            <strong>Fatima Ibrahim</strong
+                            ><small>fatima@example.com</small>
+                          </div>
+                        </div>
+                      </td>
+                      <td>+251 917 654 321</td>
+                      <td><strong>500,000 ብር</strong></td>
+                      <td>3</td>
+                      <td>Feb 7, 2026</td>
+                      <td>
+                        <div class="row-actions">
+                          <button class="icon-btn edit" data-edit="donors">
+                            ✏️</button
+                          ><button class="icon-btn danger" data-delete="donors">
+                            🗑️
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr data-id="dn3">
+                      <td>
+                        <div class="user-cell">
+                          <div class="u-av">BG</div>
+                          <div class="u-info">
+                            <strong>Business Group A</strong
+                            ><small>info@businessa.com</small>
+                          </div>
+                        </div>
+                      </td>
+                      <td>+251 911 555 777</td>
+                      <td><strong>1,500,000 ብር</strong></td>
+                      <td>2</td>
+                      <td>Feb 6, 2026</td>
+                      <td>
+                        <div class="row-actions">
+                          <button class="icon-btn edit" data-edit="donors">
+                            ✏️</button
+                          ><button class="icon-btn danger" data-delete="donors">
+                            🗑️
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr data-id="dn4">
+                      <td>
+                        <div class="user-cell">
+                          <div class="u-av">HA</div>
+                          <div class="u-info">
+                            <strong>Hassan Ali</strong
+                            ><small>hassan@example.com</small>
+                          </div>
+                        </div>
+                      </td>
+                      <td>+251 913 111 222</td>
+                      <td><strong>75,000 ብር</strong></td>
+                      <td>1</td>
+                      <td>Feb 4, 2026</td>
+                      <td>
+                        <div class="row-actions">
+                          <button class="icon-btn edit" data-edit="donors">
+                            ✏️</button
+                          ><button class="icon-btn danger" data-delete="donors">
+                            🗑️
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- ==================== VIEW: MESSAGES ==================== -->
+          <div class="admin-view" id="view-messages">
+            <div class="admin-panel">
+              <div class="admin-panel-head">
+                <h2 data-i18n="admin.messages.inbox"></h2>
+                <span
+                  class="status-badge pending"
+                  data-i18n="admin.messages.unread"
+                ></span>
+              </div>
+              <div class="message-card unread" data-id="m1">
+                <div class="msg-av">AM</div>
+                <div class="msg-body">
+                  <div class="msg-head">
+                    <span class="msg-name">Ahmed Mohammed</span
+                    ><span class="msg-time">2 hours ago</span>
+                  </div>
+                  <div
+                    class="msg-subject"
+                    data-i18n="contact.form.subject.donation"
+                  ></div>
+                  <div class="msg-text">
+                    I would like to contribute to the project. Please contact
+                    me.
+                  </div>
+                </div>
+                <div class="row-actions" style="align-self: flex-start">
+                  <button
+                    class="icon-btn view"
+                    data-mark="read"
+                    title="Mark as read"
+                  >
+                    ✓
+                  </button>
+                  <button class="icon-btn danger" data-delete="messages">
+                    🗑️
+                  </button>
+                </div>
+              </div>
+              <div class="message-card unread" data-id="m2">
+                <div class="msg-av">FI</div>
+                <div class="msg-body">
+                  <div class="msg-head">
+                    <span class="msg-name">Fatima Ibrahim</span
+                    ><span class="msg-time">5 hours ago</span>
+                  </div>
+                  <div
+                    class="msg-subject"
+                    data-i18n="contact.form.subject.partner"
+                  ></div>
+                  <div class="msg-text">
+                    Our organization would like to explore a partnership
+                    opportunity.
+                  </div>
+                </div>
+                <div class="row-actions" style="align-self: flex-start">
+                  <button class="icon-btn view" data-mark="read">✓</button>
+                  <button class="icon-btn danger" data-delete="messages">
+                    🗑️
+                  </button>
+                </div>
+              </div>
+              <div class="message-card" data-id="m3">
+                <div class="msg-av">HA</div>
+                <div class="msg-body">
+                  <div class="msg-head">
+                    <span class="msg-name">Hassan Ali</span
+                    ><span class="msg-time">Yesterday</span>
+                  </div>
+                  <div
+                    class="msg-subject"
+                    data-i18n="contact.form.subject.volunteer"
+                  ></div>
+                  <div class="msg-text">
+                    I am interested in volunteering for the project.
+                  </div>
+                </div>
+                <div class="row-actions" style="align-self: flex-start">
+                  <button class="icon-btn danger" data-delete="messages">
+                    🗑️
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ==================== VIEW: USERS ==================== -->
+          <div class="admin-view" id="view-users">
+            <div class="admin-panel">
+              <div class="admin-panel-head">
+                <h2 data-i18n="admin.users.list"></h2>
+                <button class="admin-btn primary" data-add="users">
+                  + <span data-i18n="admin.users.new"></span>
+                </button>
+              </div>
+              <div style="overflow-x: auto">
+                <table class="admin-table" data-table="users">
+                  <thead>
+                    <tr>
+                      <th data-i18n="admin.users.th.user"></th>
+                      <th data-i18n="admin.users.th.email"></th>
+                      <th data-i18n="admin.users.th.role"></th>
+                      <th data-i18n="admin.users.th.last"></th>
+                      <th data-i18n="admin.tbl.status"></th>
+                      <th data-i18n="admin.tbl.actions"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr data-id="u1">
+                      <td>
+                        <div class="user-cell">
+                          <div class="u-av">AD</div>
+                          <div class="u-info"><strong>Admin User</strong></div>
+                        </div>
+                      </td>
+                      <td>admin@malkanono.org</td>
+                      <td><span class="role-badge admin">Admin</span></td>
+                      <td>Today, 09:45</td>
+                      <td>
+                        <span
+                          class="status-badge approved"
+                          data-i18n="admin.users.active"
+                        ></span>
+                      </td>
+                      <td>
+                        <div class="row-actions">
+                          <button class="icon-btn edit" data-edit="users">
+                            ✏️</button
+                          ><button class="icon-btn danger" data-delete="users">
+                            🗑️
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr data-id="u2">
+                      <td>
+                        <div class="user-cell">
+                          <div class="u-av">MK</div>
+                          <div class="u-info"><strong>Mohammed K.</strong></div>
+                        </div>
+                      </td>
+                      <td>mohammed@malkanono.org</td>
+                      <td><span class="role-badge editor">Editor</span></td>
+                      <td>Yesterday, 16:22</td>
+                      <td>
+                        <span
+                          class="status-badge approved"
+                          data-i18n="admin.users.active"
+                        ></span>
+                      </td>
+                      <td>
+                        <div class="row-actions">
+                          <button class="icon-btn edit" data-edit="users">
+                            ✏️</button
+                          ><button class="icon-btn danger" data-delete="users">
+                            🗑️
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr data-id="u3">
+                      <td>
+                        <div class="user-cell">
+                          <div class="u-av">SA</div>
+                          <div class="u-info"><strong>Sarah A.</strong></div>
+                        </div>
+                      </td>
+                      <td>sarah@malkanono.org</td>
+                      <td><span class="role-badge editor">Editor</span></td>
+                      <td>Feb 6, 2026</td>
+                      <td>
+                        <span
+                          class="status-badge approved"
+                          data-i18n="admin.users.active"
+                        ></span>
+                      </td>
+                      <td>
+                        <div class="row-actions">
+                          <button class="icon-btn edit" data-edit="users">
+                            ✏️</button
+                          ><button class="icon-btn danger" data-delete="users">
+                            🗑️
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr data-id="u4">
+                      <td>
+                        <div class="user-cell">
+                          <div class="u-av">YT</div>
+                          <div class="u-info"><strong>Yusuf T.</strong></div>
+                        </div>
+                      </td>
+                      <td>yusuf@malkanono.org</td>
+                      <td><span class="role-badge viewer">Viewer</span></td>
+                      <td>Jan 28, 2026</td>
+                      <td>
+                        <span
+                          class="status-badge draft"
+                          data-i18n="admin.users.inactive"
+                        ></span>
+                      </td>
+                      <td>
+                        <div class="row-actions">
+                          <button class="icon-btn edit" data-edit="users">
+                            ✏️</button
+                          ><button class="icon-btn danger" data-delete="users">
+                            🗑️
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- ==================== VIEW: SETTINGS ==================== -->
+          <div class="admin-view" id="view-settings">
+            <div class="settings-section">
+              <h3 data-i18n="admin.settings.general"></h3>
+              <div class="settings-form">
+                <div class="form-group">
+                  <label
+                    class="form-label"
+                    data-i18n="admin.settings.projectName"
+                  ></label>
+                  <input
+                    class="form-input"
+                    type="text"
+                    value="Malka Nono Project"
+                  />
+                </div>
+                <div class="form-group">
+                  <label
+                    class="form-label"
+                    data-i18n="admin.settings.orgName"
+                  ></label>
+                  <input
+                    class="form-input"
+                    type="text"
+                    value="Malka Nono Islamic Affairs Council"
+                  />
+                </div>
+                <div class="form-group full">
+                  <label
+                    class="form-label"
+                    data-i18n="admin.settings.description"
+                  ></label>
+                  <textarea class="form-textarea" rows="3">
+Sustainable Property Development Project.</textarea
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="settings-section">
+              <h3 data-i18n="admin.settings.notifications"></h3>
+              <div class="settings-form">
+                <div class="form-group full">
+                  <label
+                    style="
+                      display: flex;
+                      align-items: center;
+                      gap: 10px;
+                      cursor: pointer;
+                      font-size: 14px;
+                      color: var(--ink700);
+                    "
+                  >
+                    <input
+                      type="checkbox"
+                      checked
+                      style="width: 18px; height: 18px"
+                    />
+                    <span data-i18n="admin.settings.emailNotif"></span>
+                  </label>
+                </div>
+                <div class="form-group full">
+                  <label
+                    style="
+                      display: flex;
+                      align-items: center;
+                      gap: 10px;
+                      cursor: pointer;
+                      font-size: 14px;
+                      color: var(--ink700);
+                    "
+                  >
+                    <input
+                      type="checkbox"
+                      checked
+                      style="width: 18px; height: 18px"
+                    />
+                    <span data-i18n="admin.settings.donationNotif"></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div style="display: flex; gap: 12px; justify-content: flex-end">
+              <button
+                class="admin-btn"
+                data-i18n="admin.settings.cancel"
+              ></button>
+              <button
+                class="admin-btn primary"
+                onclick="showToast('Changes saved', 'success')"
+                data-i18n="admin.settings.save"
+              ></button>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <!-- ============ MODAL OVERLAY ============ -->
+    <div class="modal-overlay" id="modalOverlay">
+      <div class="modal" id="modalBox">
+        <div class="modal-head">
+          <h3 id="modalTitle">
+            <span class="mh-icon">📝</span
+            ><span id="modalTitleText">Title</span>
+          </h3>
+          <button class="modal-close" id="modalClose">×</button>
+        </div>
+        <div class="modal-body" id="modalBody"></div>
+        <div class="modal-foot" id="modalFoot">
+          <button
+            class="modal-btn"
+            id="modalCancel"
+            data-i18n="admin.modal.cancel"
+          ></button>
+          <button
+            class="modal-btn primary"
+            id="modalSave"
+            data-i18n="admin.modal.save"
+          ></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ TOAST CONTAINER ============ -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="js/translations.js"></script>
+    <script src="js/i18n.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+      /* ============================================================
+   ADMIN LOGIC — Login, Navigation, CRUD, Modal, Toast
+   ============================================================ */
+
+      // ---------- LOGIN ----------
+      const DEMO_USER = "admin",
+        DEMO_PASS = "malka2026";
+      const loginScreen = document.getElementById("loginScreen");
+      const adminApp = document.getElementById("adminApp");
+      const loginForm = document.getElementById("loginForm");
+      const loginError = document.getElementById("loginError");
+      const logoutBtn = document.getElementById("logoutBtn");
+
+      if (sessionStorage.getItem("adminLoggedIn") === "true") showDashboard();
+
+      loginForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const u = document.getElementById("adminUser").value.trim();
+        const p = document.getElementById("adminPass").value.trim();
+        if (u === DEMO_USER && p === DEMO_PASS) {
+          sessionStorage.setItem("adminLoggedIn", "true");
+          showDashboard();
+        } else {
+          loginError.classList.add("show");
+          setTimeout(() => loginError.classList.remove("show"), 4000);
+        }
+      });
+
+      logoutBtn.addEventListener("click", () => {
+        sessionStorage.removeItem("adminLoggedIn");
+        adminApp.classList.remove("active");
+        loginScreen.classList.remove("hidden");
+      });
+
+      function showDashboard() {
+        loginScreen.classList.add("hidden");
+        adminApp.classList.add("active");
+        window.scrollTo(0, 0);
+      }
+
+      // ---------- VIEW META (per view: title, subtitle, add button, add label) ----------
+      const viewMeta = {
+        dashboard: {
+          title: "admin.dashboard.title",
+          subtitle: "admin.dashboard.welcome",
+          add: null,
+        },
+        news: {
+          title: "admin.nav.news",
+          subtitle: "admin.news.subtitle",
+          add: "news",
+          addLabel: "admin.news.new",
+        },
+        reports: {
+          title: "admin.nav.reports",
+          subtitle: "admin.reports.subtitle",
+          add: "reports",
+          addLabel: "admin.reports.upload",
+        },
+        donations: {
+          title: "admin.nav.donations",
+          subtitle: "admin.donations.subtitle",
+          add: "donations",
+          addLabel: "admin.donations.new",
+        },
+        donors: {
+          title: "admin.nav.donors",
+          subtitle: "admin.donors.subtitle",
+          add: "donors",
+          addLabel: "admin.donors.new",
+        },
+        messages: {
+          title: "admin.nav.messages",
+          subtitle: "admin.messages.subtitle",
+          add: null,
+        },
+        users: {
+          title: "admin.nav.users",
+          subtitle: "admin.users.subtitle",
+          add: "users",
+          addLabel: "admin.users.new",
+        },
+        settings: {
+          title: "admin.nav.settings",
+          subtitle: "admin.settings.subtitle",
+          add: null,
+        },
+      };
+
+      const navLinks = document.querySelectorAll("#adminNav a");
+      const viewTitle = document.getElementById("viewTitle");
+      const viewSubtitle = document.getElementById("viewSubtitle");
+      const topAddBtn = document.getElementById("topAddBtn");
+
+      function switchView(viewId) {
+        document
+          .querySelectorAll(".admin-view")
+          .forEach((v) => v.classList.remove("active"));
+        const target = document.getElementById("view-" + viewId);
+        if (target) target.classList.add("active");
+
+        navLinks.forEach((l) =>
+          l.classList.toggle("active", l.dataset.view === viewId),
+        );
+
+        const meta = viewMeta[viewId];
+        if (meta) {
+          viewTitle.setAttribute("data-i18n", meta.title);
+          viewSubtitle.setAttribute("data-i18n", meta.subtitle);
+          viewTitle.textContent = window.i18n.t(meta.title);
+          viewSubtitle.textContent = window.i18n.t(meta.subtitle);
+
+          // Contextual topbar Add button
+          if (meta.add) {
+            topAddBtn.style.display = "";
+            topAddBtn.setAttribute("data-add", meta.add);
+            topAddBtn.innerHTML =
+              '+ <span data-i18n="' +
+              meta.addLabel +
+              '">' +
+              window.i18n.t(meta.addLabel) +
+              "</span>";
+          } else {
+            topAddBtn.style.display = "none";
+          }
+        }
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      navLinks.forEach((link) => {
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+          switchView(link.dataset.view);
+        });
+      });
+
+      // Links with data-goto (e.g., "View all →")
+      document.querySelectorAll("[data-goto]").forEach((el) => {
+        el.addEventListener("click", (e) => {
+          e.preventDefault();
+          switchView(el.dataset.goto);
+        });
+      });
+
+      // Quick actions with data-add → open add modal for that type
+      document.querySelectorAll(".quick-action[data-add]").forEach((btn) => {
+        btn.addEventListener("click", () => openAddModal(btn.dataset.add));
+      });
+
+      // Quick actions with data-export
+      document.querySelectorAll(".quick-action[data-export]").forEach((btn) => {
+        btn.addEventListener("click", () =>
+          showToast("Data exported successfully", "success"),
+        );
+      });
+
+      // ---------- TOAST ----------
+      function showToast(msg, type = "success") {
+        const c = document.getElementById("toastContainer");
+        const icons = { success: "✓", error: "✕", info: "ℹ", warn: "⚠" };
+        const toast = document.createElement("div");
+        toast.className = "toast " + type;
+        toast.innerHTML =
+          '<div class="ti">' +
+          (icons[type] || "✓") +
+          "</div><div>" +
+          msg +
+          "</div>";
+        c.appendChild(toast);
+        setTimeout(() => {
+          toast.classList.add("out");
+          setTimeout(() => toast.remove(), 350);
+        }, 3200);
+      }
+
+      // ---------- FORM CONFIGS (per type) ----------
+      const formConfigs = {
+        news: {
+          icon: "📝",
+          addTitle: "admin.news.new",
+          editTitle: "admin.edit",
+          fields: [
+            { key: "title", label: "admin.news.th.title", type: "text" },
+            {
+              key: "category",
+              label: "admin.news.th.category",
+              type: "select",
+              options: ["announcement", "progress", "fundraising", "community"],
+            },
+            { key: "date", label: "admin.tbl.date", type: "text" },
+            {
+              key: "status",
+              label: "admin.tbl.status",
+              type: "select",
+              options: ["published", "draft"],
+            },
+            {
+              key: "content",
+              label: "admin.settings.description",
+              type: "textarea",
+            },
+          ],
+          buildRow: (v, id) => `
+      <td>${v.title || ""}</td>
+      <td>${v.category || ""}</td>
+      <td>${v.date || ""}</td>
+      <td><span class="status-badge ${v.status === "published" ? "approved" : "draft"}">${v.status || "draft"}</span></td>
+      <td><div class="row-actions">
+        <button class="icon-btn edit" data-edit="news" data-id="${id}">✏️</button>
+        <button class="icon-btn danger" data-delete="news" data-id="${id}">🗑️</button>
+      </div></td>`,
+        },
+        reports: {
+          icon: "📁",
+          addTitle: "admin.reports.upload",
+          editTitle: "admin.edit",
+          fields: [
+            { key: "title", label: "admin.tbl.report", type: "text" },
+            {
+              key: "type",
+              label: "admin.reports.th.type",
+              type: "select",
+              options: ["financial", "progress", "audit", "quarterly"],
+            },
+            { key: "date", label: "admin.tbl.date", type: "text" },
+            { key: "size", label: "admin.reports.th.size", type: "text" },
+            {
+              key: "status",
+              label: "admin.tbl.status",
+              type: "select",
+              options: ["published", "draft"],
+            },
+          ],
+          buildRow: (v, id) => `
+      <td>${v.title || ""}</td>
+      <td>${v.type || ""}</td>
+      <td>${v.date || ""}</td>
+      <td>${v.size || ""}</td>
+      <td><span class="status-badge ${v.status === "published" ? "approved" : "draft"}">${v.status || "draft"}</span></td>
+      <td><div class="row-actions">
+        <button class="icon-btn edit" data-edit="reports" data-id="${id}">✏️</button>
+        <button class="icon-btn danger" data-delete="reports" data-id="${id}">🗑️</button>
+      </div></td>`,
+        },
+        donations: {
+          icon: "💰",
+          addTitle: "admin.donations.new",
+          editTitle: "admin.edit",
+          fields: [
+            { key: "id", label: "admin.donations.th.id", type: "text" },
+            { key: "donor", label: "admin.tbl.donor", type: "text" },
+            { key: "amount", label: "admin.tbl.amount", type: "text" },
+            {
+              key: "method",
+              label: "admin.tbl.method",
+              type: "select",
+              options: ["CBE", "Awash", "Dashen", "Telebirr", "CBE Birr"],
+            },
+            { key: "date", label: "admin.tbl.date", type: "text" },
+            {
+              key: "status",
+              label: "admin.tbl.status",
+              type: "select",
+              options: ["approved", "pending", "review"],
+            },
+          ],
+          buildRow: (v, id) => `
+      <td>${v.id || ""}</td>
+      <td>${v.donor || ""}</td>
+      <td><strong>${v.amount || ""}</strong></td>
+      <td>${v.method || ""}</td>
+      <td>${v.date || ""}</td>
+      <td><span class="status-badge ${v.status || "pending"}">${v.status || "pending"}</span></td>
+      <td><div class="row-actions">
+        <button class="icon-btn edit" data-edit="donations" data-id="${id}">✏️</button>
+        <button class="icon-btn danger" data-delete="donations" data-id="${id}">🗑️</button>
+      </div></td>`,
+        },
+        donors: {
+          icon: "👥",
+          addTitle: "admin.donors.new",
+          editTitle: "admin.edit",
+          fields: [
+            { key: "name", label: "admin.donors.th.name", type: "text" },
+            { key: "email", label: "admin.users.th.email", type: "text" },
+            { key: "phone", label: "admin.donors.th.phone", type: "text" },
+            { key: "total", label: "admin.donors.th.total", type: "text" },
+            { key: "count", label: "admin.donors.th.count", type: "text" },
+            { key: "last", label: "admin.donors.th.last", type: "text" },
+          ],
+          buildRow: (v, id) => {
+            const initials = (v.name || "NN")
+              .split(" ")
+              .map((s) => s[0])
+              .join("")
+              .slice(0, 2)
+              .toUpperCase();
+            return `
+        <td><div class="user-cell"><div class="u-av">${initials}</div><div class="u-info"><strong>${v.name || ""}</strong><small>${v.email || ""}</small></div></div></td>
+        <td>${v.phone || ""}</td>
+        <td><strong>${v.total || ""}</strong></td>
+        <td>${v.count || ""}</td>
+        <td>${v.last || ""}</td>
+        <td><div class="row-actions">
+          <button class="icon-btn edit" data-edit="donors" data-id="${id}">✏️</button>
+          <button class="icon-btn danger" data-delete="donors" data-id="${id}">🗑️</button>
+        </div></td>`;
+          },
+        },
+        users: {
+          icon: "🔐",
+          addTitle: "admin.users.new",
+          editTitle: "admin.edit",
+          fields: [
+            { key: "name", label: "admin.users.th.user", type: "text" },
+            { key: "email", label: "admin.users.th.email", type: "text" },
+            {
+              key: "role",
+              label: "admin.users.th.role",
+              type: "select",
+              options: ["admin", "editor", "viewer"],
+            },
+            { key: "last", label: "admin.users.th.last", type: "text" },
+            {
+              key: "status",
+              label: "admin.tbl.status",
+              type: "select",
+              options: ["active", "inactive"],
+            },
+          ],
+          buildRow: (v, id) => {
+            const initials = (v.name || "NN")
+              .split(" ")
+              .map((s) => s[0])
+              .join("")
+              .slice(0, 2)
+              .toUpperCase();
+            return `
+        <td><div class="user-cell"><div class="u-av">${initials}</div><div class="u-info"><strong>${v.name || ""}</strong></div></div></td>
+        <td>${v.email || ""}</td>
+        <td><span class="role-badge ${v.role || "viewer"}">${v.role || "viewer"}</span></td>
+        <td>${v.last || ""}</td>
+        <td><span class="status-badge ${v.status === "active" ? "approved" : "draft"}">${v.status || "inactive"}</span></td>
+        <td><div class="row-actions">
+          <button class="icon-btn edit" data-edit="users" data-id="${id}">✏️</button>
+          <button class="icon-btn danger" data-delete="users" data-id="${id}">🗑️</button>
+        </div></td>`;
+          },
+        },
+      };
+
+      // ---------- MODAL STATE ----------
+      const modalOverlay = document.getElementById("modalOverlay");
+      const modalBox = document.getElementById("modalBox");
+      const modalBody = document.getElementById("modalBody");
+      const modalTitleText = document.getElementById("modalTitleText");
+      const modalFoot = document.getElementById("modalFoot");
+      const modalSave = document.getElementById("modalSave");
+      const modalCancel = document.getElementById("modalCancel");
+      const modalClose = document.getElementById("modalClose");
+
+      let currentModal = { type: null, mode: null, id: null };
+
+      function closeModal() {
+        modalOverlay.classList.remove("show");
+        modalBox.classList.remove("confirm");
+        currentModal = { type: null, mode: null, id: null };
+      }
+
+      modalClose.addEventListener("click", closeModal);
+      modalCancel.addEventListener("click", closeModal);
+      modalOverlay.addEventListener("click", (e) => {
+        if (e.target === modalOverlay) closeModal();
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && modalOverlay.classList.contains("show"))
+          closeModal();
+      });
+
+      // ---------- OPEN ADD ----------
+      function openAddModal(type) {
+        const cfg = formConfigs[type];
+        if (!cfg) return;
+        currentModal = { type, mode: "add", id: null };
+
+        modalBox.classList.remove("confirm");
+        modalTitleText.textContent = window.i18n.t(cfg.addTitle);
+        modalSave.textContent = window.i18n.t("admin.modal.save");
+        modalSave.className = "modal-btn primary";
+
+        modalBody.innerHTML = cfg.fields
+          .map((f) => renderField(f, ""))
+          .join("");
+        modalOverlay.classList.add("show");
+        setTimeout(() => {
+          const first = modalBody.querySelector("input,select,textarea");
+          if (first) first.focus();
+        }, 100);
+      }
+
+      // ---------- OPEN EDIT ----------
+      function openEditModal(type, id) {
+        const cfg = formConfigs[type];
+        if (!cfg) return;
+        const row = document.querySelector(`#view-${type} tr[data-id="${id}"]`);
+        if (!row) return;
+
+        // Read current values from cells
+        const values = {};
+        cfg.fields.forEach((f, idx) => {
+          const cell = row.children[idx];
+          if (cell) {
+            const strong = cell.querySelector("strong");
+            values[f.key] = (
+              strong ? strong.textContent : cell.textContent
+            ).trim();
+          }
+        });
+
+        currentModal = { type, mode: "edit", id };
+        modalBox.classList.remove("confirm");
+        modalTitleText.textContent = window.i18n.t(cfg.editTitle);
+        modalSave.textContent = window.i18n.t("admin.modal.save");
+        modalSave.className = "modal-btn primary";
+
+        modalBody.innerHTML = cfg.fields
+          .map((f) => renderField(f, values[f.key] || ""))
+          .join("");
+        modalOverlay.classList.add("show");
+        setTimeout(() => {
+          const first = modalBody.querySelector("input,select,textarea");
+          if (first) first.focus();
+        }, 100);
+      }
+
+      // ---------- OPEN DELETE CONFIRM ----------
+      function openDeleteModal(type, id) {
+        currentModal = { type, mode: "delete", id };
+        modalBox.classList.add("confirm");
+        modalTitleText.textContent = window.i18n.t("admin.modal.delete.title");
+        modalBody.innerHTML = `
+    <div class="warn-icon">⚠</div>
+    <h4>${window.i18n.t("admin.modal.delete.title")}</h4>
+    <p>${window.i18n.t("admin.modal.delete.text")}</p>
+  `;
+        modalSave.textContent = window.i18n.t("admin.modal.delete.confirm");
+        modalSave.className = "modal-btn danger";
+        modalOverlay.classList.add("show");
+      }
+
+      // ---------- RENDER FIELD ----------
+      function renderField(f, value) {
+        const label = window.i18n.t(f.label);
+        let inputHTML = "";
+        if (f.type === "select") {
+          inputHTML =
+            `<select class="form-select" data-field="${f.key}">` +
+            f.options
+              .map(
+                (o) =>
+                  `<option value="${o}" ${o === value ? "selected" : ""}>${o}</option>`,
+              )
+              .join("") +
+            `</select>`;
+        } else if (f.type === "textarea") {
+          inputHTML = `<textarea class="form-textarea" data-field="${f.key}" rows="3">${value || ""}</textarea>`;
+        } else {
+          inputHTML = `<input class="form-input" type="text" data-field="${f.key}" value="${(value || "").replace(/"/g, "&quot;")}" />`;
+        }
+        return `<div class="form-group"><label class="form-label">${label}</label>${inputHTML}</div>`;
+      }
+
+      // ---------- SAVE / DELETE ----------
+      modalSave.addEventListener("click", () => {
+        if (!currentModal.type) return;
+        if (currentModal.mode === "delete") {
+          performDelete();
+        } else {
+          performSave();
+        }
+      });
+
+      function performSave() {
+        const { type, mode, id } = currentModal;
+        const cfg = formConfigs[type];
+        const values = {};
+        modalBody.querySelectorAll("[data-field]").forEach((el) => {
+          values[el.dataset.field] = el.value.trim();
+        });
+
+        const tbody = document.querySelector(
+          `#view-${type} table[data-table="${type}"] tbody`,
+        );
+        if (!tbody) return;
+
+        if (mode === "add") {
+          const newId = "new_" + Date.now();
+          const tr = document.createElement("tr");
+          tr.setAttribute("data-id", newId);
+          tr.innerHTML = cfg.buildRow(values, newId);
+          tbody.insertBefore(tr, tbody.firstChild);
+          showToast(
+            window.i18n.t("admin.toast.added") || "Item added successfully",
+            "success",
+          );
+        } else {
+          const row = tbody.querySelector(`tr[data-id="${id}"]`);
+          if (row) {
+            row.innerHTML = cfg.buildRow(values, id);
+            showToast(window.i18n.t("admin.toast.saved"), "success");
+          }
+        }
+        closeModal();
+      }
+
+      function performDelete() {
+        const { type, id } = currentModal;
+        const row = document.querySelector(`#view-${type} tr[data-id="${id}"]`);
+        if (row) {
+          row.style.transition = "opacity .3s, transform .3s";
+          row.style.opacity = "0";
+          row.style.transform = "translateX(-20px)";
+          setTimeout(() => {
+            row.remove();
+            showToast(window.i18n.t("admin.toast.deleted"), "error");
+          }, 300);
+        }
+        closeModal();
+      }
+
+      // ---------- EVENT DELEGATION (for edit/delete buttons everywhere) ----------
+      document.addEventListener("click", (e) => {
+        const editBtn = e.target.closest("[data-edit]");
+        if (editBtn) {
+          const type = editBtn.dataset.edit;
+          const row = editBtn.closest("tr[data-id]");
+          if (row) openEditModal(type, row.dataset.id);
+          return;
+        }
+
+        const delBtn = e.target.closest("[data-delete]");
+        if (delBtn) {
+          const type = delBtn.dataset.delete;
+          if (type === "messages") {
+            const card = delBtn.closest(".message-card");
+            if (card) {
+              card.style.transition = "opacity .3s";
+              card.style.opacity = "0";
+              setTimeout(() => {
+                card.remove();
+                showToast(window.i18n.t("admin.toast.deleted"), "error");
+              }, 300);
+            }
+            return;
+          }
+          const row = delBtn.closest("tr[data-id]");
+          if (row) openDeleteModal(type, row.dataset.id);
+          return;
+        }
+
+        // Mark message as read
+        const markBtn = e.target.closest('[data-mark="read"]');
+        if (markBtn) {
+          const card = markBtn.closest(".message-card");
+          if (card) {
+            card.classList.remove("unread");
+            showToast("Marked as read", "info");
+          }
+          return;
+        }
+
+        // Add buttons (any element with data-add)
+        const addBtn = e.target.closest("[data-add]");
+        if (addBtn) {
+          e.preventDefault();
+          openAddModal(addBtn.dataset.add);
+          return;
+        }
+      });
+
+      // ---------- PANEL FILTER TABS ----------
+      document.querySelectorAll(".panel-tab").forEach((tab) => {
+        tab.addEventListener("click", () => {
+          const parent = tab.closest(".admin-panel");
+          if (parent) {
+            parent
+              .querySelectorAll(".panel-tab")
+              .forEach((t) => t.classList.remove("active"));
+            tab.classList.add("active");
+          }
+          showToast("Filter applied: " + tab.textContent.trim(), "info");
+        });
+      });
+
+      // ---------- TOP EXPORT BUTTON ----------
+      document.getElementById("topExportBtn").addEventListener("click", () => {
+        showToast("Data exported successfully", "success");
+      });
+
+      // ---------- LANGUAGE SWITCHERS ----------
+      function attachLangSwitcher(switcherId, btnId) {
+        const switcher = document.getElementById(switcherId);
+        const btn = document.getElementById(btnId);
+        if (!switcher || !btn) return;
+
+        btn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          document.querySelectorAll(".lang-switcher.open").forEach((s) => {
+            if (s !== switcher) s.classList.remove("open");
+          });
+          switcher.classList.toggle("open");
+        });
+        switcher.querySelectorAll(".lang-option").forEach((opt) => {
+          opt.addEventListener("click", () => {
+            if (window.i18n) window.i18n.setLanguage(opt.dataset.lang);
+            switcher.classList.remove("open");
+            // Re-apply contextual labels
+            const activeNav = document.querySelector("#adminNav a.active");
+            if (activeNav) {
+              const meta = viewMeta[activeNav.dataset.view];
+              if (meta) {
+                viewTitle.textContent = window.i18n.t(meta.title);
+                viewSubtitle.textContent = window.i18n.t(meta.subtitle);
+                if (meta.add) {
+                  topAddBtn.innerHTML =
+                    "+ <span>" + window.i18n.t(meta.addLabel) + "</span>";
+                }
+              }
+            }
+          });
+        });
+      }
+      attachLangSwitcher("langSwitcherLogin", "langBtnLogin");
+      attachLangSwitcher("langSwitcherAdmin", "langBtnAdmin");
+
+      document.addEventListener("click", () => {
+        document
+          .querySelectorAll(".lang-switcher.open")
+          .forEach((s) => s.classList.remove("open"));
+      });
+
+      window.addEventListener("langchange", (e) => {
+        document
+          .querySelectorAll(".lang-current")
+          .forEach(
+            (el) => (el.textContent = (e.detail.lang || "am").toUpperCase()),
+          );
+      });
+      setTimeout(() => {
+        const lang =
+          window.i18n && window.i18n.getLang ? window.i18n.getLang() : "am";
+        document
+          .querySelectorAll(".lang-current")
+          .forEach((el) => (el.textContent = lang.toUpperCase()));
+      }, 50);
+
+      // Initial topbar sync
+      switchView("dashboard");
+    </script>
+  </body>
+</html>

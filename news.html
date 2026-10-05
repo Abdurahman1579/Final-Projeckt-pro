@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>News — Malka Nono Project</title>
+    <meta
+      name="description"
+      content="Latest updates, announcements, and progress from the Malka Nono project."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Ethiopic:wght@300;400;500;600;700;800&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div id="site-nav"></div>
+
+    <!-- ============ PAGE HERO ============ -->
+    <header class="page-hero">
+      <div class="container">
+        <span class="page-tag" data-i18n="news.hero.tag"></span>
+        <h1 data-i18n="news.hero.title"></h1>
+        <p data-i18n="news.hero.lede"></p>
+        <div class="breadcrumb">
+          <a href="index.html" data-i18n="nav.home"></a>
+          <span>/</span>
+          <span data-i18n="nav.news"></span>
+        </div>
+      </div>
+    </header>
+
+    <!-- ============ FEATURED NEWS ============ -->
+    <section>
+      <div class="container">
+        <div class="news-featured reveal">
+          <div class="visual"><span>🏗️</span></div>
+          <div class="content">
+            <span class="badge" data-i18n="news.featured.badge"></span>
+            <h2 data-i18n="news.featured.title"></h2>
+            <p data-i18n="news.featured.excerpt"></p>
+            <div class="meta">
+              <span>📅 <strong data-i18n="news.featured.date"></strong></span>
+              <span>✍️ <strong data-i18n="news.featured.author"></strong></span>
+            </div>
+            <a
+              href="#"
+              class="btn btn-primary"
+              style="margin-top: 20px; align-self: flex-start"
+              data-i18n="common.readMore"
+            ></a>
+          </div>
+        </div>
+
+        <!-- Filter chips -->
+        <div class="news-filter reveal">
+          <button
+            class="filter-chip active"
+            data-filter="all"
+            data-i18n="news.filter.all"
+          ></button>
+          <button
+            class="filter-chip"
+            data-filter="progress"
+            data-i18n="news.filter.progress"
+          ></button>
+          <button
+            class="filter-chip"
+            data-filter="fundraising"
+            data-i18n="news.filter.fundraising"
+          ></button>
+          <button
+            class="filter-chip"
+            data-filter="community"
+            data-i18n="news.filter.community"
+          ></button>
+          <button
+            class="filter-chip"
+            data-filter="announcement"
+            data-i18n="news.filter.announcement"
+          ></button>
+        </div>
+
+        <!-- News grid -->
+        <div class="news-grid" id="newsGrid">
+          <article class="news-card reveal" data-cat="progress">
+            <div class="thumb">
+              <span class="cat" data-i18n="news.filter.progress"></span>
+              🏢
+            </div>
+            <div class="body">
+              <div class="date" data-i18n="news.n1.date"></div>
+              <h3 data-i18n="news.n1.title"></h3>
+              <p data-i18n="news.n1.excerpt"></p>
+              <a href="#" class="read-more"
+                ><span data-i18n="common.readMore"></span> →</a
+              >
+            </div>
+          </article>
+
+          <article class="news-card reveal" data-cat="fundraising">
+            <div class="thumb">
+              <span class="cat" data-i18n="news.filter.fundraising"></span>
+              💰
+            </div>
+            <div class="body">
+              <div class="date" data-i18n="news.n2.date"></div>
+              <h3 data-i18n="news.n2.title"></h3>
+              <p data-i18n="news.n2.excerpt"></p>
+              <a href="#" class="read-more"
+                ><span data-i18n="common.readMore"></span> →</a
+              >
+            </div>
+          </article>
+
+          <article class="news-card reveal" data-cat="community">
+            <div class="thumb">
+              <span class="cat" data-i18n="news.filter.community"></span>
+              🤝
+            </div>
+            <div class="body">
+              <div class="date" data-i18n="news.n3.date"></div>
+              <h3 data-i18n="news.n3.title"></h3>
+              <p data-i18n="news.n3.excerpt"></p>
+              <a href="#" class="read-more"
+                ><span data-i18n="common.readMore"></span> →</a
+              >
+            </div>
+          </article>
+
+          <article class="news-card reveal" data-cat="announcement">
+            <div class="thumb">
+              <span class="cat" data-i18n="news.filter.announcement"></span>
+              📢
+            </div>
+            <div class="body">
+              <div class="date" data-i18n="news.n4.date"></div>
+              <h3 data-i18n="news.n4.title"></h3>
+              <p data-i18n="news.n4.excerpt"></p>
+              <a href="#" class="read-more"
+                ><span data-i18n="common.readMore"></span> →</a
+              >
+            </div>
+          </article>
+
+          <article class="news-card reveal" data-cat="progress">
+            <div class="thumb">
+              <span class="cat" data-i18n="news.filter.progress"></span>
+              📋
+            </div>
+            <div class="body">
+              <div class="date" data-i18n="news.n5.date"></div>
+              <h3 data-i18n="news.n5.title"></h3>
+              <p data-i18n="news.n5.excerpt"></p>
+              <a href="#" class="read-more"
+                ><span data-i18n="common.readMore"></span> →</a
+              >
+            </div>
+          </article>
+
+          <article class="news-card reveal" data-cat="community">
+            <div class="thumb">
+              <span class="cat" data-i18n="news.filter.community"></span>
+              🕌
+            </div>
+            <div class="body">
+              <div class="date" data-i18n="news.n6.date"></div>
+              <h3 data-i18n="news.n6.title"></h3>
+              <p data-i18n="news.n6.excerpt"></p>
+              <a href="#" class="read-more"
+                ><span data-i18n="common.readMore"></span> →</a
+              >
+            </div>
+          </article>
+        </div>
+
+        <!-- Empty state (hidden by default) -->
+        <div class="empty-state" id="newsEmpty" style="display: none">
+          <div class="icon">📭</div>
+          <h3 data-i18n="news.empty.title"></h3>
+          <p data-i18n="news.empty.desc"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ NEWSLETTER ============ -->
+    <section style="padding-top: 0">
+      <div class="container">
+        <div class="newsletter reveal">
+          <h3 data-i18n="news.newsletter.title"></h3>
+          <p data-i18n="news.newsletter.desc"></p>
+          <form class="newsletter-form" id="newsletterForm">
+            <input type="email" placeholder="you@example.com" required />
+            <button type="submit" data-i18n="news.newsletter.btn"></button>
+          </form>
+          <div
+            class="form-success"
+            id="newsletterSuccess"
+            data-i18n="news.newsletter.success"
+            style="
+              max-width: 480px;
+              margin: 16px auto 0;
+              color: var(--g900);
+              background: var(--gd100);
+              border-color: var(--gd400);
+            "
+          ></div>
+        </div>
+      </div>
+    </section>
+
+    <div id="site-footer"></div>
+
+    <script src="js/translations.js"></script>
+    <script src="js/i18n.js"></script>
+    <script src="js/layout.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+      // Filter chips
+      document.querySelectorAll(".filter-chip").forEach((chip) => {
+        chip.addEventListener("click", () => {
+          document
+            .querySelectorAll(".filter-chip")
+            .forEach((c) => c.classList.remove("active"));
+          chip.classList.add("active");
+          const filter = chip.dataset.filter;
+          let visible = 0;
+          document.querySelectorAll("#newsGrid .news-card").forEach((card) => {
+            const show = filter === "all" || card.dataset.cat === filter;
+            card.style.display = show ? "flex" : "none";
+            if (show) visible++;
+          });
+          document.getElementById("newsEmpty").style.display =
+            visible === 0 ? "block" : "none";
+        });
+      });
+
+      // Newsletter form
+      const nlForm = document.getElementById("newsletterForm");
+      if (nlForm) {
+        nlForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const s = document.getElementById("newsletterSuccess");
+          s.classList.add("show");
+          nlForm.reset();
+          setTimeout(() => s.classList.remove("show"), 5000);
+        });
+      }
+    </script>
+  </body>
+</html>
