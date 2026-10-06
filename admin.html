@@ -106,7 +106,7 @@
     <!-- ============ ADMIN DASHBOARD ============ -->
     <div class="admin-app" id="adminApp">
       <div class="admin-layout">
-        <!-- Sidebar -->
+        <!-- ============ SIDEBAR ============ -->
         <aside class="admin-sidebar">
           <div class="admin-brand">
             <div class="logo">☪</div>
@@ -115,56 +115,77 @@
               <small data-i18n="admin.brandSub"></small>
             </div>
           </div>
+
           <ul class="admin-nav" id="adminNav">
             <li>
-              <a href="#" data-view="dashboard" class="active"
-                ><span class="ic">📊</span>
-                <span data-i18n="admin.nav.dashboard"></span
-              ></a>
+              <a href="#" data-view="dashboard" class="active">
+                <span class="ic">📊</span>
+                <span data-i18n="admin.nav.dashboard"></span>
+              </a>
             </li>
             <li>
-              <a href="#" data-view="news"
-                ><span class="ic">📰</span>
-                <span data-i18n="admin.nav.news"></span
-              ></a>
+              <a href="#" data-view="news">
+                <span class="ic">📰</span>
+                <span data-i18n="admin.nav.news"></span>
+              </a>
             </li>
             <li>
-              <a href="#" data-view="reports"
-                ><span class="ic">📁</span>
-                <span data-i18n="admin.nav.reports"></span
-              ></a>
+              <a
+                href="leadership.html"
+                target="_blank"
+                rel="noopener"
+                data-external
+              >
+                <span class="ic">👥</span>
+                <span data-i18n="admin.nav.leadership"></span>
+                <span
+                  style="
+                    margin-inline-start: auto;
+                    font-size: 11px;
+                    opacity: 0.55;
+                  "
+                  >↗</span
+                >
+              </a>
             </li>
             <li>
-              <a href="#" data-view="donations"
-                ><span class="ic">💰</span>
-                <span data-i18n="admin.nav.donations"></span
-              ></a>
+              <a href="#" data-view="reports">
+                <span class="ic">📁</span>
+                <span data-i18n="admin.nav.reports"></span>
+              </a>
             </li>
             <li>
-              <a href="#" data-view="donors"
-                ><span class="ic">👥</span>
-                <span data-i18n="admin.nav.donors"></span
-              ></a>
+              <a href="#" data-view="donations">
+                <span class="ic">💰</span>
+                <span data-i18n="admin.nav.donations"></span>
+              </a>
             </li>
             <li>
-              <a href="#" data-view="messages"
-                ><span class="ic">✉️</span>
-                <span data-i18n="admin.nav.messages"></span
-              ></a>
+              <a href="#" data-view="donors">
+                <span class="ic">👥</span>
+                <span data-i18n="admin.nav.donors"></span>
+              </a>
             </li>
             <li>
-              <a href="#" data-view="users"
-                ><span class="ic">🔐</span>
-                <span data-i18n="admin.nav.users"></span
-              ></a>
+              <a href="#" data-view="messages">
+                <span class="ic">✉️</span>
+                <span data-i18n="admin.nav.messages"></span>
+              </a>
             </li>
             <li>
-              <a href="#" data-view="settings"
-                ><span class="ic">⚙️</span>
-                <span data-i18n="admin.nav.settings"></span
-              ></a>
+              <a href="#" data-view="users">
+                <span class="ic">🔐</span>
+                <span data-i18n="admin.nav.users"></span>
+              </a>
+            </li>
+            <li>
+              <a href="#" data-view="settings">
+                <span class="ic">⚙️</span>
+                <span data-i18n="admin.nav.settings"></span>
+              </a>
             </li>
           </ul>
+
           <div class="sidebar-user">
             <div class="avatar">AD</div>
             <div class="info">
@@ -175,9 +196,9 @@
           </div>
         </aside>
 
-        <!-- Main -->
+        <!-- ============ MAIN ============ -->
         <main class="admin-main">
-          <!-- Topbar (contextual buttons injected by JS) -->
+          <!-- Topbar -->
           <div class="admin-topbar">
             <div>
               <h1 id="viewTitle" data-i18n="admin.dashboard.title"></h1>
@@ -226,7 +247,7 @@
             </div>
           </div>
 
-          <!-- ==================== VIEW: DASHBOARD ==================== -->
+          <!-- ==================== DASHBOARD ==================== -->
           <div class="admin-view active" id="view-dashboard">
             <div class="dash-stats">
               <div class="dash-stat">
@@ -254,6 +275,21 @@
                 <span class="ds-trend up">↑ 2</span>
               </div>
             </div>
+
+            <!-- Leadership Widget -->
+            <div class="admin-panel" style="margin-bottom: 24px">
+              <div class="admin-panel-head">
+                <h2 data-i18n="admin.dashboard.leadership.title"></h2>
+                <a
+                  href="leadership.html"
+                  target="_blank"
+                  rel="noopener"
+                  data-i18n="admin.viewAll"
+                ></a>
+              </div>
+              <div class="leadership-widget" id="leadershipWidget"></div>
+            </div>
+
             <div class="admin-cols">
               <div>
                 <div class="admin-panel">
@@ -429,7 +465,7 @@
             </div>
           </div>
 
-          <!-- ==================== VIEW: NEWS ==================== -->
+          <!-- ==================== NEWS ==================== -->
           <div class="admin-view" id="view-news">
             <div class="admin-panel">
               <div class="admin-panel-head">
@@ -476,18 +512,9 @@
                       </td>
                       <td>
                         <div class="row-actions">
-                          <button
-                            class="icon-btn edit"
-                            data-edit="news"
-                            title="Edit"
-                          >
-                            ✏️
-                          </button>
-                          <button
-                            class="icon-btn danger"
-                            data-delete="news"
-                            title="Delete"
-                          >
+                          <button class="icon-btn edit" data-edit="news">
+                            ✏️</button
+                          ><button class="icon-btn danger" data-delete="news">
                             🗑️
                           </button>
                         </div>
@@ -506,9 +533,8 @@
                       <td>
                         <div class="row-actions">
                           <button class="icon-btn edit" data-edit="news">
-                            ✏️
-                          </button>
-                          <button class="icon-btn danger" data-delete="news">
+                            ✏️</button
+                          ><button class="icon-btn danger" data-delete="news">
                             🗑️
                           </button>
                         </div>
@@ -527,9 +553,8 @@
                       <td>
                         <div class="row-actions">
                           <button class="icon-btn edit" data-edit="news">
-                            ✏️
-                          </button>
-                          <button class="icon-btn danger" data-delete="news">
+                            ✏️</button
+                          ><button class="icon-btn danger" data-delete="news">
                             🗑️
                           </button>
                         </div>
@@ -548,9 +573,8 @@
                       <td>
                         <div class="row-actions">
                           <button class="icon-btn edit" data-edit="news">
-                            ✏️
-                          </button>
-                          <button class="icon-btn danger" data-delete="news">
+                            ✏️</button
+                          ><button class="icon-btn danger" data-delete="news">
                             🗑️
                           </button>
                         </div>
@@ -562,7 +586,7 @@
             </div>
           </div>
 
-          <!-- ==================== VIEW: REPORTS ==================== -->
+          <!-- ==================== REPORTS ==================== -->
           <div class="admin-view" id="view-reports">
             <div class="admin-panel">
               <div class="admin-panel-head">
@@ -598,9 +622,11 @@
                       <td>
                         <div class="row-actions">
                           <button class="icon-btn edit" data-edit="reports">
-                            ✏️
-                          </button>
-                          <button class="icon-btn danger" data-delete="reports">
+                            ✏️</button
+                          ><button
+                            class="icon-btn danger"
+                            data-delete="reports"
+                          >
                             🗑️
                           </button>
                         </div>
@@ -620,9 +646,11 @@
                       <td>
                         <div class="row-actions">
                           <button class="icon-btn edit" data-edit="reports">
-                            ✏️
-                          </button>
-                          <button class="icon-btn danger" data-delete="reports">
+                            ✏️</button
+                          ><button
+                            class="icon-btn danger"
+                            data-delete="reports"
+                          >
                             🗑️
                           </button>
                         </div>
@@ -642,9 +670,11 @@
                       <td>
                         <div class="row-actions">
                           <button class="icon-btn edit" data-edit="reports">
-                            ✏️
-                          </button>
-                          <button class="icon-btn danger" data-delete="reports">
+                            ✏️</button
+                          ><button
+                            class="icon-btn danger"
+                            data-delete="reports"
+                          >
                             🗑️
                           </button>
                         </div>
@@ -664,9 +694,11 @@
                       <td>
                         <div class="row-actions">
                           <button class="icon-btn edit" data-edit="reports">
-                            ✏️
-                          </button>
-                          <button class="icon-btn danger" data-delete="reports">
+                            ✏️</button
+                          ><button
+                            class="icon-btn danger"
+                            data-delete="reports"
+                          >
                             🗑️
                           </button>
                         </div>
@@ -678,7 +710,7 @@
             </div>
           </div>
 
-          <!-- ==================== VIEW: DONATIONS ==================== -->
+          <!-- ==================== DONATIONS ==================== -->
           <div class="admin-view" id="view-donations">
             <div class="admin-panel">
               <div class="admin-panel-head">
@@ -846,7 +878,7 @@
             </div>
           </div>
 
-          <!-- ==================== VIEW: DONORS ==================== -->
+          <!-- ==================== DONORS ==================== -->
           <div class="admin-view" id="view-donors">
             <div class="admin-panel">
               <div class="admin-panel-head">
@@ -970,7 +1002,7 @@
             </div>
           </div>
 
-          <!-- ==================== VIEW: MESSAGES ==================== -->
+          <!-- ==================== MESSAGES ==================== -->
           <div class="admin-view" id="view-messages">
             <div class="admin-panel">
               <div class="admin-panel-head">
@@ -997,13 +1029,7 @@
                   </div>
                 </div>
                 <div class="row-actions" style="align-self: flex-start">
-                  <button
-                    class="icon-btn view"
-                    data-mark="read"
-                    title="Mark as read"
-                  >
-                    ✓
-                  </button>
+                  <button class="icon-btn view" data-mark="read">✓</button>
                   <button class="icon-btn danger" data-delete="messages">
                     🗑️
                   </button>
@@ -1056,7 +1082,7 @@
             </div>
           </div>
 
-          <!-- ==================== VIEW: USERS ==================== -->
+          <!-- ==================== USERS ==================== -->
           <div class="admin-view" id="view-users">
             <div class="admin-panel">
               <div class="admin-panel-head">
@@ -1188,7 +1214,7 @@
             </div>
           </div>
 
-          <!-- ==================== VIEW: SETTINGS ==================== -->
+          <!-- ==================== SETTINGS ==================== -->
           <div class="admin-view" id="view-settings">
             <div class="settings-section">
               <h3 data-i18n="admin.settings.general"></h3>
@@ -1314,668 +1340,10 @@ Sustainable Property Development Project.</textarea
     <!-- ============ TOAST CONTAINER ============ -->
     <div class="toast-container" id="toastContainer"></div>
 
+    <!-- ============ SCRIPTS (order matters!) ============ -->
     <script src="js/translations.js"></script>
     <script src="js/i18n.js"></script>
     <script src="js/main.js"></script>
-    <script>
-      /* ============================================================
-   ADMIN LOGIC — Login, Navigation, CRUD, Modal, Toast
-   ============================================================ */
-
-      // ---------- LOGIN ----------
-      const DEMO_USER = "admin",
-        DEMO_PASS = "malka2026";
-      const loginScreen = document.getElementById("loginScreen");
-      const adminApp = document.getElementById("adminApp");
-      const loginForm = document.getElementById("loginForm");
-      const loginError = document.getElementById("loginError");
-      const logoutBtn = document.getElementById("logoutBtn");
-
-      if (sessionStorage.getItem("adminLoggedIn") === "true") showDashboard();
-
-      loginForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        const u = document.getElementById("adminUser").value.trim();
-        const p = document.getElementById("adminPass").value.trim();
-        if (u === DEMO_USER && p === DEMO_PASS) {
-          sessionStorage.setItem("adminLoggedIn", "true");
-          showDashboard();
-        } else {
-          loginError.classList.add("show");
-          setTimeout(() => loginError.classList.remove("show"), 4000);
-        }
-      });
-
-      logoutBtn.addEventListener("click", () => {
-        sessionStorage.removeItem("adminLoggedIn");
-        adminApp.classList.remove("active");
-        loginScreen.classList.remove("hidden");
-      });
-
-      function showDashboard() {
-        loginScreen.classList.add("hidden");
-        adminApp.classList.add("active");
-        window.scrollTo(0, 0);
-      }
-
-      // ---------- VIEW META (per view: title, subtitle, add button, add label) ----------
-      const viewMeta = {
-        dashboard: {
-          title: "admin.dashboard.title",
-          subtitle: "admin.dashboard.welcome",
-          add: null,
-        },
-        news: {
-          title: "admin.nav.news",
-          subtitle: "admin.news.subtitle",
-          add: "news",
-          addLabel: "admin.news.new",
-        },
-        reports: {
-          title: "admin.nav.reports",
-          subtitle: "admin.reports.subtitle",
-          add: "reports",
-          addLabel: "admin.reports.upload",
-        },
-        donations: {
-          title: "admin.nav.donations",
-          subtitle: "admin.donations.subtitle",
-          add: "donations",
-          addLabel: "admin.donations.new",
-        },
-        donors: {
-          title: "admin.nav.donors",
-          subtitle: "admin.donors.subtitle",
-          add: "donors",
-          addLabel: "admin.donors.new",
-        },
-        messages: {
-          title: "admin.nav.messages",
-          subtitle: "admin.messages.subtitle",
-          add: null,
-        },
-        users: {
-          title: "admin.nav.users",
-          subtitle: "admin.users.subtitle",
-          add: "users",
-          addLabel: "admin.users.new",
-        },
-        settings: {
-          title: "admin.nav.settings",
-          subtitle: "admin.settings.subtitle",
-          add: null,
-        },
-      };
-
-      const navLinks = document.querySelectorAll("#adminNav a");
-      const viewTitle = document.getElementById("viewTitle");
-      const viewSubtitle = document.getElementById("viewSubtitle");
-      const topAddBtn = document.getElementById("topAddBtn");
-
-      function switchView(viewId) {
-        document
-          .querySelectorAll(".admin-view")
-          .forEach((v) => v.classList.remove("active"));
-        const target = document.getElementById("view-" + viewId);
-        if (target) target.classList.add("active");
-
-        navLinks.forEach((l) =>
-          l.classList.toggle("active", l.dataset.view === viewId),
-        );
-
-        const meta = viewMeta[viewId];
-        if (meta) {
-          viewTitle.setAttribute("data-i18n", meta.title);
-          viewSubtitle.setAttribute("data-i18n", meta.subtitle);
-          viewTitle.textContent = window.i18n.t(meta.title);
-          viewSubtitle.textContent = window.i18n.t(meta.subtitle);
-
-          // Contextual topbar Add button
-          if (meta.add) {
-            topAddBtn.style.display = "";
-            topAddBtn.setAttribute("data-add", meta.add);
-            topAddBtn.innerHTML =
-              '+ <span data-i18n="' +
-              meta.addLabel +
-              '">' +
-              window.i18n.t(meta.addLabel) +
-              "</span>";
-          } else {
-            topAddBtn.style.display = "none";
-          }
-        }
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }
-
-      navLinks.forEach((link) => {
-        link.addEventListener("click", (e) => {
-          e.preventDefault();
-          switchView(link.dataset.view);
-        });
-      });
-
-      // Links with data-goto (e.g., "View all →")
-      document.querySelectorAll("[data-goto]").forEach((el) => {
-        el.addEventListener("click", (e) => {
-          e.preventDefault();
-          switchView(el.dataset.goto);
-        });
-      });
-
-      // Quick actions with data-add → open add modal for that type
-      document.querySelectorAll(".quick-action[data-add]").forEach((btn) => {
-        btn.addEventListener("click", () => openAddModal(btn.dataset.add));
-      });
-
-      // Quick actions with data-export
-      document.querySelectorAll(".quick-action[data-export]").forEach((btn) => {
-        btn.addEventListener("click", () =>
-          showToast("Data exported successfully", "success"),
-        );
-      });
-
-      // ---------- TOAST ----------
-      function showToast(msg, type = "success") {
-        const c = document.getElementById("toastContainer");
-        const icons = { success: "✓", error: "✕", info: "ℹ", warn: "⚠" };
-        const toast = document.createElement("div");
-        toast.className = "toast " + type;
-        toast.innerHTML =
-          '<div class="ti">' +
-          (icons[type] || "✓") +
-          "</div><div>" +
-          msg +
-          "</div>";
-        c.appendChild(toast);
-        setTimeout(() => {
-          toast.classList.add("out");
-          setTimeout(() => toast.remove(), 350);
-        }, 3200);
-      }
-
-      // ---------- FORM CONFIGS (per type) ----------
-      const formConfigs = {
-        news: {
-          icon: "📝",
-          addTitle: "admin.news.new",
-          editTitle: "admin.edit",
-          fields: [
-            { key: "title", label: "admin.news.th.title", type: "text" },
-            {
-              key: "category",
-              label: "admin.news.th.category",
-              type: "select",
-              options: ["announcement", "progress", "fundraising", "community"],
-            },
-            { key: "date", label: "admin.tbl.date", type: "text" },
-            {
-              key: "status",
-              label: "admin.tbl.status",
-              type: "select",
-              options: ["published", "draft"],
-            },
-            {
-              key: "content",
-              label: "admin.settings.description",
-              type: "textarea",
-            },
-          ],
-          buildRow: (v, id) => `
-      <td>${v.title || ""}</td>
-      <td>${v.category || ""}</td>
-      <td>${v.date || ""}</td>
-      <td><span class="status-badge ${v.status === "published" ? "approved" : "draft"}">${v.status || "draft"}</span></td>
-      <td><div class="row-actions">
-        <button class="icon-btn edit" data-edit="news" data-id="${id}">✏️</button>
-        <button class="icon-btn danger" data-delete="news" data-id="${id}">🗑️</button>
-      </div></td>`,
-        },
-        reports: {
-          icon: "📁",
-          addTitle: "admin.reports.upload",
-          editTitle: "admin.edit",
-          fields: [
-            { key: "title", label: "admin.tbl.report", type: "text" },
-            {
-              key: "type",
-              label: "admin.reports.th.type",
-              type: "select",
-              options: ["financial", "progress", "audit", "quarterly"],
-            },
-            { key: "date", label: "admin.tbl.date", type: "text" },
-            { key: "size", label: "admin.reports.th.size", type: "text" },
-            {
-              key: "status",
-              label: "admin.tbl.status",
-              type: "select",
-              options: ["published", "draft"],
-            },
-          ],
-          buildRow: (v, id) => `
-      <td>${v.title || ""}</td>
-      <td>${v.type || ""}</td>
-      <td>${v.date || ""}</td>
-      <td>${v.size || ""}</td>
-      <td><span class="status-badge ${v.status === "published" ? "approved" : "draft"}">${v.status || "draft"}</span></td>
-      <td><div class="row-actions">
-        <button class="icon-btn edit" data-edit="reports" data-id="${id}">✏️</button>
-        <button class="icon-btn danger" data-delete="reports" data-id="${id}">🗑️</button>
-      </div></td>`,
-        },
-        donations: {
-          icon: "💰",
-          addTitle: "admin.donations.new",
-          editTitle: "admin.edit",
-          fields: [
-            { key: "id", label: "admin.donations.th.id", type: "text" },
-            { key: "donor", label: "admin.tbl.donor", type: "text" },
-            { key: "amount", label: "admin.tbl.amount", type: "text" },
-            {
-              key: "method",
-              label: "admin.tbl.method",
-              type: "select",
-              options: ["CBE", "Awash", "Dashen", "Telebirr", "CBE Birr"],
-            },
-            { key: "date", label: "admin.tbl.date", type: "text" },
-            {
-              key: "status",
-              label: "admin.tbl.status",
-              type: "select",
-              options: ["approved", "pending", "review"],
-            },
-          ],
-          buildRow: (v, id) => `
-      <td>${v.id || ""}</td>
-      <td>${v.donor || ""}</td>
-      <td><strong>${v.amount || ""}</strong></td>
-      <td>${v.method || ""}</td>
-      <td>${v.date || ""}</td>
-      <td><span class="status-badge ${v.status || "pending"}">${v.status || "pending"}</span></td>
-      <td><div class="row-actions">
-        <button class="icon-btn edit" data-edit="donations" data-id="${id}">✏️</button>
-        <button class="icon-btn danger" data-delete="donations" data-id="${id}">🗑️</button>
-      </div></td>`,
-        },
-        donors: {
-          icon: "👥",
-          addTitle: "admin.donors.new",
-          editTitle: "admin.edit",
-          fields: [
-            { key: "name", label: "admin.donors.th.name", type: "text" },
-            { key: "email", label: "admin.users.th.email", type: "text" },
-            { key: "phone", label: "admin.donors.th.phone", type: "text" },
-            { key: "total", label: "admin.donors.th.total", type: "text" },
-            { key: "count", label: "admin.donors.th.count", type: "text" },
-            { key: "last", label: "admin.donors.th.last", type: "text" },
-          ],
-          buildRow: (v, id) => {
-            const initials = (v.name || "NN")
-              .split(" ")
-              .map((s) => s[0])
-              .join("")
-              .slice(0, 2)
-              .toUpperCase();
-            return `
-        <td><div class="user-cell"><div class="u-av">${initials}</div><div class="u-info"><strong>${v.name || ""}</strong><small>${v.email || ""}</small></div></div></td>
-        <td>${v.phone || ""}</td>
-        <td><strong>${v.total || ""}</strong></td>
-        <td>${v.count || ""}</td>
-        <td>${v.last || ""}</td>
-        <td><div class="row-actions">
-          <button class="icon-btn edit" data-edit="donors" data-id="${id}">✏️</button>
-          <button class="icon-btn danger" data-delete="donors" data-id="${id}">🗑️</button>
-        </div></td>`;
-          },
-        },
-        users: {
-          icon: "🔐",
-          addTitle: "admin.users.new",
-          editTitle: "admin.edit",
-          fields: [
-            { key: "name", label: "admin.users.th.user", type: "text" },
-            { key: "email", label: "admin.users.th.email", type: "text" },
-            {
-              key: "role",
-              label: "admin.users.th.role",
-              type: "select",
-              options: ["admin", "editor", "viewer"],
-            },
-            { key: "last", label: "admin.users.th.last", type: "text" },
-            {
-              key: "status",
-              label: "admin.tbl.status",
-              type: "select",
-              options: ["active", "inactive"],
-            },
-          ],
-          buildRow: (v, id) => {
-            const initials = (v.name || "NN")
-              .split(" ")
-              .map((s) => s[0])
-              .join("")
-              .slice(0, 2)
-              .toUpperCase();
-            return `
-        <td><div class="user-cell"><div class="u-av">${initials}</div><div class="u-info"><strong>${v.name || ""}</strong></div></div></td>
-        <td>${v.email || ""}</td>
-        <td><span class="role-badge ${v.role || "viewer"}">${v.role || "viewer"}</span></td>
-        <td>${v.last || ""}</td>
-        <td><span class="status-badge ${v.status === "active" ? "approved" : "draft"}">${v.status || "inactive"}</span></td>
-        <td><div class="row-actions">
-          <button class="icon-btn edit" data-edit="users" data-id="${id}">✏️</button>
-          <button class="icon-btn danger" data-delete="users" data-id="${id}">🗑️</button>
-        </div></td>`;
-          },
-        },
-      };
-
-      // ---------- MODAL STATE ----------
-      const modalOverlay = document.getElementById("modalOverlay");
-      const modalBox = document.getElementById("modalBox");
-      const modalBody = document.getElementById("modalBody");
-      const modalTitleText = document.getElementById("modalTitleText");
-      const modalFoot = document.getElementById("modalFoot");
-      const modalSave = document.getElementById("modalSave");
-      const modalCancel = document.getElementById("modalCancel");
-      const modalClose = document.getElementById("modalClose");
-
-      let currentModal = { type: null, mode: null, id: null };
-
-      function closeModal() {
-        modalOverlay.classList.remove("show");
-        modalBox.classList.remove("confirm");
-        currentModal = { type: null, mode: null, id: null };
-      }
-
-      modalClose.addEventListener("click", closeModal);
-      modalCancel.addEventListener("click", closeModal);
-      modalOverlay.addEventListener("click", (e) => {
-        if (e.target === modalOverlay) closeModal();
-      });
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && modalOverlay.classList.contains("show"))
-          closeModal();
-      });
-
-      // ---------- OPEN ADD ----------
-      function openAddModal(type) {
-        const cfg = formConfigs[type];
-        if (!cfg) return;
-        currentModal = { type, mode: "add", id: null };
-
-        modalBox.classList.remove("confirm");
-        modalTitleText.textContent = window.i18n.t(cfg.addTitle);
-        modalSave.textContent = window.i18n.t("admin.modal.save");
-        modalSave.className = "modal-btn primary";
-
-        modalBody.innerHTML = cfg.fields
-          .map((f) => renderField(f, ""))
-          .join("");
-        modalOverlay.classList.add("show");
-        setTimeout(() => {
-          const first = modalBody.querySelector("input,select,textarea");
-          if (first) first.focus();
-        }, 100);
-      }
-
-      // ---------- OPEN EDIT ----------
-      function openEditModal(type, id) {
-        const cfg = formConfigs[type];
-        if (!cfg) return;
-        const row = document.querySelector(`#view-${type} tr[data-id="${id}"]`);
-        if (!row) return;
-
-        // Read current values from cells
-        const values = {};
-        cfg.fields.forEach((f, idx) => {
-          const cell = row.children[idx];
-          if (cell) {
-            const strong = cell.querySelector("strong");
-            values[f.key] = (
-              strong ? strong.textContent : cell.textContent
-            ).trim();
-          }
-        });
-
-        currentModal = { type, mode: "edit", id };
-        modalBox.classList.remove("confirm");
-        modalTitleText.textContent = window.i18n.t(cfg.editTitle);
-        modalSave.textContent = window.i18n.t("admin.modal.save");
-        modalSave.className = "modal-btn primary";
-
-        modalBody.innerHTML = cfg.fields
-          .map((f) => renderField(f, values[f.key] || ""))
-          .join("");
-        modalOverlay.classList.add("show");
-        setTimeout(() => {
-          const first = modalBody.querySelector("input,select,textarea");
-          if (first) first.focus();
-        }, 100);
-      }
-
-      // ---------- OPEN DELETE CONFIRM ----------
-      function openDeleteModal(type, id) {
-        currentModal = { type, mode: "delete", id };
-        modalBox.classList.add("confirm");
-        modalTitleText.textContent = window.i18n.t("admin.modal.delete.title");
-        modalBody.innerHTML = `
-    <div class="warn-icon">⚠</div>
-    <h4>${window.i18n.t("admin.modal.delete.title")}</h4>
-    <p>${window.i18n.t("admin.modal.delete.text")}</p>
-  `;
-        modalSave.textContent = window.i18n.t("admin.modal.delete.confirm");
-        modalSave.className = "modal-btn danger";
-        modalOverlay.classList.add("show");
-      }
-
-      // ---------- RENDER FIELD ----------
-      function renderField(f, value) {
-        const label = window.i18n.t(f.label);
-        let inputHTML = "";
-        if (f.type === "select") {
-          inputHTML =
-            `<select class="form-select" data-field="${f.key}">` +
-            f.options
-              .map(
-                (o) =>
-                  `<option value="${o}" ${o === value ? "selected" : ""}>${o}</option>`,
-              )
-              .join("") +
-            `</select>`;
-        } else if (f.type === "textarea") {
-          inputHTML = `<textarea class="form-textarea" data-field="${f.key}" rows="3">${value || ""}</textarea>`;
-        } else {
-          inputHTML = `<input class="form-input" type="text" data-field="${f.key}" value="${(value || "").replace(/"/g, "&quot;")}" />`;
-        }
-        return `<div class="form-group"><label class="form-label">${label}</label>${inputHTML}</div>`;
-      }
-
-      // ---------- SAVE / DELETE ----------
-      modalSave.addEventListener("click", () => {
-        if (!currentModal.type) return;
-        if (currentModal.mode === "delete") {
-          performDelete();
-        } else {
-          performSave();
-        }
-      });
-
-      function performSave() {
-        const { type, mode, id } = currentModal;
-        const cfg = formConfigs[type];
-        const values = {};
-        modalBody.querySelectorAll("[data-field]").forEach((el) => {
-          values[el.dataset.field] = el.value.trim();
-        });
-
-        const tbody = document.querySelector(
-          `#view-${type} table[data-table="${type}"] tbody`,
-        );
-        if (!tbody) return;
-
-        if (mode === "add") {
-          const newId = "new_" + Date.now();
-          const tr = document.createElement("tr");
-          tr.setAttribute("data-id", newId);
-          tr.innerHTML = cfg.buildRow(values, newId);
-          tbody.insertBefore(tr, tbody.firstChild);
-          showToast(
-            window.i18n.t("admin.toast.added") || "Item added successfully",
-            "success",
-          );
-        } else {
-          const row = tbody.querySelector(`tr[data-id="${id}"]`);
-          if (row) {
-            row.innerHTML = cfg.buildRow(values, id);
-            showToast(window.i18n.t("admin.toast.saved"), "success");
-          }
-        }
-        closeModal();
-      }
-
-      function performDelete() {
-        const { type, id } = currentModal;
-        const row = document.querySelector(`#view-${type} tr[data-id="${id}"]`);
-        if (row) {
-          row.style.transition = "opacity .3s, transform .3s";
-          row.style.opacity = "0";
-          row.style.transform = "translateX(-20px)";
-          setTimeout(() => {
-            row.remove();
-            showToast(window.i18n.t("admin.toast.deleted"), "error");
-          }, 300);
-        }
-        closeModal();
-      }
-
-      // ---------- EVENT DELEGATION (for edit/delete buttons everywhere) ----------
-      document.addEventListener("click", (e) => {
-        const editBtn = e.target.closest("[data-edit]");
-        if (editBtn) {
-          const type = editBtn.dataset.edit;
-          const row = editBtn.closest("tr[data-id]");
-          if (row) openEditModal(type, row.dataset.id);
-          return;
-        }
-
-        const delBtn = e.target.closest("[data-delete]");
-        if (delBtn) {
-          const type = delBtn.dataset.delete;
-          if (type === "messages") {
-            const card = delBtn.closest(".message-card");
-            if (card) {
-              card.style.transition = "opacity .3s";
-              card.style.opacity = "0";
-              setTimeout(() => {
-                card.remove();
-                showToast(window.i18n.t("admin.toast.deleted"), "error");
-              }, 300);
-            }
-            return;
-          }
-          const row = delBtn.closest("tr[data-id]");
-          if (row) openDeleteModal(type, row.dataset.id);
-          return;
-        }
-
-        // Mark message as read
-        const markBtn = e.target.closest('[data-mark="read"]');
-        if (markBtn) {
-          const card = markBtn.closest(".message-card");
-          if (card) {
-            card.classList.remove("unread");
-            showToast("Marked as read", "info");
-          }
-          return;
-        }
-
-        // Add buttons (any element with data-add)
-        const addBtn = e.target.closest("[data-add]");
-        if (addBtn) {
-          e.preventDefault();
-          openAddModal(addBtn.dataset.add);
-          return;
-        }
-      });
-
-      // ---------- PANEL FILTER TABS ----------
-      document.querySelectorAll(".panel-tab").forEach((tab) => {
-        tab.addEventListener("click", () => {
-          const parent = tab.closest(".admin-panel");
-          if (parent) {
-            parent
-              .querySelectorAll(".panel-tab")
-              .forEach((t) => t.classList.remove("active"));
-            tab.classList.add("active");
-          }
-          showToast("Filter applied: " + tab.textContent.trim(), "info");
-        });
-      });
-
-      // ---------- TOP EXPORT BUTTON ----------
-      document.getElementById("topExportBtn").addEventListener("click", () => {
-        showToast("Data exported successfully", "success");
-      });
-
-      // ---------- LANGUAGE SWITCHERS ----------
-      function attachLangSwitcher(switcherId, btnId) {
-        const switcher = document.getElementById(switcherId);
-        const btn = document.getElementById(btnId);
-        if (!switcher || !btn) return;
-
-        btn.addEventListener("click", (e) => {
-          e.stopPropagation();
-          document.querySelectorAll(".lang-switcher.open").forEach((s) => {
-            if (s !== switcher) s.classList.remove("open");
-          });
-          switcher.classList.toggle("open");
-        });
-        switcher.querySelectorAll(".lang-option").forEach((opt) => {
-          opt.addEventListener("click", () => {
-            if (window.i18n) window.i18n.setLanguage(opt.dataset.lang);
-            switcher.classList.remove("open");
-            // Re-apply contextual labels
-            const activeNav = document.querySelector("#adminNav a.active");
-            if (activeNav) {
-              const meta = viewMeta[activeNav.dataset.view];
-              if (meta) {
-                viewTitle.textContent = window.i18n.t(meta.title);
-                viewSubtitle.textContent = window.i18n.t(meta.subtitle);
-                if (meta.add) {
-                  topAddBtn.innerHTML =
-                    "+ <span>" + window.i18n.t(meta.addLabel) + "</span>";
-                }
-              }
-            }
-          });
-        });
-      }
-      attachLangSwitcher("langSwitcherLogin", "langBtnLogin");
-      attachLangSwitcher("langSwitcherAdmin", "langBtnAdmin");
-
-      document.addEventListener("click", () => {
-        document
-          .querySelectorAll(".lang-switcher.open")
-          .forEach((s) => s.classList.remove("open"));
-      });
-
-      window.addEventListener("langchange", (e) => {
-        document
-          .querySelectorAll(".lang-current")
-          .forEach(
-            (el) => (el.textContent = (e.detail.lang || "am").toUpperCase()),
-          );
-      });
-      setTimeout(() => {
-        const lang =
-          window.i18n && window.i18n.getLang ? window.i18n.getLang() : "am";
-        document
-          .querySelectorAll(".lang-current")
-          .forEach((el) => (el.textContent = lang.toUpperCase()));
-      }, 50);
-
-      // Initial topbar sync
-      switchView("dashboard");
-    </script>
+    <script src="js/admin.js"></script>
   </body>
 </html>

@@ -2770,3 +2770,970 @@ Object.assign(translations.ar, {
   "admin.toast.exported": "تم تصدير البيانات بنجاح",
   "admin.actions.newEntry": "إدخال جديد",
 });
+/* ============================================================
+   EXTENSION 7 — Reports file upload
+   ============================================================ */
+
+Object.assign(translations.en, {
+  "admin.reports.file": "Report File (PDF, DOC, XLS)",
+  "admin.reports.dropTitle": "Drop file here or click to browse",
+  "admin.reports.browse": "Browse files",
+  "admin.reports.fileRequired": "Please select a file to upload",
+  "admin.reports.viewFile": "View File",
+  "admin.reports.replace": "Replace File",
+  "admin.reports.remove": "Remove",
+});
+
+Object.assign(translations.am, {
+  "admin.reports.file": "የሪፖርት ፋይል (PDF, DOC, XLS)",
+  "admin.reports.dropTitle": "ፋይል ከዚህ ይጣሉ ወይም ለመምረጥ ይጫኑ",
+  "admin.reports.browse": "ፋይሎችን ያስሱ",
+  "admin.reports.fileRequired": "እባክዎ ለመስቀል ፋይል ይምረጡ",
+  "admin.reports.viewFile": "ፋይል ይመልከቱ",
+  "admin.reports.replace": "ፋይል ቀይር",
+  "admin.reports.remove": "አስወግድ",
+});
+
+Object.assign(translations.om, {
+  "admin.reports.file": "Faayilii Gabaasaa (PDF, DOC, XLS)",
+  "admin.reports.dropTitle": "Faayilii asitti darbi ykn filachuuf cuunfi",
+  "admin.reports.browse": "Faayilii barbaadi",
+  "admin.reports.fileRequired": "Maaloo faayilii ol kaasuuf filadhu",
+  "admin.reports.viewFile": "Faayilii Ilaali",
+  "admin.reports.replace": "Faayilii Jijjiiri",
+  "admin.reports.remove": "Balleessi",
+});
+
+Object.assign(translations.ar, {
+  "admin.reports.file": "ملف التقرير (PDF، DOC، XLS)",
+  "admin.reports.dropTitle": "أسقط الملف هنا أو انقر للتصفح",
+  "admin.reports.browse": "تصفح الملفات",
+  "admin.reports.fileRequired": "يرجى تحديد ملف للتحميل",
+  "admin.reports.viewFile": "عرض الملف",
+  "admin.reports.replace": "استبدال الملف",
+  "admin.reports.remove": "إزالة",
+});
+/* ============================================================
+   EXTENSION 8 — Leadership page
+   ============================================================ */
+
+Object.assign(translations.en, {
+  "nav.leadership": "Leadership",
+
+  "leadership.hero.tag": "Our Leadership",
+  "leadership.hero.title": "Meet the Council & Project Leaders",
+  "leadership.hero.lede":
+    "The men and women entrusted with guiding the Council and delivering this transformative project.",
+
+  "leadership.structure.tag": "Governance Structure",
+  "leadership.structure.title": "Organizational Structure",
+  "leadership.structure.lede":
+    "A clear hierarchy ensuring accountability and efficient execution at every level.",
+  "leadership.structure.general": "General Assembly (85 Mosques)",
+  "leadership.structure.head": "Head of Council",
+  "leadership.structure.deputy": "Deputy Head",
+  "leadership.structure.exec": "Executive Committee",
+  "leadership.structure.secretary": "Secretary Office",
+  "leadership.structure.finance": "Finance & Accounting",
+  "leadership.structure.fundraising": "Fundraising Team",
+  "leadership.structure.procurement": "Procurement & Assets",
+  "leadership.structure.monitoring": "Monitoring & Evaluation",
+
+  "leadership.council.tag": "Council Leadership",
+  "leadership.council.title": "Council Leadership Team",
+  "leadership.council.lede":
+    "Elected leaders serving the Muslim community across the three districts.",
+
+  "leadership.p1.name": "Ahmed Hassan",
+  "leadership.p1.role": "Head of Council",
+  "leadership.p1.bio":
+    "Leading the Council with over 15 years of community service experience and a strong vision for institutional sustainability.",
+
+  "leadership.p2.name": "Fatima Ibrahim",
+  "leadership.p2.role": "Deputy Head",
+  "leadership.p2.bio":
+    "Oversees community engagement and coordination across the three districts, with deep experience in social work.",
+
+  "leadership.p3.name": "Mohammed Yusuf",
+  "leadership.p3.role": "Secretary General",
+  "leadership.p3.bio":
+    "Responsible for documentation, records, and internal communications for both the Council and the project.",
+
+  "leadership.exec.tag": "Executive Committee",
+  "leadership.exec.title": "Executive Committee Structure",
+  "leadership.exec.lede":
+    "Nine full-time executive members working under a permanent salary system.",
+  "leadership.exec.c1.sub": "Governance",
+  "leadership.exec.c1.title": "Executive Leadership",
+  "leadership.exec.c1.desc":
+    "Overall strategic direction, decision-making, and coordination of all committees.",
+  "leadership.exec.more": "6 additional members",
+  "leadership.exec.c2.sub": "Finance",
+  "leadership.exec.c2.title": "Finance & Accounting",
+  "leadership.exec.c2.desc":
+    "Manages income, expenses, budgeting, and financial reporting for the project and the Council.",
+  "leadership.exec.c3.sub": "Administration",
+  "leadership.exec.c3.title": "Administration & Records",
+  "leadership.exec.c3.desc":
+    "Handles documents, archives, meetings, and administrative coordination.",
+
+  "leadership.members.sa": "Sarah Ahmed",
+  "leadership.members.mk": "Mahmoud Khalid",
+  "leadership.members.yt": "Yusuf Tesfaye",
+  "leadership.members.ha": "Hassan Ali",
+  "leadership.members.ay": "Aisha Yusuf",
+
+  "leadership.project.tag": "Project Committees",
+  "leadership.project.title": "Project Management Structure",
+  "leadership.project.lede":
+    "Six dedicated committees ensuring transparent, accountable execution of the project.",
+
+  "leadership.proj.p1.sub": "Oversight",
+  "leadership.proj.p1.title": "Project Management Committee",
+  "leadership.proj.p1.desc":
+    "Monitors overall project execution, approves plans, and ensures adherence to timelines and budgets.",
+
+  "leadership.proj.p2.sub": "Fundraising",
+  "leadership.proj.p2.title": "Fundraising Team",
+  "leadership.proj.p2.desc":
+    "Coordinates donor outreach, manages pledges, tracks contributions, and communicates with supporters.",
+
+  "leadership.proj.p3.sub": "Finance",
+  "leadership.proj.p3.title": "Finance & Accounting Unit",
+  "leadership.proj.p3.desc":
+    "Maintains complete financial records, issues receipts, and prepares monthly and quarterly reports.",
+
+  "leadership.proj.p4.sub": "Assets",
+  "leadership.proj.p4.title": "Procurement & Asset Management",
+  "leadership.proj.p4.desc":
+    "Manages all purchases, verifies legal documents, and maintains the asset register for every item acquired.",
+
+  "leadership.proj.p5.sub": "Development",
+  "leadership.proj.p5.title": "Building & Institutional Development",
+  "leadership.proj.p5.desc":
+    "Oversees building renovation, commercial space setup, and long-term institutional growth.",
+
+  "leadership.proj.p6.sub": "Evaluation",
+  "leadership.proj.p6.title": "Monitoring & Evaluation",
+  "leadership.proj.p6.desc":
+    "Independently tracks progress, verifies results, and reports on project performance to the community.",
+
+  "leadership.resp.tag": "Responsibilities",
+  "leadership.resp.title": "Roles & Responsibilities",
+  "leadership.resp.lede": "Clear duties defined for every governing body.",
+  "leadership.resp.th.body": "Governing Body",
+  "leadership.resp.th.duty": "Primary Responsibilities",
+  "leadership.resp.r1":
+    "Represents all 85 mosques, approves major decisions, and holds ultimate oversight authority.",
+  "leadership.resp.r2":
+    "Provides day-to-day leadership, represents the Council publicly, and chairs executive meetings.",
+  "leadership.resp.r3":
+    "Executes approved plans, manages staff, and coordinates all sub-committees.",
+  "leadership.resp.r4":
+    "Leads fundraising campaigns, manages donor relationships, and tracks pledge fulfillment.",
+  "leadership.resp.r5":
+    "Maintains financial records, prepares reports, and ensures transparent use of all funds.",
+  "leadership.resp.r6":
+    "Handles procurement, verifies legal documents, and maintains the asset register.",
+  "leadership.resp.r7":
+    "Independently monitors progress and reports results to leadership and the community.",
+
+  "leadership.values.tag": "Our Values",
+  "leadership.values.title": "Principles That Guide Us",
+  "leadership.values.lede":
+    "The core values that shape every decision and action of our leadership.",
+  "leadership.values.v1.title": "Trust (Amanah)",
+  "leadership.values.v1.desc":
+    "Every birr entrusted to us is treated as a sacred responsibility.",
+  "leadership.values.v2.title": "Transparency",
+  "leadership.values.v2.desc":
+    "Open books, public reports, and complete accountability to the community.",
+  "leadership.values.v3.title": "Justice (Adl)",
+  "leadership.values.v3.desc":
+    "Fair treatment for all — donors, beneficiaries, and partners alike.",
+  "leadership.values.v4.title": "Sustainability",
+  "leadership.values.v4.desc":
+    "Building institutions that serve generations, not just today.",
+
+  "leadership.cta.title": "Want to Meet Our Team?",
+  "leadership.cta.desc":
+    "Reach out to any member of the leadership team for questions, ideas, or partnership opportunities.",
+  "leadership.cta.btn": "Contact Us →",
+});
+
+Object.assign(translations.am, {
+  "nav.leadership": "መሪዎች",
+
+  "leadership.hero.tag": "የእኛ መሪዎች",
+  "leadership.hero.title": "የምክር ቤቱንና የፕሮጀክቱን መሪዎች ያግኙ",
+  "leadership.hero.lede": "ምክር ቤቱን ለመምራትና ይህን ታላቅ ፕሮጀክት ለማሳካት የተመረጡ ሰዎች።",
+
+  "leadership.structure.tag": "የአስተዳደር አወቃቀር",
+  "leadership.structure.title": "ድርጅታዊ አወቃቀር",
+  "leadership.structure.lede": "በየደረጃው ተጠያቂነትንና ቀልጣፋ አፈጻጸምን የሚያረጋግጥ ግልጽ ተዋረድ።",
+  "leadership.structure.general": "ጠቅላላ ጉባኤ (85 መስጊዶች)",
+  "leadership.structure.head": "የምክር ቤቱ ኃላፊ",
+  "leadership.structure.deputy": "ምክትል ኃላፊ",
+  "leadership.structure.exec": "አስፈጻሚ ኮሚቴ",
+  "leadership.structure.secretary": "የጽሕፈት ቤት",
+  "leadership.structure.finance": "የገንዘብና ሂሳብ",
+  "leadership.structure.fundraising": "የፈንድ ማሰባሰቢያ ቡድን",
+  "leadership.structure.procurement": "ግዢና ንብረት",
+  "leadership.structure.monitoring": "ክትትልና ግምገማ",
+
+  "leadership.council.tag": "የምክር ቤቱ አመራር",
+  "leadership.council.title": "የምክር ቤቱ አመራር ቡድን",
+  "leadership.council.lede": "በ3 ወረዳዎች ውስጥ የሙስሊም ማህበረሰቡን የሚያገለግሉ የተመረጡ መሪዎች።",
+
+  "leadership.p1.name": "አህመድ ሀሰን",
+  "leadership.p1.role": "የምክር ቤቱ ኃላፊ",
+  "leadership.p1.bio":
+    "ከ15 ዓመት በላይ የማህበረሰብ አገልግሎት ልምድ ያለው፣ ለተቋማዊ ዘላቂነት ጠንካራ ራዕይ ያለው መሪ።",
+
+  "leadership.p2.name": "ፋጡማ ኢብራሂም",
+  "leadership.p2.role": "ምክትል ኃላፊ",
+  "leadership.p2.bio":
+    "በ3 ወረዳዎች ውስጥ የማህበረሰብ ተሳትፎንና ቅንጅትን የሚቆጣጠር፣ በማህበራዊ ሥራ ሰፊ ልምድ ያለው።",
+
+  "leadership.p3.name": "መሐመድ ዩሱፍ",
+  "leadership.p3.role": "ዋና ጸሐፊ",
+  "leadership.p3.bio": "ለምክር ቤቱም ለፕሮጀክቱም ሰነዶችን፣ መዝገቦችንና የውስጥ ግንኙነትን የሚያስተዳድር።",
+
+  "leadership.exec.tag": "አስፈጻሚ ኮሚቴ",
+  "leadership.exec.title": "የአስፈጻሚ ኮሚቴ አወቃቀር",
+  "leadership.exec.lede": "9 ሙሉ ጊዜ አስፈጻሚ አባላት በቋሚ የደመወዝ ሥርዓት ይሠራሉ።",
+  "leadership.exec.c1.sub": "አስተዳደር",
+  "leadership.exec.c1.title": "አስፈጻሚ አመራር",
+  "leadership.exec.c1.desc": "አጠቃላይ ስትራቴጂያዊ አቅጣጫ፣ ውሳኔ አሰጣጥና የሁሉም ኮሚቴዎች ቅንጅት።",
+  "leadership.exec.more": "6 ተጨማሪ አባላት",
+  "leadership.exec.c2.sub": "ገንዘብ",
+  "leadership.exec.c2.title": "የገንዘብና ሂሳብ ክፍል",
+  "leadership.exec.c2.desc":
+    "የፕሮጀክቱንና የምክር ቤቱን ገቢ፣ ወጪ፣ በጀትና የገንዘብ ሪፖርቶችን ያስተዳድራል።",
+  "leadership.exec.c3.sub": "አስተዳደር",
+  "leadership.exec.c3.title": "አስተዳደርና መዝገብ",
+  "leadership.exec.c3.desc": "ሰነዶችን፣ ማህደሮችን፣ ስብሰባዎችንና የአስተዳደር ቅንጅትን ያስተዳድራል።",
+
+  "leadership.members.sa": "ሳራ አህመድ",
+  "leadership.members.mk": "መሐሙድ ኻሊድ",
+  "leadership.members.yt": "ዩሱፍ ተስፋዬ",
+  "leadership.members.ha": "ሀሰን አሊ",
+  "leadership.members.ay": "አይሻ ዩሱፍ",
+
+  "leadership.project.tag": "የፕሮጀክት ኮሚቴዎች",
+  "leadership.project.title": "የፕሮጀክት አስተዳደር አወቃቀር",
+  "leadership.project.lede": "ግልጽና ተጠያቂነት ያለው አፈጻጸምን የሚያረጋግጡ 6 የተወሰኑ ኮሚቴዎች።",
+
+  "leadership.proj.p1.sub": "ቁጥጥር",
+  "leadership.proj.p1.title": "የፕሮጀክት አስተዳደር ኮሚቴ",
+  "leadership.proj.p1.desc":
+    "የፕሮጀክቱን አጠቃላይ አፈጻጸም ይከታተላል፣ ዕቅዶችን ያጸድቃል፣ የጊዜ ሰሌዳና በጀት መከበሩን ያረጋግጣል።",
+
+  "leadership.proj.p2.sub": "ፈንድ ማሰባሰብ",
+  "leadership.proj.p2.title": "የፈንድ ማሰባሰቢያ ቡድን",
+  "leadership.proj.p2.desc":
+    "የለጋሾችን ግንኙነት ያስተባብራል፣ ቃል ኪዳኖችን ያስተዳድራል፣ መዋጮዎችን ይከታተላል፣ ከደጋፊዎች ጋር ይገናኛል።",
+
+  "leadership.proj.p3.sub": "ገንዘብ",
+  "leadership.proj.p3.title": "የገንዘብና ሂሳብ ክፍል",
+  "leadership.proj.p3.desc":
+    "የተሟላ የገንዘብ መዝገብ ይይዛል፣ ደረሰኞችን ይሰጣል፣ ወርሃዊና ሩብ ዓመታዊ ሪፖርቶችን ያዘጋጃል።",
+
+  "leadership.proj.p4.sub": "ንብረት",
+  "leadership.proj.p4.title": "ግዢና ንብረት አስተዳደር",
+  "leadership.proj.p4.desc":
+    "ሁሉንም ግዢዎች ያስተዳድራል፣ ሕጋዊ ሰነዶችን ያረጋግጣል፣ ለእያንዳንዱ ንብረት የንብረት መዝገብ ይይዛል።",
+
+  "leadership.proj.p5.sub": "ልማት",
+  "leadership.proj.p5.title": "የሕንፃና ተቋማዊ ልማት",
+  "leadership.proj.p5.desc":
+    "የሕንፃ ማሻሻያን፣ የንግድ ቦታ ዝግጅትንና የረጅም ጊዜ ተቋማዊ እድገትን ይቆጣጠራል።",
+
+  "leadership.proj.p6.sub": "ግምገማ",
+  "leadership.proj.p6.title": "ክትትልና ግምገማ",
+  "leadership.proj.p6.desc":
+    "በነፃነት ሂደቱን ይከታተላል፣ ውጤቶችን ያረጋግጣል፣ ለአመራሩና ለማህበረሰቡ ሪፖርት ያቀርባል።",
+
+  "leadership.resp.tag": "ኃላፊነቶች",
+  "leadership.resp.title": "ሚናዎችና ኃላፊነቶች",
+  "leadership.resp.lede": "ለእያንዳንዱ የአስተዳደር አካል የተወሰኑ ግልጽ ግዴታዎች።",
+  "leadership.resp.th.body": "የአስተዳደር አካል",
+  "leadership.resp.th.duty": "ዋና ኃላፊነቶች",
+  "leadership.resp.r1":
+    "85 መስጊዶችን ይወክላል፣ ትላልቅ ውሳኔዎችን ያጸድቃል፣ የመጨረሻ ቁጥጥር ሥልጣን አለው።",
+  "leadership.resp.r2":
+    "የዕለት ተዕለት አመራር ይሰጣል፣ ምክር ቤቱን በአደባባይ ይወክላል፣ የአስፈጻሚ ስብሰባዎችን ይመራል።",
+  "leadership.resp.r3":
+    "የጸደቁ ዕቅዶችን ይፈጽማል፣ ሠራተኞችን ያስተዳድራል፣ ሁሉንም ንዑስ ኮሚቴዎች ያስተባብራል።",
+  "leadership.resp.r4":
+    "የፈንድ ማሰባሰቢያ ዘመቻዎችን ይመራል፣ የለጋሾችን ግንኙነት ያስተዳድራል፣ ቃል ኪዳኖችን ይከታተላል።",
+  "leadership.resp.r5":
+    "የገንዘብ መዝገቦችን ይይዛል፣ ሪፖርቶችን ያዘጋጃል፣ ግልጽ የገንዘብ አጠቃቀምን ያረጋግጣል።",
+  "leadership.resp.r6": "ግዢዎችን ያስተዳድራል፣ ሕጋዊ ሰነዶችን ያረጋግጣል፣ የንብረት መዝገብን ይይዛል።",
+  "leadership.resp.r7": "በነፃነት ሂደቱን ይከታተላል፣ ውጤቶችን ለአመራሩና ለማህበረሰቡ ያሳውቃል።",
+
+  "leadership.values.tag": "ዋና እሴቶቻችን",
+  "leadership.values.title": "የሚመሩን መርሆች",
+  "leadership.values.lede": "የአመራራችንን እያንዳንዱን ውሳኔና ተግባር የሚቀርጹ ዋና እሴቶች።",
+  "leadership.values.v1.title": "አማና (ታማኝነት)",
+  "leadership.values.v1.desc": "የሚሰጠን እያንዳንዱ ብር እንደ ቅዱስ ኃላፊነት ይታያል።",
+  "leadership.values.v2.title": "ግልጽነት",
+  "leadership.values.v2.desc": "ክፍት መዝገቦች፣ ሕዝባዊ ሪፖርቶችና ለማህበረሰቡ ሙሉ ተጠያቂነት።",
+  "leadership.values.v3.title": "አድል (ፍትሕ)",
+  "leadership.values.v3.desc": "ለሁሉም ሰው ፍትሐዊ አያያዝ — ለለጋሾችም፣ ለተጠቃሚዎችም፣ ለአጋሮችም።",
+  "leadership.values.v4.title": "ዘላቂነት",
+  "leadership.values.v4.desc": "ዛሬን ብቻ ሳይሆን ለትውልድ የሚያገለግሉ ተቋማትን መገንባት።",
+
+  "leadership.cta.title": "ቡድናችንን ማግኘት ይፈልጋሉ?",
+  "leadership.cta.desc": "ለጥያቄዎች፣ ሐሳቦች ወይም የሽርክና እድሎች ከአመራሩ አባላት አንዱን ያግኙ።",
+  "leadership.cta.btn": "ያግኙን →",
+});
+
+Object.assign(translations.om, {
+  "nav.leadership": "Hoggansa",
+
+  "leadership.hero.tag": "Hoggansa Keenya",
+  "leadership.hero.title": "Hoggansaa Mana Maree fi Pirojektii Quunnamaa",
+  "leadership.hero.lede":
+    "Namoonni Mana Maree geggeessuuf fi pirojektii guddaa kana galmaan gahuuf filataman.",
+
+  "leadership.structure.tag": "Caasaa Bulchiinsaa",
+  "leadership.structure.title": "Caasaa Dhaabbataa",
+  "leadership.structure.lede":
+    "Sadarkaa hundatti itti gaafatamummaa fi raawwii saffisaa mirkaneessu.",
+  "leadership.structure.general": "Walgahii Waliigalaa (Masjiidota 85)",
+  "leadership.structure.head": "Hoji-guddaa Mana Maree",
+  "leadership.structure.deputy": "Itti Aanaa Hoji-guddaa",
+  "leadership.structure.exec": "Koree Raawwii",
+  "leadership.structure.secretary": "Waajjira Barreeffamaa",
+  "leadership.structure.finance": "Maallaqaa fi Herregaa",
+  "leadership.structure.fundraising": "Garee Kaasaa",
+  "leadership.structure.procurement": "Bittaa fi Qabeenyaa",
+  "leadership.structure.monitoring": "Hordoffii fi Gamaaggamaa",
+
+  "leadership.council.tag": "Hoggansa Mana Maree",
+  "leadership.council.title": "Garee Hoggansa Mana Maree",
+  "leadership.council.lede":
+    "Hoggansota filataman aanaalee sadan keessatti hawaasa Musliimaaf tajaajilan.",
+
+  "leadership.p1.name": "Ahmed Hassen",
+  "leadership.p1.role": "Hoji-guddaa Mana Maree",
+  "leadership.p1.bio":
+    "Muuxannoo tajaajila hawaasaa waggaa 15 ol qabu, mul'ata cimaa itti fufiinsa dhaabbataaf qabu.",
+
+  "leadership.p2.name": "Faatiimaa Ibraahim",
+  "leadership.p2.role": "Itti Aanaa Hoji-guddaa",
+  "leadership.p2.bio":
+    "Aanaalee sadan keessatti hirmaannaa fi walqunnamtii hawaasaa to'ata, muuxannoo hojii hawaasaa bal'aa qaba.",
+
+  "leadership.p3.name": "Muhammad Yuusuf",
+  "leadership.p3.role": "Barreessaa Guddataa",
+  "leadership.p3.bio":
+    "Mana Mareefi pirojektichaaf sanada, galmee fi walqunnamtii keessoo bulcha.",
+
+  "leadership.exec.tag": "Koree Raawwii",
+  "leadership.exec.title": "Caasaa Koree Raawwii",
+  "leadership.exec.lede":
+    "Miseensonni raawwii 9 yeroo guutuu sirna mindaa dhaabbataadhaan hojjetu.",
+  "leadership.exec.c1.sub": "Bulchiinsa",
+  "leadership.exec.c1.title": "Hoggansa Raawwii",
+  "leadership.exec.c1.desc":
+    "Kallattii tarsiimoo waliigalaa, murtii fi qindeessummaa koreewwan hunda.",
+  "leadership.exec.more": "Miseensota dabalataa 6",
+  "leadership.exec.c2.sub": "Maallaqaa",
+  "leadership.exec.c2.title": "Kutaa Maallaqaa fi Herregaa",
+  "leadership.exec.c2.desc":
+    "Galii, baasii, baajata fi gabaasa maallaqaa pirojektii fi Mana Maree bulcha.",
+  "leadership.exec.c3.sub": "Bulchiinsa",
+  "leadership.exec.c3.title": "Bulchiinsa fi Galmee",
+  "leadership.exec.c3.desc":
+    "Sanada, kuusaa, walgahii fi qindeessummaa bulchiinsaa bulcha.",
+
+  "leadership.members.sa": "Saaraa Ahmed",
+  "leadership.members.mk": "Mahmuud Khaliid",
+  "leadership.members.yt": "Yuusuf Tasfaayee",
+  "leadership.members.ha": "Hassen Ali",
+  "leadership.members.ay": "Aayishaa Yuusuf",
+
+  "leadership.project.tag": "Koreewwan Pirojektii",
+  "leadership.project.title": "Caasaa Bulchiinsa Pirojektii",
+  "leadership.project.lede":
+    "Koreewwan addaa 6 raawwii ifa ta'e fi itti gaafatamummaa qabu mirkaneessu.",
+
+  "leadership.proj.p1.sub": "To'annoo",
+  "leadership.proj.p1.title": "Koree Bulchiinsa Pirojektii",
+  "leadership.proj.p1.desc":
+    "Raawwii pirojektii waliigalaa hordofa, karoora mirkaneessa, yeroo fi baajata kabajamuu mirkaneessa.",
+
+  "leadership.proj.p2.sub": "Kaasaa",
+  "leadership.proj.p2.title": "Garee Kaasaa",
+  "leadership.proj.p2.desc":
+    "Walqunnamtii arjoomtootaa qindeessa, waadaa bulcha, gumaacha hordofa, deeggartoota waliin walqunnama.",
+
+  "leadership.proj.p3.sub": "Maallaqaa",
+  "leadership.proj.p3.title": "Kutaa Maallaqaa fi Herregaa",
+  "leadership.proj.p3.desc":
+    "Galmee maallaqaa guutuu qaba, nagahee kenna, gabaasa ji'aa fi kurmaanaa qopheessa.",
+
+  "leadership.proj.p4.sub": "Qabeenyaa",
+  "leadership.proj.p4.title": "Bittaa fi Bulchiinsa Qabeenyaa",
+  "leadership.proj.p4.desc":
+    "Bittaa hunda bulcha, sanada seeraa mirkaneessa, qabeenya tokkoon tokkoof galmee qabeenyaa qaba.",
+
+  "leadership.proj.p5.sub": "Misooma",
+  "leadership.proj.p5.title": "Ijaarsa Gamoo fi Misooma Dhaabbataa",
+  "leadership.proj.p5.desc":
+    "Haaromsa gamoo, qophii iddoo daldalaa fi guddina dhaabbataa yeroo dheeraa to'ata.",
+
+  "leadership.proj.p6.sub": "Gamaaggama",
+  "leadership.proj.p6.title": "Hordoffii fi Gamaaggama",
+  "leadership.proj.p6.desc":
+    "Bilisummaadhaan adeemsa hordofa, bu'aa mirkaneessa, hoggansaafi hawaasaaf gabaasa dhiyeessa.",
+
+  "leadership.resp.tag": "Itti Gaafatamummaa",
+  "leadership.resp.title": "Gahee fi Itti Gaafatamummaa",
+  "leadership.resp.lede": "Qaama bulchiinsaa tokkoon tokkoof gahee ifa ta'e.",
+  "leadership.resp.th.body": "Qaama Bulchiinsaa",
+  "leadership.resp.th.duty": "Itti Gaafatamummaa Guddataa",
+  "leadership.resp.r1":
+    "Masjiidota 85 bakka bu'a, murtii gurguddaa mirkaneessa, aangoo to'annoo dhumaa qaba.",
+  "leadership.resp.r2":
+    "Hoggansa guyyuu kenna, Mana Maree uummataaf bakka bu'a, walgahii raawwii geggeessa.",
+  "leadership.resp.r3":
+    "Karoora mirkanaa'e raawwata, hojjettoota bulcha, koreewwan hunda qindeessa.",
+  "leadership.resp.r4":
+    "Duula kaasaa geggeessa, walqunnamtii arjoomtootaa bulcha, waadaa hordofa.",
+  "leadership.resp.r5":
+    "Galmee maallaqaa qaba, gabaasa qopheessa, itti fayyadama maallaqaa ifa ta'e mirkaneessa.",
+  "leadership.resp.r6":
+    "Bittaa bulcha, sanada seeraa mirkaneessa, galmee qabeenyaa qaba.",
+  "leadership.resp.r7":
+    "Bilisummaadhaan hordofa, bu'aa hoggansaafi hawaasaaf gabaasa.",
+
+  "leadership.values.tag": "Du'aa Keenya",
+  "leadership.values.title": "Kaayyoo Nu Geggeessu",
+  "leadership.values.lede":
+    "Du'aawwan ijoo murtii fi tarkaanfii hoggansa keenya hunda bocu.",
+  "leadership.values.v1.title": "Amaana",
+  "leadership.values.v1.desc":
+    "Birrii nuuf kennamu hundi akka itti gaafatamummaa qulqulluutti ilaalama.",
+  "leadership.values.v2.title": "Ifa Ta'uu",
+  "leadership.values.v2.desc":
+    "Galmee banaa, gabaasa uummataa fi itti gaafatamummaa guutuu hawaasaaf.",
+  "leadership.values.v3.title": "Haqa",
+  "leadership.values.v3.desc":
+    "Namoota hundaaf tajaajila walqixa — arjoomtoota, fayyadamtoota fi michoota.",
+  "leadership.values.v4.title": "Itti Fufiinsa",
+  "leadership.values.v4.desc":
+    "Dhaabbilee har'a qofa mitii, dhalootaaf tajaajilan ijaaruu.",
+
+  "leadership.cta.title": "Garee Keenya Quunnamuu Barbaadda?",
+  "leadership.cta.desc":
+    "Gaaffii, yaada ykn carraa hiriyyummaaf miseensota hoggansaa kamiyyuu quunnamaa.",
+  "leadership.cta.btn": "Nu Quunnami →",
+});
+
+Object.assign(translations.ar, {
+  "nav.leadership": "القيادة",
+
+  "leadership.hero.tag": "قيادتنا",
+  "leadership.hero.title": "تعرّف على قادة المجلس والمشروع",
+  "leadership.hero.lede":
+    "الرجال والنساء الموكلون بإدارة المجلس وتحقيق هذا المشروع التحويلي.",
+
+  "leadership.structure.tag": "هيكل الحوكمة",
+  "leadership.structure.title": "الهيكل التنظيمي",
+  "leadership.structure.lede":
+    "تسلسل هرمي واضح يضمن المساءلة والتنفيذ الفعّال على كل مستوى.",
+  "leadership.structure.general": "الجمعية العامة (85 مسجدًا)",
+  "leadership.structure.head": "رئيس المجلس",
+  "leadership.structure.deputy": "نائب الرئيس",
+  "leadership.structure.exec": "اللجنة التنفيذية",
+  "leadership.structure.secretary": "مكتب السكرتارية",
+  "leadership.structure.finance": "المالية والمحاسبة",
+  "leadership.structure.fundraising": "فريق جمع التبرعات",
+  "leadership.structure.procurement": "المشتريات والأصول",
+  "leadership.structure.monitoring": "الرصد والتقييم",
+
+  "leadership.council.tag": "قيادة المجلس",
+  "leadership.council.title": "فريق قيادة المجلس",
+  "leadership.council.lede":
+    "قادة منتخبون يخدمون المجتمع المسلم في المناطق الثلاث.",
+
+  "leadership.p1.name": "أحمد حسن",
+  "leadership.p1.role": "رئيس المجلس",
+  "leadership.p1.bio":
+    "يقود المجلس بخبرة تزيد على 15 عامًا في خدمة المجتمع ورؤية قوية للاستدامة المؤسسية.",
+
+  "leadership.p2.name": "فاطمة إبراهيم",
+  "leadership.p2.role": "نائبة الرئيس",
+  "leadership.p2.bio":
+    "تشرف على المشاركة المجتمعية والتنسيق في المناطق الثلاث، ولديها خبرة واسعة في العمل الاجتماعي.",
+
+  "leadership.p3.name": "محمد يوسف",
+  "leadership.p3.role": "الأمين العام",
+  "leadership.p3.bio":
+    "مسؤول عن التوثيق والسجلات والاتصالات الداخلية للمجلس والمشروع.",
+
+  "leadership.exec.tag": "اللجنة التنفيذية",
+  "leadership.exec.title": "هيكل اللجنة التنفيذية",
+  "leadership.exec.lede":
+    "تسعة أعضاء تنفيذيين بدوام كامل يعملون بنظام راتب دائم.",
+  "leadership.exec.c1.sub": "الحوكمة",
+  "leadership.exec.c1.title": "القيادة التنفيذية",
+  "leadership.exec.c1.desc":
+    "التوجيه الاستراتيجي العام واتخاذ القرارات والتنسيق بين جميع اللجان.",
+  "leadership.exec.more": "6 أعضاء إضافيين",
+  "leadership.exec.c2.sub": "المالية",
+  "leadership.exec.c2.title": "المالية والمحاسبة",
+  "leadership.exec.c2.desc":
+    "تدير الدخل والنفقات والميزانية والتقارير المالية للمشروع والمجلس.",
+  "leadership.exec.c3.sub": "الإدارة",
+  "leadership.exec.c3.title": "الإدارة والسجلات",
+  "leadership.exec.c3.desc":
+    "تتعامل مع المستندات والأرشيف والاجتماعات والتنسيق الإداري.",
+
+  "leadership.members.sa": "سارة أحمد",
+  "leadership.members.mk": "محمود خالد",
+  "leadership.members.yt": "يوسف تسفاي",
+  "leadership.members.ha": "حسن علي",
+  "leadership.members.ay": "عائشة يوسف",
+
+  "leadership.project.tag": "لجان المشروع",
+  "leadership.project.title": "هيكل إدارة المشروع",
+  "leadership.project.lede":
+    "ست لجان مخصصة تضمن تنفيذًا شفافًا وخاضعًا للمساءلة.",
+
+  "leadership.proj.p1.sub": "الإشراف",
+  "leadership.proj.p1.title": "لجنة إدارة المشروع",
+  "leadership.proj.p1.desc":
+    "تراقب التنفيذ العام للمشروع وتوافق على الخطط وتضمن الالتزام بالجداول الزمنية والميزانيات.",
+
+  "leadership.proj.p2.sub": "جمع التبرعات",
+  "leadership.proj.p2.title": "فريق جمع التبرعات",
+  "leadership.proj.p2.desc":
+    "ينسق التواصل مع المتبرعين ويدير التعهدات ويتتبع المساهمات ويتواصل مع الداعمين.",
+
+  "leadership.proj.p3.sub": "المالية",
+  "leadership.proj.p3.title": "وحدة المالية والمحاسبة",
+  "leadership.proj.p3.desc":
+    "تحتفظ بسجلات مالية كاملة وتصدر الإيصالات وتعدّ تقارير شهرية وربع سنوية.",
+
+  "leadership.proj.p4.sub": "الأصول",
+  "leadership.proj.p4.title": "المشتريات وإدارة الأصول",
+  "leadership.proj.p4.desc":
+    "تدير جميع المشتريات وتتحقق من الوثائق القانونية وتحتفظ بسجل الأصول لكل عنصر.",
+
+  "leadership.proj.p5.sub": "التطوير",
+  "leadership.proj.p5.title": "بناء وتطوير المؤسسة",
+  "leadership.proj.p5.desc":
+    "تشرف على تجديد المبنى وتجهيز المساحات التجارية والنمو المؤسسي طويل الأجل.",
+
+  "leadership.proj.p6.sub": "التقييم",
+  "leadership.proj.p6.title": "الرصد والتقييم",
+  "leadership.proj.p6.desc":
+    "تتابع التقدم باستقلالية وتتحقق من النتائج وتقدم تقارير للقيادة والمجتمع.",
+
+  "leadership.resp.tag": "المسؤوليات",
+  "leadership.resp.title": "الأدوار والمسؤوليات",
+  "leadership.resp.lede": "مهام واضحة محددة لكل هيئة إدارية.",
+  "leadership.resp.th.body": "الهيئة الإدارية",
+  "leadership.resp.th.duty": "المسؤوليات الرئيسية",
+  "leadership.resp.r1":
+    "تمثل جميع المساجد الـ 85 وتوافق على القرارات الكبرى وتمتلك سلطة الإشراف النهائية.",
+  "leadership.resp.r2":
+    "توفر القيادة اليومية وتمثل المجلس علنًا وترأس الاجتماعات التنفيذية.",
+  "leadership.resp.r3":
+    "تنفذ الخطط المعتمدة وتدير الموظفين وتنسق جميع اللجان الفرعية.",
+  "leadership.resp.r4":
+    "تقود حملات جمع التبرعات وتدير علاقات المتبرعين وتتابع الوفاء بالتعهدات.",
+  "leadership.resp.r5":
+    "تحتفظ بالسجلات المالية وتعد التقارير وتضمن الاستخدام الشفاف للأموال.",
+  "leadership.resp.r6":
+    "تتعامل مع المشتريات وتتحقق من الوثائق القانونية وتحتفظ بسجل الأصول.",
+  "leadership.resp.r7":
+    "تراقب التقدم باستقلالية وتقدم التقارير للقيادة والمجتمع.",
+
+  "leadership.values.tag": "قيمنا",
+  "leadership.values.title": "المبادئ التي توجهنا",
+  "leadership.values.lede": "القيم الأساسية التي تشكل كل قرار وإجراء لقيادتنا.",
+  "leadership.values.v1.title": "الأمانة",
+  "leadership.values.v1.desc": "كل بر موكل إلينا يُعامل كمسؤولية مقدسة.",
+  "leadership.values.v2.title": "الشفافية",
+  "leadership.values.v2.desc":
+    "سجلات مفتوحة وتقارير علنية ومساءلة كاملة للمجتمع.",
+  "leadership.values.v3.title": "العدل",
+  "leadership.values.v3.desc":
+    "معاملة عادلة للجميع — المتبرعين والمستفيدين والشركاء.",
+  "leadership.values.v4.title": "الاستدامة",
+  "leadership.values.v4.desc": "بناء مؤسسات تخدم الأجيال، لا اليوم فقط.",
+
+  "leadership.cta.title": "هل تريد مقابلة فريقنا؟",
+  "leadership.cta.desc":
+    "تواصل مع أي عضو من فريق القيادة للأسئلة أو الأفكار أو فرص الشراكة.",
+  "leadership.cta.btn": "اتصل بنا ←",
+});
+/* ============================================================
+   EXTENSION 9 — Leadership corrections (names + committees)
+   Append this AT THE END of translations.js
+   ============================================================ */
+
+Object.assign(translations.en, {
+  // ========== TOP LEADERS ==========
+  "leadership.p1.name": "Sheikh Abdurrahman Muhammad",
+  "leadership.p1.role": "Head of Council",
+  "leadership.p1.bio":
+    "Leading the Council with years of experience in community service and religious leadership, guiding the project's institutional vision.",
+
+  "leadership.p2.name": "Sheikh Yusuf Ahmad",
+  "leadership.p2.role": "Deputy Head",
+  "leadership.p2.bio":
+    "Supports the Head of Council and oversees day-to-day coordination across the three districts and 85 mosques.",
+
+  "leadership.p3.name": "Mr. Hussein Nuradin",
+  "leadership.p3.role": "Secretary General",
+  "leadership.p3.bio":
+    "Responsible for documentation, records, internal communication, and administrative coordination of the Council and project.",
+
+  // ========== EXECUTIVE COMMITTEES (6 SECTORS) ==========
+  "leadership.exec.c1.sub": "Council of Scholars",
+  "leadership.exec.c1.title": "Council of Scholars (Gumii Ulamaa)",
+  "leadership.exec.c1.desc":
+    "Provides religious guidance, scholarly opinions, and Shariah compliance oversight for all Council and project activities.",
+  "leadership.exec.c1.lead": "Sheikh Jamal Yasin — Head",
+
+  "leadership.exec.c2.sub": "Finance Sector",
+  "leadership.exec.c2.title": "Finance Sector",
+  "leadership.exec.c2.desc":
+    "Manages income, expenses, budgeting, financial reporting, and transparent use of all project and Council funds.",
+  "leadership.exec.c2.lead": "Mr. Sukkar Khadir — Head",
+
+  "leadership.exec.c3.sub": "Mosques & Endowments",
+  "leadership.exec.c3.title": "Mosques & Awqaf Sector",
+  "leadership.exec.c3.desc":
+    "Coordinates 85 mosques, oversees waqf properties, and manages religious endowments and community worship services.",
+  "leadership.exec.c3.lead": "Sheikh Abdurrahman Hajji — Head",
+
+  "leadership.exec.c4.sub": "Education",
+  "leadership.exec.c4.title": "Madrasa & Education Quality Sector",
+  "leadership.exec.c4.desc":
+    "Oversees madrasa curriculum, teacher training, student affairs, and educational quality standards across all institutions.",
+  "leadership.exec.c4.lead": "Sheikh Abdulkarim Tamam — Head",
+
+  "leadership.exec.c5.sub": "Communications",
+  "leadership.exec.c5.title": "Communications & Media Sector",
+  "leadership.exec.c5.desc":
+    "Handles public relations, media outreach, publications, and community engagement for both the Council and the project.",
+  "leadership.exec.c5.lead": "Mr. Muhammad Yunus — Head",
+
+  "leadership.exec.c6.sub": "Women's Affairs",
+  "leadership.exec.c6.title": "Women's Sector",
+  "leadership.exec.c6.desc":
+    "Organizes women's programs, family support, and female community participation in the Council's mission.",
+  "leadership.exec.c6.lead": "Mrs. Hawwa Ismail — Head",
+
+  // ========== PROJECT COMMITTEES RESPONSIBILITIES (only project bodies) ==========
+  "leadership.resp.r1":
+    "Monitors overall project execution, approves plans, and ensures adherence to timelines, budgets, and quality standards.",
+  "leadership.resp.r2":
+    "Coordinates donor outreach, manages pledges, tracks contributions, and communicates with all supporters.",
+  "leadership.resp.r3":
+    "Maintains complete financial records, issues receipts, and prepares monthly and quarterly reports for the project.",
+  "leadership.resp.r4":
+    "Handles all purchases, verifies legal documents, and maintains the asset register for every item acquired.",
+  "leadership.resp.r5":
+    "Oversees building renovation, commercial space setup, and long-term institutional growth of the project.",
+  "leadership.resp.r6":
+    "Independently tracks progress, verifies results, and reports project performance to leadership and the community.",
+});
+
+Object.assign(translations.am, {
+  "leadership.p1.name": "ሼክ አብዱራህማን መሐመድ",
+  "leadership.p1.role": "የምክር ቤቱ ኃላፊ",
+  "leadership.p1.bio":
+    "ምክር ቤቱን በማህበረሰብ አገልግሎትና በሃይማኖታዊ አመራር ልምድ የሚመራ፣ የፕሮጀክቱን ተቋማዊ ራዕይ የሚያስተባብር።",
+
+  "leadership.p2.name": "ሼክ ዩሱፍ አህመድ",
+  "leadership.p2.role": "ምክትል ኃላፊ",
+  "leadership.p2.bio":
+    "የምክር ቤቱን ኃላፊ የሚደግፍና በ3 ወረዳዎችና በ85 መስጊዶች ውስጥ የዕለት ተዕለት ቅንጅትን የሚቆጣጠር።",
+
+  "leadership.p3.name": "ኦቦ ሁሴን ኑራዲን",
+  "leadership.p3.role": "ዋና ጸሐፊ",
+  "leadership.p3.bio":
+    "የምክር ቤቱንና የፕሮጀክቱን ሰነዶች፣ መዝገቦች፣ የውስጥ ግንኙነትና የአስተዳደር ቅንጅት የሚያስተዳድር።",
+
+  "leadership.exec.c1.sub": "የዐሊማዎች ጉባኤ",
+  "leadership.exec.c1.title": "ጉሚይ ዑለማአ (የዐሊማዎች ጉባኤ)",
+  "leadership.exec.c1.desc":
+    "ለሁሉም የምክር ቤትና የፕሮጀክት ተግባራት ሃይማኖታዊ መመሪያ፣ የሸሪዓ አስተያየትና ተገቢነት ቁጥጥር ይሰጣል።",
+  "leadership.exec.c1.lead": "ሼክ ጃማል ያሲን — ኃላፊ",
+
+  "leadership.exec.c2.sub": "የፋይናንስ ሴክተር",
+  "leadership.exec.c2.title": "ሴክተር ፋይናንስ",
+  "leadership.exec.c2.desc":
+    "የፕሮጀክቱንና የምክር ቤቱን ገቢ፣ ወጪ፣ በጀት፣ የገንዘብ ሪፖርትና ግልጽ የገንዘብ አጠቃቀም ያስተዳድራል።",
+  "leadership.exec.c2.lead": "ኦቦ ሱካር ኻዲር — ኃላፊ",
+
+  "leadership.exec.c3.sub": "መስጊዶችና አውቃፍ",
+  "leadership.exec.c3.title": "ሴክተር መስጊዶችና አውቃፍ",
+  "leadership.exec.c3.desc":
+    "85 መስጊዶችን ያስተባብራል፣ የዋቅፍ ንብረቶችን ይቆጣጠራል፣ የሃይማኖታዊ ስግደትና የማህበረሰብ አገልግሎትን ያስተዳድራል።",
+  "leadership.exec.c3.lead": "ሼክ አብዱራህማን ሐጂ — ኃላፊ",
+
+  "leadership.exec.c4.sub": "ትምህርት",
+  "leadership.exec.c4.title": "ሴክተር መድረሳና የትምህርት ጥራት",
+  "leadership.exec.c4.desc":
+    "የመድረሳ ሥርዓተ ትምህርትን፣ የመምህራን ስልጠናን፣ የተማሪዎችን ጉዳይና የትምህርት ጥራት ደረጃዎችን ይቆጣጠራል።",
+  "leadership.exec.c4.lead": "ሼክ አብዱልካሪም ተማም — ኃላፊ",
+
+  "leadership.exec.c5.sub": "ግንኙነት",
+  "leadership.exec.c5.title": "ሴክተር ድርግግና ሚዲያ",
+  "leadership.exec.c5.desc":
+    "የሕዝብ ግንኙነትን፣ የሚዲያ ተደራሽነትን፣ ህትመቶችንና የማህበረሰብ ተሳትፎን ለምክር ቤቱም ለፕሮጀክቱም ያስተዳድራል።",
+  "leadership.exec.c5.lead": "ኦቦ መሐመድ ዩኑስ — ኃላፊ",
+
+  "leadership.exec.c6.sub": "የሴቶች ጉዳይ",
+  "leadership.exec.c6.title": "ሴክተር የሴቶች ጉዳይ",
+  "leadership.exec.c6.desc":
+    "የሴቶችን ፕሮግራሞች፣ የቤተሰብ ድጋፍንና በምክር ቤቱ ተልዕኮ ውስጥ የሴቶችን ተሳትፎ ያደራጃል።",
+  "leadership.exec.c6.lead": "አደ ሃዋ ኢስማዒል — ኃላፊ",
+
+  "leadership.resp.r1":
+    "የፕሮጀክቱን አጠቃላይ አፈጻጸም ይከታተላል፣ ዕቅዶችን ያጸድቃል፣ የጊዜ ሰሌዳ፣ በጀትና የጥራት ደረጃዎች መከበራቸውን ያረጋግጣል።",
+  "leadership.resp.r2":
+    "የለጋሾችን ግንኙነት ያስተባብራል፣ ቃል ኪዳኖችን ያስተዳድራል፣ መዋጮዎችን ይከታተላል፣ ከሁሉም ደጋፊዎች ጋር ይገናኛል።",
+  "leadership.resp.r3":
+    "የተሟላ የገንዘብ መዝገብ ይይዛል፣ ደረሰኞችን ይሰጣል፣ ለፕሮጀክቱ ወርሃዊና ሩብ ዓመታዊ ሪፖርቶችን ያዘጋጃል።",
+  "leadership.resp.r4":
+    "ሁሉንም ግዢዎች ያስተዳድራል፣ ሕጋዊ ሰነዶችን ያረጋግጣል፣ ለእያንዳንዱ ንብረት የንብረት መዝገብ ይይዛል።",
+  "leadership.resp.r5":
+    "የሕንፃ ማሻሻያን፣ የንግድ ቦታ ዝግጅትንና የፕሮጀክቱን የረጅም ጊዜ ተቋማዊ እድገት ይቆጣጠራል።",
+  "leadership.resp.r6":
+    "በነፃነት ሂደቱን ይከታተላል፣ ውጤቶችን ያረጋግጣል፣ ለአመራሩና ለማህበረሰቡ የፕሮጀክቱን አፈጻጸም ያሳውቃል።",
+});
+
+Object.assign(translations.om, {
+  "leadership.p1.name": "Sheekh Abdurrahmaan Muhammad",
+  "leadership.p1.role": "Hoji-guddaa Mana Maree",
+  "leadership.p1.bio":
+    "Mana Maree muuxannoo tajaajila hawaasaa fi hoggansa amantii waggaa hedduu qabuun geggeessa, mul'ata dhaabbataa pirojektichaa qindeessa.",
+
+  "leadership.p2.name": "Sheekh Yuusuf Ahmad",
+  "leadership.p2.role": "Itti Aanaa Hoji-guddaa",
+  "leadership.p2.bio":
+    "Hoji-guddaa Mana Maree deeggara, aanaalee sadan fi masjiidota 85 keessatti qindeessummaa guyyuu to'ata.",
+
+  "leadership.p3.name": "Obbo Huseen Nuuradiin",
+  "leadership.p3.role": "Barreessaa Ol-aanaa",
+  "leadership.p3.bio":
+    "Sanada, galmee, walqunnamtii keessoo fi qindeessummaa bulchiinsaa Mana Mareefi pirojektichaa bulcha.",
+
+  "leadership.exec.c1.sub": "Gumii Ulamaa",
+  "leadership.exec.c1.title": "Gumii Ulamaa",
+  "leadership.exec.c1.desc":
+    "Sochii Mana Mareefi pirojektii hundaaf qajeelfama amantii, yaada Sharii'aa fi to'annoo sirrii ta'uu kenna.",
+  "leadership.exec.c1.lead": "Sheekh Jamaal Yaasiin — Hoji-guddaa",
+
+  "leadership.exec.c2.sub": "Seektara Faayinaansii",
+  "leadership.exec.c2.title": "Seektara Faayinaansii",
+  "leadership.exec.c2.desc":
+    "Galii, baasii, baajata, gabaasa maallaqaa fi itti fayyadama maallaqaa ifa ta'e pirojektii fi Mana Maree bulcha.",
+  "leadership.exec.c2.lead": "Obbo Sukkaar Khadir — Hoji-guddaa",
+
+  "leadership.exec.c3.sub": "Masjiidota fi Awqaafaa",
+  "leadership.exec.c3.title": "Seektara Masjiidotaa fi Awqaafaa",
+  "leadership.exec.c3.desc":
+    "Masjiidota 85 qindeessa, qabeenya waqfii to'ata, tajaajila amantii fi hawaasaa bulcha.",
+  "leadership.exec.c3.lead": "Sheekh Abdurrahmaan Hajjii — Hoji-guddaa",
+
+  "leadership.exec.c4.sub": "Barnoota",
+  "leadership.exec.c4.title": "Seektara Madrasaa fi Qulqullina Barnootaa",
+  "leadership.exec.c4.desc":
+    "Karoora barnoota madrasaa, leenjii barsiisootaa, dhimma barattootaa fi sadarkaa qulqullina barnootaa to'ata.",
+  "leadership.exec.c4.lead": "Sheekh Abdulkariim Tamaam — Hoji-guddaa",
+
+  "leadership.exec.c5.sub": "Qunnamtii",
+  "leadership.exec.c5.title": "Seektara Drgaggoo fi Miidyaa",
+  "leadership.exec.c5.desc":
+    "Qunnamtii uummataa, miidiyaa, maxxansa fi hirmaannaa hawaasaa Mana Mareefi pirojektichaaf bulcha.",
+  "leadership.exec.c5.lead": "Obbo Muhaammad Yuunus — Hoji-guddaa",
+
+  "leadership.exec.c6.sub": "Dhimma Dubartootaa",
+  "leadership.exec.c6.title": "Seektara Dubartootaa",
+  "leadership.exec.c6.desc":
+    "Sagantaa dubartootaa, deeggarsa maatii fi hirmaannaa dubartootaa misooma Mana Maree keessatti qindeessa.",
+  "leadership.exec.c6.lead": "Aadde Hawwaa Ismaa'il — Hoji-guddaa",
+
+  "leadership.resp.r1":
+    "Raawwii pirojektii waliigalaa hordofa, karoora mirkaneessa, yeroo, baajata fi sadarkaa qulqullinaa kabajamuu mirkaneessa.",
+  "leadership.resp.r2":
+    "Walqunnamtii arjoomtootaa qindeessa, waadaa bulcha, gumaacha hordofa, deeggartoota waliin walqunnama.",
+  "leadership.resp.r3":
+    "Galmee maallaqaa guutuu qaba, nagahee kenna, pirojektichaaf gabaasa ji'aa fi kurmaanaa qopheessa.",
+  "leadership.resp.r4":
+    "Bittaa hunda bulcha, sanada seeraa mirkaneessa, qabeenya tokkoon tokkoof galmee qabeenyaa qaba.",
+  "leadership.resp.r5":
+    "Haaromsa gamoo, qophii iddoo daldalaa fi guddina dhaabbataa yeroo dheeraa pirojektichaa to'ata.",
+  "leadership.resp.r6":
+    "Bilisummaadhaan hordofa, bu'aa mirkaneessa, hoggansaafi hawaasaaf raawwii pirojektichaa gabaasa.",
+});
+
+Object.assign(translations.ar, {
+  "leadership.p1.name": "الشيخ عبد الرحمن محمد",
+  "leadership.p1.role": "رئيس المجلس",
+  "leadership.p1.bio":
+    "يقود المجلس بخبرة سنوات في خدمة المجتمع والقيادة الدينية، ويوجه الرؤية المؤسسية للمشروع.",
+
+  "leadership.p2.name": "الشيخ يوسف أحمد",
+  "leadership.p2.role": "نائب الرئيس",
+  "leadership.p2.bio":
+    "يدعم رئيس المجلس ويشرف على التنسيق اليومي في المناطق الثلاث والمساجد الـ 85.",
+
+  "leadership.p3.name": "السيد حسين نور الدين",
+  "leadership.p3.role": "الأمين العام",
+  "leadership.p3.bio":
+    "مسؤول عن التوثيق والسجلات والاتصالات الداخلية والتنسيق الإداري للمجلس والمشروع.",
+
+  "leadership.exec.c1.sub": "مجلس العلماء",
+  "leadership.exec.c1.title": "مجلس العلماء (جماعة العلماء)",
+  "leadership.exec.c1.desc":
+    "يقدم التوجيه الديني والآراء الشرعية والإشراف على الامتثال لأحكام الشريعة في جميع أنشطة المجلس والمشروع.",
+  "leadership.exec.c1.lead": "الشيخ جمال ياسين — الرئيس",
+
+  "leadership.exec.c2.sub": "قطاع المالية",
+  "leadership.exec.c2.title": "قطاع المالية",
+  "leadership.exec.c2.desc":
+    "يدير الدخل والنفقات والميزانية والتقارير المالية والاستخدام الشفاف لأموال المشروع والمجلس.",
+  "leadership.exec.c2.lead": "السيد سكار خضر — الرئيس",
+
+  "leadership.exec.c3.sub": "المساجد والأوقاف",
+  "leadership.exec.c3.title": "قطاع المساجد والأوقاف",
+  "leadership.exec.c3.desc":
+    "ينسق 85 مسجدًا ويشرف على ممتلكات الوقف ويدير الخدمات الدينية والاجتماعية.",
+  "leadership.exec.c3.lead": "الشيخ عبد الرحمن حاجي — الرئيس",
+
+  "leadership.exec.c4.sub": "التعليم",
+  "leadership.exec.c4.title": "قطاع المدرسة وجودة التعليم",
+  "leadership.exec.c4.desc":
+    "يشرف على مناهج المدرسة وتدريب المعلمين وشؤون الطلاب ومعايير جودة التعليم.",
+  "leadership.exec.c4.lead": "الشيخ عبد الكريم تمام — الرئيس",
+
+  "leadership.exec.c5.sub": "الاتصالات",
+  "leadership.exec.c5.title": "قطاع الاتصالات والإعلام",
+  "leadership.exec.c5.desc":
+    "يتولى العلاقات العامة والتواصل الإعلامي والمنشورات والمشاركة المجتمعية للمجلس والمشروع.",
+  "leadership.exec.c5.lead": "السيد محمد يونس — الرئيس",
+
+  "leadership.exec.c6.sub": "شؤون المرأة",
+  "leadership.exec.c6.title": "قطاع المرأة",
+  "leadership.exec.c6.desc":
+    "ينظم برامج المرأة ودعم الأسرة ومشاركة المرأة في مهمة المجلس.",
+  "leadership.exec.c6.lead": "السيدة حواء إسماعيل — الرئيسة",
+
+  "leadership.resp.r1":
+    "يراقب التنفيذ العام للمشروع ويوافق على الخطط ويضمن الالتزام بالجداول الزمنية والميزانيات ومعايير الجودة.",
+  "leadership.resp.r2":
+    "ينسق التواصل مع المتبرعين ويدير التعهدات ويتتبع المساهمات ويتواصل مع جميع الداعمين.",
+  "leadership.resp.r3":
+    "يحتفظ بسجلات مالية كاملة ويصدر الإيصالات ويعد التقارير الشهرية وربع السنوية للمشروع.",
+  "leadership.resp.r4":
+    "يتعامل مع جميع المشتريات ويتحقق من الوثائق القانونية ويحتفظ بسجل الأصول لكل عنصر.",
+  "leadership.resp.r5":
+    "يشرف على تجديد المبنى وتجهيز المساحات التجارية والنمو المؤسسي طويل الأجل للمشروع.",
+  "leadership.resp.r6":
+    "يتابع التقدم باستقلالية ويتحقق من النتائج ويقدم تقارير أداء المشروع للقيادة والمجتمع.",
+});
+/* ============================================================
+   EXTENSION 10 — Leadership corrections
+   1) Project committee authority explanation
+   2) Amharic name/title corrections (Ato, W/ro, sector names)
+   3) Admin sidebar leadership label
+   ============================================================ */
+
+/* ---------- ENGLISH ---------- */
+Object.assign(translations.en, {
+  // Project committee authority
+  "leadership.project.authority.title": "Under Direct Council Leadership",
+  "leadership.project.authority.desc":
+    "All project committees operate under the high-level leadership of the Council. Committee members are appointed by, and report directly to, the Council leadership — ensuring full accountability and alignment with the Council's institutional vision.",
+
+  // Admin sidebar
+  "admin.nav.leadership": "Leadership",
+});
+
+/* ---------- AMHARIC (corrected) ---------- */
+Object.assign(translations.am, {
+  // Project committee authority
+  "leadership.project.authority.title": "በምክር ቤቱ ቀጥታ አመራር ስር",
+  "leadership.project.authority.desc":
+    "ሁሉም የፕሮጀክት ኮሚቴዎች በምክር ቤቱ ከፍተኛ አመራር ስር ይሠራሉ። የኮሚቴ አባላት በምክር ቤቱ አመራር የሚሾሙና በቀጥታ ለሱ ብቻ ተጠያቂ ናቸው — ይህም ሙሉ ተጠያቂነትንና ከምክር ቤቱ ተቋማዊ ራዕይ ጋር ያለውን ቅንጅት ያረጋግጣል።",
+
+  // ✅ CORRECTED NAMES — Ato (not Obbo), W/ro (not Ade)
+  "leadership.p3.name": "አቶ ሁሴን ኑራዲን",
+  "leadership.exec.c2.lead": "አቶ ሱካር ኻዲር — ኃላፊ",
+  "leadership.exec.c5.lead": "አቶ መሐመድ ዩኑስ — ኃላፊ",
+  "leadership.exec.c6.lead": "ወ/ሮ ሃዋ ኢስማዒል — ኃላፊ",
+
+  // ✅ CORRECTED SECTOR TITLES — proper Amharic
+  "leadership.exec.c1.title": "የዐሊማዎች ጉባኤ",
+  "leadership.exec.c1.sub": "ሃይማኖታዊ ጉዳዮች",
+  "leadership.exec.c2.title": "የፋይናንስ ዘርፍ",
+  "leadership.exec.c2.sub": "ገንዘብና ሂሳብ",
+  "leadership.exec.c3.title": "የመስጊዶችና የአውቃፍ ዘርፍ",
+  "leadership.exec.c3.sub": "መስጊዶችና አውቃፍ",
+  "leadership.exec.c4.title": "የመድረሳና የትምህርት ጥራት ዘርፍ",
+  "leadership.exec.c4.sub": "ትምህርት",
+  "leadership.exec.c5.title": "የድርግግና ሚዲያ ዘርፍ",
+  "leadership.exec.c5.sub": "ድርግግና ሚዲያ",
+  "leadership.exec.c6.title": "የሴቶች ጉዳይ ዘርፍ",
+  "leadership.exec.c6.sub": "የሴቶች ጉዳይ",
+
+  // Admin sidebar
+  "admin.nav.leadership": "መሪዎች",
+});
+
+/* ---------- OROMO ---------- */
+Object.assign(translations.om, {
+  "leadership.project.authority.title": "Hoggansa Mana Maree Jalatti",
+  "leadership.project.authority.desc":
+    "Koreewwan pirojektii hundi hoggansa ol'aanaa Mana Maree jalatti hojjetu. Miseensonni koree hoggansa Mana Mareetiin filatamanii kallattiin isaaf qofa itti gaafatamu — kunis itti gaafatamummaa guutuu fi walsimannaa mul'ata dhaabbataa Mana Maree waliin mirkaneessa.",
+
+  "admin.nav.leadership": "Hoggansa",
+});
+
+/* ---------- ARABIC ---------- */
+Object.assign(translations.ar, {
+  "leadership.project.authority.title": "تحت القيادة المباشرة للمجلس",
+  "leadership.project.authority.desc":
+    "تعمل جميع لجان المشروع تحت القيادة العليا للمجلس. يتم تعيين أعضاء اللجان من قبل قيادة المجلس ويقدمون تقاريرهم مباشرة إليها — مما يضمن المساءلة الكاملة والمواءمة مع الرؤية المؤسسية للمجلس.",
+
+  "admin.nav.leadership": "القيادة",
+});
+/* ============================================================
+   EXTENSION 11 — Admin dashboard leadership widget
+   ============================================================ */
+
+Object.assign(translations.en, {
+  "admin.dashboard.leadership.title": "Council Leadership",
+  "admin.dashboard.leadership.top": "Top Leadership",
+  "admin.dashboard.leadership.sectors": "Executive Sectors",
+});
+
+Object.assign(translations.am, {
+  "admin.dashboard.leadership.title": "የምክር ቤቱ አመራር",
+  "admin.dashboard.leadership.top": "ዋና አመራር",
+  "admin.dashboard.leadership.sectors": "የአስፈጻሚ ዘርፎች",
+});
+
+Object.assign(translations.om, {
+  "admin.dashboard.leadership.title": "Hoggansa Mana Maree",
+  "admin.dashboard.leadership.top": "Hoggansa Guddataa",
+  "admin.dashboard.leadership.sectors": "Seektaroota Raawwii",
+});
+
+Object.assign(translations.ar, {
+  "admin.dashboard.leadership.title": "قيادة المجلس",
+  "admin.dashboard.leadership.top": "القيادة العليا",
+  "admin.dashboard.leadership.sectors": "القطاعات التنفيذية",
+});

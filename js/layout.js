@@ -1,8 +1,23 @@
+/* ============================================================
+   LAYOUT — Shared Navbar + Footer
+   Malka Nono Islamic Affairs Council Project
+   ------------------------------------------------------------
+   - Injects navbar at <div id="site-nav">
+   - Injects footer at <div id="site-footer">
+   - Handles language switcher, mobile menu, nav scroll shadow
+   ============================================================ */
+
 (function () {
+  "use strict";
+
+  /* ============================================================
+     1) NAVBAR BUILDER
+     ============================================================ */
   function buildNav(activePage) {
     const links = [
       { href: "index.html", key: "nav.home" },
       { href: "about.html", key: "nav.about" },
+      { href: "leadership.html", key: "nav.leadership" }, // ← NEW
       { href: "budget.html", key: "nav.budget" },
       { href: "fundraising.html", key: "nav.fundraising" },
       { href: "news.html", key: "nav.news" },
@@ -11,6 +26,7 @@
       { href: "contact.html", key: "nav.contact" },
       { href: "admin.html", key: "nav.admin" },
     ];
+
     const linksHTML = links
       .map(
         (l) =>
@@ -51,6 +67,9 @@
     `;
   }
 
+  /* ============================================================
+     2) FOOTER BUILDER
+     ============================================================ */
   function buildFooter() {
     return `
       <footer>
@@ -64,10 +83,11 @@
           </div>
           <div>
             <h4 data-i18n="footer.dir"></h4>
-            <a href="about.html" data-i18n="nav.about"></a>
-            <a href="budget.html" data-i18n="nav.budget"></a>
+            <a href="about.html"       data-i18n="nav.about"></a>
+            <a href="leadership.html"  data-i18n="nav.leadership"></a>
+            <a href="budget.html"      data-i18n="nav.budget"></a>
             <a href="fundraising.html" data-i18n="nav.fundraising"></a>
-            <a href="news.html" data-i18n="nav.news"></a>
+            <a href="news.html"        data-i18n="nav.news"></a>
           </div>
           <div>
             <h4 data-i18n="footer.addr"></h4>
@@ -81,19 +101,22 @@
     `;
   }
 
+  /* ============================================================
+     3) INIT
+     ============================================================ */
   function initLayout() {
-    // Get current page filename
+    // Detect current page filename (e.g. "about.html")
     const path = window.location.pathname.split("/").pop() || "index.html";
 
-    // Inject nav at top of body
+    // Inject navbar
     const navPlaceholder = document.getElementById("site-nav");
     if (navPlaceholder) navPlaceholder.outerHTML = buildNav(path);
 
-    // Inject footer at bottom
+    // Inject footer
     const footerPlaceholder = document.getElementById("site-footer");
     if (footerPlaceholder) footerPlaceholder.outerHTML = buildFooter();
 
-    // Language switcher toggle
+    // ---- Language switcher ----
     const switcher = document.getElementById("langSwitcher");
     const btn = document.getElementById("langBtn");
     if (btn && switcher) {
@@ -107,13 +130,13 @@
 
       switcher.querySelectorAll(".lang-option").forEach((opt) => {
         opt.addEventListener("click", () => {
-          window.i18n.setLanguage(opt.dataset.lang);
+          if (window.i18n) window.i18n.setLanguage(opt.dataset.lang);
           switcher.classList.remove("open");
         });
       });
     }
 
-    // Mobile menu
+    // ---- Mobile menu ----
     const toggle = document.getElementById("menuToggle");
     const links = document.getElementById("navLinks");
     if (toggle && links) {
@@ -125,7 +148,7 @@
         );
     }
 
-    // Nav scroll shadow
+    // ---- Nav scroll shadow ----
     const nav = document.getElementById("nav");
     if (nav) {
       const onScroll = () =>
@@ -135,5 +158,8 @@
     }
   }
 
+  /* ============================================================
+     4) EXPORT
+     ============================================================ */
   window.initLayout = initLayout;
 })();
