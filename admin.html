@@ -103,9 +103,9 @@
       </div>
     </div>
 
-    <!-- ============ ADMIN DASHBOARD ============ -->
+    <!-- ============ ADMIN APP ============ -->
     <div class="admin-app" id="adminApp">
-      <!-- Mobile overlay (backdrop when drawer is open) -->
+      <!-- Mobile overlay (for hamburger drawer) -->
       <div class="admin-mobile-overlay" id="mobileOverlay"></div>
 
       <div class="admin-layout">
@@ -200,8 +200,8 @@
         </aside>
 
         <!-- ============ MAIN ============ -->
-        <main class="admin-main">
-          <!-- Topbar -->
+        <main class="admin-main" id="adminMain">
+          <!-- Topbar (with hamburger for mobile) -->
           <div class="admin-topbar">
             <div class="admin-topbar-left">
               <button
@@ -211,7 +211,7 @@
               >
                 <span></span><span></span><span></span>
               </button>
-              <div class="admin-topbar-title">
+              <div>
                 <h1 id="viewTitle" data-i18n="admin.dashboard.title"></h1>
                 <p id="viewSubtitle" data-i18n="admin.dashboard.welcome"></p>
               </div>
@@ -407,23 +407,26 @@
                   </div>
                   <div class="quick-actions">
                     <button class="quick-action" data-add="news">
-                      <span class="qa-ic">📝</span>
-                      <span class="qa-lbl" data-i18n="admin.quick.news"></span>
+                      <span class="qa-ic">📝</span
+                      ><span class="qa-lbl" data-i18n="admin.quick.news"></span>
                     </button>
                     <button class="quick-action" data-add="reports">
-                      <span class="qa-ic">📤</span>
-                      <span
+                      <span class="qa-ic">📤</span
+                      ><span
                         class="qa-lbl"
                         data-i18n="admin.quick.report"
                       ></span>
                     </button>
                     <button class="quick-action" data-add="donors">
-                      <span class="qa-ic">👤</span>
-                      <span class="qa-lbl" data-i18n="admin.quick.donor"></span>
+                      <span class="qa-ic">👤</span
+                      ><span
+                        class="qa-lbl"
+                        data-i18n="admin.quick.donor"
+                      ></span>
                     </button>
                     <button class="quick-action" data-export>
-                      <span class="qa-ic">📊</span>
-                      <span
+                      <span class="qa-ic">📊</span
+                      ><span
                         class="qa-lbl"
                         data-i18n="admin.quick.export"
                       ></span>
@@ -1014,24 +1017,13 @@ Sustainable Property Development Project.</textarea
     <div class="toast-container" id="toastContainer"></div>
 
     <!-- ============ SCRIPTS (order matters!) ============ -->
-    <!-- 1) Supabase CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-    <!-- 2) Core libraries -->
     <script src="js/translations.js"></script>
     <script src="js/i18n.js"></script>
     <script src="js/main.js"></script>
-
-    <!-- 3) Supabase client + helpers -->
     <script src="js/supabase.js"></script>
-
-    <!-- 4) Admin panel logic -->
     <script src="js/admin.js"></script>
-
-    <!-- 5) Admin mobile hamburger menu -->
     <script src="js/admin-mobile.js"></script>
-
-    <!-- 6) Admin real-data loader (Supabase integration) -->
     <script src="js/admin-data.js"></script>
   </body>
 </html>

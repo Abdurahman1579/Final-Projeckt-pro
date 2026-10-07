@@ -1,5 +1,5 @@
 /* ============================================================
-   ADMIN MOBILE — Hamburger Menu Toggle
+   ADMIN MOBILE — Hamburger Drawer + Body Class Manager
    ============================================================ */
 
 (function () {
@@ -9,14 +9,32 @@
     const toggle = document.getElementById("mobileMenuToggle");
     const sidebar = document.querySelector(".admin-sidebar");
     const overlay = document.getElementById("mobileOverlay");
-    const navLinks = document.querySelectorAll("#adminNav a");
+    const adminApp = document.getElementById("adminApp");
 
     if (!toggle || !sidebar) {
-      console.warn("[Admin Mobile] Toggle or sidebar not found");
+      console.warn("[Admin Mobile] Elements not found");
       return;
     }
 
-    // ---- Open/close sidebar ----
+    // Add body class when admin is active (for overflow rules)
+    function syncBodyClass() {
+      if (adminApp && adminApp.classList.contains("active")) {
+        document.body.classList.add("admin-active");
+      } else {
+        document.body.classList.remove("admin-active");
+      }
+    }
+
+    // Watch for admin-app class changes (login/logout)
+    if (adminApp) {
+      const observer = new MutationObserver(syncBodyClass);
+      observer.observe(adminApp, {
+        attributes: true,
+        attributeFilter: ["class"],
+      });
+      syncBodyClass();
+    }
+
     function openSidebar() {
       sidebar.classList.add("open");
       toggle.classList.add("open");
@@ -38,17 +56,18 @@
 
     // Hamburger click
     toggle.addEventListener("click", (e) => {
+      e.preventDefault();
       e.stopPropagation();
       toggleSidebar();
     });
 
-    // Overlay click — close
+    // Overlay click
     if (overlay) {
       overlay.addEventListener("click", closeSidebar);
     }
 
-    // Nav link click — close (mobile)
-    navLinks.forEach((link) => {
+    // Nav link click — close sidebar (mobile)
+    document.querySelectorAll("#adminNav a").forEach((link) => {
       link.addEventListener("click", () => {
         if (window.innerWidth <= 860) {
           setTimeout(closeSidebar, 150);
@@ -56,46 +75,41 @@
       });
     });
 
-    // Escape key — close
+    // Escape key
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && sidebar.classList.contains("open")) {
         closeSidebar();
       }
     });
 
-    // Resize — reset on desktop
+    // Resize handler
     let resizeTimer;
     window.addEventListener("resize", () => {
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(() => {
-        if (window.innerWidth > 860) {
+        if (window.innerWidth > 860 && sidebar.classList.contains("open")) {
           closeSidebar();
         }
       }, 200);
     });
 
-    // ---- Sidebar swipes on mobile (bonus) ----
+    // Swipe left to close sidebar (mobile)
     let touchStartX = 0;
     let touchStartY = 0;
-    let touchMoved = false;
-
     sidebar.addEventListener(
       "touchstart",
       (e) => {
         touchStartX = e.touches[0].clientX;
         touchStartY = e.touches[0].clientY;
-        touchMoved = false;
       },
       { passive: true },
     );
 
     sidebar.addEventListener(
-      "touchmove",
+      "touchend",
       (e) => {
-        touchMoved = true;
-        const dx = e.touches[0].clientX - touchStartX;
-        const dy = e.touches[0].clientY - touchStartY;
-        // Swipe left to close (only if mostly horizontal)
+        const dx = e.changedTouches[0].clientX - touchStartX;
+        const dy = e.changedTouches[0].clientY - touchStartY;
         if (Math.abs(dx) > Math.abs(dy) && dx < -60) {
           closeSidebar();
         }
@@ -103,10 +117,9 @@
       { passive: true },
     );
 
-    console.log("[Admin Mobile] ✓ Hamburger menu ready");
+    console.log("[Admin Mobile] ✓ Ready");
   }
 
-  // Init on load
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", () => setTimeout(init, 300));
   } else {
