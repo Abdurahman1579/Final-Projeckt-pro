@@ -1725,3 +1725,171 @@ footer{background:var(--g900);color:rgba(255,255,255,.75);padding:50px 24px 30px
   .ldr-grid{grid-template-columns:1fr}
   .ldr-sectors{grid-template-columns:1fr}
 }
+/* ============ LEADERSHIP — MOBILE FIX ============ */
+@media (max-width: 860px) {
+  /* Page hero */
+  .page-hero { padding: 110px 20px 50px !important; }
+  .page-hero h1 { font-size: clamp(22px, 6vw, 32px) !important; line-height: 1.3 !important; }
+  .page-hero p { font-size: 14.5px !important; padding-inline: 4px; }
+
+  /* Structure box */
+  .structure-box { padding: 24px 16px !important; }
+  .structure-row { flex-direction: column !important; gap: 8px !important; }
+  .structure-row + .structure-row { margin-top: 14px !important; padding-top: 14px !important; }
+  .structure-node { width: 100% !important; font-size: 12.5px !important; padding: 10px 12px !important; text-align: center; }
+  .structure-node.top { font-size: 13.5px !important; padding: 12px 16px !important; }
+  .structure-arrow { transform: rotate(90deg); }
+
+  /* Org chart */
+  .org-chart { gap: 16px !important; }
+  .org-level.level-1,
+  .org-level.level-2 {
+    grid-template-columns: 1fr !important;
+    max-width: 100% !important;
+  }
+
+  /* Leader cards */
+  .leader-card { padding: 22px 18px !important; }
+  .leader-card.primary .leader-avatar,
+  .leader-avatar { width: 80px !important; height: 80px !important; font-size: 26px !important; }
+  .leader-card.primary .leader-avatar { width: 90px !important; height: 90px !important; font-size: 30px !important; }
+  .leader-name { font-size: 16px !important; }
+  .leader-card.primary .leader-name { font-size: 18px !important; }
+  .leader-bio { font-size: 13.5px !important; }
+
+  /* Committee cards */
+  .committee-grid { grid-template-columns: 1fr !important; gap: 14px !important; }
+  .committee-card { padding: 20px 18px !important; }
+  .committee-card h3 { font-size: 15px !important; }
+  .committee-card p { font-size: 13.5px !important; }
+  .committee-card .cc-icon { width: 44px !important; height: 44px !important; font-size: 20px !important; }
+
+  /* Table scroll */
+  .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .table-wrap table { min-width: 520px; }
+
+  /* Values */
+  .values-grid { grid-template-columns: 1fr !important; gap: 12px !important; }
+  .value-card { padding: 20px 18px !important; }
+
+  /* Section head */
+  .section-head h2 { font-size: clamp(22px, 5.5vw, 28px) !important; }
+  .section-head p { font-size: 14px !important; }
+
+  /* Callout */
+  .callout { padding: 18px 18px !important; font-size: 14px !important; }
+
+  /* CTA banner */
+  .cta-banner { padding: 40px 22px !important; border-radius: 18px !important; }
+  .cta-banner h2 { font-size: clamp(20px, 4.5vw, 26px) !important; }
+}
+
+/* Extra small phones */
+@media (max-width: 480px) {
+  .leader-avatar,
+  .leader-card.primary .leader-avatar { width: 72px !important; height: 72px !important; font-size: 22px !important; }
+  .structure-node { font-size: 11.5px !important; }
+  .committee-card .cc-head { flex-direction: column; align-items: flex-start !important; }
+  .committee-members li { font-size: 12.5px !important; }
+}
+
+/* ============ DASHBOARD — LEADERSHIP MANAGER ============ */
+.ldr-manager {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+.ldr-manager-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #fafcfb;
+  border: 1px solid rgba(13,59,46,.08);
+  border-radius: 14px;
+  padding: 16px;
+  transition: all .25s;
+}
+.ldr-manager-card:hover {
+  background: var(--g50);
+  border-color: var(--g100);
+  box-shadow: 0 4px 12px rgba(13,59,46,.06);
+}
+.ldr-manager-av {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+  font-weight: 800;
+  color: #fff;
+  overflow: hidden;
+  position: relative;
+  background: linear-gradient(135deg, var(--g700), var(--g500));
+  box-shadow: 0 4px 12px rgba(13,59,46,.15);
+}
+.ldr-manager-av img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+.ldr-manager-info { flex: 1; min-width: 0; }
+.ldr-manager-name {
+  font-size: 14px; font-weight: 700; color: var(--g900);
+  margin-bottom: 3px; line-height: 1.3;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.ldr-manager-role {
+  font-size: 12px; font-weight: 600; color: var(--gd600);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.ldr-manager-actions {
+  display: flex;
+  gap: 4px;
+  flex-direction: column;
+}
+.ldr-manager-actions .icon-btn { width: 30px; height: 30px; font-size: 12px; }
+
+/* Photo upload inside modal */
+.photo-upload {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px;
+  background: #fafcfb;
+  border: 1px dashed rgba(13,59,46,.2);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all .25s;
+  position: relative;
+  overflow: hidden;
+}
+.photo-upload:hover {
+  border-color: var(--g500);
+  background: var(--g50);
+}
+.photo-upload input[type="file"] {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.photo-upload .photo-preview {
+  width: 64px; height: 64px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: linear-gradient(135deg, var(--g700), var(--g500));
+  color: #fff; font-size: 22px; font-weight: 800;
+  flex-shrink: 0; overflow: hidden;
+  border: 3px solid #fff;
+  box-shadow: 0 4px 10px rgba(13,59,46,.15);
+}
+.photo-upload .photo-preview img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+.photo-upload .photo-info { flex: 1; }
+.photo-upload .photo-info strong {
+  display: block; font-size: 13.5px; font-weight: 700; color: var(--g900);
+  margin-bottom: 3px;
+}
+.photo-upload .photo-info small {
+  font-size: 12px; color: var(--ink500);
+}

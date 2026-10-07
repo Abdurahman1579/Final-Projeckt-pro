@@ -3737,3 +3737,70 @@ Object.assign(translations.ar, {
   "admin.dashboard.leadership.top": "القيادة العليا",
   "admin.dashboard.leadership.sectors": "القطاعات التنفيذية",
 });
+/* ============================================================
+   EXTENSION 13 — Leadership Manager (dashboard)
+   ============================================================ */
+
+Object.assign(translations.en, {
+  "admin.dashboard.leadership.manage": "Manage Leadership",
+  "admin.leadership.add": "Add Leader",
+  "admin.leadership.edit": "Edit Leader",
+  "admin.leadership.addTop": "Add Top Leader",
+  "admin.leadership.addSector": "Add Sector",
+  "admin.leadership.photo": "Photo",
+  "admin.leadership.uploadPhoto": "Click to upload photo",
+  "admin.leadership.photoHint": "JPG, PNG — recommended 400×400px",
+  "admin.leadership.name": "Name",
+  "admin.leadership.role": "Role / Position",
+  "admin.leadership.bio": "Short Bio",
+  "admin.leadership.initials": "Initials (2 letters)",
+  "admin.leadership.icon": "Icon (emoji)"
+});
+
+Object.assign(translations.am, {
+  "admin.dashboard.leadership.manage": "አመራር ያስተዳድሩ",
+  "admin.leadership.add": "መሪ ጨምር",
+  "admin.leadership.edit": "መሪ አስተካክል",
+  "admin.leadership.addTop": "ዋና መሪ ጨምር",
+  "admin.leadership.addSector": "ዘርፍ ጨምር",
+  "admin.leadership.photo": "ፎቶ",
+  "admin.leadership.uploadPhoto": "ፎቶ ለመስቀል ይጫኑ",
+  "admin.leadership.photoHint": "JPG, PNG — 400×400px ይመከራል",
+  "admin.leadership.name": "ስም",
+  "admin.leadership.role": "ሚና / ቦታ",
+  "admin.leadership.bio": "አጭር የህይወት ታሪክ",
+  "admin.leadership.initials": "የፊደል ምልክት (2 ፊደሎች)",
+  "admin.leadership.icon": "አዶ (emoji)"
+});
+
+Object.assign(translations.om, {
+  "admin.dashboard.leadership.manage": "Hoggansa Bulchi",
+  "admin.leadership.add": "Hoggansaa Dabali",
+  "admin.leadership.edit": "Hoggansaa Sirreessi",
+  "admin.leadership.addTop": "Hoggansaa Guddataa Dabali",
+  "admin.leadership.addSector": "Seektara Dabali",
+  "admin.leadership.photo": "Suuraa",
+  "admin.leadership.uploadPhoto": "Suuraa ol kaasuuf cuunfi",
+  "admin.leadership.photoHint": "JPG, PNG — 400×400px gorfama",
+  "admin.leadership.name": "Maqaa",
+  "admin.leadership.role": "Gahee / Iddoo",
+  "admin.leadership.bio": "Seenaa Gabaabaa",
+  "admin.leadership.initials": "Qubee (2)",
+  "admin.leadership.icon": "Akaakuu (emoji)"
+});
+
+Object.assign(translations.ar, {
+  "admin.dashboard.leadership.manage": "إدارة القيادة",
+  "admin.leadership.add": "إضافة قائد",
+  "admin.leadership.edit": "تعديل القائد",
+  "admin.leadership.addTop": "إضافة قائد رئيسي",
+  "admin.leadership.addSector": "إضافة قطاع",
+  "admin.leadership.photo": "الصورة",
+  "admin.leadership.photoHint": "JPG، PNG — يوصى 400×400 بكسل",
+  "admin.leadership.uploadPhoto": "انقر لتحميل صورة",
+  "admin.leadership.name": "الاسم",
+  "admin.leadership.role": "الدور / المنصب",
+  "admin.leadership.bio": "نبذة مختصرة",
+  "admin.leadership.initials": "الأحرف الأولى (٢)",
+  "admin.leadership.icon": "أيقونة (إيموجي)"
+});
