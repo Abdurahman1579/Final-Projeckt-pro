@@ -2410,3 +2410,430 @@ html, body {
   0%, 100% { opacity: 0.9; transform: translateX(0); }
   50% { opacity: 0.6; transform: translateX(4px); }
 }
+/* ============================================================
+   ADMIN DASHBOARD — FULL MOBILE + DESKTOP FIX
+   ============================================================ */
+
+/* ---- 1) DESKTOP: body lock ---- */
+body:has(.admin-app.active) {
+  overflow: hidden;
+}
+
+/* ---- 2) LAYOUT ---- */
+.admin-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  height: 100vh;
+  overflow: hidden;
+  width: 100%;
+}
+
+/* ---- 3) SIDEBAR (Desktop) ---- */
+.admin-sidebar {
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  background: linear-gradient(180deg, var(--g900), #082a20);
+  z-index: 50;
+  transition: transform 0.3s ease;
+}
+
+/* ---- 4) MAIN (Desktop) ---- */
+.admin-main {
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  padding: 0 32px 40px;
+  min-width: 0;
+}
+
+/* ---- 5) TOPBAR — FIXED (sticky) ---- */
+.admin-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: #f4f7f5;
+  margin: 0 -32px 26px;
+  padding: 20px 32px 16px;
+  border-bottom: 1px solid rgba(13, 59, 46, 0.08);
+  transition: box-shadow 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.admin-topbar.scrolled {
+  box-shadow: 0 4px 16px rgba(13, 59, 46, 0.08);
+}
+
+/* ---- 6) Hamburger button (hidden on desktop) ---- */
+.admin-menu-toggle {
+  display: none;
+  background: white;
+  border: 1px solid rgba(13, 59, 46, 0.12);
+  border-radius: 10px;
+  padding: 10px 12px;
+  cursor: pointer;
+  color: var(--g900);
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.admin-menu-toggle:hover {
+  border-color: var(--g500);
+  color: var(--g700);
+}
+
+.admin-menu-toggle span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: currentColor;
+  margin: 4px 0;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+/* ---- 7) Overlay (mobile only) ---- */
+.admin-sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(13, 59, 46, 0.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 45;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.admin-sidebar-overlay.show {
+  display: block;
+  opacity: 1;
+}
+
+/* ---- 8) TABLES: horizontal scroll ---- */
+.admin-panel {
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.admin-panel > div[style*="overflow-x"],
+.admin-panel > div[style*="overflow-x: auto"] {
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--g500) #f0f4f2;
+}
+
+.admin-panel > div[style*="overflow-x"]::-webkit-scrollbar {
+  height: 8px;
+}
+
+.admin-panel > div[style*="overflow-x"]::-webkit-scrollbar-track {
+  background: #f0f4f2;
+  border-radius: 4px;
+}
+
+.admin-panel > div[style*="overflow-x"]::-webkit-scrollbar-thumb {
+  background: var(--g500);
+  border-radius: 4px;
+}
+
+.admin-table {
+  min-width: 520px;
+  width: 100%;
+}
+
+.admin-table td,
+.admin-table th {
+  white-space: nowrap;
+}
+
+.admin-table td .user-cell,
+.admin-table td:first-child {
+  white-space: normal;
+}
+
+/* ============================================================
+   MOBILE — max-width: 860px
+   ============================================================ */
+@media (max-width: 860px) {
+  /* Body scroll */
+  body {
+    overflow-x: hidden;
+  }
+  
+  body:has(.admin-app.active) {
+    overflow: hidden;
+  }
+
+  /* Layout: single column */
+  .admin-layout {
+    grid-template-columns: 1fr;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  /* Sidebar: off-canvas drawer */
+  .admin-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 280px;
+    max-width: 85vw;
+    height: 100vh;
+    z-index: 60;
+    transform: translateX(-100%);
+    overflow-y: auto;
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.15);
+    padding-top: 16px;
+  }
+
+  .admin-sidebar.open {
+    transform: translateX(0);
+  }
+
+  /* Show hamburger */
+  .admin-menu-toggle {
+    display: block;
+  }
+
+  /* Show overlay when sidebar open */
+  .admin-sidebar-overlay.show {
+    display: block;
+  }
+
+  /* Main: full width, normal scroll */
+  .admin-main {
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 0 16px 40px;
+    width: 100%;
+  }
+
+  /* Topbar (mobile) */
+  .admin-topbar {
+    margin: 0 -16px 16px;
+    padding: 14px 16px 12px;
+    flex-direction: row;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .admin-topbar > div:first-of-type,
+  .admin-topbar > div:not(.admin-topbar-right) {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .admin-topbar h1 {
+    font-size: 20px !important;
+    margin-bottom: 2px !important;
+    line-height: 1.2 !important;
+  }
+
+  .admin-topbar p {
+    font-size: 12.5px !important;
+    color: var(--ink500);
+  }
+
+  .admin-topbar-right {
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 8px !important;
+    order: 3;
+  }
+
+  .admin-btn {
+    padding: 8px 12px !important;
+    font-size: 12px !important;
+  }
+
+  /* Sidebar brand */
+  .admin-brand {
+    padding: 0 20px 20px;
+    margin-bottom: 8px;
+  }
+
+  /* Sidebar nav (vertical list, not chips) */
+  .admin-nav {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 4px !important;
+    padding: 0 12px !important;
+    overflow-x: visible !important;
+  }
+
+  .admin-nav li {
+    margin-bottom: 0 !important;
+    width: 100%;
+  }
+
+  .admin-nav a {
+    padding: 12px 14px !important;
+    font-size: 14px !important;
+    width: 100% !important;
+    justify-content: flex-start !important;
+    border-radius: 10px !important;
+  }
+
+  /* Show user profile */
+  .sidebar-user {
+    display: flex !important;
+    margin-top: 16px;
+  }
+
+  /* Stats grid: 2 columns */
+  .dash-stats {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+  }
+
+  .dash-stat {
+    padding: 16px 14px !important;
+  }
+
+  .dash-stat .ds-num {
+    font-size: 20px !important;
+  }
+
+  .dash-stat .ds-num small {
+    font-size: 11px !important;
+  }
+
+  .dash-stat .ds-icon {
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 16px !important;
+    margin-bottom: 10px !important;
+  }
+
+  /* Panels */
+  .admin-panel {
+    padding: 16px 14px !important;
+    border-radius: 14px !important;
+    margin-bottom: 14px !important;
+  }
+
+  .admin-panel-head {
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  .admin-panel-head h2 {
+    font-size: 15px !important;
+  }
+
+  /* Tables on mobile */
+  .admin-panel > div[style*="overflow-x"] {
+    margin: 0 -14px;
+    padding: 0 14px;
+  }
+
+  .admin-table {
+    font-size: 12.5px;
+    min-width: 560px;
+  }
+
+  .admin-table thead th,
+  .admin-table tbody td {
+    padding: 10px 12px !important;
+  }
+
+  /* Quick actions */
+  .quick-actions {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  /* Activity list */
+  .activity-item .av {
+    width: 34px !important;
+    height: 34px !important;
+    font-size: 14px !important;
+  }
+
+  .activity-item .info strong {
+    font-size: 12.5px !important;
+  }
+
+  .activity-item .info small {
+    font-size: 11px !important;
+  }
+
+  /* Messages */
+  .message-card {
+    padding: 14px !important;
+    gap: 12px !important;
+    flex-wrap: wrap;
+  }
+
+  .message-card .msg-av {
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 12px !important;
+  }
+
+  .message-card .row-actions {
+    flex-direction: row !important;
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  /* Modal */
+  .modal {
+    max-width: 100%;
+    margin: 12px;
+  }
+
+  .modal-body {
+    padding: 18px 20px;
+  }
+}
+
+/* ============================================================
+   VERY SMALL PHONES
+   ============================================================ */
+@media (max-width: 480px) {
+  .dash-stats {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  .dash-stat .ds-num {
+    font-size: 17px !important;
+  }
+
+  .dash-stat .ds-lbl {
+    font-size: 11px !important;
+  }
+
+  .admin-topbar h1 {
+    font-size: 18px !important;
+  }
+
+  .admin-table {
+    min-width: 500px;
+  }
+
+  .admin-nav a {
+    font-size: 13px !important;
+    padding: 10px 12px !important;
+  }
+}
+
+/* ---- 9) Desktop: hide hamburger + overlay ---- */
+@media (min-width: 861px) {
+  .admin-menu-toggle,
+  .admin-sidebar-overlay {
+    display: none !important;
+  }
+}
