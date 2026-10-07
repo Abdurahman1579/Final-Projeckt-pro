@@ -2837,3 +2837,536 @@ body:has(.admin-app.active) {
     display: none !important;
   }
 }
+/* ============================================================
+   ADMIN MOBILE FIXES v2 — Hamburger + Table Padding + Cards
+   ============================================================ */
+
+/* ---- 1) HAMBURGER MENU BUTTON (mobile only) ---- */
+.admin-mobile-toggle {
+  display: none;
+  background: var(--white);
+  border: 1px solid rgba(13, 59, 46, 0.15);
+  border-radius: 12px;
+  padding: 10px 12px;
+  cursor: pointer;
+  color: var(--g900);
+  flex-shrink: 0;
+  transition: all 0.2s;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.admin-mobile-toggle:hover {
+  border-color: var(--g500);
+  background: var(--g50);
+}
+
+.admin-mobile-toggle span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: currentColor;
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Hamburger animation when open */
+.admin-mobile-toggle.open span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.admin-mobile-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.admin-mobile-toggle.open span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+/* Mobile drawer overlay */
+.admin-mobile-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(13, 59, 46, 0.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 89;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.admin-mobile-overlay.show {
+  opacity: 1;
+}
+
+/* ---- 2) MOBILE RESPONSIVE — full redesign ---- */
+@media (max-width: 860px) {
+
+  /* Show hamburger */
+  .admin-mobile-toggle {
+    display: flex;
+  }
+
+  /* Layout: stack normally */
+  .admin-layout {
+    display: block !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  /* Sidebar: slide-in drawer from left */
+  .admin-sidebar {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 280px;
+    max-width: 85vw;
+    height: 100vh !important;
+    z-index: 100;
+    padding: 20px 0 !important;
+    transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: linear-gradient(180deg, #0d3b2e, #082a20);
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.3);
+  }
+
+  .admin-sidebar.open {
+    transform: translateX(0);
+  }
+
+  /* Show overlay when sidebar open */
+  .admin-mobile-overlay {
+    display: block;
+    pointer-events: none;
+  }
+
+  .admin-mobile-overlay.show {
+    pointer-events: auto;
+  }
+
+  /* Sidebar brand + nav (back to vertical) */
+  .admin-brand {
+    padding: 0 20px 20px !important;
+    margin-bottom: 8px !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .admin-brand .logo {
+    width: 42px !important;
+    height: 42px !important;
+    font-size: 20px !important;
+  }
+
+  .admin-brand .txt {
+    font-size: 14px !important;
+  }
+
+  .admin-nav {
+    display: block !important;
+    flex-direction: column !important;
+    padding: 8px 12px !important;
+    gap: 0 !important;
+    overflow-x: visible !important;
+  }
+
+  .admin-nav li {
+    display: block !important;
+    margin-bottom: 4px !important;
+    width: 100% !important;
+  }
+
+  .admin-nav a {
+    display: flex !important;
+    padding: 12px 14px !important;
+    font-size: 14px !important;
+    border-radius: 10px !important;
+    white-space: normal !important;
+    width: 100% !important;
+  }
+
+  .admin-nav a .ic {
+    width: 22px !important;
+    text-align: center !important;
+    font-size: 16px !important;
+  }
+
+  .sidebar-user {
+    display: flex !important;
+    margin-top: 16px;
+    padding: 16px 20px !important;
+  }
+
+  /* Main content — normal flow */
+  .admin-main {
+    height: auto !important;
+    overflow: visible !important;
+    padding: 0 14px 40px !important;
+  }
+
+  /* Topbar — mobile layout with hamburger */
+  .admin-topbar {
+    position: sticky !important;
+    top: 0;
+    z-index: 40;
+    background: #f4f7f5;
+    margin: 0 -14px 16px !important;
+    padding: 12px 14px 12px !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 12px !important;
+    flex-wrap: wrap;
+  }
+
+  /* First child of topbar: hamburger + title */
+  .admin-topbar > div:first-child {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .admin-topbar h1 {
+    font-size: 18px !important;
+    margin: 0 !important;
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .admin-topbar p {
+    font-size: 11.5px !important;
+    margin-top: 2px !important;
+    line-height: 1.3;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Topbar right actions */
+  .admin-topbar-right {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center;
+    gap: 8px !important;
+    flex-wrap: nowrap;
+    margin-top: 8px;
+  }
+
+  .admin-topbar-right .lang-switcher {
+    flex-shrink: 0;
+  }
+
+  .admin-btn {
+    padding: 8px 12px !important;
+    font-size: 12px !important;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* ---- Tables: proper padding + scroll ---- */
+  .admin-panel {
+    padding: 16px 14px !important;
+    border-radius: 14px !important;
+    margin-bottom: 14px !important;
+    overflow: visible !important;
+  }
+
+  .admin-panel-head {
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 14px;
+    padding: 0 !important;
+  }
+
+  .admin-panel-head h2 {
+    font-size: 15px !important;
+  }
+
+  /* Table wrapper — full bleed with padding inside */
+  .admin-panel > div[style*="overflow-x"] {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    margin: 0 -14px !important;
+    padding: 0 14px !important;
+    border-radius: 12px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--g500) #f0f4f2;
+  }
+
+  .admin-panel > div[style*="overflow-x"]::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .admin-panel > div[style*="overflow-x"]::-webkit-scrollbar-track {
+    background: #f0f4f2;
+    border-radius: 3px;
+    margin: 0 14px;
+  }
+
+  .admin-panel > div[style*="overflow-x"]::-webkit-scrollbar-thumb {
+    background: var(--g500);
+    border-radius: 3px;
+  }
+
+  .admin-table {
+    min-width: 560px;
+    font-size: 12.5px;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+
+  .admin-table thead th,
+  .admin-table tbody td {
+    padding: 11px 14px !important;
+    border-bottom: 1px solid rgba(13, 59, 46, 0.05);
+  }
+
+  .admin-table thead th:first-child,
+  .admin-table tbody td:first-child {
+    padding-left: 16px !important;
+  }
+
+  .admin-table thead th:last-child,
+  .admin-table tbody td:last-child {
+    padding-right: 16px !important;
+  }
+
+  /* ---- Dashboard stats: 2 columns ---- */
+  .dash-stats {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+  }
+
+  .dash-stat {
+    padding: 16px 14px !important;
+    border-radius: 14px !important;
+  }
+
+  .dash-stat .ds-num {
+    font-size: 20px !important;
+    line-height: 1.2;
+  }
+
+  .dash-stat .ds-num small {
+    font-size: 11px !important;
+  }
+
+  .dash-stat .ds-lbl {
+    font-size: 11.5px !important;
+    line-height: 1.3;
+  }
+
+  .dash-stat .ds-icon {
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 16px !important;
+    margin-bottom: 10px !important;
+  }
+
+  .dash-stat .ds-trend {
+    font-size: 10.5px !important;
+    padding: 2px 7px !important;
+  }
+
+  /* ---- Quick actions: proper grid with gaps ---- */
+  .quick-actions {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .quick-action {
+    padding: 14px 10px !important;
+    border-radius: 12px !important;
+    text-align: center !important;
+    min-width: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+  }
+
+  .quick-action .qa-ic {
+    font-size: 22px !important;
+    margin: 0 !important;
+    line-height: 1;
+  }
+
+  .quick-action .qa-lbl {
+    font-size: 11.5px !important;
+    line-height: 1.3;
+    text-align: center;
+    word-break: break-word;
+  }
+
+  /* ---- Activity list ---- */
+  .activity-item {
+    padding: 10px 6px !important;
+    gap: 10px !important;
+  }
+
+  .activity-item .av {
+    width: 34px !important;
+    height: 34px !important;
+    font-size: 14px !important;
+  }
+
+  .activity-item .info strong {
+    font-size: 12.5px !important;
+  }
+
+  .activity-item .info small {
+    font-size: 11px !important;
+  }
+
+  /* ---- Messages ---- */
+  .message-card {
+    padding: 14px !important;
+    gap: 12px !important;
+    border-radius: 12px !important;
+  }
+
+  .message-card .msg-av {
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 12px !important;
+  }
+
+  /* ---- Leadership widget ---- */
+  .ldr-grid,
+  .ldr-sectors,
+  .ldr-manager {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* ---- Modal ---- */
+  .modal-overlay {
+    padding: 12px !important;
+    align-items: flex-start !important;
+  }
+
+  .modal {
+    max-width: 100% !important;
+    margin-top: 12px;
+    max-height: calc(100vh - 24px);
+  }
+
+  .modal-head,
+  .modal-body,
+  .modal-foot {
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+  }
+}
+
+/* ---- 3) Very small screens ---- */
+@media (max-width: 480px) {
+  .admin-topbar h1 {
+    font-size: 16px !important;
+  }
+
+  .admin-topbar p {
+    font-size: 11px !important;
+  }
+
+  .dash-stat .ds-num {
+    font-size: 17px !important;
+  }
+
+  .dash-stat .ds-num small {
+    font-size: 10px !important;
+  }
+
+  .admin-table {
+    min-width: 520px;
+    font-size: 12px;
+  }
+
+  .admin-table thead th,
+  .admin-table tbody td {
+    padding: 10px 12px !important;
+  }
+
+  .quick-action .qa-lbl {
+    font-size: 10.5px !important;
+  }
+}
+
+/* ---- 4) Prevent body scroll on desktop when admin is open ---- */
+@media (min-width: 861px) {
+  body.admin-active {
+    overflow: hidden !important;
+  }
+}
+/* ---- Quick Actions — Global (all screens) ---- */
+.quick-actions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.quick-action {
+  background: #f9fbfa;
+  border: 1px solid rgba(13, 59, 46, 0.08);
+  padding: 14px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: center;
+  transition: all 0.2s;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.quick-action:hover {
+  background: var(--g50);
+  border-color: var(--g100);
+  transform: translateY(-2px);
+}
+
+.quick-action .qa-ic {
+  font-size: 22px;
+  line-height: 1;
+  display: block;
+}
+
+.quick-action .qa-lbl {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--g900);
+  line-height: 1.3;
+  text-align: center;
+  word-break: break-word;
+}
+
+@media (max-width: 480px) {
+  .quick-action {
+    padding: 12px 8px;
+  }
+
+  .quick-action .qa-ic {
+    font-size: 20px;
+  }
+
+  .quick-action .qa-lbl {
+    font-size: 10.5px;
+  }
+}

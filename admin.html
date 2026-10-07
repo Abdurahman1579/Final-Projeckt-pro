@@ -105,6 +105,9 @@
 
     <!-- ============ ADMIN DASHBOARD ============ -->
     <div class="admin-app" id="adminApp">
+      <!-- Mobile overlay (backdrop when drawer is open) -->
+      <div class="admin-mobile-overlay" id="mobileOverlay"></div>
+
       <div class="admin-layout">
         <!-- ============ SIDEBAR ============ -->
         <aside class="admin-sidebar" id="adminSidebar">
@@ -197,23 +200,22 @@
         </aside>
 
         <!-- ============ MAIN ============ -->
-        <main class="admin-main" id="adminMain">
+        <main class="admin-main">
           <!-- Topbar -->
-          <div class="admin-topbar" id="adminTopbar">
-            <!-- Hamburger button (mobile only) -->
-            <button
-              class="admin-menu-toggle"
-              id="adminMenuToggle"
-              aria-label="Toggle menu"
-            >
-              <span></span><span></span><span></span>
-            </button>
-
+          <div class="admin-topbar">
             <div class="admin-topbar-left">
-              <h1 id="viewTitle" data-i18n="admin.dashboard.title"></h1>
-              <p id="viewSubtitle" data-i18n="admin.dashboard.welcome"></p>
+              <button
+                class="admin-mobile-toggle"
+                id="mobileMenuToggle"
+                aria-label="Menu"
+              >
+                <span></span><span></span><span></span>
+              </button>
+              <div class="admin-topbar-title">
+                <h1 id="viewTitle" data-i18n="admin.dashboard.title"></h1>
+                <p id="viewSubtitle" data-i18n="admin.dashboard.welcome"></p>
+              </div>
             </div>
-
             <div class="admin-topbar-right">
               <div class="lang-switcher admin-lang" id="langSwitcherAdmin">
                 <button
@@ -405,26 +407,23 @@
                   </div>
                   <div class="quick-actions">
                     <button class="quick-action" data-add="news">
-                      <span class="qa-ic">📝</span
-                      ><span class="qa-lbl" data-i18n="admin.quick.news"></span>
+                      <span class="qa-ic">📝</span>
+                      <span class="qa-lbl" data-i18n="admin.quick.news"></span>
                     </button>
                     <button class="quick-action" data-add="reports">
-                      <span class="qa-ic">📤</span
-                      ><span
+                      <span class="qa-ic">📤</span>
+                      <span
                         class="qa-lbl"
                         data-i18n="admin.quick.report"
                       ></span>
                     </button>
                     <button class="quick-action" data-add="donors">
-                      <span class="qa-ic">👤</span
-                      ><span
-                        class="qa-lbl"
-                        data-i18n="admin.quick.donor"
-                      ></span>
+                      <span class="qa-ic">👤</span>
+                      <span class="qa-lbl" data-i18n="admin.quick.donor"></span>
                     </button>
                     <button class="quick-action" data-export>
-                      <span class="qa-ic">📊</span
-                      ><span
+                      <span class="qa-ic">📊</span>
+                      <span
                         class="qa-lbl"
                         data-i18n="admin.quick.export"
                       ></span>
@@ -545,7 +544,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
+                    <tr data-id="r1">
                       <td>Monthly Financial — Jan 2026</td>
                       <td data-i18n="reports.type.financial"></td>
                       <td>Feb 5, 2026</td>
@@ -569,7 +568,7 @@
                         </div>
                       </td>
                     </tr>
-                    <tr>
+                    <tr data-id="r2">
                       <td>Project Progress — Q1 2026</td>
                       <td data-i18n="reports.type.progress"></td>
                       <td>Apr 10, 2026</td>
@@ -593,7 +592,7 @@
                         </div>
                       </td>
                     </tr>
-                    <tr>
+                    <tr data-id="r3">
                       <td>Independent Audit — 2025</td>
                       <td data-i18n="reports.type.audit"></td>
                       <td>Mar 15, 2026</td>
@@ -617,7 +616,7 @@
                         </div>
                       </td>
                     </tr>
-                    <tr>
+                    <tr data-id="r4">
                       <td>Quarterly Report — Q4 2025</td>
                       <td data-i18n="reports.type.quarterly"></td>
                       <td>Jan 20, 2026</td>
@@ -983,10 +982,6 @@ Sustainable Property Development Project.</textarea
           </div>
         </main>
       </div>
-
-      <!-- ⬇️ OVERLAY for mobile sidebar ⬇️ -->
-      <div class="admin-sidebar-overlay" id="adminSidebarOverlay"></div>
-      <!-- ⬆️ END ⬆️ -->
     </div>
 
     <!-- ============ MODAL OVERLAY ============ -->
@@ -1033,7 +1028,10 @@ Sustainable Property Development Project.</textarea
     <!-- 4) Admin panel logic -->
     <script src="js/admin.js"></script>
 
-    <!-- 5) Admin real-data loader (Supabase integration) -->
+    <!-- 5) Admin mobile hamburger menu -->
+    <script src="js/admin-mobile.js"></script>
+
+    <!-- 6) Admin real-data loader (Supabase integration) -->
     <script src="js/admin-data.js"></script>
   </body>
 </html>
