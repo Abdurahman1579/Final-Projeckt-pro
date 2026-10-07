@@ -3843,3 +3843,42 @@ Object.assign(translations.ar, {
   "progress.pledges": "التعهدات المستلمة",
   "progress.cta": "تبرع وكن جزءًا ←"
 });
+/* ============================================================
+   EXTENSION 14 — Homepage progress card
+   ============================================================ */
+
+Object.assign(translations.en, {
+  "fund.progress.title": "Fundraising Progress",
+  "fund.stat.raised": "Raised So Far",
+  "fund.stat.goal": "Total Goal",
+  "fund.stat.donors": "Active Donors",
+  "fund.stat.mosques": "Mosques Participating",
+  "hero.cta.donate": "Donate — Be Part of It →"
+});
+
+Object.assign(translations.am, {
+  "fund.progress.title": "የፈንድ ማሰባሰቢያ ሂደት",
+  "fund.stat.raised": "እስካሁን የተሰበሰበ",
+  "fund.stat.goal": "ጠቅላላ ግብ",
+  "fund.stat.donors": "ንቁ ለጋሾች",
+  "fund.stat.mosques": "የተሳተፉ መስጊዶች",
+  "hero.cta.donate": "ይለግሱ — ተሳታፊ ይሁኑ →"
+});
+
+Object.assign(translations.om, {
+  "fund.progress.title": "Adeemsa Kaasaa",
+  "fund.stat.raised": "Hanga Ammaatti Walitti Qabame",
+  "fund.stat.goal": "Kaayyoo Waliigalaa",
+  "fund.stat.donors": "Arjoomtoota Sochii",
+  "fund.stat.mosques": "Masjiidota Hirmaatan",
+  "hero.cta.donate": "Arjoomi — Hirmaataa →"
+});
+
+Object.assign(translations.ar, {
+  "fund.progress.title": "تقدم جمع التبرعات",
+  "fund.stat.raised": "المُجمع حتى الآن",
+  "fund.stat.goal": "الهدف الإجمالي",
+  "fund.stat.donors": "المتبرعون النشطون",
+  "fund.stat.mosques": "المساجد المشاركة",
+  "hero.cta.donate": "تبرع — كن جزءًا من ذلك ←"
+});

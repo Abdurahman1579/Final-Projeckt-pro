@@ -23,58 +23,6 @@
 
     <!-- ============ HERO ============ -->
     <header class="hero" id="top">
-      <!-- ============ PUBLIC PROGRESS BAR ============ -->
-      <section class="progress-section">
-        <div class="container">
-          <div class="progress-card" id="progressCard">
-            <div class="progress-header">
-              <h3>
-                <span class="live-dot"></span>
-                <span data-i18n="progress.title"></span>
-              </h3>
-              <div class="progress-percent" id="progressPercent">
-                —<small>%</small>
-              </div>
-            </div>
-
-            <div class="progress-bar-large">
-              <div
-                class="progress-fill"
-                id="progressFill"
-                style="width: 0%"
-              ></div>
-            </div>
-
-            <div class="progress-amounts">
-              <div class="progress-amount-box">
-                <span class="label" data-i18n="progress.raised"></span>
-                <div class="value" id="progressRaised">—</div>
-              </div>
-              <div class="progress-amount-box gold">
-                <span class="label" data-i18n="progress.goal"></span>
-                <div class="value" id="progressGoal">—</div>
-              </div>
-            </div>
-
-            <div class="progress-stats">
-              <div class="progress-stat">
-                <div class="ps-num" id="progressDonors">—</div>
-                <div class="ps-lbl" data-i18n="progress.donors"></div>
-              </div>
-              <div class="progress-stat">
-                <div class="ps-num" id="progressPledges">—</div>
-                <div class="ps-lbl" data-i18n="progress.pledges"></div>
-              </div>
-            </div>
-
-            <a
-              href="donate.html"
-              class="btn btn-primary"
-              data-i18n="progress.cta"
-            ></a>
-          </div>
-        </div>
-      </section>
       <div class="hero-inner">
         <div class="eyebrow" data-i18n="hero.badge"></div>
         <h1>
@@ -121,6 +69,91 @@
         </div>
       </div>
     </header>
+
+    <!-- ============ LIVE PROGRESS CARD ============ -->
+    <section
+      class="progress-section"
+      style="
+        padding: 40px 24px 60px;
+        background: linear-gradient(180deg, var(--paper) 0%, var(--g50) 100%);
+      "
+    >
+      <div class="container" style="max-width: 720px">
+        <div class="progress-card reveal">
+          <!-- Header -->
+          <div class="pc-head">
+            <span class="dot"></span>
+            <span data-i18n="fund.progress.title"></span>
+          </div>
+
+          <!-- Big percentage -->
+          <div class="pc-percent">
+            <span
+              class="counter"
+              data-target="0"
+              data-decimals="1"
+              data-suffix="%"
+              data-start="0"
+              >0.0%</span
+            >
+          </div>
+
+          <!-- Progress bar -->
+          <div class="progress-bar">
+            <div class="fill" style="width: 0%"></div>
+          </div>
+
+          <!-- Stats row 1: Raised + Goal -->
+          <div class="pc-stats">
+            <div class="pc-stat green">
+              <span class="pc-lbl" data-i18n="fund.stat.raised"></span>
+              <span
+                class="counter pc-num"
+                data-target="0"
+                data-suffix=" ብር"
+                data-start="0"
+                >0 ብር</span
+              >
+            </div>
+            <div class="pc-stat gold">
+              <span class="pc-lbl" data-i18n="fund.stat.goal"></span>
+              <span
+                class="counter pc-num"
+                data-target="190000000"
+                data-suffix=" ብር"
+                data-start="0"
+                >0 ብር</span
+              >
+            </div>
+          </div>
+
+          <!-- Stats row 2: Donors + Mosques -->
+          <div class="pc-stats">
+            <div class="pc-stat">
+              <span class="counter pc-num-lg" data-target="0" data-start="0"
+                >0</span
+              >
+              <span class="pc-lbl" data-i18n="fund.stat.donors"></span>
+            </div>
+            <div class="pc-stat">
+              <span class="counter pc-num-lg" data-target="85" data-start="0"
+                >0</span
+              >
+              <span class="pc-lbl" data-i18n="fund.stat.mosques"></span>
+            </div>
+          </div>
+
+          <!-- CTA -->
+          <a
+            href="donate.html"
+            class="btn btn-primary pc-cta"
+            data-i18n="hero.cta.donate"
+          >
+            ይለግሱ — ተሳታፊ ይሁኑ →
+          </a>
+        </div>
+      </div>
+    </section>
 
     <!-- ============ ABOUT ============ -->
     <section id="about">
@@ -201,104 +234,14 @@
     <!-- Footer injected by layout.js -->
     <div id="site-footer"></div>
 
-    <!-- Scripts — order matters! -->
-    <!-- ============ SCRIPTS ============ -->
+    <!-- ============ SCRIPTS (order matters!) ============ -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="js/translations.js"></script>
     <script src="js/i18n.js"></script>
     <script src="js/layout.js"></script>
     <script src="js/main.js"></script>
     <script src="js/supabase.js"></script>
-    <script>
-      /* ============================================================
-     LIVE PROGRESS BAR
-     ============================================================ */
-      (function () {
-        "use strict";
-
-        function fmtMoney(n) {
-          if (!n) return "0";
-          return Number(n).toLocaleString("en-US");
-        }
-
-        function applyProgress(data) {
-          const card = document.getElementById("progressCard");
-          const percentEl = document.getElementById("progressPercent");
-          const fillEl = document.getElementById("progressFill");
-          const raisedEl = document.getElementById("progressRaised");
-          const goalEl = document.getElementById("progressGoal");
-          const donorsEl = document.getElementById("progressDonors");
-          const pledgesEl = document.getElementById("progressPledges");
-
-          if (!card) return;
-          card.classList.remove("loading");
-
-          const pct = data.percentage || 0;
-          const displayPct =
-            pct < 1 && pct > 0 ? pct.toFixed(1) : Math.round(pct);
-
-          // Update percent
-          if (percentEl) {
-            percentEl.innerHTML = displayPct + "<small>%</small>";
-          }
-
-          // Animate bar
-          if (fillEl) {
-            // Force layout first, then set width for transition
-            setTimeout(() => {
-              fillEl.style.width = pct + "%";
-            }, 120);
-          }
-
-          // Update amounts
-          if (raisedEl) {
-            raisedEl.innerHTML = fmtMoney(data.raised) + " <small>ብር</small>";
-          }
-          if (goalEl) {
-            goalEl.innerHTML = fmtMoney(data.goal) + " <small>ብር</small>";
-          }
-
-          // Update stats
-          if (donorsEl) donorsEl.textContent = fmtMoney(data.donors);
-          if (pledgesEl) pledgesEl.textContent = fmtMoney(data.pledgeCount);
-
-          console.log("[Progress] ✓ Live data loaded:", data);
-        }
-
-        async function loadProgress() {
-          if (!window.mknBackend) {
-            console.warn("[Progress] mknBackend not ready");
-            return;
-          }
-
-          const res = await window.mknBackend.fetchProgress();
-          if (res.success) {
-            applyProgress(res.data);
-          } else {
-            console.error("[Progress] Load failed:", res.error);
-            // Fallback: show goal only
-            const goalEl = document.getElementById("progressGoal");
-            if (goalEl) goalEl.innerHTML = "190,000,000 <small>ብር</small>";
-          }
-        }
-
-        // Load on page ready
-        if (document.readyState === "loading") {
-          document.addEventListener("DOMContentLoaded", () =>
-            setTimeout(loadProgress, 400),
-          );
-        } else {
-          setTimeout(loadProgress, 400);
-        }
-
-        // Re-apply on language change (re-fetch not needed, translations handle labels)
-        window.addEventListener("langchange", () => {
-          // Numbers don't need retranslation; labels use data-i18n
-        });
-
-        // Auto-refresh every 30 seconds
-        setInterval(loadProgress, 30000);
-      })();
-    </script>
+    <script src="js/counter.js"></script>
+    <script src="js/index-data.js"></script>
   </body>
 </html>

@@ -3146,3 +3146,199 @@ html, body {
     grid-template-columns: 1fr;
   }
 }
+/* ============================================================
+   PROGRESS CARD (Homepage)
+   ============================================================ */
+.progress-section {
+  position: relative;
+}
+
+.progress-card {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 36px 32px 32px;
+  box-shadow: 0 20px 60px rgba(13, 59, 46, 0.12);
+  border: 1px solid rgba(13, 59, 46, 0.06);
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, var(--g600), var(--gd500));
+}
+
+/* Header */
+.pc-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--g900);
+  margin-bottom: 18px;
+  text-transform: uppercase;
+}
+
+.pc-head .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--g500);
+  box-shadow: 0 0 0 4px var(--g50);
+  animation: pcPulse 2s ease-in-out infinite;
+}
+
+@keyframes pcPulse {
+  0%, 100% { box-shadow: 0 0 0 4px var(--g50); }
+  50% { box-shadow: 0 0 0 8px rgba(33, 154, 117, 0.1); }
+}
+
+/* Big percentage */
+.pc-percent {
+  font-size: 56px;
+  font-weight: 800;
+  color: var(--g900);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin-bottom: 20px;
+  font-variant-numeric: tabular-nums;
+}
+
+.pc-percent .counter {
+  color: var(--g900);
+}
+
+/* Progress bar */
+.progress-card .progress-bar {
+  height: 12px;
+  background: var(--g50);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 26px;
+  border: 1px solid var(--g100);
+}
+
+.progress-card .progress-bar .fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--g600), var(--gd500));
+  border-radius: 999px;
+  transition: width 2s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 0%;
+}
+
+/* Stats rows */
+.pc-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.pc-stat {
+  background: #fafcfb;
+  border: 1px solid rgba(13, 59, 46, 0.06);
+  border-radius: 14px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.pc-stat.green {
+  background: linear-gradient(135deg, var(--g50), #ffffff);
+  border-color: var(--g100);
+}
+
+.pc-stat.gold {
+  background: linear-gradient(135deg, var(--gd100), #ffffff);
+  border-color: var(--gd400);
+}
+
+.pc-lbl {
+  font-size: 12px;
+  color: var(--ink500);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.pc-num {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--g900);
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+}
+
+.pc-stat.green .pc-num {
+  color: var(--g700);
+}
+
+.pc-stat.gold .pc-num {
+  color: var(--gd600);
+}
+
+.pc-num-lg {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--g900);
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+}
+
+/* CTA button */
+.pc-cta {
+  width: 100%;
+  justify-content: center;
+  margin-top: 10px;
+  padding: 16px 24px;
+  font-size: 15px;
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .progress-card {
+    padding: 28px 22px 24px;
+    border-radius: 18px;
+  }
+
+  .pc-percent {
+    font-size: 44px;
+  }
+
+  .pc-num {
+    font-size: 18px;
+  }
+
+  .pc-num-lg {
+    font-size: 26px;
+  }
+
+  .pc-stat {
+    padding: 14px 14px;
+  }
+
+  .pc-stats {
+    gap: 10px;
+  }
+}
+
+@media (max-width: 400px) {
+  .pc-percent {
+    font-size: 38px;
+  }
+
+  .pc-num {
+    font-size: 16px;
+  }
+
+  .pc-num-lg {
+    font-size: 22px;
+  }
+}
