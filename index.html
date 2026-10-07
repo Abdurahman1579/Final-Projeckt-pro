@@ -1,141 +1,304 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" dir="ltr">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Malka Nono — Project Proposal</title>
-<meta name="description" content="Sustainable Property, Transportation & Income Development Project for Malka Nono Islamic Affairs Council." />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Malka Nono — Project Proposal</title>
+    <meta
+      name="description"
+      content="Sustainable Property, Transportation & Income Development Project for Malka Nono Islamic Affairs Council."
+    />
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Ethiopic:wght@300;400;500;600;700;800&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Ethiopic:wght@300;400;500;600;700;800&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- Navbar injected by layout.js -->
+    <div id="site-nav"></div>
 
-<!-- Navbar injected by layout.js -->
-<div id="site-nav"></div>
+    <!-- ============ HERO ============ -->
+    <header class="hero" id="top">
+      <!-- ============ PUBLIC PROGRESS BAR ============ -->
+      <section class="progress-section">
+        <div class="container">
+          <div class="progress-card" id="progressCard">
+            <div class="progress-header">
+              <h3>
+                <span class="live-dot"></span>
+                <span data-i18n="progress.title"></span>
+              </h3>
+              <div class="progress-percent" id="progressPercent">
+                —<small>%</small>
+              </div>
+            </div>
 
-<!-- ============ HERO ============ -->
-<header class="hero" id="top">
-  <div class="hero-inner">
-    <div class="eyebrow" data-i18n="hero.badge"></div>
-    <h1>
-      <span data-i18n="hero.title.1"></span><br />
-      <span class="accent" data-i18n="hero.title.2"></span>
-      <span data-i18n="hero.title.3"></span>
-    </h1>
-    <p class="lede" data-i18n="hero.lede"></p>
+            <div class="progress-bar-large">
+              <div
+                class="progress-fill"
+                id="progressFill"
+                style="width: 0%"
+              ></div>
+            </div>
 
-    <div class="hero-cta">
-      <a href="budget.html" class="btn btn-primary" data-i18n="hero.cta.budget"></a>
-      <a href="fundraising.html" class="btn btn-ghost" data-i18n="hero.cta.fund"></a>
-    </div>
+            <div class="progress-amounts">
+              <div class="progress-amount-box">
+                <span class="label" data-i18n="progress.raised"></span>
+                <div class="value" id="progressRaised">—</div>
+              </div>
+              <div class="progress-amount-box gold">
+                <span class="label" data-i18n="progress.goal"></span>
+                <div class="value" id="progressGoal">—</div>
+              </div>
+            </div>
 
-    <div class="hero-stats">
-      <div class="stat">
-        <div class="stat-num">190<small> <span data-i18n="unit.million"></span></small></div>
-        <div class="stat-label" data-i18n="hero.stat.budget"></div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">85</div>
-        <div class="stat-label" data-i18n="hero.stat.mosques"></div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">1,600 <small><span data-i18n="unit.sqm"></span></small></div>
-        <div class="stat-label" data-i18n="hero.stat.area"></div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">3</div>
-        <div class="stat-label" data-i18n="hero.stat.districts"></div>
-      </div>
-    </div>
-  </div>
-</header>
+            <div class="progress-stats">
+              <div class="progress-stat">
+                <div class="ps-num" id="progressDonors">—</div>
+                <div class="ps-lbl" data-i18n="progress.donors"></div>
+              </div>
+              <div class="progress-stat">
+                <div class="ps-num" id="progressPledges">—</div>
+                <div class="ps-lbl" data-i18n="progress.pledges"></div>
+              </div>
+            </div>
 
-<!-- ============ ABOUT ============ -->
-<section id="about">
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="section-tag" data-i18n="about.tag"></span>
-      <h2 data-i18n="about.title"></h2>
-      <p data-i18n="about.lede"></p>
-    </div>
+            <a
+              href="donate.html"
+              class="btn btn-primary"
+              data-i18n="progress.cta"
+            ></a>
+          </div>
+        </div>
+      </section>
+      <div class="hero-inner">
+        <div class="eyebrow" data-i18n="hero.badge"></div>
+        <h1>
+          <span data-i18n="hero.title.1"></span><br />
+          <span class="accent" data-i18n="hero.title.2"></span>
+          <span data-i18n="hero.title.3"></span>
+        </h1>
+        <p class="lede" data-i18n="hero.lede"></p>
 
-    <div class="grid grid-2">
-      <div class="card reveal">
-        <div class="card-icon">🏢</div>
-        <h3 data-i18n="about.card1.title"></h3>
-        <p data-i18n="about.card1.desc"></p>
-      </div>
-      <div class="card reveal">
-        <div class="card-icon">💰</div>
-        <h3 data-i18n="about.card2.title"></h3>
-        <p data-i18n="about.card2.desc"></p>
-      </div>
-      <div class="card reveal">
-        <div class="card-icon">🕌</div>
-        <h3 data-i18n="about.card3.title"></h3>
-        <p data-i18n="about.card3.desc"></p>
-      </div>
-      <div class="card reveal">
-        <div class="card-icon">👥</div>
-        <h3 data-i18n="about.card4.title"></h3>
-        <p data-i18n="about.card4.desc"></p>
-      </div>
-    </div>
-  </div>
-</section>
+        <div class="hero-cta">
+          <a
+            href="budget.html"
+            class="btn btn-primary"
+            data-i18n="hero.cta.budget"
+          ></a>
+          <a
+            href="fundraising.html"
+            class="btn btn-ghost"
+            data-i18n="hero.cta.fund"
+          ></a>
+        </div>
 
-<!-- ============ PROBLEMS ============ -->
-<section id="problems" style="background: var(--g50);">
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="section-tag" data-i18n="problems.tag"></span>
-      <h2 data-i18n="problems.title"></h2>
-      <p data-i18n="problems.lede"></p>
-    </div>
-    <div class="grid grid-4">
-      <div class="card problem reveal">
-        <div class="card-icon">🏚️</div>
-        <h3 data-i18n="problems.p1.title"></h3>
-        <p data-i18n="problems.p1.desc"></p>
+        <div class="hero-stats">
+          <div class="stat">
+            <div class="stat-num">
+              190<small> <span data-i18n="unit.million"></span></small>
+            </div>
+            <div class="stat-label" data-i18n="hero.stat.budget"></div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">85</div>
+            <div class="stat-label" data-i18n="hero.stat.mosques"></div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">
+              1,600 <small><span data-i18n="unit.sqm"></span></small>
+            </div>
+            <div class="stat-label" data-i18n="hero.stat.area"></div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">3</div>
+            <div class="stat-label" data-i18n="hero.stat.districts"></div>
+          </div>
+        </div>
       </div>
-      <div class="card problem reveal">
-        <div class="card-icon">🚗</div>
-        <h3 data-i18n="problems.p2.title"></h3>
-        <p data-i18n="problems.p2.desc"></p>
-      </div>
-      <div class="card problem reveal">
-        <div class="card-icon">📉</div>
-        <h3 data-i18n="problems.p3.title"></h3>
-        <p data-i18n="problems.p3.desc"></p>
-      </div>
-      <div class="card problem reveal">
-        <div class="card-icon">⚖️</div>
-        <h3 data-i18n="problems.p4.title"></h3>
-        <p data-i18n="problems.p4.desc"></p>
-      </div>
-    </div>
-  </div>
-</section>
+    </header>
 
-<!-- ============ CTA ============ -->
-<section style="padding-top: 0;">
-  <div class="cta-banner reveal">
-    <h2 data-i18n="cta.title"></h2>
-    <p data-i18n="cta.desc"></p>
-    <a href="donate.html" class="btn btn-gold" data-i18n="cta.btn"></a>
-  </div>
-</section>
+    <!-- ============ ABOUT ============ -->
+    <section id="about">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-tag" data-i18n="about.tag"></span>
+          <h2 data-i18n="about.title"></h2>
+          <p data-i18n="about.lede"></p>
+        </div>
 
-<!-- Footer injected by layout.js -->
-<div id="site-footer"></div>
+        <div class="grid grid-2">
+          <div class="card reveal">
+            <div class="card-icon">🏢</div>
+            <h3 data-i18n="about.card1.title"></h3>
+            <p data-i18n="about.card1.desc"></p>
+          </div>
+          <div class="card reveal">
+            <div class="card-icon">💰</div>
+            <h3 data-i18n="about.card2.title"></h3>
+            <p data-i18n="about.card2.desc"></p>
+          </div>
+          <div class="card reveal">
+            <div class="card-icon">🕌</div>
+            <h3 data-i18n="about.card3.title"></h3>
+            <p data-i18n="about.card3.desc"></p>
+          </div>
+          <div class="card reveal">
+            <div class="card-icon">👥</div>
+            <h3 data-i18n="about.card4.title"></h3>
+            <p data-i18n="about.card4.desc"></p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<!-- Scripts — order matters! -->
-<script src="js/translations.js"></script>
-<script src="js/i18n.js"></script>
-<script src="js/layout.js"></script>
-<script src="js/main.js"></script>
-</body>
+    <!-- ============ PROBLEMS ============ -->
+    <section id="problems" style="background: var(--g50)">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-tag" data-i18n="problems.tag"></span>
+          <h2 data-i18n="problems.title"></h2>
+          <p data-i18n="problems.lede"></p>
+        </div>
+        <div class="grid grid-4">
+          <div class="card problem reveal">
+            <div class="card-icon">🏚️</div>
+            <h3 data-i18n="problems.p1.title"></h3>
+            <p data-i18n="problems.p1.desc"></p>
+          </div>
+          <div class="card problem reveal">
+            <div class="card-icon">🚗</div>
+            <h3 data-i18n="problems.p2.title"></h3>
+            <p data-i18n="problems.p2.desc"></p>
+          </div>
+          <div class="card problem reveal">
+            <div class="card-icon">📉</div>
+            <h3 data-i18n="problems.p3.title"></h3>
+            <p data-i18n="problems.p3.desc"></p>
+          </div>
+          <div class="card problem reveal">
+            <div class="card-icon">⚖️</div>
+            <h3 data-i18n="problems.p4.title"></h3>
+            <p data-i18n="problems.p4.desc"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CTA ============ -->
+    <section style="padding-top: 0">
+      <div class="cta-banner reveal">
+        <h2 data-i18n="cta.title"></h2>
+        <p data-i18n="cta.desc"></p>
+        <a href="donate.html" class="btn btn-gold" data-i18n="cta.btn"></a>
+      </div>
+    </section>
+
+    <!-- Footer injected by layout.js -->
+    <div id="site-footer"></div>
+
+    <!-- Scripts — order matters! -->
+    <!-- ============ SCRIPTS ============ -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/translations.js"></script>
+    <script src="js/i18n.js"></script>
+    <script src="js/layout.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/supabase.js"></script>
+    <script>
+      /* ============================================================
+     LIVE PROGRESS BAR
+     ============================================================ */
+      (function () {
+        "use strict";
+
+        function fmtMoney(n) {
+          if (!n) return "0";
+          return Number(n).toLocaleString("en-US");
+        }
+
+        function applyProgress(data) {
+          const card = document.getElementById("progressCard");
+          const percentEl = document.getElementById("progressPercent");
+          const fillEl = document.getElementById("progressFill");
+          const raisedEl = document.getElementById("progressRaised");
+          const goalEl = document.getElementById("progressGoal");
+          const donorsEl = document.getElementById("progressDonors");
+          const pledgesEl = document.getElementById("progressPledges");
+
+          if (!card) return;
+          card.classList.remove("loading");
+
+          const pct = data.percentage || 0;
+          const displayPct =
+            pct < 1 && pct > 0 ? pct.toFixed(1) : Math.round(pct);
+
+          // Update percent
+          if (percentEl) {
+            percentEl.innerHTML = displayPct + "<small>%</small>";
+          }
+
+          // Animate bar
+          if (fillEl) {
+            // Force layout first, then set width for transition
+            setTimeout(() => {
+              fillEl.style.width = pct + "%";
+            }, 120);
+          }
+
+          // Update amounts
+          if (raisedEl) {
+            raisedEl.innerHTML = fmtMoney(data.raised) + " <small>ብር</small>";
+          }
+          if (goalEl) {
+            goalEl.innerHTML = fmtMoney(data.goal) + " <small>ብር</small>";
+          }
+
+          // Update stats
+          if (donorsEl) donorsEl.textContent = fmtMoney(data.donors);
+          if (pledgesEl) pledgesEl.textContent = fmtMoney(data.pledgeCount);
+
+          console.log("[Progress] ✓ Live data loaded:", data);
+        }
+
+        async function loadProgress() {
+          if (!window.mknBackend) {
+            console.warn("[Progress] mknBackend not ready");
+            return;
+          }
+
+          const res = await window.mknBackend.fetchProgress();
+          if (res.success) {
+            applyProgress(res.data);
+          } else {
+            console.error("[Progress] Load failed:", res.error);
+            // Fallback: show goal only
+            const goalEl = document.getElementById("progressGoal");
+            if (goalEl) goalEl.innerHTML = "190,000,000 <small>ብር</small>";
+          }
+        }
+
+        // Load on page ready
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", () =>
+            setTimeout(loadProgress, 400),
+          );
+        } else {
+          setTimeout(loadProgress, 400);
+        }
+
+        // Re-apply on language change (re-fetch not needed, translations handle labels)
+        window.addEventListener("langchange", () => {
+          // Numbers don't need retranslation; labels use data-i18n
+        });
+
+        // Auto-refresh every 30 seconds
+        setInterval(loadProgress, 30000);
+      })();
+    </script>
+  </body>
 </html>

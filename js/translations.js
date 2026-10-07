@@ -3804,3 +3804,42 @@ Object.assign(translations.ar, {
   "admin.leadership.initials": "الأحرف الأولى (٢)",
   "admin.leadership.icon": "أيقونة (إيموجي)"
 });
+/* ============================================================
+   EXTENSION 14 — Public Progress Bar
+   ============================================================ */
+
+Object.assign(translations.en, {
+  "progress.title": "Live Fundraising Progress",
+  "progress.raised": "Raised So Far",
+  "progress.goal": "Total Goal",
+  "progress.donors": "Unique Donors",
+  "progress.pledges": "Pledges Received",
+  "progress.cta": "Donate & Be Part of It →"
+});
+
+Object.assign(translations.am, {
+  "progress.title": "የቀጥታ የፈንድ ማሰባሰቢያ ሂደት",
+  "progress.raised": "እስካሁን የተሰበሰበ",
+  "progress.goal": "ጠቅላላ ግብ",
+  "progress.donors": "ልዩ ለጋሾች",
+  "progress.pledges": "የተቀበሉ ቃል ኪዳኖች",
+  "progress.cta": "ይለግሱ — ተሳታፊ ይሁኑ →"
+});
+
+Object.assign(translations.om, {
+  "progress.title": "Adeemsa Kaasaa Kallattii",
+  "progress.raised": "Hanga Ammaatti Walitti Qabame",
+  "progress.goal": "Kaayyoo Waliigalaa",
+  "progress.donors": "Arjoomtoota Addaa",
+  "progress.pledges": "Waadaalee Fudhataman",
+  "progress.cta": "Arjoomi — Hirmaataa →"
+});
+
+Object.assign(translations.ar, {
+  "progress.title": "تقدم جمع التبرعات المباشر",
+  "progress.raised": "تم جمعه حتى الآن",
+  "progress.goal": "الهدف الإجمالي",
+  "progress.donors": "متبرعون فريدون",
+  "progress.pledges": "التعهدات المستلمة",
+  "progress.cta": "تبرع وكن جزءًا ←"
+});

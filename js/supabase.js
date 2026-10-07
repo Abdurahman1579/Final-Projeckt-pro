@@ -4,6 +4,7 @@
    - Initializes Supabase connection
    - Helpers for: contact, pledges, newsletter, news
    - Admin fetch + CRUD helpers
+   - Public progress fetch (fundraising counter)
    ============================================================ */
 
 (function () {
@@ -34,6 +35,9 @@
   );
 
   window.mknSupabase = supabase;
+
+  // Project constants
+  const PROJECT_GOAL = 190000000; // 190 million ETB
 
   /* ============================================================
      2) HELPERS
@@ -379,20 +383,72 @@
   }
 
   /* ============================================================
-     8) EXPOSE GLOBAL API
+     8) PUBLIC PROGRESS — Fundraising live counter
+     ============================================================ */
+  async function fetchProgress() {
+    try {
+      const { data: pledges, error } = await supabase
+        .from("mkn_pledges")
+        .select("amount, phone, status");
+
+      if (error) {
+        console.error("[Progress] Error:", error);
+        return { success: false, error: error.message };
+      }
+
+      // Filter out cancelled pledges
+      const active = (pledges || []).filter((p) => p.status !== "cancelled");
+
+      // Sum amounts
+      const totalRaised = active.reduce(
+        (sum, p) => sum + (Number(p.amount) || 0),
+        0,
+      );
+
+      // Count unique donors by phone
+      const uniqueDonors = new Set(active.map((p) => p.phone).filter(Boolean))
+        .size;
+
+      // Calculate percentage
+      const percentage = Math.min(100, (totalRaised / PROJECT_GOAL) * 100);
+      const remaining = Math.max(0, PROJECT_GOAL - totalRaised);
+
+      return {
+        success: true,
+        data: {
+          raised: totalRaised,
+          goal: PROJECT_GOAL,
+          percentage: percentage,
+          donors: uniqueDonors,
+          remaining: remaining,
+          pledgeCount: active.length,
+        },
+      };
+    } catch (err) {
+      console.error("[Progress] Exception:", err);
+      return { success: false, error: err.message };
+    }
+  }
+
+  /* ============================================================
+     9) EXPOSE GLOBAL API
      ============================================================ */
   window.mknBackend = {
     client: supabase,
-    // Public
+
+    // Public forms
     submitContact,
     submitPledge,
     subscribeNewsletter,
+
+    // News (public + admin)
     fetchNews,
     fetchFeaturedNews,
-    // Admin
     createNews,
     updateNews,
     deleteNews,
+
+    // Admin fetchers
     fetchContacts,
     fetchPledges,
     fetchSubscribers,
@@ -400,6 +456,12 @@
     updatePledgeStatus,
     deleteRecord,
     fetchStats,
+
+    // Public progress
+    fetchProgress,
+
+    // Constants
+    PROJECT_GOAL,
   };
 
   console.log("[Supabase] ✓ Backend ready — mknBackend available");
