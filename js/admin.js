@@ -1598,6 +1598,18 @@
     window.addEventListener("scroll", updateShadow, { passive: true });
     updateShadow();
   })();
+  /* ============================================================
+     24) STICKY TOPBAR shadow
+     ============================================================ */
+  (function () {
+    const topbar = document.querySelector(".admin-topbar");
+    if (!topbar) return;
+    const onScroll = () => {
+      topbar.classList.toggle("scrolled", window.scrollY > 20);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  })();
   window.adminPanel = {
     switchView,
     openAddModal,

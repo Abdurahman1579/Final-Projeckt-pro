@@ -1894,24 +1894,26 @@ footer{background:var(--g900);color:rgba(255,255,255,.75);padding:50px 24px 30px
   font-size: 12px; color: var(--ink500);
 }
 /* ============================================================
-   ADMIN — FIXED HEADER + STICKY TOPBAR + TABLE SCROLL
+   ADMIN — STICKY TOPBAR + TABLE SCROLL (clean fix)
    ============================================================ */
 
-/* ---- 1) Sticky Topbar (Admin) ---- */
-.admin-main {
-  /* Make main content scroll area */
-  position: relative;
-  min-width: 0;
+/* ---- 1) Grid children don't overflow ---- */
+.admin-layout > * {
+  min-width: 0;   /* ← KEY: allows grid children to shrink */
+  max-width: 100%;
 }
 
+/* ---- 2) Sticky topbar — sticks to viewport ---- */
 .admin-topbar {
   position: sticky;
   top: 0;
   z-index: 40;
   background: #f4f7f5;
-  padding: 20px 0 16px;
-  margin: -24px -32px 26px;
-  padding-inline: 32px;
+  /* Extend background beyond padding so content doesn't show through */
+  margin-left: -32px;
+  margin-right: -32px;
+  margin-top: -24px;
+  padding: 20px 32px 16px;
   border-bottom: 1px solid rgba(13, 59, 46, 0.06);
   transition: box-shadow 0.2s ease;
 }
@@ -1920,104 +1922,56 @@ footer{background:var(--g900);color:rgba(255,255,255,.75);padding:50px 24px 30px
   box-shadow: 0 4px 16px rgba(13, 59, 46, 0.08);
 }
 
-/* ---- 2) Layout: prevent horizontal shift ---- */
-.admin-layout {
-  width: 100%;
-  overflow-x: hidden;
-}
-
-.admin-main {
-  overflow-x: hidden;
-  max-width: 100%;
-}
-
-/* ---- 3) Tables: horizontal scroll without breaking layout ---- */
-.admin-table-wrap,
-.admin-panel > div[style*="overflow-x:auto"],
-.admin-panel > div[style*="overflow-x: auto"] {
-  overflow-x: auto;
+/* ---- 3) Tables: scrollable wrapper ---- */
+.admin-panel > div[style*="overflow-x"] {
+  overflow-x: auto !important;
+  overflow-y: visible;
   -webkit-overflow-scrolling: touch;
   max-width: 100%;
   scrollbar-width: thin;
-  scrollbar-color: var(--g500) transparent;
+  scrollbar-color: var(--g500) #f0f4f2;
+  padding-bottom: 4px;
 }
 
-.admin-table-wrap::-webkit-scrollbar,
-.admin-panel > div[style*="overflow-x:auto"]::-webkit-scrollbar,
-.admin-panel > div[style*="overflow-x: auto"]::-webkit-scrollbar {
+.admin-panel > div[style*="overflow-x"]::-webkit-scrollbar {
   height: 8px;
 }
 
-.admin-table-wrap::-webkit-scrollbar-track,
-.admin-panel > div[style*="overflow-x:auto"]::-webkit-scrollbar-track,
-.admin-panel > div[style*="overflow-x: auto"]::-webkit-scrollbar-track {
+.admin-panel > div[style*="overflow-x"]::-webkit-scrollbar-track {
   background: #f0f4f2;
   border-radius: 4px;
 }
 
-.admin-table-wrap::-webkit-scrollbar-thumb,
-.admin-panel > div[style*="overflow-x:auto"]::-webkit-scrollbar-thumb,
-.admin-panel > div[style*="overflow-x: auto"]::-webkit-scrollbar-thumb {
+.admin-panel > div[style*="overflow-x"]::-webkit-scrollbar-thumb {
   background: var(--g500);
   border-radius: 4px;
 }
 
-/* Make tables respect container width */
+.admin-panel > div[style*="overflow-x"]::-webkit-scrollbar-thumb:hover {
+  background: var(--g700);
+}
+
+/* ---- 4) Table width ---- */
 .admin-table {
-  min-width: 520px;
   width: 100%;
+  min-width: 520px;
 }
 
-/* ---- 4) Fix dashboard cards (2-column layout on desktop) ---- */
-.admin-cols {
-  display: grid;
-  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
-  gap: 20px;
-  align-items: start;
+/* ---- 5) Prevent horizontal page scroll ---- */
+html, body {
+  overflow-x: hidden;
 }
 
-@media (max-width: 1100px) {
-  .admin-cols {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* ---- 5) Stats row — flexible grid ---- */
-.dash-stats {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 16px;
-  margin-bottom: 28px;
-}
-
-/* ---- 6) Panels don't overflow ---- */
-.admin-panel {
-  max-width: 100%;
-  overflow: hidden;
-}
-
-.admin-panel > * {
-  max-width: 100%;
-}
-
-/* ---- 7) Dashboard view scrolls properly ---- */
-.admin-view {
-  min-width: 0;
-  max-width: 100%;
-}
-
-/* ---- 8) MOBILE FIXES ---- */
+/* ---- 6) Mobile: collapse grid ---- */
 @media (max-width: 860px) {
   .admin-layout {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: 1fr;
   }
 
   .admin-sidebar {
-    position: sticky;
-    top: 0;
-    z-index: 50;
+    position: relative;
     height: auto;
-    padding: 16px 0;
+    overflow: visible;
   }
 
   .admin-main {
@@ -2025,133 +1979,66 @@ footer{background:var(--g900);color:rgba(255,255,255,.75);padding:50px 24px 30px
   }
 
   .admin-topbar {
-    margin: 0 -16px 20px;
+    margin-left: -16px;
+    margin-right: -16px;
+    margin-top: -16px;
     padding: 14px 16px 12px;
   }
 
   .admin-topbar h1 {
-    font-size: 20px !important;
+    font-size: 20px;
   }
 
   .admin-topbar p {
-    font-size: 13px !important;
-  }
-
-  .admin-topbar-right {
-    gap: 8px !important;
-  }
-
-  .admin-btn {
-    padding: 8px 12px !important;
-    font-size: 12.5px !important;
+    font-size: 13px;
   }
 
   .dash-stats {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)) !important;
-    gap: 12px !important;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
   }
 
   .dash-stat {
-    padding: 16px !important;
+    padding: 16px;
   }
 
   .dash-stat .ds-num {
-    font-size: 20px !important;
+    font-size: 20px;
+  }
+
+  .dash-stat .ds-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+    margin-bottom: 10px;
   }
 
   .admin-panel {
-    padding: 18px !important;
-    border-radius: 14px !important;
-  }
-
-  .admin-panel-head {
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  .admin-panel-head h2 {
-    font-size: 15px !important;
+    padding: 18px;
   }
 
   .admin-table {
-    font-size: 13px !important;
+    font-size: 13px;
     min-width: 480px;
   }
 
   .admin-table thead th,
   .admin-table tbody td {
-    padding: 10px 12px !important;
+    padding: 10px 12px;
   }
 }
 
-/* ---- 9) Small phones ---- */
-@media (max-width: 640px) {
+/* ---- 7) Small phones ---- */
+@media (max-width: 480px) {
   .dash-stats {
-    grid-template-columns: 1fr 1fr !important;
+    grid-template-columns: 1fr 1fr;
   }
 
   .dash-stat .ds-num {
-    font-size: 18px !important;
+    font-size: 18px;
   }
 
   .dash-stat .ds-num small {
-    font-size: 11px !important;
+    font-size: 11px;
   }
-
-  .dash-stat .ds-icon {
-    width: 36px !important;
-    height: 36px !important;
-    font-size: 16px !important;
-    margin-bottom: 10px !important;
-  }
-
-  .admin-topbar {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-  }
-
-  .admin-topbar-right {
-    width: 100%;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-  }
-
-  .quick-actions {
-    grid-template-columns: 1fr 1fr !important;
-  }
-}
-
-/* ---- 10) Prevent body horizontal scroll ---- */
-body {
-  overflow-x: hidden;
-}
-
-/* ---- 11) Sidebar sticks on desktop ---- */
-@media (min-width: 861px) {
-  .admin-sidebar {
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    overflow-y: auto;
-  }
-}
-
-/* ---- 12) Table cell content doesn't break out ---- */
-.admin-table td,
-.admin-table th {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  max-width: 260px;
-}
-
-.admin-table td:first-child,
-.admin-table th:first-child {
-  max-width: 320px;
-}
-
-/* But allow .user-cell to display fully */
-.admin-table td .user-cell {
-  white-space: normal;
 }
