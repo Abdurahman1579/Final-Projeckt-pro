@@ -1583,7 +1583,21 @@
     renderLeadershipWidget();
     renderLeadershipManager();
   }
+  /* ============================================================
+     24) STICKY TOPBAR — shadow on scroll
+     ============================================================ */
+  (function () {
+    const topbar = document.querySelector(".admin-topbar");
+    if (!topbar) return;
 
+    const updateShadow = () => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      topbar.classList.toggle("scrolled", scrollTop > 20);
+    };
+
+    window.addEventListener("scroll", updateShadow, { passive: true });
+    updateShadow();
+  })();
   window.adminPanel = {
     switchView,
     openAddModal,
