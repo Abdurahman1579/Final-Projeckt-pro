@@ -252,27 +252,27 @@
             <div class="dash-stats">
               <div class="dash-stat">
                 <div class="ds-icon green">💰</div>
-                <div class="ds-num">45,200,000<small> ብር</small></div>
+                <div class="ds-num">0<small> ብር</small></div>
                 <div class="ds-lbl" data-i18n="admin.stat.raised"></div>
-                <span class="ds-trend up">↑ 12.5%</span>
+                <span class="ds-trend up">↑ 0%</span>
               </div>
               <div class="dash-stat">
                 <div class="ds-icon gold">🎯</div>
-                <div class="ds-num">23.8<small>%</small></div>
+                <div class="ds-num">0</div>
                 <div class="ds-lbl" data-i18n="admin.stat.progress"></div>
-                <span class="ds-trend up">↑ 3.2%</span>
+                <span class="ds-trend up">↑ 0%</span>
               </div>
               <div class="dash-stat">
                 <div class="ds-icon blue">👥</div>
-                <div class="ds-num">1,247</div>
+                <div class="ds-num">0</div>
                 <div class="ds-lbl" data-i18n="admin.stat.donors"></div>
-                <span class="ds-trend up">↑ 45</span>
+                <span class="ds-trend up">↑ 0</span>
               </div>
               <div class="dash-stat">
                 <div class="ds-icon purple">📰</div>
-                <div class="ds-num">18</div>
+                <div class="ds-num">0</div>
                 <div class="ds-lbl" data-i18n="admin.stat.news"></div>
-                <span class="ds-trend up">↑ 2</span>
+                <span class="ds-trend up">↑ 0</span>
               </div>
             </div>
 
@@ -290,7 +290,7 @@
               <div class="leadership-widget" id="leadershipWidget"></div>
             </div>
 
-            <!-- ⬇️ LEADERSHIP MANAGER (NEW) ⬇️ -->
+            <!-- Leadership Manager -->
             <div class="admin-panel" style="margin-bottom: 24px">
               <div class="admin-panel-head">
                 <h2 data-i18n="admin.dashboard.leadership.manage"></h2>
@@ -305,7 +305,6 @@
               </div>
               <div id="leadershipManager"></div>
             </div>
-            <!-- ⬆️ END LEADERSHIP MANAGER ⬆️ -->
 
             <div class="admin-cols">
               <div>
@@ -330,36 +329,15 @@
                       </thead>
                       <tbody>
                         <tr>
-                          <td>Ahmed Mohammed</td>
-                          <td><strong>50,000 ብር</strong></td>
-                          <td>CBE</td>
-                          <td>
-                            <span
-                              class="status-badge approved"
-                              data-i18n="admin.status.approved"
-                            ></span>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Fatima Ibrahim</td>
-                          <td><strong>100,000 ብር</strong></td>
-                          <td>Awash</td>
-                          <td>
-                            <span
-                              class="status-badge approved"
-                              data-i18n="admin.status.approved"
-                            ></span>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Business Group A</td>
-                          <td><strong>500,000 ብር</strong></td>
-                          <td>CBE</td>
-                          <td>
-                            <span
-                              class="status-badge pending"
-                              data-i18n="admin.status.pending"
-                            ></span>
+                          <td
+                            colspan="4"
+                            style="
+                              text-align: center;
+                              color: var(--ink500);
+                              padding: 30px;
+                            "
+                          >
+                            Loading...
                           </td>
                         </tr>
                       </tbody>
@@ -764,129 +742,16 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr data-id="d1">
-                      <td>#1024</td>
-                      <td>Ahmed Mohammed</td>
-                      <td><strong>50,000 ብር</strong></td>
-                      <td>CBE</td>
-                      <td>Feb 8, 2026</td>
-                      <td>
-                        <span
-                          class="status-badge approved"
-                          data-i18n="admin.status.approved"
-                        ></span>
-                      </td>
-                      <td>
-                        <div class="row-actions">
-                          <button class="icon-btn edit" data-edit="donations">
-                            ✏️</button
-                          ><button
-                            class="icon-btn danger"
-                            data-delete="donations"
-                          >
-                            🗑️
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr data-id="d2">
-                      <td>#1023</td>
-                      <td>Fatima Ibrahim</td>
-                      <td><strong>100,000 ብር</strong></td>
-                      <td>Awash</td>
-                      <td>Feb 7, 2026</td>
-                      <td>
-                        <span
-                          class="status-badge approved"
-                          data-i18n="admin.status.approved"
-                        ></span>
-                      </td>
-                      <td>
-                        <div class="row-actions">
-                          <button class="icon-btn edit" data-edit="donations">
-                            ✏️</button
-                          ><button
-                            class="icon-btn danger"
-                            data-delete="donations"
-                          >
-                            🗑️
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr data-id="d3">
-                      <td>#1022</td>
-                      <td>Business Group A</td>
-                      <td><strong>500,000 ብር</strong></td>
-                      <td>CBE</td>
-                      <td>Feb 6, 2026</td>
-                      <td>
-                        <span
-                          class="status-badge pending"
-                          data-i18n="admin.status.pending"
-                        ></span>
-                      </td>
-                      <td>
-                        <div class="row-actions">
-                          <button class="icon-btn edit" data-edit="donations">
-                            ✏️</button
-                          ><button
-                            class="icon-btn danger"
-                            data-delete="donations"
-                          >
-                            🗑️
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr data-id="d4">
-                      <td>#1021</td>
-                      <td>Anonymous</td>
-                      <td><strong>25,000 ብር</strong></td>
-                      <td>Telebirr</td>
-                      <td>Feb 5, 2026</td>
-                      <td>
-                        <span
-                          class="status-badge approved"
-                          data-i18n="admin.status.approved"
-                        ></span>
-                      </td>
-                      <td>
-                        <div class="row-actions">
-                          <button class="icon-btn edit" data-edit="donations">
-                            ✏️</button
-                          ><button
-                            class="icon-btn danger"
-                            data-delete="donations"
-                          >
-                            🗑️
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr data-id="d5">
-                      <td>#1020</td>
-                      <td>Hassan Ali</td>
-                      <td><strong>75,000 ብር</strong></td>
-                      <td>Dashen</td>
-                      <td>Feb 4, 2026</td>
-                      <td>
-                        <span
-                          class="status-badge review"
-                          data-i18n="admin.status.review"
-                        ></span>
-                      </td>
-                      <td>
-                        <div class="row-actions">
-                          <button class="icon-btn edit" data-edit="donations">
-                            ✏️</button
-                          ><button
-                            class="icon-btn danger"
-                            data-delete="donations"
-                          >
-                            🗑️
-                          </button>
-                        </div>
+                    <tr>
+                      <td
+                        colspan="7"
+                        style="
+                          text-align: center;
+                          color: var(--ink500);
+                          padding: 30px;
+                        "
+                      >
+                        Loading from Supabase...
                       </td>
                     </tr>
                   </tbody>
@@ -917,100 +782,16 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr data-id="dn1">
-                      <td>
-                        <div class="user-cell">
-                          <div class="u-av">AM</div>
-                          <div class="u-info">
-                            <strong>Ahmed Mohammed</strong
-                            ><small>ahmed@example.com</small>
-                          </div>
-                        </div>
-                      </td>
-                      <td>+251 911 234 567</td>
-                      <td><strong>250,000 ብር</strong></td>
-                      <td>5</td>
-                      <td>Feb 8, 2026</td>
-                      <td>
-                        <div class="row-actions">
-                          <button class="icon-btn edit" data-edit="donors">
-                            ✏️</button
-                          ><button class="icon-btn danger" data-delete="donors">
-                            🗑️
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr data-id="dn2">
-                      <td>
-                        <div class="user-cell">
-                          <div class="u-av">FI</div>
-                          <div class="u-info">
-                            <strong>Fatima Ibrahim</strong
-                            ><small>fatima@example.com</small>
-                          </div>
-                        </div>
-                      </td>
-                      <td>+251 917 654 321</td>
-                      <td><strong>500,000 ብር</strong></td>
-                      <td>3</td>
-                      <td>Feb 7, 2026</td>
-                      <td>
-                        <div class="row-actions">
-                          <button class="icon-btn edit" data-edit="donors">
-                            ✏️</button
-                          ><button class="icon-btn danger" data-delete="donors">
-                            🗑️
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr data-id="dn3">
-                      <td>
-                        <div class="user-cell">
-                          <div class="u-av">BG</div>
-                          <div class="u-info">
-                            <strong>Business Group A</strong
-                            ><small>info@businessa.com</small>
-                          </div>
-                        </div>
-                      </td>
-                      <td>+251 911 555 777</td>
-                      <td><strong>1,500,000 ብር</strong></td>
-                      <td>2</td>
-                      <td>Feb 6, 2026</td>
-                      <td>
-                        <div class="row-actions">
-                          <button class="icon-btn edit" data-edit="donors">
-                            ✏️</button
-                          ><button class="icon-btn danger" data-delete="donors">
-                            🗑️
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr data-id="dn4">
-                      <td>
-                        <div class="user-cell">
-                          <div class="u-av">HA</div>
-                          <div class="u-info">
-                            <strong>Hassan Ali</strong
-                            ><small>hassan@example.com</small>
-                          </div>
-                        </div>
-                      </td>
-                      <td>+251 913 111 222</td>
-                      <td><strong>75,000 ብር</strong></td>
-                      <td>1</td>
-                      <td>Feb 4, 2026</td>
-                      <td>
-                        <div class="row-actions">
-                          <button class="icon-btn edit" data-edit="donors">
-                            ✏️</button
-                          ><button class="icon-btn danger" data-delete="donors">
-                            🗑️
-                          </button>
-                        </div>
+                    <tr>
+                      <td
+                        colspan="6"
+                        style="
+                          text-align: center;
+                          color: var(--ink500);
+                          padding: 30px;
+                        "
+                      >
+                        Loading from Supabase...
                       </td>
                     </tr>
                   </tbody>
@@ -1029,73 +810,7 @@
                   data-i18n="admin.messages.unread"
                 ></span>
               </div>
-              <div class="message-card unread" data-id="m1">
-                <div class="msg-av">AM</div>
-                <div class="msg-body">
-                  <div class="msg-head">
-                    <span class="msg-name">Ahmed Mohammed</span
-                    ><span class="msg-time">2 hours ago</span>
-                  </div>
-                  <div
-                    class="msg-subject"
-                    data-i18n="contact.form.subject.donation"
-                  ></div>
-                  <div class="msg-text">
-                    I would like to contribute to the project. Please contact
-                    me.
-                  </div>
-                </div>
-                <div class="row-actions" style="align-self: flex-start">
-                  <button class="icon-btn view" data-mark="read">✓</button>
-                  <button class="icon-btn danger" data-delete="messages">
-                    🗑️
-                  </button>
-                </div>
-              </div>
-              <div class="message-card unread" data-id="m2">
-                <div class="msg-av">FI</div>
-                <div class="msg-body">
-                  <div class="msg-head">
-                    <span class="msg-name">Fatima Ibrahim</span
-                    ><span class="msg-time">5 hours ago</span>
-                  </div>
-                  <div
-                    class="msg-subject"
-                    data-i18n="contact.form.subject.partner"
-                  ></div>
-                  <div class="msg-text">
-                    Our organization would like to explore a partnership
-                    opportunity.
-                  </div>
-                </div>
-                <div class="row-actions" style="align-self: flex-start">
-                  <button class="icon-btn view" data-mark="read">✓</button>
-                  <button class="icon-btn danger" data-delete="messages">
-                    🗑️
-                  </button>
-                </div>
-              </div>
-              <div class="message-card" data-id="m3">
-                <div class="msg-av">HA</div>
-                <div class="msg-body">
-                  <div class="msg-head">
-                    <span class="msg-name">Hassan Ali</span
-                    ><span class="msg-time">Yesterday</span>
-                  </div>
-                  <div
-                    class="msg-subject"
-                    data-i18n="contact.form.subject.volunteer"
-                  ></div>
-                  <div class="msg-text">
-                    I am interested in volunteering for the project.
-                  </div>
-                </div>
-                <div class="row-actions" style="align-self: flex-start">
-                  <button class="icon-btn danger" data-delete="messages">
-                    🗑️
-                  </button>
-                </div>
-              </div>
+              <!-- Message cards loaded from Supabase -->
             </div>
           </div>
 
@@ -1358,9 +1073,21 @@ Sustainable Property Development Project.</textarea
     <div class="toast-container" id="toastContainer"></div>
 
     <!-- ============ SCRIPTS (order matters!) ============ -->
+    <!-- 1) Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- 2) Core libraries -->
     <script src="js/translations.js"></script>
     <script src="js/i18n.js"></script>
     <script src="js/main.js"></script>
+
+    <!-- 3) Supabase client + helpers -->
+    <script src="js/supabase.js"></script>
+
+    <!-- 4) Admin panel logic -->
     <script src="js/admin.js"></script>
+
+    <!-- 5) Admin real-data loader (Supabase integration) -->
+    <script src="js/admin-data.js"></script>
   </body>
 </html>

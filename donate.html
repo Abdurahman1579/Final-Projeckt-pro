@@ -325,12 +325,24 @@
                   data-i18n="donate.pledge.method"
                 ></label>
                 <select class="form-select" id="pMethod">
-                  <option data-i18n="donate.bank.cbe"></option>
-                  <option data-i18n="donate.bank.awash"></option>
-                  <option data-i18n="donate.bank.dashen"></option>
-                  <option data-i18n="donate.mobile.telebirr"></option>
-                  <option data-i18n="donate.mobile.cbebirr"></option>
-                  <option data-i18n="donate.pledge.other"></option>
+                  <option value="CBE" data-i18n="donate.bank.cbe"></option>
+                  <option value="Awash" data-i18n="donate.bank.awash"></option>
+                  <option
+                    value="Dashen"
+                    data-i18n="donate.bank.dashen"
+                  ></option>
+                  <option
+                    value="Telebirr"
+                    data-i18n="donate.mobile.telebirr"
+                  ></option>
+                  <option
+                    value="CBE Birr"
+                    data-i18n="donate.mobile.cbebirr"
+                  ></option>
+                  <option
+                    value="Other"
+                    data-i18n="donate.pledge.other"
+                  ></option>
                 </select>
               </div>
 
@@ -378,12 +390,15 @@
 
     <div id="site-footer"></div>
 
+    <!-- ============ SCRIPTS ============ -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="js/translations.js"></script>
     <script src="js/i18n.js"></script>
     <script src="js/layout.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/supabase.js"></script>
     <script>
-      // Copy to clipboard
+      // ============ Copy to clipboard ============
       document.addEventListener("click", (e) => {
         const btn = e.target.closest(".copy-btn");
         if (!btn) return;
@@ -400,7 +415,7 @@
         });
       });
 
-      // Amount selection
+      // ============ Amount selection ============
       document.querySelectorAll(".amount-option").forEach((btn) => {
         btn.addEventListener("click", () => {
           document
@@ -408,16 +423,10 @@
             .forEach((b) => b.classList.remove("selected"));
           btn.classList.add("selected");
           const amountInput = document.getElementById("pAmount");
-          const label = document.querySelector(
-            'label[data-i18n="donate.pledge.amount"]',
-          );
           if (btn.dataset.amount === "custom") {
             amountInput.style.display = "block";
             amountInput.value = "";
             amountInput.focus();
-            amountInput.placeholder = window.i18n
-              ? window.i18n.t("donate.pledge.customPlaceholder")
-              : "Enter custom amount (ETB)";
           } else {
             amountInput.style.display = "none";
             amountInput.value = btn.dataset.amount;
@@ -425,19 +434,72 @@
         });
       });
 
-      // Form submit
+      // ============ Pledge Form Submit → Supabase ============
       const pledgeForm = document.getElementById("pledgeForm");
       if (pledgeForm) {
-        pledgeForm.addEventListener("submit", (e) => {
+        pledgeForm.addEventListener("submit", async (e) => {
           e.preventDefault();
+
+          const btn = pledgeForm.querySelector('button[type="submit"]');
           const success = document.getElementById("pledgeSuccess");
-          success.classList.add("show");
-          pledgeForm.reset();
-          document
-            .querySelectorAll(".amount-option")
-            .forEach((b) => b.classList.remove("selected"));
-          document.getElementById("pAmount").style.display = "none";
-          setTimeout(() => success.classList.remove("show"), 5000);
+          const originalText = btn.innerHTML;
+
+          btn.disabled = true;
+          btn.innerHTML =
+            "⏳ " +
+            (window.i18n
+              ? window.i18n.t("common.sending") || "Sending..."
+              : "Sending...");
+
+          // Determine amount
+          const selectedAmount = document.querySelector(
+            ".amount-option.selected",
+          );
+          let amountValue = "";
+          if (selectedAmount) {
+            if (selectedAmount.dataset.amount === "custom") {
+              amountValue = document.getElementById("pAmount").value;
+            } else {
+              amountValue = selectedAmount.dataset.amount;
+            }
+          } else {
+            amountValue = document.getElementById("pAmount").value;
+          }
+
+          const data = {
+            name: document.getElementById("pName").value.trim(),
+            phone: document.getElementById("pPhone").value.trim(),
+            email: document.getElementById("pEmail").value.trim(),
+            amount: amountValue,
+            method: document.getElementById("pMethod").value,
+            note: document.getElementById("pNote").value.trim(),
+          };
+
+          const result = await window.mknBackend.submitPledge(data);
+
+          btn.disabled = false;
+          btn.innerHTML = originalText;
+
+          if (result.success) {
+            success.classList.add("show");
+            pledgeForm.reset();
+            document
+              .querySelectorAll(".amount-option")
+              .forEach((b) => b.classList.remove("selected"));
+            document.getElementById("pAmount").style.display = "none";
+            setTimeout(() => success.classList.remove("show"), 6000);
+            if (window.showToast) {
+              window.showToast(
+                "✓ " +
+                  (window.i18n
+                    ? window.i18n.t("donate.pledge.success")
+                    : "Pledge received!"),
+                "success",
+              );
+            }
+          } else {
+            if (window.showToast) window.showToast(result.error, "error");
+          }
         });
       }
     </script>

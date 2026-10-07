@@ -86,98 +86,18 @@
 
         <!-- News grid -->
         <div class="news-grid" id="newsGrid">
-          <article class="news-card reveal" data-cat="progress">
-            <div class="thumb">
-              <span class="cat" data-i18n="news.filter.progress"></span>
-              🏢
-            </div>
+          <!-- Loaded dynamically from Supabase -->
+          <article class="news-card reveal" data-cat="loading">
+            <div class="thumb"><span class="cat">Loading...</span>⏳</div>
             <div class="body">
-              <div class="date" data-i18n="news.n1.date"></div>
-              <h3 data-i18n="news.n1.title"></h3>
-              <p data-i18n="news.n1.excerpt"></p>
-              <a href="#" class="read-more"
-                ><span data-i18n="common.readMore"></span> →</a
-              >
-            </div>
-          </article>
-
-          <article class="news-card reveal" data-cat="fundraising">
-            <div class="thumb">
-              <span class="cat" data-i18n="news.filter.fundraising"></span>
-              💰
-            </div>
-            <div class="body">
-              <div class="date" data-i18n="news.n2.date"></div>
-              <h3 data-i18n="news.n2.title"></h3>
-              <p data-i18n="news.n2.excerpt"></p>
-              <a href="#" class="read-more"
-                ><span data-i18n="common.readMore"></span> →</a
-              >
-            </div>
-          </article>
-
-          <article class="news-card reveal" data-cat="community">
-            <div class="thumb">
-              <span class="cat" data-i18n="news.filter.community"></span>
-              🤝
-            </div>
-            <div class="body">
-              <div class="date" data-i18n="news.n3.date"></div>
-              <h3 data-i18n="news.n3.title"></h3>
-              <p data-i18n="news.n3.excerpt"></p>
-              <a href="#" class="read-more"
-                ><span data-i18n="common.readMore"></span> →</a
-              >
-            </div>
-          </article>
-
-          <article class="news-card reveal" data-cat="announcement">
-            <div class="thumb">
-              <span class="cat" data-i18n="news.filter.announcement"></span>
-              📢
-            </div>
-            <div class="body">
-              <div class="date" data-i18n="news.n4.date"></div>
-              <h3 data-i18n="news.n4.title"></h3>
-              <p data-i18n="news.n4.excerpt"></p>
-              <a href="#" class="read-more"
-                ><span data-i18n="common.readMore"></span> →</a
-              >
-            </div>
-          </article>
-
-          <article class="news-card reveal" data-cat="progress">
-            <div class="thumb">
-              <span class="cat" data-i18n="news.filter.progress"></span>
-              📋
-            </div>
-            <div class="body">
-              <div class="date" data-i18n="news.n5.date"></div>
-              <h3 data-i18n="news.n5.title"></h3>
-              <p data-i18n="news.n5.excerpt"></p>
-              <a href="#" class="read-more"
-                ><span data-i18n="common.readMore"></span> →</a
-              >
-            </div>
-          </article>
-
-          <article class="news-card reveal" data-cat="community">
-            <div class="thumb">
-              <span class="cat" data-i18n="news.filter.community"></span>
-              🕌
-            </div>
-            <div class="body">
-              <div class="date" data-i18n="news.n6.date"></div>
-              <h3 data-i18n="news.n6.title"></h3>
-              <p data-i18n="news.n6.excerpt"></p>
-              <a href="#" class="read-more"
-                ><span data-i18n="common.readMore"></span> →</a
-              >
+              <div class="date">Please wait</div>
+              <h3>Loading news from server...</h3>
+              <p>Please wait a moment.</p>
             </div>
           </article>
         </div>
 
-        <!-- Empty state (hidden by default) -->
+        <!-- Empty state -->
         <div class="empty-state" id="newsEmpty" style="display: none">
           <div class="icon">📭</div>
           <h3 data-i18n="news.empty.title"></h3>
@@ -214,39 +134,228 @@
 
     <div id="site-footer"></div>
 
+    <!-- ============ SCRIPTS ============ -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="js/translations.js"></script>
     <script src="js/i18n.js"></script>
     <script src="js/layout.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/supabase.js"></script>
     <script>
-      // Filter chips
-      document.querySelectorAll(".filter-chip").forEach((chip) => {
-        chip.addEventListener("click", () => {
-          document
-            .querySelectorAll(".filter-chip")
-            .forEach((c) => c.classList.remove("active"));
-          chip.classList.add("active");
-          const filter = chip.dataset.filter;
-          let visible = 0;
-          document.querySelectorAll("#newsGrid .news-card").forEach((card) => {
-            const show = filter === "all" || card.dataset.cat === filter;
-            card.style.display = show ? "flex" : "none";
-            if (show) visible++;
-          });
-          document.getElementById("newsEmpty").style.display =
-            visible === 0 ? "block" : "none";
-        });
-      });
+      /* ============================================================
+     NEWS PAGE — Load from Supabase
+     ============================================================ */
 
-      // Newsletter form
+      function categoryIcon(cat) {
+        const map = {
+          announcement: "📢",
+          progress: "🏗️",
+          fundraising: "💰",
+          community: "🤝",
+        };
+        return map[cat] || "📰";
+      }
+
+      function formatDate(iso) {
+        if (!iso) return "";
+        const d = new Date(iso);
+        const months = [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dec",
+        ];
+        return (
+          months[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear()
+        );
+      }
+
+      function escapeHtml(s) {
+        if (!s) return "";
+        return String(s).replace(
+          /[&<>"']/g,
+          (c) =>
+            ({
+              "&": "&amp;",
+              "<": "&lt;",
+              ">": "&gt;",
+              '"': "&quot;",
+              "'": "&#39;",
+            })[c],
+        );
+      }
+
+      function setupFilters() {
+        document.querySelectorAll(".filter-chip").forEach((chip) => {
+          // Remove existing listeners by cloning
+          const clone = chip.cloneNode(true);
+          chip.parentNode.replaceChild(clone, chip);
+        });
+        document.querySelectorAll(".filter-chip").forEach((chip) => {
+          chip.addEventListener("click", () => {
+            document
+              .querySelectorAll(".filter-chip")
+              .forEach((c) => c.classList.remove("active"));
+            chip.classList.add("active");
+            const filter = chip.dataset.filter;
+            let visible = 0;
+            document
+              .querySelectorAll("#newsGrid .news-card")
+              .forEach((card) => {
+                const show = filter === "all" || card.dataset.cat === filter;
+                card.style.display = show ? "flex" : "none";
+                if (show) visible++;
+              });
+            const empty = document.getElementById("newsEmpty");
+            if (empty) empty.style.display = visible === 0 ? "block" : "none";
+          });
+        });
+      }
+
+      async function loadNews() {
+        if (!window.mknBackend) {
+          console.warn("[News] mknBackend not available");
+          return;
+        }
+
+        const res = await window.mknBackend.fetchNews({ status: "published" });
+        if (!res.success || !res.data || res.data.length === 0) {
+          console.warn("[News] No news found:", res.error);
+          const grid = document.getElementById("newsGrid");
+          if (grid) grid.innerHTML = "";
+          document.getElementById("newsEmpty").style.display = "block";
+          return;
+        }
+
+        const news = res.data;
+        const featured = news.find((n) => n.featured) || news[0];
+        const others = news.filter((n) => n.id !== featured.id);
+
+        // ---- Featured ----
+        const featuredBox = document.querySelector(".news-featured");
+        if (featuredBox && featured) {
+          const badge = featuredBox.querySelector(".badge");
+          const title = featuredBox.querySelector("h2");
+          const excerpt = featuredBox.querySelector("p");
+          const dateEl = featuredBox.querySelector(".meta strong");
+          const icon = featuredBox.querySelector(".visual span");
+
+          if (badge) {
+            badge.textContent = featured.category || "Featured";
+            badge.removeAttribute("data-i18n");
+          }
+          if (title) {
+            title.textContent = featured.title;
+            title.removeAttribute("data-i18n");
+          }
+          if (excerpt) {
+            excerpt.textContent = featured.excerpt || "";
+            excerpt.removeAttribute("data-i18n");
+          }
+          if (dateEl) {
+            dateEl.textContent = formatDate(featured.created_at);
+            dateEl.removeAttribute("data-i18n");
+          }
+          if (icon) icon.textContent = categoryIcon(featured.category);
+        }
+
+        // ---- Grid ----
+        const grid = document.getElementById("newsGrid");
+        if (grid) {
+          if (others.length === 0) {
+            grid.innerHTML = "";
+            document.getElementById("newsEmpty").style.display = "block";
+          } else {
+            grid.innerHTML = others
+              .map(
+                (n) => `
+          <article class="news-card reveal visible" data-cat="${escapeHtml(n.category || "announcement")}">
+            <div class="thumb">
+              <span class="cat">${escapeHtml(n.category || "News")}</span>
+              ${categoryIcon(n.category)}
+            </div>
+            <div class="body">
+              <div class="date">${formatDate(n.created_at)}</div>
+              <h3>${escapeHtml(n.title)}</h3>
+              <p>${escapeHtml(n.excerpt || "")}</p>
+              <a href="#" class="read-more" data-news-id="${n.id}">
+                <span data-i18n="common.readMore"></span> →
+              </a>
+            </div>
+          </article>
+        `,
+              )
+              .join("");
+            document.getElementById("newsEmpty").style.display = "none";
+
+            // Re-apply translations
+            if (window.i18n && window.i18n.applyTranslations) {
+              window.i18n.applyTranslations();
+            }
+          }
+        }
+
+        // Re-setup filters
+        setupFilters();
+
+        console.log("[News] ✓ Loaded", news.length, "articles");
+      }
+
+      // Load on ready
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", () =>
+          setTimeout(loadNews, 300),
+        );
+      } else {
+        setTimeout(loadNews, 300);
+      }
+
+      // Re-setup filters on initial load (for hardcoded chips)
+      setTimeout(setupFilters, 400);
+
+      /* ============================================================
+     NEWSLETTER SUBMIT
+     ============================================================ */
       const nlForm = document.getElementById("newsletterForm");
       if (nlForm) {
-        nlForm.addEventListener("submit", (e) => {
+        nlForm.addEventListener("submit", async (e) => {
           e.preventDefault();
-          const s = document.getElementById("newsletterSuccess");
-          s.classList.add("show");
-          nlForm.reset();
-          setTimeout(() => s.classList.remove("show"), 5000);
+          const btn = nlForm.querySelector('button[type="submit"]');
+          const success = document.getElementById("newsletterSuccess");
+          const originalText = btn.innerHTML;
+          const email = nlForm
+            .querySelector('input[type="email"]')
+            .value.trim();
+
+          btn.disabled = true;
+          btn.innerHTML = "⏳";
+
+          const result = await window.mknBackend.subscribeNewsletter(email);
+
+          btn.disabled = false;
+          btn.innerHTML = originalText;
+
+          if (result.success) {
+            success.classList.add("show");
+            success.textContent = result.duplicate
+              ? result.message || "Already subscribed!"
+              : window.i18n
+                ? window.i18n.t("news.newsletter.success")
+                : "Subscribed!";
+            nlForm.reset();
+            setTimeout(() => success.classList.remove("show"), 6000);
+            if (window.showToast) window.showToast("✓ Subscribed!", "success");
+          } else {
+            if (window.showToast) window.showToast(result.error, "error");
+          }
         });
       }
     </script>

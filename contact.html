@@ -132,7 +132,7 @@
                   for="cEmail"
                   data-i18n="common.email"
                 ></label>
-                <input class="form-input" type="email" id="cEmail" required />
+                <input class="form-input" type="email" id="cEmail" />
               </div>
               <div class="form-group full">
                 <label
@@ -141,11 +141,26 @@
                   data-i18n="contact.form.subject"
                 ></label>
                 <select class="form-select" id="cSubject">
-                  <option data-i18n="contact.form.subject.general"></option>
-                  <option data-i18n="contact.form.subject.donation"></option>
-                  <option data-i18n="contact.form.subject.volunteer"></option>
-                  <option data-i18n="contact.form.subject.partner"></option>
-                  <option data-i18n="contact.form.subject.other"></option>
+                  <option
+                    value="general"
+                    data-i18n="contact.form.subject.general"
+                  ></option>
+                  <option
+                    value="donation"
+                    data-i18n="contact.form.subject.donation"
+                  ></option>
+                  <option
+                    value="volunteer"
+                    data-i18n="contact.form.subject.volunteer"
+                  ></option>
+                  <option
+                    value="partner"
+                    data-i18n="contact.form.subject.partner"
+                  ></option>
+                  <option
+                    value="other"
+                    data-i18n="contact.form.subject.other"
+                  ></option>
                 </select>
               </div>
               <div class="form-group full">
@@ -254,19 +269,64 @@
 
     <div id="site-footer"></div>
 
+    <!-- ============ SCRIPTS ============ -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="js/translations.js"></script>
     <script src="js/i18n.js"></script>
     <script src="js/layout.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/supabase.js"></script>
     <script>
+      // ============ Contact Form Submit → Supabase ============
       const contactForm = document.getElementById("contactForm");
       if (contactForm) {
-        contactForm.addEventListener("submit", (e) => {
+        contactForm.addEventListener("submit", async (e) => {
           e.preventDefault();
+
+          const btn = contactForm.querySelector('button[type="submit"]');
           const success = document.getElementById("contactSuccess");
-          success.classList.add("show");
-          contactForm.reset();
-          setTimeout(() => success.classList.remove("show"), 5000);
+          const originalText = btn.innerHTML;
+
+          // Loading state
+          btn.disabled = true;
+          btn.innerHTML =
+            "⏳ " +
+            (window.i18n
+              ? window.i18n.t("common.sending") || "Sending..."
+              : "Sending...");
+
+          // Gather form data
+          const data = {
+            name: document.getElementById("cName").value.trim(),
+            phone: document.getElementById("cPhone").value.trim(),
+            email: document.getElementById("cEmail").value.trim(),
+            subject: document.getElementById("cSubject").value,
+            message: document.getElementById("cMessage").value.trim(),
+          };
+
+          // Submit to Supabase
+          const result = await window.mknBackend.submitContact(data);
+
+          // Restore button
+          btn.disabled = false;
+          btn.innerHTML = originalText;
+
+          if (result.success) {
+            success.classList.add("show");
+            contactForm.reset();
+            setTimeout(() => success.classList.remove("show"), 6000);
+            if (window.showToast) {
+              window.showToast(
+                "✓ " +
+                  (window.i18n
+                    ? window.i18n.t("contact.form.success")
+                    : "Message sent!"),
+                "success",
+              );
+            }
+          } else {
+            if (window.showToast) window.showToast(result.error, "error");
+          }
         });
       }
     </script>
