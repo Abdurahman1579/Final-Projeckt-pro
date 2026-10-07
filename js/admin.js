@@ -1610,6 +1610,39 @@
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
   })();
+    /* ============================================================
+     24) FIXED TOPBAR + INDEPENDENT SCROLL
+     ============================================================ */
+  (function () {
+    const topbar = document.querySelector(".admin-topbar");
+    const main = document.querySelector(".admin-main");
+    if (!topbar || !main) return;
+
+    // Add shadow to topbar when main scrolls
+    const updateTopbar = () => {
+      const scrollTop = main.scrollTop || window.scrollY;
+      topbar.classList.toggle("scrolled", scrollTop > 20);
+    };
+
+    // Listen on both main (desktop) and window (mobile)
+    main.addEventListener("scroll", updateTopbar, { passive: true });
+    window.addEventListener("scroll", updateTopbar, { passive: true });
+    updateTopbar();
+
+    // Add horizontal scroll hint to tables
+    document.querySelectorAll(".admin-panel > div[style*='overflow-x']").forEach((wrap) => {
+      // Check if content overflows
+      const checkOverflow = () => {
+        if (wrap.scrollWidth > wrap.clientWidth) {
+          wrap.classList.add("has-scroll");
+        } else {
+          wrap.classList.remove("has-scroll");
+        }
+      };
+      checkOverflow();
+      window.addEventListener("resize", checkOverflow);
+    });
+  })();
   window.adminPanel = {
     switchView,
     openAddModal,
