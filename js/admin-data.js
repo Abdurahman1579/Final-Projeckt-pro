@@ -2,8 +2,9 @@
    ADMIN DATA — Supabase Integration
    ------------------------------------------------------------
    - Loads real data from Supabase into admin dashboard
-   - Renders: stats, messages, donations, donors, news
-   - Handles: mark-as-read, approve, delete, news CRUD
+   - Renders: stats, messages, donations, donors, news, reports
+   - Handles: mark-as-read, approve, delete
+   - Modals: News CRUD, Reports CRUD
    ============================================================ */
 
 (function () {
@@ -42,13 +43,14 @@
      ============================================================ */
   async function loadAllData() {
     try {
-      const [statsRes, contactsRes, pledgesRes, subsRes, newsRes] =
+      const [statsRes, contactsRes, pledgesRes, subsRes, newsRes, reportsRes] =
         await Promise.all([
           window.mknBackend.fetchStats(),
           window.mknBackend.fetchContacts({ limit: 50 }),
           window.mknBackend.fetchPledges({ limit: 100 }),
           window.mknBackend.fetchSubscribers({ limit: 100 }),
           window.mknBackend.fetchNews({ limit: 50 }),
+          window.mknBackend.fetchReports({ limit: 50 }),
         ]);
 
       if (statsRes.success) renderStats(statsRes.stats);
@@ -60,6 +62,7 @@
       }
       if (subsRes.success) window.__mknSubscribers = subsRes.data;
       if (newsRes.success) renderNews(newsRes.data);
+      if (reportsRes.success) renderReportsAdmin(reportsRes.data);
 
       console.log("[Admin Data] ✓ Data loaded");
     } catch (err) {
@@ -145,6 +148,33 @@
     );
   }
 
+  function formatFileSize(bytes) {
+    if (!bytes) return "0 B";
+    const k = 1024;
+    const sizes = ["B", "KB", "MB", "GB"];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return (bytes / Math.pow(k, i)).toFixed(i === 0 ? 0 : 2) + " " + sizes[i];
+  }
+
+  function typeIcon(type) {
+    const map = {
+      financial: "💰",
+      progress: "📊",
+      audit: "🔍",
+      quarterly: "📆",
+    };
+    return map[type] || "📄";
+  }
+
+  function statusClass(status) {
+    if (!status) return "pending";
+    if (status === "approved" || status === "received") return "approved";
+    if (status === "pending") return "pending";
+    if (status === "review") return "review";
+    if (status === "cancelled") return "draft";
+    return "pending";
+  }
+
   /* ============================================================
      STATS CARDS
      ============================================================ */
@@ -152,7 +182,6 @@
     const cards = document.querySelectorAll("#view-dashboard .dash-stat");
     if (!cards.length || !stats) return;
 
-    // Card 1: Total pledged
     if (cards[0]) {
       const num = cards[0].querySelector(".ds-num");
       if (num)
@@ -161,19 +190,16 @@
           "<small> ብር</small>";
     }
 
-    // Card 2: Total pledges
     if (cards[1]) {
       const num = cards[1].querySelector(".ds-num");
       if (num) num.textContent = stats.totalPledges;
     }
 
-    // Card 3: Total messages
     if (cards[2]) {
       const num = cards[2].querySelector(".ds-num");
       if (num) num.textContent = Number(stats.totalMessages).toLocaleString();
     }
 
-    // Card 4: Subscribers
     if (cards[3]) {
       const num = cards[3].querySelector(".ds-num");
       if (num) num.textContent = stats.totalSubscribers;
@@ -184,7 +210,6 @@
      RECENT DONATIONS (dashboard)
      ============================================================ */
   function renderDonations(pledges) {
-    // Find the dashboard's recent table (first admin-table inside view-dashboard)
     const dashboardPanel = document.querySelector(
       "#view-dashboard .admin-cols .admin-panel",
     );
@@ -212,26 +237,20 @@
       .join("");
   }
 
-  function statusClass(status) {
-    if (!status) return "pending";
-    if (status === "approved" || status === "received") return "approved";
-    if (status === "pending") return "pending";
-    if (status === "review") return "review";
-    if (status === "cancelled") return "draft";
-    return "pending";
-  }
-
   /* ============================================================
-     MESSAGES VIEW
+     MESSAGES
      ============================================================ */
   function renderMessages(messages) {
     const panel = document.querySelector("#view-messages .admin-panel");
     if (!panel) return;
 
-    panel.querySelectorAll(".message-card").forEach((c) => c.remove());
+    panel
+      .querySelectorAll(".message-card, .empty-state")
+      .forEach((c) => c.remove());
 
     if (!messages || messages.length === 0) {
       const empty = document.createElement("div");
+      empty.className = "empty-state";
       empty.style.cssText =
         "padding:40px 20px;text-align:center;color:var(--ink500);";
       empty.innerHTML = `
@@ -392,7 +411,50 @@
   }
 
   /* ============================================================
-     NEWS MODAL (Add / Edit)
+     REPORTS VIEW (Admin)
+     ============================================================ */
+  function renderReportsAdmin(reports) {
+    const tbody = document.querySelector(
+      '#view-reports table[data-table="reports"] tbody',
+    );
+    if (!tbody) return;
+
+    if (!reports || reports.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;color:var(--ink500);padding:30px;">No reports yet. Click "📤 Upload Report" to add one.</td></tr>`;
+      return;
+    }
+
+    tbody.innerHTML = reports
+      .map((r) => {
+        const typeLabel =
+          (window.i18n
+            ? window.i18n.t("reports.type." + (r.type || "financial"))
+            : r.type) || r.type;
+        return `
+        <tr data-id="${r.id}">
+          <td>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <span style="width:32px;height:32px;border-radius:8px;background:#e8f4ff;color:#1a5fa8;display:grid;place-items:center;font-size:14px;font-weight:700;flex-shrink:0;">${typeIcon(r.type)}</span>
+              <span>${escapeHtml(r.title)}</span>
+            </div>
+          </td>
+          <td>${escapeHtml(typeLabel)}</td>
+          <td>${fmtDate(r.report_date || r.created_at)}</td>
+          <td>${r.file_size ? formatFileSize(r.file_size) : "—"}</td>
+          <td><span class="status-badge ${r.status === "published" ? "approved" : "draft"}">${r.status || "draft"}</span></td>
+          <td><div class="row-actions">
+            ${r.file_url ? `<button class="icon-btn view" data-report-download="${r.id}" title="Download">📥</button>` : ""}
+            <button class="icon-btn edit" data-report-edit="${r.id}" title="Edit">✏️</button>
+            <button class="icon-btn danger" data-report-delete="${r.id}" title="Delete">🗑️</button>
+          </div></td>
+        </tr>
+      `;
+      })
+      .join("");
+  }
+
+  /* ============================================================
+     NEWS MODAL
      ============================================================ */
   function openNewsModal(mode, id) {
     const modalOverlay = document.getElementById("modalOverlay");
@@ -478,7 +540,172 @@
   }
 
   /* ============================================================
-     HANDLE ACTIONS
+     REPORTS MODAL (with file upload)
+     ============================================================ */
+  function openReportModal(mode, id) {
+    const modalOverlay = document.getElementById("modalOverlay");
+    const modalBox = document.getElementById("modalBox");
+    const modalBody = document.getElementById("modalBody");
+    const modalTitleText = document.getElementById("modalTitleText");
+    const modalSave = document.getElementById("modalSave");
+    if (!modalOverlay || !modalBody) return;
+
+    modalBox.classList.remove("confirm");
+    modalTitleText.textContent =
+      mode === "edit" ? "Edit Report" : "Upload New Report";
+    modalSave.textContent = window.i18n
+      ? window.i18n.t("admin.modal.save")
+      : "Save";
+    modalSave.className = "modal-btn primary";
+
+    window.__mknReportModal = { mode, id: id || null, file: null };
+
+    const renderForm = (r) => {
+      const v = r || {};
+      const hasFile = !!v.file_name;
+      modalBody.innerHTML = `
+        <div class="form-group">
+          <label class="form-label">Report Title *</label>
+          <input class="form-input" type="text" id="rTitle" value="${escapeAttr(v.title)}" placeholder="e.g. Monthly Financial — Jan 2026" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Type</label>
+          <select class="form-select" id="rType">
+            <option value="financial" ${v.type === "financial" ? "selected" : ""}>Financial</option>
+            <option value="progress" ${v.type === "progress" ? "selected" : ""}>Progress</option>
+            <option value="audit" ${v.type === "audit" ? "selected" : ""}>Audit</option>
+            <option value="quarterly" ${v.type === "quarterly" ? "selected" : ""}>Quarterly</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Description</label>
+          <textarea class="form-textarea" id="rDesc" rows="3" placeholder="Short description of the report">${escapeHtml(v.description || "")}</textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Report File ${mode === "add" ? "*" : ""} (PDF, DOC, XLS)</label>
+          <div class="file-dropzone ${hasFile ? "has-file" : ""}" data-report-zone>
+            <input type="file" accept=".pdf,.doc,.docx,.xls,.xlsx" data-report-input />
+            ${
+              hasFile
+                ? `<div class="file-preview">
+                  <div class="fp-icon pdf">📕</div>
+                  <div class="fp-info">
+                    <div class="fp-name">${escapeHtml(v.file_name)}</div>
+                    <div class="fp-meta"><span><strong>${formatFileSize(v.file_size)}</strong></span></div>
+                  </div>
+                  <button type="button" class="fp-remove" data-report-remove title="Remove">×</button>
+                </div>`
+                : `<div class="dz-icon">📤</div>
+                 <div class="dz-title">Click to browse or drop file here</div>
+                 <div class="dz-hint">PDF, DOC, XLS · Max 50 MB</div>`
+            }
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Status</label>
+          <div class="form-status-row" id="rStatusRow">
+            <button type="button" class="status-pill published ${v.status === "published" ? "active" : ""}" data-pill="published">Published</button>
+            <button type="button" class="status-pill draft ${v.status === "draft" || !v.status ? "active" : ""}" data-pill="draft">Draft</button>
+            <input type="hidden" id="rStatus" value="${v.status || "draft"}" />
+          </div>
+        </div>
+      `;
+
+      modalBody.querySelectorAll("#rStatusRow .status-pill").forEach((pill) => {
+        pill.addEventListener("click", () => {
+          modalBody
+            .querySelectorAll("#rStatusRow .status-pill")
+            .forEach((p) => p.classList.remove("active"));
+          pill.classList.add("active");
+          document.getElementById("rStatus").value = pill.dataset.pill;
+        });
+      });
+
+      // File upload setup
+      setupReportFileUpload();
+    };
+
+    const setupReportFileUpload = () => {
+      const zone = modalBody.querySelector("[data-report-zone]");
+      const input = modalBody.querySelector("[data-report-input]");
+      const removeBtn = modalBody.querySelector("[data-report-remove]");
+
+      const handleFile = (file) => {
+        if (!file) return;
+        if (window.__mknReportModal) window.__mknReportModal.file = file;
+        const size = formatFileSize(file.size);
+        zone.classList.add("has-file");
+        zone.innerHTML = `
+          <input type="file" accept=".pdf,.doc,.docx,.xls,.xlsx" data-report-input />
+          <div class="file-preview">
+            <div class="fp-icon pdf">📕</div>
+            <div class="fp-info">
+              <div class="fp-name">${escapeHtml(file.name)}</div>
+              <div class="fp-meta"><span><strong>${size}</strong></span></div>
+            </div>
+            <button type="button" class="fp-remove" data-report-remove title="Remove">×</button>
+          </div>
+        `;
+        setupReportFileUpload();
+      };
+
+      if (input) {
+        input.addEventListener("change", () => {
+          if (input.files[0]) handleFile(input.files[0]);
+        });
+      }
+
+      if (zone && input) {
+        ["dragenter", "dragover"].forEach((evt) => {
+          zone.addEventListener(evt, (e) => {
+            e.preventDefault();
+            zone.classList.add("dragover");
+          });
+        });
+        ["dragleave", "drop"].forEach((evt) => {
+          zone.addEventListener(evt, (e) => {
+            e.preventDefault();
+            zone.classList.remove("dragover");
+          });
+        });
+        zone.addEventListener("drop", (e) => {
+          if (e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]);
+        });
+      }
+
+      if (removeBtn) {
+        removeBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          e.preventDefault();
+          if (window.__mknReportModal) window.__mknReportModal.file = null;
+          zone.classList.remove("has-file");
+          zone.innerHTML = `
+            <input type="file" accept=".pdf,.doc,.docx,.xls,.xlsx" data-report-input />
+            <div class="dz-icon">📤</div>
+            <div class="dz-title">Click to browse or drop file here</div>
+            <div class="dz-hint">PDF, DOC, XLS · Max 50 MB</div>
+          `;
+          setupReportFileUpload();
+        });
+      }
+    };
+
+    if (mode === "edit" && id) {
+      window.mknBackend.fetchReports({}).then((res) => {
+        if (res.success) {
+          const item = res.data.find((r) => r.id === id);
+          renderForm(item);
+        }
+      });
+    } else {
+      renderForm(null);
+    }
+
+    modalOverlay.classList.add("show");
+  }
+
+  /* ============================================================
+     ACTION HANDLERS — Mark read / Approve / Delete
      ============================================================ */
 
   // Mark message as read
@@ -533,7 +760,7 @@
     true,
   );
 
-  // Delete contact or pledge
+  // Delete contact/pledge
   document.addEventListener(
     "click",
     async (e) => {
@@ -567,55 +794,51 @@
     true,
   );
 
-  // News: Edit
+  /* ============================================================
+     NEWS ACTIONS
+     ============================================================ */
   document.addEventListener(
     "click",
     (e) => {
       const editBtn = e.target.closest("[data-news-edit]");
-      if (!editBtn) return;
-      e.preventDefault();
-      e.stopPropagation();
-      openNewsModal("edit", editBtn.dataset.newsEdit);
-    },
-    true,
-  );
+      if (editBtn) {
+        e.preventDefault();
+        e.stopPropagation();
+        openNewsModal("edit", editBtn.dataset.newsEdit);
+        return;
+      }
 
-  // News: Delete
-  document.addEventListener(
-    "click",
-    async (e) => {
       const delBtn = e.target.closest("[data-news-delete]");
-      if (!delBtn) return;
-      e.preventDefault();
-      e.stopPropagation();
-      if (!confirm("Delete this news article?")) return;
-      delBtn.disabled = true;
-      const res = await window.mknBackend.deleteNews(delBtn.dataset.newsDelete);
-      if (res.success) {
-        if (window.showToast) window.showToast("✓ Deleted", "success");
-        loadAllData();
-      } else {
-        delBtn.disabled = false;
-        if (window.showToast) window.showToast(res.error || "Failed", "error");
+      if (delBtn) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (!confirm("Delete this news article?")) return;
+        delBtn.disabled = true;
+        window.mknBackend.deleteNews(delBtn.dataset.newsDelete).then((res) => {
+          if (res.success) {
+            if (window.showToast) window.showToast("✓ Deleted", "success");
+            loadAllData();
+          } else {
+            delBtn.disabled = false;
+            if (window.showToast)
+              window.showToast(res.error || "Failed", "error");
+          }
+        });
+        return;
+      }
+
+      const addBtn = e.target.closest('[data-add="news"]');
+      if (addBtn) {
+        e.preventDefault();
+        e.stopPropagation();
+        openNewsModal("add", null);
+        return;
       }
     },
     true,
   );
 
-  // News: Add
-  document.addEventListener(
-    "click",
-    (e) => {
-      const addBtn = e.target.closest('[data-add="news"]');
-      if (!addBtn) return;
-      e.preventDefault();
-      e.stopPropagation();
-      openNewsModal("add", null);
-    },
-    true,
-  );
-
-  // News: Save (intercept modalSave in capture phase)
+  // Save news (capture modalSave click)
   document.addEventListener(
     "click",
     async (e) => {
@@ -639,7 +862,6 @@
       }
 
       saveBtn.disabled = true;
-
       let res;
       if (state.mode === "edit" && state.id) {
         res = await window.mknBackend.updateNews(state.id, {
@@ -660,7 +882,6 @@
           featured,
         });
       }
-
       saveBtn.disabled = false;
 
       if (res.success) {
@@ -670,6 +891,167 @@
         loadAllData();
       } else {
         if (window.showToast) window.showToast(res.error || "Failed", "error");
+      }
+    },
+    true,
+  );
+
+  /* ============================================================
+     REPORTS ACTIONS
+     ============================================================ */
+  document.addEventListener(
+    "click",
+    (e) => {
+      const editBtn = e.target.closest("[data-report-edit]");
+      if (editBtn) {
+        e.preventDefault();
+        e.stopPropagation();
+        openReportModal("edit", editBtn.dataset.reportEdit);
+        return;
+      }
+
+      const delBtn = e.target.closest("[data-report-delete]");
+      if (delBtn) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (!confirm("Delete this report and its file?")) return;
+        delBtn.disabled = true;
+        window.mknBackend
+          .deleteReport(delBtn.dataset.reportDelete)
+          .then((res) => {
+            if (res.success) {
+              if (window.showToast) window.showToast("✓ Deleted", "success");
+              loadAllData();
+            } else {
+              delBtn.disabled = false;
+              if (window.showToast)
+                window.showToast(res.error || "Failed", "error");
+            }
+          });
+        return;
+      }
+
+      const dlBtn = e.target.closest("[data-report-download]");
+      if (dlBtn) {
+        e.preventDefault();
+        e.stopPropagation();
+        const id = dlBtn.dataset.reportDownload;
+        window.mknBackend.fetchReports({}).then((res) => {
+          if (res.success) {
+            const r = res.data.find((x) => x.id === id);
+            if (r && r.file_url) {
+              window.open(r.file_url, "_blank", "noopener");
+              if (window.showToast)
+                window.showToast("📥 Opening " + r.file_name, "success");
+            } else {
+              if (window.showToast)
+                window.showToast("No file attached", "warn");
+            }
+          }
+        });
+        return;
+      }
+
+      const addBtn = e.target.closest('[data-add="reports"]');
+      if (addBtn) {
+        e.preventDefault();
+        e.stopPropagation();
+        openReportModal("add", null);
+        return;
+      }
+    },
+    true,
+  );
+
+  // Save report (capture modalSave click)
+  document.addEventListener(
+    "click",
+    async (e) => {
+      const saveBtn = e.target.closest("#modalSave");
+      if (!saveBtn) return;
+      if (!window.__mknReportModal) return;
+      e.preventDefault();
+      e.stopPropagation();
+
+      const state = window.__mknReportModal;
+      const title = document.getElementById("rTitle")?.value.trim();
+      const type = document.getElementById("rType")?.value;
+      const description = document.getElementById("rDesc")?.value.trim();
+      const status = document.getElementById("rStatus")?.value;
+
+      if (!title) {
+        if (window.showToast) window.showToast("Title is required", "error");
+        return;
+      }
+
+      if (state.mode === "add" && !state.file) {
+        if (window.showToast)
+          window.showToast("Please select a file to upload", "error");
+        return;
+      }
+
+      saveBtn.disabled = true;
+      const originalText = saveBtn.textContent;
+      saveBtn.textContent = "⏳ Uploading...";
+
+      try {
+        let fileData = {};
+
+        if (state.file) {
+          if (window.showToast)
+            window.showToast("📤 Uploading file...", "info");
+          const up = await window.mknBackend.uploadReportFile(state.file);
+          if (!up.success) {
+            if (window.showToast)
+              window.showToast("Upload failed: " + up.error, "error");
+            saveBtn.disabled = false;
+            saveBtn.textContent = originalText;
+            return;
+          }
+          fileData = {
+            file_url: up.file_url,
+            file_path: up.file_path,
+            file_name: up.file_name,
+            file_size: up.file_size,
+          };
+        }
+
+        let res;
+        if (state.mode === "edit" && state.id) {
+          res = await window.mknBackend.updateReport(state.id, {
+            title,
+            type,
+            description,
+            status,
+            ...fileData,
+          });
+        } else {
+          res = await window.mknBackend.createReport({
+            title,
+            type,
+            description,
+            status,
+            ...fileData,
+          });
+        }
+
+        saveBtn.disabled = false;
+        saveBtn.textContent = originalText;
+
+        if (res.success) {
+          if (window.showToast) window.showToast("✓ Report saved", "success");
+          document.getElementById("modalOverlay").classList.remove("show");
+          window.__mknReportModal = null;
+          loadAllData();
+        } else {
+          if (window.showToast)
+            window.showToast(res.error || "Failed", "error");
+        }
+      } catch (err) {
+        saveBtn.disabled = false;
+        saveBtn.textContent = originalText;
+        if (window.showToast)
+          window.showToast("Error: " + err.message, "error");
       }
     },
     true,

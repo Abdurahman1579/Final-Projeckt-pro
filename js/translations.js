@@ -2829,7 +2829,7 @@ Object.assign(translations.en, {
   "leadership.structure.title": "Organizational Structure",
   "leadership.structure.lede":
     "A clear hierarchy ensuring accountability and efficient execution at every level.",
-  "leadership.structure.general": "General Assembly (85 Mosques)",
+  "leadership.structure.general": "General Assembly",
   "leadership.structure.head": "Head of Council",
   "leadership.structure.deputy": "Deputy Head",
   "leadership.structure.exec": "Executive Committee",
@@ -2971,7 +2971,7 @@ Object.assign(translations.am, {
   "leadership.structure.tag": "የአስተዳደር አወቃቀር",
   "leadership.structure.title": "ድርጅታዊ አወቃቀር",
   "leadership.structure.lede": "በየደረጃው ተጠያቂነትንና ቀልጣፋ አፈጻጸምን የሚያረጋግጥ ግልጽ ተዋረድ።",
-  "leadership.structure.general": "ጠቅላላ ጉባኤ (85 መስጊዶች)",
+  "leadership.structure.general": "ጠቅላላ ጉባኤ",
   "leadership.structure.head": "የምክር ቤቱ ኃላፊ",
   "leadership.structure.deputy": "ምክትል ኃላፊ",
   "leadership.structure.exec": "አስፈጻሚ ኮሚቴ",
@@ -3101,7 +3101,7 @@ Object.assign(translations.om, {
   "leadership.structure.title": "Caasaa Dhaabbataa",
   "leadership.structure.lede":
     "Sadarkaa hundatti itti gaafatamummaa fi raawwii saffisaa mirkaneessu.",
-  "leadership.structure.general": "Walgahii Waliigalaa (Masjiidota 85)",
+  "leadership.structure.general": "Walgahii Waliigalaa",
   "leadership.structure.head": "Hoji-guddaa Mana Maree",
   "leadership.structure.deputy": "Itti Aanaa Hoji-guddaa",
   "leadership.structure.exec": "Koree Raawwii",
@@ -3754,7 +3754,7 @@ Object.assign(translations.en, {
   "admin.leadership.role": "Role / Position",
   "admin.leadership.bio": "Short Bio",
   "admin.leadership.initials": "Initials (2 letters)",
-  "admin.leadership.icon": "Icon (emoji)"
+  "admin.leadership.icon": "Icon (emoji)",
 });
 
 Object.assign(translations.am, {
@@ -3770,7 +3770,7 @@ Object.assign(translations.am, {
   "admin.leadership.role": "ሚና / ቦታ",
   "admin.leadership.bio": "አጭር የህይወት ታሪክ",
   "admin.leadership.initials": "የፊደል ምልክት (2 ፊደሎች)",
-  "admin.leadership.icon": "አዶ (emoji)"
+  "admin.leadership.icon": "አዶ (emoji)",
 });
 
 Object.assign(translations.om, {
@@ -3786,7 +3786,7 @@ Object.assign(translations.om, {
   "admin.leadership.role": "Gahee / Iddoo",
   "admin.leadership.bio": "Seenaa Gabaabaa",
   "admin.leadership.initials": "Qubee (2)",
-  "admin.leadership.icon": "Akaakuu (emoji)"
+  "admin.leadership.icon": "Akaakuu (emoji)",
 });
 
 Object.assign(translations.ar, {
@@ -3802,7 +3802,7 @@ Object.assign(translations.ar, {
   "admin.leadership.role": "الدور / المنصب",
   "admin.leadership.bio": "نبذة مختصرة",
   "admin.leadership.initials": "الأحرف الأولى (٢)",
-  "admin.leadership.icon": "أيقونة (إيموجي)"
+  "admin.leadership.icon": "أيقونة (إيموجي)",
 });
 /* ============================================================
    EXTENSION 14 — Public Progress Bar
@@ -3814,7 +3814,7 @@ Object.assign(translations.en, {
   "progress.goal": "Total Goal",
   "progress.donors": "Unique Donors",
   "progress.pledges": "Pledges Received",
-  "progress.cta": "Donate & Be Part of It →"
+  "progress.cta": "Donate & Be Part of It →",
 });
 
 Object.assign(translations.am, {
@@ -3823,7 +3823,7 @@ Object.assign(translations.am, {
   "progress.goal": "ጠቅላላ ግብ",
   "progress.donors": "ልዩ ለጋሾች",
   "progress.pledges": "የተቀበሉ ቃል ኪዳኖች",
-  "progress.cta": "ይለግሱ — ተሳታፊ ይሁኑ →"
+  "progress.cta": "ይለግሱ — ተሳታፊ ይሁኑ →",
 });
 
 Object.assign(translations.om, {
@@ -3832,7 +3832,7 @@ Object.assign(translations.om, {
   "progress.goal": "Kaayyoo Waliigalaa",
   "progress.donors": "Arjoomtoota Addaa",
   "progress.pledges": "Waadaalee Fudhataman",
-  "progress.cta": "Arjoomi — Hirmaataa →"
+  "progress.cta": "Arjoomi — Hirmaataa →",
 });
 
 Object.assign(translations.ar, {
@@ -3841,7 +3841,7 @@ Object.assign(translations.ar, {
   "progress.goal": "الهدف الإجمالي",
   "progress.donors": "متبرعون فريدون",
   "progress.pledges": "التعهدات المستلمة",
-  "progress.cta": "تبرع وكن جزءًا ←"
+  "progress.cta": "تبرع وكن جزءًا ←",
 });
 /* ============================================================
    EXTENSION 14 — Homepage progress card
@@ -3853,7 +3853,7 @@ Object.assign(translations.en, {
   "fund.stat.goal": "Total Goal",
   "fund.stat.donors": "Active Donors",
   "fund.stat.mosques": "Mosques Participating",
-  "hero.cta.donate": "Donate — Be Part of It →"
+  "hero.cta.donate": "Donate — Be Part of It →",
 });
 
 Object.assign(translations.am, {
@@ -3862,7 +3862,7 @@ Object.assign(translations.am, {
   "fund.stat.goal": "ጠቅላላ ግብ",
   "fund.stat.donors": "ንቁ ለጋሾች",
   "fund.stat.mosques": "የተሳተፉ መስጊዶች",
-  "hero.cta.donate": "ይለግሱ — ተሳታፊ ይሁኑ →"
+  "hero.cta.donate": "ይለግሱ — ተሳታፊ ይሁኑ →",
 });
 
 Object.assign(translations.om, {
@@ -3871,7 +3871,7 @@ Object.assign(translations.om, {
   "fund.stat.goal": "Kaayyoo Waliigalaa",
   "fund.stat.donors": "Arjoomtoota Sochii",
   "fund.stat.mosques": "Masjiidota Hirmaatan",
-  "hero.cta.donate": "Arjoomi — Hirmaataa →"
+  "hero.cta.donate": "Arjoomi — Hirmaataa →",
 });
 
 Object.assign(translations.ar, {
@@ -3880,5 +3880,121 @@ Object.assign(translations.ar, {
   "fund.stat.goal": "الهدف الإجمالي",
   "fund.stat.donors": "المتبرعون النشطون",
   "fund.stat.mosques": "المساجد المشاركة",
-  "hero.cta.donate": "تبرع — كن جزءًا من ذلك ←"
+  "hero.cta.donate": "تبرع — كن جزءًا من ذلك ←",
+});
+/* ============================================================
+   EXTENSION 15 — Hero stats: vehicles
+   ============================================================ */
+
+Object.assign(translations.en, {
+  "hero.stat.vehicles": "Vehicles (2 Office + 1 Service)",
+});
+
+Object.assign(translations.am, {
+  "hero.stat.vehicles": "መኪናዎች (2 የቢሮ + 1 የአገልግሎት)",
+});
+
+Object.assign(translations.om, {
+  "hero.stat.vehicles": "Konkolaataa (2 Waajjiraa + 1 Tajaajilaa)",
+});
+
+Object.assign(translations.ar, {
+  "hero.stat.vehicles": "المركبات (2 للمكتب + 1 للخدمة)",
+});
+/* ============================================================
+   EXTENSION 16 — Unique donors label
+   ============================================================ */
+
+Object.assign(translations.en, {
+  "fund.stat.uniqueDonors": "Unique Donors",
+});
+
+Object.assign(translations.am, {
+  "fund.stat.uniqueDonors": "ልዩ ለጋሾች",
+});
+
+Object.assign(translations.om, {
+  "fund.stat.uniqueDonors": "Arjoomtoota Addaa",
+});
+
+Object.assign(translations.ar, {
+  "fund.stat.uniqueDonors": "المتبرعون الفريدون",
+});
+/* ============================================================
+   EXTENSION 17 — News modal close button
+   ============================================================ */
+
+Object.assign(translations.en, {
+  "common.close": "Close",
+});
+
+Object.assign(translations.am, {
+  "common.close": "ዝጋ",
+});
+
+Object.assign(translations.om, {
+  "common.close": "Cufi",
+});
+
+Object.assign(translations.ar, {
+  "common.close": "إغلاق",
+});
+/* ============================================================
+   EXTENSION 18 — Leadership structure level labels
+   ============================================================ */
+
+Object.assign(translations.en, {
+  "leadership.structure.level1": "Level 1 — General Assembly",
+  "leadership.structure.level2": "Level 2 — Council Leadership",
+  "leadership.structure.level3": "Level 3 — Executive Sectors",
+  "leadership.structure.level4": "Level 4 — Additional Sectors",
+});
+
+Object.assign(translations.am, {
+  "leadership.structure.level1": "ደረጃ 1 — ጠቅላላ ጉባኤ",
+  "leadership.structure.level2": "ደረጃ 2 — የምክር ቤቱ አመራር",
+  "leadership.structure.level3": "ደረጃ 3",
+  "leadership.structure.level4": "ደረጃ 4",
+});
+
+Object.assign(translations.om, {
+  "leadership.structure.level1": "Sadarkaa 1 — Walgahii Waliigalaa",
+  "leadership.structure.level2": "Sadarkaa 2 — Hoggansa Mana Maree",
+  "leadership.structure.level3": "Sadarkaa 3",
+  "leadership.structure.level4": "Sadarkaa 4 ",
+});
+
+Object.assign(translations.ar, {
+  "leadership.structure.level1": "المستوى 1 — الجمعية العامة",
+  "leadership.structure.level2": "المستوى 2 — قيادة المجلس",
+  "leadership.structure.level3": "المستوى 3 — القطاعات التنفيذية",
+  "leadership.structure.level4": "المستوى 4",
+});
+/* ============================================================
+   EXTENSION 21 — Reports page: no file message
+   ============================================================ */
+
+Object.assign(translations.en, {
+  "reports.noFile": "No file available",
+  "reports.empty.title": "No Reports Yet",
+  "reports.empty.desc":
+    "Reports will appear here once uploaded by the Council.",
+});
+
+Object.assign(translations.am, {
+  "reports.noFile": "ፋይል የለም",
+  "reports.empty.title": "እስካሁን ሪፖርት የለም",
+  "reports.empty.desc": "ሪፖርቶች በምክር ቤቱ ሲሰቀሉ እዚህ ይታያሉ።",
+});
+
+Object.assign(translations.om, {
+  "reports.noFile": "Faayilii hin jiru",
+  "reports.empty.title": "Amma Gabaasni Hin Jiru",
+  "reports.empty.desc": "Gabaasni yeroo ol kaayamu asitti mul'ata.",
+});
+
+Object.assign(translations.ar, {
+  "reports.noFile": "لا يوجد ملف",
+  "reports.empty.title": "لا توجد تقارير بعد",
+  "reports.empty.desc": "ستظهر التقارير هنا بمجرد رفعها من قبل المجلس.",
 });

@@ -48,23 +48,23 @@
         <div class="hero-stats">
           <div class="stat">
             <div class="stat-num">
-              190<small> <span data-i18n="unit.million"></span></small>
+              <span class="counter" data-target="190" data-start="0">0</span
+              ><small> <span data-i18n="unit.million"></span></small>
             </div>
             <div class="stat-label" data-i18n="hero.stat.budget"></div>
           </div>
           <div class="stat">
-            <div class="stat-num">85</div>
-            <div class="stat-label" data-i18n="hero.stat.mosques"></div>
-          </div>
-          <div class="stat">
             <div class="stat-num">
-              1,600 <small><span data-i18n="unit.sqm"></span></small>
+              <span class="counter" data-target="1600" data-start="0">0</span
+              ><small> <span data-i18n="unit.sqm"></span></small>
             </div>
             <div class="stat-label" data-i18n="hero.stat.area"></div>
           </div>
           <div class="stat">
-            <div class="stat-num">3</div>
-            <div class="stat-label" data-i18n="hero.stat.districts"></div>
+            <div class="stat-num">
+              <span class="counter" data-target="3" data-start="0">0</span>
+            </div>
+            <div class="stat-label" data-i18n="hero.stat.vehicles"></div>
           </div>
         </div>
       </div>
@@ -79,80 +79,56 @@
       "
     >
       <div class="container" style="max-width: 720px">
-        <div class="progress-card reveal">
-          <!-- Header -->
-          <div class="pc-head">
-            <span class="dot"></span>
-            <span data-i18n="fund.progress.title"></span>
-          </div>
+            <div class="progress-card reveal">
+      <!-- Header -->
+      <div class="pc-head">
+        <span class="dot"></span>
+        <span data-i18n="fund.progress.title"></span>
+      </div>
 
-          <!-- Big percentage -->
-          <div class="pc-percent">
-            <span
-              class="counter"
+      <!-- Big percentage -->
+      <div class="pc-percent">
+        <span class="counter"
               data-target="0"
               data-decimals="1"
               data-suffix="%"
-              data-start="0"
-              >0.0%</span
-            >
-          </div>
+              data-start="0">0.0%</span>
+      </div>
 
-          <!-- Progress bar -->
-          <div class="progress-bar">
-            <div class="fill" style="width: 0%"></div>
-          </div>
+      <!-- Progress bar -->
+      <div class="progress-bar">
+        <div class="fill" style="width: 0%"></div>
+      </div>
 
-          <!-- Stats row 1: Raised + Goal -->
-          <div class="pc-stats">
-            <div class="pc-stat green">
-              <span class="pc-lbl" data-i18n="fund.stat.raised"></span>
-              <span
-                class="counter pc-num"
-                data-target="0"
-                data-suffix=" ብር"
-                data-start="0"
-                >0 ብር</span
-              >
-            </div>
-            <div class="pc-stat gold">
-              <span class="pc-lbl" data-i18n="fund.stat.goal"></span>
-              <span
-                class="counter pc-num"
+      <!-- Stats: Goal → Raised → Donors (3 in one row) -->
+      <div class="pc-stats pc-stats-3">
+        <div class="pc-stat gold">
+          <span class="pc-lbl" data-i18n="fund.stat.goal"></span>
+          <span class="counter pc-num"
                 data-target="190000000"
                 data-suffix=" ብር"
-                data-start="0"
-                >0 ብር</span
-              >
-            </div>
-          </div>
-
-          <!-- Stats row 2: Donors + Mosques -->
-          <div class="pc-stats">
-            <div class="pc-stat">
-              <span class="counter pc-num-lg" data-target="0" data-start="0"
-                >0</span
-              >
-              <span class="pc-lbl" data-i18n="fund.stat.donors"></span>
-            </div>
-            <div class="pc-stat">
-              <span class="counter pc-num-lg" data-target="85" data-start="0"
-                >0</span
-              >
-              <span class="pc-lbl" data-i18n="fund.stat.mosques"></span>
-            </div>
-          </div>
-
-          <!-- CTA -->
-          <a
-            href="donate.html"
-            class="btn btn-primary pc-cta"
-            data-i18n="hero.cta.donate"
-          >
-            ይለግሱ — ተሳታፊ ይሁኑ →
-          </a>
+                data-start="0">0 ብር</span>
+        </div>
+        <div class="pc-stat green">
+          <span class="pc-lbl" data-i18n="fund.stat.raised"></span>
+          <span class="counter pc-num"
+                data-target="0"
+                data-suffix=" ብር"
+                data-start="0">0 ብር</span>
+        </div>
+        <div class="pc-stat">
+          <span class="pc-lbl" data-i18n="fund.stat.uniqueDonors"></span>
+          <span class="counter pc-num"
+                data-target="0"
+                data-start="0">0</span>
         </div>
       </div>
+
+      <!-- CTA -->
+      <a href="donate.html" class="btn btn-primary pc-cta" data-i18n="hero.cta.donate">
+        ይለግሱ — ተሳታፊ ይሁኑ →
+      </a>
+    </div>
     </section>
 
     <!-- ============ ABOUT ============ -->

@@ -3342,3 +3342,579 @@ html, body {
     font-size: 22px;
   }
 }
+/* ============================================================
+   HERO STATS — Counter styling
+   ============================================================ */
+
+/* Ensure counter numbers align nicely */
+.hero-stats .stat-num .counter {
+  font-variant-numeric: tabular-nums;
+  display: inline-block;
+  min-width: 1ch;
+}
+
+/* On desktop, 3 stats fit nicely */
+@media (min-width: 861px) {
+  .hero-stats {
+    grid-template-columns: repeat(3, 1fr) !important;
+    max-width: 750px !important;
+  }
+}
+
+/* On tablet, still 3 but smaller */
+@media (max-width: 860px) and (min-width: 601px) {
+  .hero-stats {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 12px !important;
+  }
+
+  .hero-stats .stat-num {
+    font-size: 22px !important;
+  }
+}
+
+/* On mobile, 3 columns but compact */
+@media (max-width: 600px) {
+  .hero-stats {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 8px !important;
+  }
+
+  .hero-stats .stat {
+    padding: 16px 8px !important;
+  }
+
+  .hero-stats .stat-num {
+    font-size: 18px !important;
+  }
+
+  .hero-stats .stat-num small {
+    font-size: 11px !important;
+  }
+
+  .hero-stats .stat-label {
+    font-size: 10.5px !important;
+    line-height: 1.3;
+  }
+}
+
+@media (max-width: 400px) {
+  .hero-stats .stat-num {
+    font-size: 16px !important;
+  }
+
+  .hero-stats .stat-label {
+    font-size: 10px !important;
+  }
+}
+/* ============================================================
+   PROGRESS CARD — 3-column stats
+   ============================================================ */
+
+.pc-stats.pc-stats-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.pc-stats-3 .pc-stat {
+  padding: 14px 12px;
+  gap: 4px;
+}
+
+.pc-stats-3 .pc-num {
+  font-size: 16px;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  word-break: break-word;
+}
+
+.pc-stats-3 .pc-lbl {
+  font-size: 11px;
+  line-height: 1.3;
+}
+
+/* Mobile — keep 3 columns but compact */
+@media (max-width: 640px) {
+  .pc-stats.pc-stats-3 {
+    gap: 8px;
+  }
+
+  .pc-stats-3 .pc-stat {
+    padding: 12px 8px;
+    border-radius: 12px;
+  }
+
+  .pc-stats-3 .pc-num {
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .pc-stats-3 .pc-lbl {
+    font-size: 10px;
+    line-height: 1.2;
+  }
+}
+
+@media (max-width: 400px) {
+  .pc-stats-3 .pc-num {
+    font-size: 11.5px;
+  }
+
+  .pc-stats-3 .pc-lbl {
+    font-size: 9.5px;
+  }
+
+  .pc-stats-3 .pc-stat {
+    padding: 10px 6px;
+  }
+}
+/* ============================================================
+   NEWS DETAIL MODAL
+   ============================================================ */
+.news-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(13, 59, 46, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 2000;
+  display: none;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 30px 20px;
+  overflow-y: auto;
+  animation: newsModalFadeIn 0.25s ease;
+}
+
+.news-modal-overlay.show {
+  display: flex;
+}
+
+@keyframes newsModalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.news-modal {
+  background: var(--white);
+  border-radius: 20px;
+  max-width: 780px;
+  width: 100%;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  margin: auto 0;
+  animation: newsModalSlideUp 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes newsModalSlideUp {
+  from { opacity: 0; transform: translateY(30px) scale(0.96); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Head */
+.news-modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 26px 0;
+  position: relative;
+}
+
+.news-modal-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 6px;
+  background: var(--gd100);
+  color: var(--gd600);
+}
+
+.news-modal-badge.cat-progress {
+  background: #e8f4ff;
+  color: #1a5fa8;
+}
+
+.news-modal-badge.cat-fundraising {
+  background: var(--gd100);
+  color: var(--gd600);
+}
+
+.news-modal-badge.cat-community {
+  background: var(--g50);
+  color: var(--g700);
+}
+
+.news-modal-badge.cat-announcement {
+  background: #f3e8ff;
+  color: #6a2c9a;
+}
+
+.news-modal-close {
+  background: none;
+  border: 1px solid rgba(13, 59, 46, 0.15);
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: var(--ink500);
+  font-size: 22px;
+  display: grid;
+  place-items: center;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.news-modal-close:hover {
+  border-color: #e74c3c;
+  color: #e74c3c;
+  background: #fdecec;
+  transform: rotate(90deg);
+}
+
+/* Visual banner */
+.news-modal-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 140px;
+  background: linear-gradient(135deg, var(--g700), var(--g500));
+  margin: 16px 26px 0;
+  border-radius: 14px;
+  color: white;
+  font-size: 56px;
+  position: relative;
+  overflow: hidden;
+}
+
+.news-modal-visual::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 30% 30%, rgba(255,255,255,.15), transparent 40%),
+    radial-gradient(circle at 70% 70%, rgba(212,160,23,.3), transparent 45%);
+}
+
+.news-modal-visual span { position: relative; z-index: 1; }
+
+/* Body */
+.news-modal-body {
+  padding: 24px 26px 8px;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.news-modal-title {
+  font-size: clamp(20px, 3vw, 28px);
+  font-weight: 800;
+  color: var(--g900);
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+
+.news-modal-meta {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: var(--ink500);
+  padding-bottom: 16px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid rgba(13, 59, 46, 0.08);
+}
+
+.news-modal-meta strong {
+  color: var(--g700);
+  font-weight: 600;
+}
+
+.news-modal-content {
+  font-size: 15.5px;
+  line-height: 1.8;
+  color: var(--ink700);
+}
+
+.news-modal-content p {
+  margin-bottom: 16px;
+}
+
+.news-modal-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* Foot */
+.news-modal-foot {
+  padding: 16px 26px 22px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  background: #fafcfb;
+  border-top: 1px solid rgba(13, 59, 46, 0.06);
+}
+
+/* Grid read-more button */
+.news-card .read-more {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--g700);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: gap 0.2s, color 0.2s;
+  text-align: left;
+  margin-top: auto;
+}
+
+.news-card .read-more:hover {
+  gap: 10px;
+  color: var(--gd600);
+}
+
+.news-card {
+  cursor: pointer;
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .news-modal-overlay {
+    padding: 12px;
+    align-items: flex-start;
+  }
+
+  .news-modal {
+    border-radius: 16px;
+    margin-top: 12px;
+  }
+
+  .news-modal-head {
+    padding: 16px 18px 0;
+  }
+
+  .news-modal-visual {
+    height: 100px;
+    margin: 12px 18px 0;
+    font-size: 40px;
+    border-radius: 12px;
+  }
+
+  .news-modal-body {
+    padding: 20px 18px 4px;
+    max-height: 65vh;
+  }
+
+  .news-modal-title {
+    font-size: 19px;
+  }
+
+  .news-modal-content {
+    font-size: 14.5px;
+  }
+
+  .news-modal-foot {
+    padding: 12px 18px 16px;
+  }
+}
+/* ============================================================
+   LEADERSHIP STRUCTURE DIAGRAM — improved
+   ============================================================ */
+
+/* Container */
+.structure-box {
+  background: linear-gradient(135deg, var(--g50), var(--white));
+  border: 1px solid var(--g100);
+  border-radius: var(--r);
+  padding: 40px 30px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.structure-box::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(13, 59, 46, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(13, 59, 46, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+}
+
+/* Each level wrapper */
+.structure-level {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Level label — small text above each row */
+.structure-level-label {
+  display: inline-block;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gd600);
+  background: var(--white);
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--gd400);
+  box-shadow: var(--sh-sm);
+}
+
+/* Row of nodes */
+.structure-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+
+/* Node */
+.structure-node {
+  background: var(--white);
+  border: 2px solid var(--g100);
+  border-radius: 12px;
+  padding: 12px 20px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--g900);
+  box-shadow: var(--sh-sm);
+  transition: all 0.25s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+.structure-node:hover {
+  border-color: var(--g500);
+  transform: translateY(-2px);
+  box-shadow: var(--sh);
+}
+
+/* Top node (General Assembly) — extra prominent */
+.structure-node.top {
+  background: linear-gradient(135deg, var(--g700), var(--g500));
+  color: var(--white);
+  border-color: transparent;
+  font-size: 14.5px;
+  padding: 14px 26px;
+  box-shadow: 0 10px 24px rgba(26, 122, 92, 0.3);
+}
+
+.structure-node.top:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgba(26, 122, 92, 0.4);
+}
+
+.structure-node .s-icon {
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* ---- Vertical connector arrow ---- */
+.structure-connector {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--g500);
+  position: relative;
+  z-index: 1;
+  padding: 8px 0;
+}
+
+.structure-connector svg {
+  display: block;
+  animation: connectorFlow 2s ease-in-out infinite;
+}
+
+@keyframes connectorFlow {
+  0%, 100% {
+    opacity: 0.7;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(2px);
+  }
+}
+
+/* ============================================================
+   MOBILE — Stack vertically, keep connectors
+   ============================================================ */
+@media (max-width: 768px) {
+  .structure-box {
+    padding: 28px 16px;
+  }
+
+  .structure-node {
+    width: 100%;
+    max-width: 320px;
+    justify-content: center;
+    white-space: normal;
+    text-align: center;
+    font-size: 12.5px;
+    padding: 11px 14px;
+  }
+
+  .structure-node.top {
+    font-size: 13.5px;
+    padding: 13px 20px;
+  }
+
+  .structure-row {
+    gap: 10px;
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .structure-level {
+    width: 100%;
+    gap: 10px;
+  }
+
+  .structure-connector {
+    padding: 4px 0;
+  }
+
+  .structure-connector svg {
+    transform: scale(0.85);
+  }
+
+  .structure-level-label {
+    font-size: 10px;
+    padding: 3px 10px;
+  }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+  .structure-node {
+    font-size: 11.5px;
+    padding: 10px 12px;
+    max-width: 280px;
+  }
+
+  .structure-node.top {
+    font-size: 12.5px;
+  }
+}

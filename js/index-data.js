@@ -1,7 +1,9 @@
 /* ============================================================
    HOMEPAGE DATA — Load stats from Supabase
    ------------------------------------------------------------
-   Updates the animated counters with real numbers from Supabase
+   - Raised total (sum of pledges)
+   - Goal (190M)
+   - Unique donors count
    ============================================================ */
 
 (function () {
@@ -18,13 +20,8 @@
       console.warn("[Index Data] mknBackend not available");
       return;
     }
-    if (!window.mknCounter) {
-      console.warn("[Index Data] mknCounter not available");
-      return;
-    }
 
     try {
-      // Fetch pledges to calculate real totals
       const res = await window.mknBackend.fetchPledges({});
       if (!res.success || !res.data) {
         console.warn("[Index Data] Failed to fetch pledges:", res.error);
@@ -33,7 +30,7 @@
 
       const pledges = res.data;
 
-      // Calculate totals
+      // ---- Calculate totals ----
       const totalRaised = pledges.reduce(
         (sum, p) => sum + (Number(p.amount) || 0),
         0,
@@ -41,14 +38,13 @@
       const totalGoal = 190000000;
       const percent = totalGoal > 0 ? (totalRaised / totalGoal) * 100 : 0;
 
-      // Count unique donors (by phone)
-      const uniqueDonors = new Set(pledges.map((p) => p.phone).filter(Boolean))
-        .size;
-      const mosqueCount = 85; // Static
+      // Unique donors = unique phone numbers
+      const uniqueDonors = new Set(
+        pledges.map((p) => (p.phone || "").trim()).filter(Boolean),
+      ).size;
 
-      // ---- Update counters ----
-      // Percent
-      const percentEl = document.querySelector('.counter[data-suffix="%"]');
+      // ---- Update percentage ----
+      const percentEl = document.querySelector(".pc-percent .counter");
       if (percentEl) {
         percentEl.dataset.target = percent.toFixed(1);
         percentEl.dataset.decimals = "1";
@@ -56,7 +52,16 @@
         percentEl.textContent = "0.0%";
       }
 
-      // Total raised
+      // ---- Update goal (static, but ensure it's set) ----
+      const goalEl = document.querySelector(".pc-stat.gold .counter");
+      if (goalEl) {
+        goalEl.dataset.target = String(totalGoal);
+        goalEl.dataset.suffix = " ብር";
+        goalEl.dataset.animated = "false";
+        goalEl.textContent = "0 ብር";
+      }
+
+      // ---- Update raised ----
       const raisedEl = document.querySelector(".pc-stat.green .counter");
       if (raisedEl) {
         raisedEl.dataset.target = String(totalRaised);
@@ -65,24 +70,18 @@
         raisedEl.textContent = "0 ብር";
       }
 
-      // Total donors
-      const donorEls = document.querySelectorAll(
-        ".pc-stat:not(.green):not(.gold) .counter",
+      // ---- Update unique donors ----
+      // Third .pc-stat (not .green, not .gold)
+      const donorEl = document.querySelector(
+        ".pc-stats .pc-stat:not(.green):not(.gold) .counter",
       );
-      if (donorEls[0]) {
-        donorEls[0].dataset.target = String(uniqueDonors);
-        donorEls[0].dataset.animated = "false";
-        donorEls[0].textContent = "0";
+      if (donorEl) {
+        donorEl.dataset.target = String(uniqueDonors);
+        donorEl.dataset.animated = "false";
+        donorEl.textContent = "0";
       }
 
-      // Mosque count (static 85)
-      if (donorEls[1]) {
-        donorEls[1].dataset.target = String(mosqueCount);
-        donorEls[1].dataset.animated = "false";
-        donorEls[1].textContent = "0";
-      }
-
-      // ---- Update progress bar width ----
+      // ---- Update progress bar ----
       const fill = document.querySelector(".progress-card .progress-bar .fill");
       if (fill) {
         setTimeout(() => {
@@ -91,7 +90,7 @@
         }, 100);
       }
 
-      // ---- Re-run animations ----
+      // ---- Re-run counter animations ----
       setTimeout(() => {
         if (window.mknCounter) {
           window.mknCounter.setup(".counter");
@@ -100,9 +99,10 @@
 
       console.log("[Index Data] ✓ Stats updated:", {
         raised: totalRaised,
-        percent: percent.toFixed(1) + "%",
-        donors: uniqueDonors,
-        pledges: pledges.length,
+        goal: totalGoal,
+        percent: percent.toFixed(2) + "%",
+        uniqueDonors: uniqueDonors,
+        pledgesCount: pledges.length,
       });
     } catch (err) {
       console.error("[Index Data] Error:", err);

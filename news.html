@@ -33,30 +33,46 @@
       </div>
     </header>
 
-    <!-- ============ FEATURED NEWS ============ -->
+    <!-- ============ NEWS LIST ============ -->
     <section>
       <div class="container">
-        <div class="news-featured reveal">
-          <div class="visual"><span>🏗️</span></div>
+        <div
+          id="newsLoading"
+          style="text-align: center; padding: 40px 0; color: var(--ink500)"
+        >
+          <div style="font-size: 40px; margin-bottom: 10px">⏳</div>
+          <p>Loading news...</p>
+        </div>
+
+        <!-- Featured -->
+        <div
+          class="news-featured reveal"
+          id="featuredBox"
+          style="display: none"
+        >
+          <div class="visual"><span id="featuredIcon">🏗️</span></div>
           <div class="content">
-            <span class="badge" data-i18n="news.featured.badge"></span>
-            <h2 data-i18n="news.featured.title"></h2>
-            <p data-i18n="news.featured.excerpt"></p>
+            <span class="badge" id="featuredBadge">Featured</span>
+            <h2 id="featuredTitle">—</h2>
+            <p id="featuredExcerpt">—</p>
             <div class="meta">
-              <span>📅 <strong data-i18n="news.featured.date"></strong></span>
-              <span>✍️ <strong data-i18n="news.featured.author"></strong></span>
+              <span>📅 <strong id="featuredDate">—</strong></span>
+              <span
+                >✍️ <strong id="featuredAuthor">Council Office</strong></span
+              >
             </div>
-            <a
-              href="#"
+            <button
+              type="button"
               class="btn btn-primary"
               style="margin-top: 20px; align-self: flex-start"
+              id="featuredReadBtn"
               data-i18n="common.readMore"
-            ></a>
+            ></button>
           </div>
         </div>
 
-        <!-- Filter chips -->
-        <div class="news-filter reveal">
+        <!-- Filters -->
+        <div class="news-filter reveal" id="newsFilter" style="display: none">
           <button
             class="filter-chip active"
             data-filter="all"
@@ -84,20 +100,10 @@
           ></button>
         </div>
 
-        <!-- News grid -->
-        <div class="news-grid" id="newsGrid">
-          <!-- Loaded dynamically from Supabase -->
-          <article class="news-card reveal" data-cat="loading">
-            <div class="thumb"><span class="cat">Loading...</span>⏳</div>
-            <div class="body">
-              <div class="date">Please wait</div>
-              <h3>Loading news from server...</h3>
-              <p>Please wait a moment.</p>
-            </div>
-          </article>
-        </div>
+        <!-- Grid -->
+        <div class="news-grid" id="newsGrid"></div>
 
-        <!-- Empty state -->
+        <!-- Empty -->
         <div class="empty-state" id="newsEmpty" style="display: none">
           <div class="icon">📭</div>
           <h3 data-i18n="news.empty.title"></h3>
@@ -132,6 +138,40 @@
       </div>
     </section>
 
+    <!-- ============ NEWS DETAIL MODAL ============ -->
+    <div class="news-modal-overlay" id="newsModal">
+      <div class="news-modal">
+        <div class="news-modal-head">
+          <span class="news-modal-badge" id="nmBadge">Announcement</span>
+          <button class="news-modal-close" id="nmClose" aria-label="Close">
+            ×
+          </button>
+        </div>
+        <div class="news-modal-visual" id="nmVisual">
+          <span id="nmIcon">📢</span>
+        </div>
+        <div class="news-modal-body">
+          <h2 class="news-modal-title" id="nmTitle">Title</h2>
+          <div class="news-modal-meta">
+            <span>📅 <strong id="nmDate">—</strong></span>
+            <span>✍️ <strong id="nmAuthor">Council Office</strong></span>
+          </div>
+          <div class="news-modal-content" id="nmContent">
+            <p>Content...</p>
+          </div>
+        </div>
+        <div class="news-modal-foot">
+          <button
+            class="btn btn-ghost"
+            id="nmCloseBtn"
+            data-i18n="common.close"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+
     <div id="site-footer"></div>
 
     <!-- ============ SCRIPTS ============ -->
@@ -143,9 +183,18 @@
     <script src="js/supabase.js"></script>
     <script>
       /* ============================================================
-     NEWS PAGE — Load from Supabase
+     NEWS PAGE — Load from Supabase + Detail Modal
      ============================================================ */
 
+      const DEBUG = true;
+      function log(...args) {
+        if (DEBUG) console.log("[News]", ...args);
+      }
+
+      let allNews = []; // Store all fetched articles for modal lookup
+      let featuredId = null; // Track current featured
+
+      /* ---- Helpers ---- */
       function categoryIcon(cat) {
         const map = {
           announcement: "📢",
@@ -158,28 +207,32 @@
 
       function formatDate(iso) {
         if (!iso) return "";
-        const d = new Date(iso);
-        const months = [
-          "Jan",
-          "Feb",
-          "Mar",
-          "Apr",
-          "May",
-          "Jun",
-          "Jul",
-          "Aug",
-          "Sep",
-          "Oct",
-          "Nov",
-          "Dec",
-        ];
-        return (
-          months[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear()
-        );
+        try {
+          const d = new Date(iso);
+          const months = [
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec",
+          ];
+          return (
+            months[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear()
+          );
+        } catch (e) {
+          return "";
+        }
       }
 
       function escapeHtml(s) {
-        if (!s) return "";
+        if (s === null || s === undefined) return "";
         return String(s).replace(
           /[&<>"']/g,
           (c) =>
@@ -193,9 +246,81 @@
         );
       }
 
+      /* ============================================================
+     MODAL — Open / Close
+     ============================================================ */
+      function openNewsModal(id) {
+        const article = allNews.find((n) => n.id === id);
+        if (!article) {
+          log("Article not found:", id);
+          return;
+        }
+
+        // Fill modal
+        document.getElementById("nmBadge").textContent =
+          article.category || "Announcement";
+        document.getElementById("nmIcon").textContent = categoryIcon(
+          article.category,
+        );
+        document.getElementById("nmTitle").textContent =
+          article.title || "Untitled";
+        document.getElementById("nmDate").textContent = formatDate(
+          article.created_at,
+        );
+        document.getElementById("nmAuthor").textContent =
+          article.author || "Council Office";
+
+        // Content — render with paragraphs
+        const content =
+          article.content || article.excerpt || "No content available.";
+        const paragraphs = content.split(/\n\n+/).filter(Boolean);
+        document.getElementById("nmContent").innerHTML = paragraphs
+          .map((p) => `<p>${escapeHtml(p).replace(/\n/g, "<br/>")}</p>`)
+          .join("");
+
+        // Badge color by category
+        const badge = document.getElementById("nmBadge");
+        badge.className = "news-modal-badge";
+        badge.classList.add("cat-" + (article.category || "announcement"));
+
+        // Open
+        const modal = document.getElementById("newsModal");
+        modal.classList.add("show");
+        document.body.style.overflow = "hidden";
+
+        // Scroll modal to top
+        setTimeout(() => {
+          const body = modal.querySelector(".news-modal-body");
+          if (body) body.scrollTop = 0;
+        }, 50);
+
+        log("Opened modal:", article.title);
+      }
+
+      function closeNewsModal() {
+        document.getElementById("newsModal").classList.remove("show");
+        document.body.style.overflow = "";
+      }
+
+      // Close handlers
+      document
+        .getElementById("nmClose")
+        ?.addEventListener("click", closeNewsModal);
+      document
+        .getElementById("nmCloseBtn")
+        ?.addEventListener("click", closeNewsModal);
+      document.getElementById("newsModal")?.addEventListener("click", (e) => {
+        if (e.target.id === "newsModal") closeNewsModal();
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeNewsModal();
+      });
+
+      /* ============================================================
+     FILTERS
+     ============================================================ */
       function setupFilters() {
         document.querySelectorAll(".filter-chip").forEach((chip) => {
-          // Remove existing listeners by cloning
           const clone = chip.cloneNode(true);
           chip.parentNode.replaceChild(clone, chip);
         });
@@ -220,110 +345,171 @@
         });
       }
 
-      async function loadNews() {
-        if (!window.mknBackend) {
-          console.warn("[News] mknBackend not available");
-          return;
-        }
+      /* ============================================================
+     RENDER
+     ============================================================ */
+      function renderFeatured(n) {
+        const box = document.getElementById("featuredBox");
+        if (!box || !n) return;
 
-        const res = await window.mknBackend.fetchNews({ status: "published" });
-        if (!res.success || !res.data || res.data.length === 0) {
-          console.warn("[News] No news found:", res.error);
-          const grid = document.getElementById("newsGrid");
-          if (grid) grid.innerHTML = "";
-          document.getElementById("newsEmpty").style.display = "block";
-          return;
-        }
+        featuredId = n.id;
 
-        const news = res.data;
-        const featured = news.find((n) => n.featured) || news[0];
-        const others = news.filter((n) => n.id !== featured.id);
-
-        // ---- Featured ----
-        const featuredBox = document.querySelector(".news-featured");
-        if (featuredBox && featured) {
-          const badge = featuredBox.querySelector(".badge");
-          const title = featuredBox.querySelector("h2");
-          const excerpt = featuredBox.querySelector("p");
-          const dateEl = featuredBox.querySelector(".meta strong");
-          const icon = featuredBox.querySelector(".visual span");
-
-          if (badge) {
-            badge.textContent = featured.category || "Featured";
-            badge.removeAttribute("data-i18n");
-          }
-          if (title) {
-            title.textContent = featured.title;
-            title.removeAttribute("data-i18n");
-          }
-          if (excerpt) {
-            excerpt.textContent = featured.excerpt || "";
-            excerpt.removeAttribute("data-i18n");
-          }
-          if (dateEl) {
-            dateEl.textContent = formatDate(featured.created_at);
-            dateEl.removeAttribute("data-i18n");
-          }
-          if (icon) icon.textContent = categoryIcon(featured.category);
-        }
-
-        // ---- Grid ----
-        const grid = document.getElementById("newsGrid");
-        if (grid) {
-          if (others.length === 0) {
-            grid.innerHTML = "";
-            document.getElementById("newsEmpty").style.display = "block";
-          } else {
-            grid.innerHTML = others
-              .map(
-                (n) => `
-          <article class="news-card reveal visible" data-cat="${escapeHtml(n.category || "announcement")}">
-            <div class="thumb">
-              <span class="cat">${escapeHtml(n.category || "News")}</span>
-              ${categoryIcon(n.category)}
-            </div>
-            <div class="body">
-              <div class="date">${formatDate(n.created_at)}</div>
-              <h3>${escapeHtml(n.title)}</h3>
-              <p>${escapeHtml(n.excerpt || "")}</p>
-              <a href="#" class="read-more" data-news-id="${n.id}">
-                <span data-i18n="common.readMore"></span> →
-              </a>
-            </div>
-          </article>
-        `,
-              )
-              .join("");
-            document.getElementById("newsEmpty").style.display = "none";
-
-            // Re-apply translations
-            if (window.i18n && window.i18n.applyTranslations) {
-              window.i18n.applyTranslations();
-            }
-          }
-        }
-
-        // Re-setup filters
-        setupFilters();
-
-        console.log("[News] ✓ Loaded", news.length, "articles");
-      }
-
-      // Load on ready
-      if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", () =>
-          setTimeout(loadNews, 300),
+        document.getElementById("featuredIcon").textContent = categoryIcon(
+          n.category,
         );
-      } else {
-        setTimeout(loadNews, 300);
+        document.getElementById("featuredBadge").textContent =
+          n.category || "Featured";
+        document.getElementById("featuredTitle").textContent =
+          n.title || "Untitled";
+        document.getElementById("featuredExcerpt").textContent =
+          n.excerpt || "";
+        document.getElementById("featuredDate").textContent = formatDate(
+          n.created_at,
+        );
+        document.getElementById("featuredAuthor").textContent =
+          n.author || "Council Office";
+
+        // Read more button → open modal
+        const btn = document.getElementById("featuredReadBtn");
+        if (btn) {
+          btn.onclick = () => openNewsModal(n.id);
+        }
+
+        box.style.display = "grid";
       }
 
-      // Re-setup filters on initial load (for hardcoded chips)
-      setTimeout(setupFilters, 400);
+      function renderGrid(articles) {
+        const grid = document.getElementById("newsGrid");
+        const empty = document.getElementById("newsEmpty");
+        if (!grid) return;
+
+        if (!articles || articles.length === 0) {
+          grid.innerHTML = "";
+          grid.style.display = "none";
+          if (empty) empty.style.display = "block";
+          return;
+        }
+
+        grid.style.display = "grid";
+        if (empty) empty.style.display = "none";
+
+        grid.innerHTML = articles
+          .map(
+            (n) => `
+      <article class="news-card reveal visible" data-cat="${escapeHtml(n.category || "announcement")}" data-news-id="${n.id}">
+        <div class="thumb">
+          <span class="cat">${escapeHtml(n.category || "News")}</span>
+          ${categoryIcon(n.category)}
+        </div>
+        <div class="body">
+          <div class="date">${formatDate(n.created_at)}</div>
+          <h3>${escapeHtml(n.title)}</h3>
+          <p>${escapeHtml(n.excerpt || "")}</p>
+          <button type="button" class="read-more" data-open-news="${n.id}">
+            <span data-i18n="common.readMore"></span> →
+          </button>
+        </div>
+      </article>
+    `,
+          )
+          .join("");
+
+        // Attach click handlers on read-more buttons
+        grid.querySelectorAll("[data-open-news]").forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            openNewsModal(btn.dataset.openNews);
+          });
+        });
+
+        // Also allow clicking the whole card
+        grid.querySelectorAll(".news-card").forEach((card) => {
+          card.addEventListener("click", (e) => {
+            if (e.target.closest("[data-open-news]")) return; // already handled
+            openNewsModal(card.dataset.newsId);
+          });
+        });
+
+        if (window.i18n && window.i18n.applyTranslations) {
+          window.i18n.applyTranslations();
+        }
+
+        setupFilters();
+      }
 
       /* ============================================================
-     NEWSLETTER SUBMIT
+     LOAD
      ============================================================ */
+      async function loadNews() {
+        log("Starting fetch...");
+
+        const loading = document.getElementById("newsLoading");
+        const featuredBox = document.getElementById("featuredBox");
+        const filterBox = document.getElementById("newsFilter");
+
+        if (loading) loading.style.display = "block";
+        if (featuredBox) featuredBox.style.display = "none";
+        if (filterBox) filterBox.style.display = "none";
+
+        if (!window.mknBackend) {
+          log("ERROR: mknBackend not available");
+          if (loading)
+            loading.innerHTML =
+              '<div style="font-size:40px;">⚠️</div><p>Supabase not loaded.</p>';
+          return;
+        }
+
+        try {
+          const res = await window.mknBackend.fetchNews({
+            status: "published",
+          });
+          log("Fetch result:", res.success, "count:", res.data?.length);
+
+          if (!res.success) {
+            if (loading)
+              loading.innerHTML =
+                '<div style="font-size:40px;">⚠️</div><p>' + res.error + "</p>";
+            return;
+          }
+
+          allNews = res.data || [];
+
+          if (loading) loading.style.display = "none";
+
+          if (allNews.length === 0) {
+            document.getElementById("newsEmpty").style.display = "block";
+            return;
+          }
+
+          // Featured = flagged OR latest
+          let featured = allNews.find((n) => n.featured);
+          if (!featured) featured = allNews[0];
+
+          const others = allNews.filter((n) => n.id !== featured.id);
+
+          renderFeatured(featured);
+          renderGrid(others);
+          if (filterBox) filterBox.style.display = "flex";
+
+          log("✓ Rendered:", allNews.length, "articles");
+        } catch (err) {
+          log("Exception:", err);
+          if (loading)
+            loading.innerHTML =
+              '<div style="font-size:40px;">⚠️</div><p>' + err.message + "</p>";
+        }
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", () =>
+          setTimeout(loadNews, 400),
+        );
+      } else {
+        setTimeout(loadNews, 400);
+      }
+
+      /* ---- Newsletter ---- */
       const nlForm = document.getElementById("newsletterForm");
       if (nlForm) {
         nlForm.addEventListener("submit", async (e) => {
@@ -352,12 +538,13 @@
                 : "Subscribed!";
             nlForm.reset();
             setTimeout(() => success.classList.remove("show"), 6000);
-            if (window.showToast) window.showToast("✓ Subscribed!", "success");
           } else {
             if (window.showToast) window.showToast(result.error, "error");
           }
         });
       }
+
+      console.log("[News] ✓ Page ready");
     </script>
   </body>
 </html>

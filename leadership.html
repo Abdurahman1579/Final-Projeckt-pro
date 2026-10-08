@@ -43,48 +43,122 @@
         </div>
 
         <div class="structure-box reveal">
-          <div class="structure-row">
-            <div class="structure-node top">
-              <span class="s-icon">🕌</span>
-              <span data-i18n="leadership.structure.general"></span>
+          <!-- Level 1: General Assembly -->
+          <div class="structure-level">
+            <span
+              class="structure-level-label"
+              data-i18n="leadership.structure.level1"
+            ></span>
+            <div class="structure-row">
+              <div class="structure-node top">
+                <span class="s-icon">🕌</span>
+                <span data-i18n="leadership.structure.general"></span>
+              </div>
             </div>
           </div>
-          <div class="structure-row">
-            <div class="structure-node">
-              <span class="s-icon">👤</span>
-              <span data-i18n="leadership.structure.head"></span>
-            </div>
-            <div class="structure-node">
-              <span class="s-icon">🤝</span>
-              <span data-i18n="leadership.structure.deputy"></span>
+
+          <!-- Connector -->
+          <div class="structure-connector">
+            <svg width="24" height="40" viewBox="0 0 24 40" fill="none">
+              <path
+                d="M12 0 L12 32 M4 24 L12 32 L20 24"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+
+          <!-- Level 2: Council Leadership (with Secretary) -->
+          <div class="structure-level">
+            <span
+              class="structure-level-label"
+              data-i18n="leadership.structure.level2"
+            ></span>
+            <div class="structure-row">
+              <div class="structure-node">
+                <span class="s-icon">👤</span>
+                <span data-i18n="leadership.structure.head"></span>
+              </div>
+              <div class="structure-node">
+                <span class="s-icon">🤝</span>
+                <span data-i18n="leadership.structure.deputy"></span>
+              </div>
+              <div class="structure-node">
+                <span class="s-icon">📝</span>
+                <span data-i18n="leadership.structure.secretary"></span>
+              </div>
             </div>
           </div>
-          <div class="structure-row">
-            <div class="structure-node">
-              <span class="s-icon">📖</span
-              ><span data-i18n="leadership.exec.c1.title"></span>
-            </div>
-            <div class="structure-node">
-              <span class="s-icon">💰</span
-              ><span data-i18n="leadership.exec.c2.title"></span>
-            </div>
-            <div class="structure-node">
-              <span class="s-icon">🕌</span
-              ><span data-i18n="leadership.exec.c3.title"></span>
+
+          <!-- Connector -->
+          <div class="structure-connector">
+            <svg width="24" height="40" viewBox="0 0 24 40" fill="none">
+              <path
+                d="M12 0 L12 32 M4 24 L12 32 L20 24"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+
+          <!-- Level 3: Executive Sectors -->
+          <div class="structure-level">
+            <span
+              class="structure-level-label"
+              data-i18n="leadership.structure.level3"
+            ></span>
+            <div class="structure-row">
+              <div class="structure-node">
+                <span class="s-icon">📖</span>
+                <span data-i18n="leadership.exec.c1.title"></span>
+              </div>
+              <div class="structure-node">
+                <span class="s-icon">💰</span>
+                <span data-i18n="leadership.exec.c2.title"></span>
+              </div>
+              <div class="structure-node">
+                <span class="s-icon">🕌</span>
+                <span data-i18n="leadership.exec.c3.title"></span>
+              </div>
             </div>
           </div>
-          <div class="structure-row">
-            <div class="structure-node">
-              <span class="s-icon">📚</span
-              ><span data-i18n="leadership.exec.c4.title"></span>
-            </div>
-            <div class="structure-node">
-              <span class="s-icon">📢</span
-              ><span data-i18n="leadership.exec.c5.title"></span>
-            </div>
-            <div class="structure-node">
-              <span class="s-icon">👩</span
-              ><span data-i18n="leadership.exec.c6.title"></span>
+
+          <!-- Connector -->
+          <div class="structure-connector">
+            <svg width="24" height="40" viewBox="0 0 24 40" fill="none">
+              <path
+                d="M12 0 L12 32 M4 24 L12 32 L20 24"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+
+          <!-- Level 4: Additional Sectors -->
+          <div class="structure-level">
+            <span
+              class="structure-level-label"
+              data-i18n="leadership.structure.level4"
+            ></span>
+            <div class="structure-row">
+              <div class="structure-node">
+                <span class="s-icon">📚</span>
+                <span data-i18n="leadership.exec.c4.title"></span>
+              </div>
+              <div class="structure-node">
+                <span class="s-icon">📢</span>
+                <span data-i18n="leadership.exec.c5.title"></span>
+              </div>
+              <div class="structure-node">
+                <span class="s-icon">👩</span>
+                <span data-i18n="leadership.exec.c6.title"></span>
+              </div>
             </div>
           </div>
         </div>
@@ -188,6 +262,7 @@
         </div>
 
         <div class="committee-grid">
+          <!-- 1) Council of Scholars -->
           <div class="committee-card reveal" data-sector-id="s1">
             <div class="cc-head">
               <div class="cc-icon" data-sector-icon>📖</div>
@@ -199,8 +274,8 @@
             <p data-i18n="leadership.exec.c1.desc"></p>
             <ul class="committee-members">
               <li>
-                <span class="cm-av">JY</span
-                ><strong
+                <span class="cm-av">JY</span>
+                <strong
                   data-sector-lead
                   data-i18n="leadership.exec.c1.lead"
                 ></strong>
@@ -208,6 +283,7 @@
             </ul>
           </div>
 
+          <!-- 2) Finance Sector -->
           <div class="committee-card reveal" data-sector-id="s2">
             <div class="cc-head">
               <div class="cc-icon" data-sector-icon>💰</div>
@@ -219,8 +295,8 @@
             <p data-i18n="leadership.exec.c2.desc"></p>
             <ul class="committee-members">
               <li>
-                <span class="cm-av">SK</span
-                ><strong
+                <span class="cm-av">SK</span>
+                <strong
                   data-sector-lead
                   data-i18n="leadership.exec.c2.lead"
                 ></strong>
@@ -228,6 +304,7 @@
             </ul>
           </div>
 
+          <!-- 3) Mosques & Awqaf -->
           <div class="committee-card reveal" data-sector-id="s3">
             <div class="cc-head">
               <div class="cc-icon" data-sector-icon>🕌</div>
@@ -239,8 +316,8 @@
             <p data-i18n="leadership.exec.c3.desc"></p>
             <ul class="committee-members">
               <li>
-                <span class="cm-av">AH</span
-                ><strong
+                <span class="cm-av">AH</span>
+                <strong
                   data-sector-lead
                   data-i18n="leadership.exec.c3.lead"
                 ></strong>
@@ -248,6 +325,7 @@
             </ul>
           </div>
 
+          <!-- 4) Madrasa & Education Quality -->
           <div class="committee-card reveal" data-sector-id="s4">
             <div class="cc-head">
               <div class="cc-icon" data-sector-icon>📚</div>
@@ -259,8 +337,8 @@
             <p data-i18n="leadership.exec.c4.desc"></p>
             <ul class="committee-members">
               <li>
-                <span class="cm-av">AT</span
-                ><strong
+                <span class="cm-av">AT</span>
+                <strong
                   data-sector-lead
                   data-i18n="leadership.exec.c4.lead"
                 ></strong>
@@ -268,6 +346,7 @@
             </ul>
           </div>
 
+          <!-- 5) Youth & Media Sector -->
           <div class="committee-card reveal" data-sector-id="s5">
             <div class="cc-head">
               <div class="cc-icon" data-sector-icon>📢</div>
@@ -279,8 +358,8 @@
             <p data-i18n="leadership.exec.c5.desc"></p>
             <ul class="committee-members">
               <li>
-                <span class="cm-av">MY</span
-                ><strong
+                <span class="cm-av">MY</span>
+                <strong
                   data-sector-lead
                   data-i18n="leadership.exec.c5.lead"
                 ></strong>
@@ -288,6 +367,7 @@
             </ul>
           </div>
 
+          <!-- 6) Women's Sector -->
           <div class="committee-card reveal" data-sector-id="s6">
             <div class="cc-head">
               <div class="cc-icon" data-sector-icon>👩</div>
@@ -299,8 +379,8 @@
             <p data-i18n="leadership.exec.c6.desc"></p>
             <ul class="committee-members">
               <li>
-                <span class="cm-av">HI</span
-                ><strong
+                <span class="cm-av">HI</span>
+                <strong
                   data-sector-lead
                   data-i18n="leadership.exec.c6.lead"
                 ></strong>
@@ -339,6 +419,7 @@
             </div>
             <p data-i18n="leadership.proj.p1.desc"></p>
           </div>
+
           <div class="committee-card reveal">
             <div class="cc-head">
               <div class="cc-icon">📢</div>
@@ -349,6 +430,7 @@
             </div>
             <p data-i18n="leadership.proj.p2.desc"></p>
           </div>
+
           <div class="committee-card reveal">
             <div class="cc-head">
               <div class="cc-icon">💰</div>
@@ -359,6 +441,7 @@
             </div>
             <p data-i18n="leadership.proj.p3.desc"></p>
           </div>
+
           <div class="committee-card reveal">
             <div class="cc-head">
               <div class="cc-icon">🛠️</div>
@@ -369,6 +452,7 @@
             </div>
             <p data-i18n="leadership.proj.p4.desc"></p>
           </div>
+
           <div class="committee-card reveal">
             <div class="cc-head">
               <div class="cc-icon">🏗️</div>
@@ -379,6 +463,7 @@
             </div>
             <p data-i18n="leadership.proj.p5.desc"></p>
           </div>
+
           <div class="committee-card reveal">
             <div class="cc-head">
               <div class="cc-icon">📊</div>
@@ -498,6 +583,10 @@
     <script>
       /* ============================================================
    LEADERSHIP — Apply data from localStorage
+   ------------------------------------------------------------
+   Admin dashboard saves leaders (with photos) to localStorage
+   under key "malka-nono-leadership". This script reads that
+   data and overrides the static HTML content.
    ============================================================ */
       (function () {
         "use strict";
@@ -530,11 +619,12 @@
 
           const lang = getLang();
 
-          // ---- Top leaders ----
+          // ---- Top leaders (p1, p2, p3) ----
           (data.top || []).forEach((l) => {
             const card = document.querySelector(`[data-leader-id="${l.id}"]`);
             if (!card) return;
 
+            // Name
             const nameEl = card.querySelector("[data-leader-name]");
             const nameVal = getName(l, "name", lang);
             if (nameEl && nameVal) {
@@ -542,6 +632,7 @@
               nameEl.removeAttribute("data-i18n");
             }
 
+            // Role
             const roleEl = card.querySelector("[data-leader-role]");
             const roleVal = getName(l, "role", lang);
             if (roleEl && roleVal) {
@@ -549,6 +640,7 @@
               roleEl.removeAttribute("data-i18n");
             }
 
+            // Bio
             const bioEl = card.querySelector("[data-leader-bio]");
             const bioVal = getName(l, "bio", lang);
             if (bioEl && bioVal) {
@@ -556,7 +648,7 @@
               bioEl.removeAttribute("data-i18n");
             }
 
-            // Avatar: photo or initials
+            // Avatar: photo or initials (preserve crown for p1)
             const avatarEl = card.querySelector("[data-leader-avatar]");
             if (avatarEl) {
               const crown = avatarEl.querySelector(".crown");
@@ -564,18 +656,17 @@
               if (l.photo) {
                 avatarEl.innerHTML = `<img src="${l.photo}" alt="${nameVal || ""}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" />${crownHTML}`;
               } else if (l.initials) {
-                avatarEl.textContent = l.initials;
-                if (crownHTML)
-                  avatarEl.insertAdjacentHTML("beforeend", crownHTML);
+                avatarEl.innerHTML = `${l.initials}${crownHTML}`;
               }
             }
           });
 
-          // ---- Sectors ----
+          // ---- Sectors (s1-s6) ----
           (data.sectors || []).forEach((s) => {
             const card = document.querySelector(`[data-sector-id="${s.id}"]`);
             if (!card) return;
 
+            // Sector name (h3)
             const h3 = card.querySelector("h3");
             const sectorName = getName(s, "name", lang);
             if (h3 && sectorName) {
@@ -583,6 +674,7 @@
               h3.removeAttribute("data-i18n");
             }
 
+            // Sector lead
             const leadEl = card.querySelector("[data-sector-lead]");
             const leadVal = getName(s, "lead", lang);
             if (leadEl && leadVal) {
@@ -590,11 +682,12 @@
               leadEl.removeAttribute("data-i18n");
             }
 
+            // Sector icon
             const iconEl = card.querySelector("[data-sector-icon]");
             if (iconEl && s.icon) iconEl.textContent = s.icon;
           });
 
-          console.log("[Leadership] ✓ Applied data");
+          console.log("[Leadership] ✓ Applied data from localStorage");
         }
 
         // Apply on load
@@ -609,7 +702,7 @@
         // Re-apply on language change
         window.addEventListener("langchange", () => setTimeout(apply, 150));
 
-        // Re-apply when tab regains focus
+        // Re-apply when tab regains focus (admin may have edited)
         window.addEventListener("focus", () => setTimeout(apply, 250));
       })();
     </script>

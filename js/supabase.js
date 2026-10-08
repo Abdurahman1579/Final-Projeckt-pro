@@ -1,10 +1,10 @@
 /* ============================================================
    SUPABASE CLIENT — Malka Nono Project
    ------------------------------------------------------------
-   - Initializes Supabase connection
-   - Helpers for: contact, pledges, newsletter, news
-   - Admin fetch + CRUD helpers
-   - Public progress fetch (fundraising counter)
+   Full backend helpers:
+   - Public: contact, pledge, newsletter, news, reports
+   - Admin: fetch + CRUD for all resources
+   - Storage: file upload for reports
    ============================================================ */
 
 (function () {
@@ -18,7 +18,7 @@
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlqa2dpcGl2Y3RkaGV6d3Zmd2p4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU0MTYxODYsImV4cCI6MjEwMDk5MjE4Nn0.MaxngdvJ-SHrQ_qIok9_jU2-kxaVt_-OKOT03XKq_Kk";
 
   if (!window.supabase || !window.supabase.createClient) {
-    console.error("[Supabase] Library not loaded. Add the CDN script first.");
+    console.error("[Supabase] Library not loaded. Add CDN script first.");
     return;
   }
 
@@ -35,9 +35,6 @@
   );
 
   window.mknSupabase = supabase;
-
-  // Project constants
-  const PROJECT_GOAL = 190000000; // 190 million ETB
 
   /* ============================================================
      2) HELPERS
@@ -200,7 +197,7 @@
   }
 
   /* ============================================================
-     6) NEWS HELPERS
+     6) NEWS
      ============================================================ */
   async function fetchNews(options) {
     const opts = options || {};
@@ -276,7 +273,131 @@
   }
 
   /* ============================================================
-     7) ADMIN FETCH HELPERS
+     7) REPORTS (with Supabase Storage)
+     ============================================================ */
+  const REPORTS_BUCKET = "mkn-reports";
+
+  async function fetchReports(options) {
+    const opts = options || {};
+    let query = supabase
+      .from("mkn_reports")
+      .select("*")
+      .order("created_at", { ascending: false });
+    if (opts.status) query = query.eq("status", opts.status);
+    if (opts.type) query = query.eq("type", opts.type);
+    if (opts.limit) query = query.limit(opts.limit);
+    const { data, error } = await query;
+    if (error) return { success: false, error: error.message };
+    return { success: true, data: data || [] };
+  }
+
+  function getReportPublicUrl(filePath) {
+    if (!filePath) return "";
+    const { data } = supabase.storage
+      .from(REPORTS_BUCKET)
+      .getPublicUrl(filePath);
+    return data ? data.publicUrl : "";
+  }
+
+  async function uploadReportFile(file) {
+    if (!file) return { success: false, error: "No file provided" };
+
+    const ext = (file.name.split(".").pop() || "").toLowerCase();
+    const timestamp = Date.now();
+    const safeName = file.name
+      .replace(/\.[^/.]+$/, "")
+      .replace(/[^a-zA-Z0-9-_]/g, "_")
+      .slice(0, 40);
+    const filePath = `reports/${timestamp}_${safeName}.${ext}`;
+
+    const { data, error } = await supabase.storage
+      .from(REPORTS_BUCKET)
+      .upload(filePath, file, {
+        cacheControl: "3600",
+        upsert: false,
+        contentType: file.type || "application/octet-stream",
+      });
+
+    if (error) {
+      console.error("[Reports Upload]", error);
+      return { success: false, error: error.message };
+    }
+
+    const publicUrl = getReportPublicUrl(filePath);
+
+    return {
+      success: true,
+      file_path: filePath,
+      file_url: publicUrl,
+      file_name: file.name,
+      file_size: file.size,
+    };
+  }
+
+  async function createReport(data) {
+    const payload = {
+      title: String(data.title || "").trim(),
+      type: data.type || "financial",
+      description: data.description || "",
+      status: data.status || "draft",
+      report_date: data.report_date || new Date().toISOString(),
+      file_url: data.file_url || null,
+      file_path: data.file_path || null,
+      file_name: data.file_name || null,
+      file_size: data.file_size || 0,
+    };
+    if (!payload.title) return { success: false, error: "Title is required" };
+
+    const { data: result, error } = await supabase
+      .from("mkn_reports")
+      .insert([payload])
+      .select()
+      .single();
+    if (error) return { success: false, error: error.message };
+    return { success: true, data: result };
+  }
+
+  async function updateReport(id, data) {
+    const payload = {
+      title: String(data.title || "").trim(),
+      type: data.type || "financial",
+      description: data.description || "",
+      status: data.status || "draft",
+    };
+    if (data.file_url) {
+      payload.file_url = data.file_url;
+      payload.file_path = data.file_path;
+      payload.file_name = data.file_name;
+      payload.file_size = data.file_size;
+    }
+    const { data: result, error } = await supabase
+      .from("mkn_reports")
+      .update(payload)
+      .eq("id", id)
+      .select()
+      .single();
+    if (error) return { success: false, error: error.message };
+    return { success: true, data: result };
+  }
+
+  async function deleteReport(id) {
+    const { data: report } = await supabase
+      .from("mkn_reports")
+      .select("*")
+      .eq("id", id)
+      .single();
+
+    if (report && report.file_path) {
+      await supabase.storage.from(REPORTS_BUCKET).remove([report.file_path]);
+    }
+
+    const { error } = await supabase.from("mkn_reports").delete().eq("id", id);
+    if (error) return { success: false, error: error.message };
+    return { success: true };
+  }
+
+  /* ============================================================
+     8) ADMIN FETCH HELPERS
      ============================================================ */
   async function fetchContacts(options) {
     const opts = options || {};
@@ -344,6 +465,7 @@
       "mkn_pledges",
       "mkn_newsletter_subscribers",
       "mkn_news",
+      "mkn_reports",
     ];
     if (!allowed.includes(table))
       return { success: false, error: "Invalid table" };
@@ -383,54 +505,6 @@
   }
 
   /* ============================================================
-     8) PUBLIC PROGRESS — Fundraising live counter
-     ============================================================ */
-  async function fetchProgress() {
-    try {
-      const { data: pledges, error } = await supabase
-        .from("mkn_pledges")
-        .select("amount, phone, status");
-
-      if (error) {
-        console.error("[Progress] Error:", error);
-        return { success: false, error: error.message };
-      }
-
-      // Filter out cancelled pledges
-      const active = (pledges || []).filter((p) => p.status !== "cancelled");
-
-      // Sum amounts
-      const totalRaised = active.reduce(
-        (sum, p) => sum + (Number(p.amount) || 0),
-        0,
-      );
-
-      // Count unique donors by phone
-      const uniqueDonors = new Set(active.map((p) => p.phone).filter(Boolean))
-        .size;
-
-      // Calculate percentage
-      const percentage = Math.min(100, (totalRaised / PROJECT_GOAL) * 100);
-      const remaining = Math.max(0, PROJECT_GOAL - totalRaised);
-
-      return {
-        success: true,
-        data: {
-          raised: totalRaised,
-          goal: PROJECT_GOAL,
-          percentage: percentage,
-          donors: uniqueDonors,
-          remaining: remaining,
-          pledgeCount: active.length,
-        },
-      };
-    } catch (err) {
-      console.error("[Progress] Exception:", err);
-      return { success: false, error: err.message };
-    }
-  }
-
-  /* ============================================================
      9) EXPOSE GLOBAL API
      ============================================================ */
   window.mknBackend = {
@@ -441,14 +515,22 @@
     submitPledge,
     subscribeNewsletter,
 
-    // News (public + admin)
+    // News
     fetchNews,
     fetchFeaturedNews,
     createNews,
     updateNews,
     deleteNews,
 
-    // Admin fetchers
+    // Reports
+    fetchReports,
+    uploadReportFile,
+    getReportPublicUrl,
+    createReport,
+    updateReport,
+    deleteReport,
+
+    // Admin
     fetchContacts,
     fetchPledges,
     fetchSubscribers,
@@ -456,12 +538,6 @@
     updatePledgeStatus,
     deleteRecord,
     fetchStats,
-
-    // Public progress
-    fetchProgress,
-
-    // Constants
-    PROJECT_GOAL,
   };
 
   console.log("[Supabase] ✓ Backend ready — mknBackend available");
