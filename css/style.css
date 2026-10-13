@@ -6558,3 +6558,161 @@ body.dark-mode .admin-topbar-right .lang-btn .lang-current {
     padding: 98px 16px 42px !important;
   }
 }
+/* ============================================================
+   HAMBURGER MENU — Beautiful animation (☰ ↔ ✕)
+   ============================================================ */
+
+/* ---- Base button ---- */
+.menu-toggle {
+  display: none;
+  background: var(--white);
+  border: 1px solid var(--g100);
+  border-radius: 12px;
+  padding: 0;
+  cursor: pointer;
+  color: var(--g900);
+  transition: all 0.25s ease;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-toggle:hover {
+  border-color: var(--g500);
+  background: var(--g50);
+}
+
+.menu-toggle:active {
+  transform: scale(0.94);
+}
+
+/* ---- The three lines ---- */
+.menu-toggle span {
+  display: block;
+  width: 22px;
+  height: 2.5px;
+  background: currentColor;
+  border-radius: 3px;
+  margin: 2.5px 0;
+  transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55),
+              opacity 0.25s ease,
+              background 0.25s ease;
+  transform-origin: center;
+  will-change: transform;
+}
+
+/* ---- Hover: subtle scale on lines ---- */
+.menu-toggle:hover span {
+  background: var(--g700);
+}
+
+.menu-toggle:hover span:nth-child(1) {
+  transform: scaleX(0.75) translateX(-2px);
+}
+
+.menu-toggle:hover span:nth-child(3) {
+  transform: scaleX(0.75) translateX(2px);
+}
+
+/* ============================================================
+   OPEN STATE — Transform to X
+   ============================================================ */
+
+/* Top line: rotate 45° and move to center */
+.menu-toggle.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg) scaleX(1);
+  background: var(--g700);
+}
+
+/* Middle line: fade out & shrink */
+.menu-toggle.open span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+/* Bottom line: rotate -45° and move to center */
+.menu-toggle.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg) scaleX(1);
+  background: var(--g700);
+}
+
+/* Override hover states when open */
+.menu-toggle.open:hover span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg) scaleX(1);
+}
+
+.menu-toggle.open:hover span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg) scaleX(1);
+}
+
+/* ============================================================
+   MOBILE — Visible & sized properly
+   ============================================================ */
+@media (max-width: 860px) {
+  .menu-toggle {
+    display: flex !important;
+    width: 42px !important;
+    height: 42px !important;
+    padding: 0 !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-direction: column !important;
+    gap: 0 !important;
+  }
+
+  .menu-toggle span {
+    width: 22px !important;
+    height: 2.5px !important;
+    margin: 2.5px 0 !important;
+  }
+
+  /* Open state — mobile-specific transform distances */
+  .menu-toggle.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg) !important;
+  }
+
+  .menu-toggle.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg) !important;
+  }
+}
+
+/* ---- Small phones ---- */
+@media (max-width: 480px) {
+  .menu-toggle {
+    width: 38px !important;
+    height: 38px !important;
+  }
+
+  .menu-toggle span {
+    width: 20px !important;
+    height: 2px !important;
+    margin: 2px 0 !important;
+  }
+
+  .menu-toggle.open span:nth-child(1) {
+    transform: translateY(6px) rotate(45deg) !important;
+  }
+
+  .menu-toggle.open span:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg) !important;
+  }
+}
+
+/* ============================================================
+   DARK MODE support
+   ============================================================ */
+body.dark-mode .menu-toggle {
+  background: #1a2a22;
+  border-color: rgba(255, 255, 255, 0.15);
+  color: #d8e0da;
+}
+
+body.dark-mode .menu-toggle:hover {
+  background: #132920;
+  border-color: var(--g500);
+}
+
+body.dark-mode .menu-toggle.open span {
+  background: var(--g500);
+}
