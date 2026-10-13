@@ -4485,3 +4485,36 @@ html, body {
   margin-left: 0;
   margin-right: 8px;
 }
+/* ============================================================
+   HERO TITLE — Adjust for 2-line layout
+   ============================================================ */
+
+/* Ensure title.1 is on its own line */
+.hero h1 span[data-i18n="hero.title.1"] {
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* Title.2 with gradient accent — make it prominent */
+.hero h1 .accent {
+  display: block;
+  line-height: 1.25;
+}
+
+/* Empty title.3 shouldn't add space */
+.hero h1 span[data-i18n="hero.title.3"]:empty {
+  display: none;
+}
+
+/* Mobile adjustments */
+@media (max-width: 640px) {
+  .hero h1 {
+    font-size: clamp(24px, 6vw, 32px) !important;
+    line-height: 1.3 !important;
+  }
+
+  .hero h1 span[data-i18n="hero.title.1"] {
+    font-size: 0.75em !important;
+    margin-bottom: 6px;
+  }
+}

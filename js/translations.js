@@ -4038,3 +4038,73 @@ Object.assign(translations.en, { "brand.sub": "" });
 Object.assign(translations.am, { "brand.sub": "" });
 Object.assign(translations.om, { "brand.sub": "" });
 Object.assign(translations.ar, { "brand.sub": "" });
+/* ============================================================
+   EXTENSION 24 — Hero Title: Full Project Name
+   ------------------------------------------------------------
+   Oromo: Piroojektii Gudicha Mana Marii Dhimmoota Islaamummaa
+          Kutaa Magaalaa Malkaa Noonnoo
+   ============================================================ */
+
+/* ---------- ENGLISH ---------- */
+Object.assign(translations.en, {
+  "hero.title.1": "Grand Project of the",
+  "hero.title.2": "Malka Nono Sub-City Islamic Affairs Council",
+  "hero.title.3": "",
+});
+
+/* ---------- AMHARIC ---------- */
+Object.assign(translations.am, {
+  "hero.title.1": "ትልቅ ፕሮጀክት",
+  "hero.title.2": "የመልካ ኖኖ ክ/ከተማ እስልምና ጉዳዮች ምክር ቤት",
+  "hero.title.3": "",
+});
+
+/* ---------- OROMO ---------- */
+Object.assign(translations.om, {
+  "hero.title.1": "Piroojektii Gudicha",
+  "hero.title.2":
+    "Mana Marii Dhimmoota Islaamummaa Kutaa Magaalaa Malkaa Noonnoo",
+  "hero.title.3": "",
+});
+
+/* ---------- ARABIC ---------- */
+Object.assign(translations.ar, {
+  "hero.title.1": "المشروع الكبير",
+  "hero.title.2": "لمجلس الشؤون الإسلامية في منطقة ملقا نونو",
+  "hero.title.3": "",
+});
+/* ============================================================
+   EXTENSION 25 — Cleanup: remove hero badge and title.3
+   ============================================================ */
+
+/* ---------- ENGLISH ---------- */
+Object.assign(translations.en, {
+  "hero.badge": "",
+  "hero.title.1": "Grand Project of the",
+  "hero.title.2": "Malka Nono Sub-City Islamic Affairs Council",
+  "hero.title.3": ""
+});
+
+/* ---------- AMHARIC ---------- */
+Object.assign(translations.am, {
+  "hero.badge": "",
+  "hero.title.1": "ትልቅ ፕሮጀክት",
+  "hero.title.2": "የመልካ ኖኖ ክ/ከተማ እስልምና ጉዳዮች ምክር ቤት",
+  "hero.title.3": ""
+});
+
+/* ---------- OROMO ---------- */
+Object.assign(translations.om, {
+  "hero.badge": "",
+  "hero.title.1": "Piroojektii Gudicha",
+  "hero.title.2": "Mana Marii Dhimmoota Islaamummaa Kutaa Magaalaa Malkaa Noonnoo",
+  "hero.title.3": ""
+});
+
+/* ---------- ARABIC ---------- */
+Object.assign(translations.ar, {
+  "hero.badge": "",
+  "hero.title.1": "المشروع الكبير",
+  "hero.title.2": "لمجلس الشؤون الإسلامية في منطقة ملقا نونو",
+  "hero.title.3": ""
+});
