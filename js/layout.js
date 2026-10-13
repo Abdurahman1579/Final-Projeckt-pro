@@ -1,12 +1,11 @@
 /* ============================================================
-   LAYOUT — Shared Navbar + Footer + Theme Toggle
+   LAYOUT — Shared Navbar + Footer
    Malka Nono Islamic Affairs Council Project
    ------------------------------------------------------------
    - Injects navbar at <div id="site-nav">
    - Injects footer at <div id="site-footer">
-   - Language switcher + Theme toggle
-   - Mobile menu
-   - Nav scroll shadow
+   - Handles: language switcher, dark mode toggle,
+     mobile menu, nav scroll shadow
    ============================================================ */
 
 (function () {
@@ -31,17 +30,20 @@
 
     const linksHTML = links
       .map(
-        (l) =>
-          `<li><a href="${l.href}" class="${activePage === l.href ? "active" : ""}">
-            <span class="nav-icon">${l.icon}</span>
-            <span data-i18n="${l.key}"></span>
-          </a></li>`,
+        (l) => `
+          <li>
+            <a href="${l.href}" class="${activePage === l.href ? "active" : ""}">
+              <span class="nav-icon">${l.icon}</span>
+              <span data-i18n="${l.key}"></span>
+            </a>
+          </li>`,
       )
       .join("");
 
     return `
       <nav class="nav" id="nav">
         <div class="nav-inner">
+
           <a href="index.html" class="brand">
             <div class="brand-mark">☪</div>
             <div class="brand-text">
@@ -49,8 +51,21 @@
               <small data-i18n="brand.sub"></small>
             </div>
           </a>
+
           <ul class="nav-links" id="navLinks">${linksHTML}</ul>
-          <div class="nav-actions">
+
+          <!-- Controls: dark mode + language -->
+          <div class="nav-controls">
+
+            <!-- Dark mode toggle -->
+            <button
+              class="theme-toggle-btn"
+              id="themeToggle"
+              aria-label="Toggle dark mode"
+              title="Dark mode"
+            >🌙</button>
+
+            <!-- Language switcher -->
             <div class="lang-switcher" id="langSwitcher">
               <button class="lang-btn" id="langBtn" aria-label="Change language">
                 🌐 <span class="lang-current">AM</span>
@@ -65,13 +80,14 @@
                 <button class="lang-option" data-lang="ar"><span class="lang-flag">🇸🇦</span> العربية</button>
               </div>
             </div>
-            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">
-              <span class="theme-icon">🌙</span>
-            </button>
+
           </div>
+
+          <!-- Hamburger -->
           <button class="menu-toggle" id="menuToggle" aria-label="Menu">
             <span></span><span></span><span></span>
           </button>
+
         </div>
       </nav>
     `;
@@ -112,10 +128,32 @@
   }
 
   /* ============================================================
-     3) INIT
+     3) DARK MODE
+     ============================================================ */
+  function initDarkMode() {
+    const themeToggle = document.getElementById("themeToggle");
+    if (!themeToggle) return;
+
+    // Load saved preference
+    const savedTheme = localStorage.getItem("mkn-theme");
+    if (savedTheme === "dark") {
+      document.body.classList.add("dark-mode");
+      themeToggle.textContent = "☀️";
+    }
+
+    // Toggle on click
+    themeToggle.addEventListener("click", () => {
+      const isDark = document.body.classList.toggle("dark-mode");
+      themeToggle.textContent = isDark ? "☀️" : "🌙";
+      localStorage.setItem("mkn-theme", isDark ? "dark" : "light");
+    });
+  }
+
+  /* ============================================================
+     4) INIT
      ============================================================ */
   function initLayout() {
-    // Detect current page filename (e.g. "about.html")
+    // Detect current page
     const path = window.location.pathname.split("/").pop() || "index.html";
 
     // Inject navbar
@@ -126,7 +164,10 @@
     const footerPlaceholder = document.getElementById("site-footer");
     if (footerPlaceholder) footerPlaceholder.outerHTML = buildFooter();
 
-    /* ---------- Language switcher ---------- */
+    // ---- Dark mode ----
+    initDarkMode();
+
+    // ---- Language switcher ----
     const switcher = document.getElementById("langSwitcher");
     const btn = document.getElementById("langBtn");
     if (btn && switcher) {
@@ -146,55 +187,54 @@
       });
     }
 
-    /* ---------- Theme toggle ---------- */
-    const themeBtn = document.getElementById("themeToggle");
-    if (themeBtn) {
-      themeBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        if (window.mknTheme && typeof window.mknTheme.toggle === "function") {
-          window.mknTheme.toggle();
-        } else {
-          // Fallback if theme.js not loaded yet
-          const html = document.documentElement;
-          const current = html.getAttribute("data-theme") || "light";
-          const next = current === "dark" ? "light" : "dark";
-          html.setAttribute("data-theme", next);
-          try {
-            localStorage.setItem("mkn-theme", next);
-          } catch (err) {}
-          const icon = themeBtn.querySelector(".theme-icon");
-          if (icon) icon.textContent = next === "dark" ? "☀️" : "🌙";
-        }
-      });
-
-      // Sync icon with current theme
-      if (window.mknTheme && typeof window.mknTheme.get === "function") {
-        const currentTheme = window.mknTheme.get();
-        const icon = themeBtn.querySelector(".theme-icon");
-        if (icon) icon.textContent = currentTheme === "dark" ? "☀️" : "🌙";
-      }
-    }
-
-    /* ---------- Mobile menu ---------- */
+    // ---- Mobile menu ----
     const toggle = document.getElementById("menuToggle");
     const links = document.getElementById("navLinks");
     if (toggle && links) {
       toggle.addEventListener("click", (e) => {
         e.stopPropagation();
         links.classList.toggle("open");
-        // Animate hamburger
         toggle.classList.toggle("open");
       });
+
+      // Close menu when a link is clicked
       links.querySelectorAll("a").forEach((a) =>
         a.addEventListener("click", () => {
           links.classList.remove("open");
           toggle.classList.remove("open");
         }),
       );
+
+      // Close menu on outside click
+      document.addEventListener("click", (e) => {
+        if (!links.contains(e.target) && !toggle.contains(e.target)) {
+          links.classList.remove("open");
+          toggle.classList.remove("open");
+        }
+      });
+
+      // Close menu on Escape
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && links.classList.contains("open")) {
+          links.classList.remove("open");
+          toggle.classList.remove("open");
+        }
+      });
+
+      // Close menu when viewport becomes desktop
+      let resizeTimer;
+      window.addEventListener("resize", () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+          if (window.innerWidth > 860 && links.classList.contains("open")) {
+            links.classList.remove("open");
+            toggle.classList.remove("open");
+          }
+        }, 200);
+      });
     }
 
-    /* ---------- Nav scroll shadow ---------- */
+    // ---- Nav scroll shadow ----
     const nav = document.getElementById("nav");
     if (nav) {
       const onScroll = () =>
@@ -202,17 +242,10 @@
       window.addEventListener("scroll", onScroll, { passive: true });
       onScroll();
     }
-
-    /* ---------- Listen to theme change event (sync icon) ---------- */
-    window.addEventListener("themechange", (e) => {
-      const theme = e.detail && e.detail.theme;
-      const icon = document.querySelector(".theme-toggle .theme-icon");
-      if (icon) icon.textContent = theme === "dark" ? "☀️" : "🌙";
-    });
   }
 
   /* ============================================================
-     4) EXPORT
+     5) EXPORT
      ============================================================ */
   window.initLayout = initLayout;
 })();
