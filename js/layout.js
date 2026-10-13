@@ -5,6 +5,7 @@
    - Injects navbar at <div id="site-nav">
    - Injects footer at <div id="site-footer">
    - Handles language switcher, mobile menu, nav scroll shadow
+   - Mobile-friendly dropdown with emoji icons
    ============================================================ */
 
 (function () {
@@ -15,22 +16,25 @@
      ============================================================ */
   function buildNav(activePage) {
     const links = [
-      { href: "index.html", key: "nav.home" },
-      { href: "about.html", key: "nav.about" },
-      { href: "leadership.html", key: "nav.leadership" }, // ← NEW
-      { href: "budget.html", key: "nav.budget" },
-      { href: "fundraising.html", key: "nav.fundraising" },
-      { href: "news.html", key: "nav.news" },
-      { href: "reports.html", key: "nav.reports" },
-      { href: "donate.html", key: "nav.donate" },
-      { href: "contact.html", key: "nav.contact" },
-      { href: "admin.html", key: "nav.admin" },
+      { href: "index.html", key: "nav.home", icon: "🏠" },
+      { href: "about.html", key: "nav.about", icon: "📖" },
+      { href: "leadership.html", key: "nav.leadership", icon: "👥" },
+      { href: "budget.html", key: "nav.budget", icon: "💰" },
+      { href: "fundraising.html", key: "nav.fundraising", icon: "🎯" },
+      { href: "news.html", key: "nav.news", icon: "📰" },
+      { href: "reports.html", key: "nav.reports", icon: "📁" },
+      { href: "donate.html", key: "nav.donate", icon: "🤲" },
+      { href: "contact.html", key: "nav.contact", icon: "✉️" },
+      { href: "admin.html", key: "nav.admin", icon: "⚙️" },
     ];
 
     const linksHTML = links
       .map(
         (l) =>
-          `<li><a href="${l.href}" class="${activePage === l.href ? "active" : ""}" data-i18n="${l.key}"></a></li>`,
+          `<li><a href="${l.href}" class="${activePage === l.href ? "active" : ""}">
+            <span class="nav-icon">${l.icon}</span>
+            <span data-i18n="${l.key}"></span>
+          </a></li>`,
       )
       .join("");
 
@@ -136,16 +140,65 @@
       });
     }
 
-    // ---- Mobile menu ----
+    // ---- Mobile menu toggle ----
     const toggle = document.getElementById("menuToggle");
     const links = document.getElementById("navLinks");
     if (toggle && links) {
-      toggle.addEventListener("click", () => links.classList.toggle("open"));
-      links
-        .querySelectorAll("a")
-        .forEach((a) =>
-          a.addEventListener("click", () => links.classList.remove("open")),
-        );
+      toggle.addEventListener("click", (e) => {
+        e.stopPropagation();
+        links.classList.toggle("open");
+        toggle.classList.toggle("open");
+        // Prevent body scroll when menu is open
+        if (links.classList.contains("open")) {
+          document.body.style.overflow = "hidden";
+        } else {
+          document.body.style.overflow = "";
+        }
+      });
+
+      // Close menu when a link is clicked
+      links.querySelectorAll("a").forEach((a) => {
+        a.addEventListener("click", () => {
+          links.classList.remove("open");
+          toggle.classList.remove("open");
+          document.body.style.overflow = "";
+        });
+      });
+
+      // Close menu when clicking outside
+      document.addEventListener("click", (e) => {
+        if (
+          links.classList.contains("open") &&
+          !links.contains(e.target) &&
+          !toggle.contains(e.target)
+        ) {
+          links.classList.remove("open");
+          toggle.classList.remove("open");
+          document.body.style.overflow = "";
+        }
+      });
+
+      // Close menu on resize to desktop
+      let resizeTimer;
+      window.addEventListener("resize", () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+          if (window.innerWidth > 860 && links.classList.contains("open")) {
+            links.classList.remove("open");
+            toggle.classList.remove("open");
+            document.body.style.overflow = "";
+          }
+        }, 200);
+      });
+
+      // Close menu on Escape key
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && links.classList.contains("open")) {
+          links.classList.remove("open");
+          toggle.classList.remove("open");
+          document.body.style.overflow = "";
+        }
+      });
     }
 
     // ---- Nav scroll shadow ----
