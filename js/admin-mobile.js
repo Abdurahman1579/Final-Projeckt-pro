@@ -1,5 +1,8 @@
 /* ============================================================
-   ADMIN MOBILE — Lang switcher + Theme + Sidebar
+   ADMIN MOBILE — Theme + Sidebar ONLY
+   ------------------------------------------------------------
+   ⚠️ Lang switcher removed — js/admin.js already handles it
+   (double-binding caused dropdown to close immediately)
    ============================================================ */
 
 (function () {
@@ -32,96 +35,17 @@
     }
 
     applyTheme();
-    document
-      .getElementById("loginThemeToggle")
-      ?.addEventListener("click", toggleTheme);
-    document
-      .getElementById("themeToggle")
-      ?.addEventListener("click", toggleTheme);
-
-    /* ============================================================
-       2) LANGUAGE SWITCHER — Improved binding
-       ============================================================ */
-    function bindLangSwitcher(switcherId, btnId) {
-      const switcher = document.getElementById(switcherId);
-      const btn = document.getElementById(btnId);
-      if (!switcher || !btn) {
-        console.warn(`[Lang] ${switcherId} not found`);
-        return;
-      }
-
-      // Avoid double binding
-      if (btn.dataset.langBound === "1") return;
-      btn.dataset.langBound = "1";
-
-      // Toggle dropdown
-      btn.addEventListener("click", (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        document.querySelectorAll(".lang-switcher.open").forEach((s) => {
-          if (s !== switcher) s.classList.remove("open");
-        });
-        switcher.classList.toggle("open");
-      });
-
-      // Select language
-      switcher.querySelectorAll(".lang-option").forEach((opt) => {
-        opt.addEventListener("click", (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          const lang = opt.dataset.lang;
-
-          // Update the label
-          const label = switcher.querySelector(".lang-current");
-          if (label) label.textContent = lang.toUpperCase();
-
-          // Update active state
-          switcher
-            .querySelectorAll(".lang-option")
-            .forEach((o) => o.classList.remove("active"));
-          opt.classList.add("active");
-
-          // Change language
-          if (window.i18n && window.i18n.setLanguage) {
-            window.i18n.setLanguage(lang);
-          }
-
-          // Update ALL lang-current labels on the page
-          document.querySelectorAll(".lang-current").forEach((el) => {
-            el.textContent = lang.toUpperCase();
-          });
-
-          switcher.classList.remove("open");
-          console.log(`[Lang] Changed to: ${lang}`);
-        });
-      });
-
-      console.log(`[Lang] ✓ Bound: ${switcherId}`);
+    const loginThemeBtn = document.getElementById("loginThemeToggle");
+    if (loginThemeBtn) {
+      loginThemeBtn.addEventListener("click", toggleTheme);
+    }
+    const dashThemeBtn = document.getElementById("themeToggle");
+    if (dashThemeBtn) {
+      dashThemeBtn.addEventListener("click", toggleTheme);
     }
 
-    bindLangSwitcher("langSwitcherLogin", "langBtnLogin");
-    bindLangSwitcher("langSwitcherAdmin", "langBtnAdmin");
-
-    // Close dropdown on outside click
-    document.addEventListener("click", (e) => {
-      if (!e.target.closest(".lang-switcher")) {
-        document
-          .querySelectorAll(".lang-switcher.open")
-          .forEach((s) => s.classList.remove("open"));
-      }
-    });
-
-    // Initial label sync from saved language
-    setTimeout(() => {
-      const lang =
-        window.i18n && window.i18n.getLang ? window.i18n.getLang() : "am";
-      document.querySelectorAll(".lang-current").forEach((el) => {
-        el.textContent = lang.toUpperCase();
-      });
-    }, 100);
-
     /* ============================================================
-       3) SIDEBAR DRAWER (mobile)
+       2) SIDEBAR DRAWER (mobile only)
        ============================================================ */
     const toggle = document.getElementById("mobileMenuToggle");
     const sidebar =
@@ -131,7 +55,10 @@
     const closeBtn = document.getElementById("sidebarClose");
     const adminApp = document.getElementById("adminApp");
 
-    if (!toggle || !sidebar) return;
+    if (!toggle || !sidebar) {
+      console.warn("[Admin Mobile] Sidebar elements not found");
+      return;
+    }
 
     function openSidebar() {
       sidebar.classList.add("open");
@@ -188,7 +115,7 @@
       }, 200);
     });
 
-    console.log("[Admin Mobile] ✓ Ready");
+    console.log("[Admin Mobile] ✓ Ready — theme + sidebar only");
   }
 
   if (document.readyState === "loading") {
