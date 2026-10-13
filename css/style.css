@@ -6093,3 +6093,217 @@ body.dark-mode .theme-toggle-btn {
     display: none;
   }
 }
+/* ============================================================
+   FIX — Show language label (AM / EN / OM / AR) on all screens
+   Override previous rules that hid the label
+   ============================================================ */
+
+/* ---- Force show .lang-current on all screen sizes ---- */
+.lang-btn .lang-current,
+.lang-btn > span,
+.lang-btn > span:first-child {
+  display: inline-block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  font-size: 12.5px !important;
+  font-weight: 700 !important;
+  color: inherit !important;
+  min-width: 26px !important;
+  text-align: center !important;
+  line-height: 1 !important;
+}
+
+/* ---- Make sure lang-btn is visible & sized ---- */
+.lang-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 4px !important;
+  padding: 7px 11px !important;
+  min-width: auto !important;
+  height: auto !important;
+  white-space: nowrap !important;
+}
+
+/* ---- Chevron icon — always visible ---- */
+.lang-btn > svg {
+  display: block !important;
+  width: 10px !important;
+  height: 10px !important;
+  flex-shrink: 0 !important;
+  opacity: 1 !important;
+}
+
+/* ---- Remove the old "hide span" rule ---- */
+@media (max-width: 480px) {
+  .lang-btn .lang-flag,
+  .lang-btn > span:first-child {
+    display: inline-block !important;
+  }
+}
+
+/* ============================================================
+   MOBILE — ensure lang-btn displays AM correctly
+   ============================================================ */
+@media (max-width: 860px) {
+
+  .lang-switcher {
+    position: relative !important;
+    z-index: 100 !important;
+  }
+
+  .lang-btn {
+    background: var(--white) !important;
+    border: 1px solid var(--g100) !important;
+    border-radius: 10px !important;
+    padding: 8px 12px !important;
+    font-size: 12px !important;
+    color: var(--g900) !important;
+    height: 38px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 5px !important;
+  }
+
+  .lang-btn .lang-current {
+    display: inline-block !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    color: var(--g900) !important;
+    letter-spacing: 0.02em;
+  }
+
+  .lang-btn:hover {
+    background: var(--g50) !important;
+    border-color: var(--g500) !important;
+  }
+}
+
+/* ============================================================
+   LOGIN SCREEN — Lang switcher (top-right)
+   ============================================================ */
+.login-screen .lang-switcher.login-lang {
+  position: absolute !important;
+  top: 24px !important;
+  right: 24px !important;
+  z-index: 100 !important;
+}
+
+.login-screen .lang-btn {
+  background: rgba(255, 255, 255, 0.15) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  color: #fff !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 8px 12px !important;
+  height: 40px !important;
+}
+
+.login-screen .lang-btn .lang-current {
+  color: #fff !important;
+  font-size: 13px !important;
+}
+
+.login-screen .lang-btn svg {
+  stroke: #fff !important;
+}
+
+.login-screen .lang-btn:hover {
+  background: rgba(255, 255, 255, 0.25) !important;
+  border-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* ============================================================
+   DASHBOARD — Lang switcher (topbar)
+   ============================================================ */
+.admin-topbar-right .lang-btn {
+  background: var(--white) !important;
+  border: 1px solid var(--g100) !important;
+  color: var(--g900) !important;
+  padding: 8px 12px !important;
+  height: 40px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+}
+
+.admin-topbar-right .lang-btn .lang-current {
+  color: var(--g900) !important;
+  font-size: 12.5px !important;
+  font-weight: 700 !important;
+  display: inline-block !important;
+}
+
+.admin-topbar-right .lang-btn:hover {
+  background: var(--g50) !important;
+  border-color: var(--g500) !important;
+}
+
+/* Dark mode adjustment */
+body.dark-mode .admin-topbar-right .lang-btn {
+  background: #1a2a22 !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+  color: #d8e0da !important;
+}
+
+body.dark-mode .admin-topbar-right .lang-btn .lang-current {
+  color: #d8e0da !important;
+}
+
+/* ============================================================
+   LANG DROPDOWN — Visible & functional
+   ============================================================ */
+.lang-dropdown {
+  position: absolute !important;
+  top: calc(100% + 8px) !important;
+  right: 0 !important;
+  background: var(--white) !important;
+  border: 1px solid var(--g100) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 12px 32px rgba(13, 59, 46, 0.15) !important;
+  min-width: 160px !important;
+  padding: 6px !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transform: translateY(-8px) !important;
+  transition: all 0.2s ease !important;
+  z-index: 9999 !important;
+}
+
+.lang-switcher.open .lang-dropdown {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(0) !important;
+}
+
+.lang-option {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  width: 100% !important;
+  background: none !important;
+  border: none !important;
+  padding: 10px 12px !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+  font-family: inherit !important;
+  font-size: 14px !important;
+  color: var(--ink700) !important;
+  text-align: start !important;
+  transition: all 0.15s !important;
+}
+
+.lang-option:hover {
+  background: var(--g50) !important;
+  color: var(--g700) !important;
+}
+
+.lang-option.active {
+  background: var(--g100) !important;
+  color: var(--g900) !important;
+  font-weight: 600 !important;
+}
+
+.lang-flag {
+  font-size: 16px !important;
+}
