@@ -5201,3 +5201,91 @@ button {
     margin-left: 4px;
   }
 }
+/* ============================================================
+   FOOTER — Mobile Center Alignment
+   ============================================================ */
+
+@media (max-width: 860px) {
+
+  /* Center the entire footer inner grid */
+  .footer-inner {
+    grid-template-columns: 1fr !important;
+    text-align: center !important;
+    gap: 32px !important;
+    padding-bottom: 24px !important;
+  }
+
+  /* Center each column */
+  .footer-inner > div {
+    text-align: center !important;
+  }
+
+  /* Brand section — center everything */
+  .footer-brand {
+    justify-content: center !important;
+    text-align: center !important;
+    flex-wrap: wrap;
+  }
+
+  .footer-brand .brand-mark {
+    margin: 0 auto 12px;
+  }
+
+  /* Footer heading */
+  .footer-inner h4 {
+    text-align: center !important;
+    margin-bottom: 16px !important;
+  }
+
+  /* Paragraphs (description, address) — center + max width */
+  .footer-inner p {
+    text-align: center !important;
+    max-width: 420px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-bottom: 8px !important;
+  }
+
+  /* Links (navigation) — center each */
+  .footer-inner a {
+    text-align: center !important;
+    display: block !important;
+    margin-bottom: 10px !important;
+    padding: 6px 0;
+  }
+
+  /* Copyright — center */
+  .footer-inner p[data-i18n="footer.copyright"] {
+    margin-top: 14px !important;
+    font-size: 12.5px !important;
+  }
+
+  /* Footer bottom credit line */
+  .footer-bottom {
+    text-align: center !important;
+    padding: 20px 20px 0 !important;
+    font-size: 12px !important;
+    line-height: 1.5 !important;
+  }
+}
+
+/* Very small screens */
+@media (max-width: 480px) {
+  .footer-inner {
+    gap: 26px !important;
+  }
+
+  .footer-inner p {
+    max-width: 320px !important;
+    font-size: 13px !important;
+  }
+
+  .footer-inner a {
+    font-size: 13.5px !important;
+  }
+
+  .footer-bottom {
+    font-size: 11px !important;
+    padding: 18px 16px 0 !important;
+  }
+}
