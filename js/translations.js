@@ -3998,3 +3998,43 @@ Object.assign(translations.ar, {
   "reports.empty.title": "لا توجد تقارير بعد",
   "reports.empty.desc": "ستظهر التقارير هنا بمجرد رفعها من قبل المجلس.",
 });
+/* ============================================================
+   EXTENSION 23 — Brand names (per language)
+   ------------------------------------------------------------
+   Amharic:  ወቅፍ
+   English:  WEKF
+   Oromo:    WAQFII
+   Arabic:   وقف
+   ============================================================ */
+
+/* ---------- ENGLISH ---------- */
+Object.assign(translations.en, {
+  "brand.name": "WEKF",
+  "brand.sub": "Malka Nono Islamic Affairs Council",
+});
+
+/* ---------- AMHARIC ---------- */
+Object.assign(translations.am, {
+  "brand.name": "ወቅፍ",
+  "brand.sub": "መልካ ኖኖ እስልምና ጉዳዮች ምክር ቤት",
+});
+
+/* ---------- OROMO ---------- */
+Object.assign(translations.om, {
+  "brand.name": "WAQFII",
+  "brand.sub": "Mana Maree Dhimma Islaamaa Malkaa Noonoo",
+});
+
+/* ---------- ARABIC ---------- */
+Object.assign(translations.ar, {
+  "brand.name": "وقف",
+  "brand.sub": "مجلس الشؤون الإسلامية ملقا نونو",
+});
+/* ============================================================
+   EXTENSION 24 — Remove brand subtitle
+   ============================================================ */
+
+Object.assign(translations.en, { "brand.sub": "" });
+Object.assign(translations.am, { "brand.sub": "" });
+Object.assign(translations.om, { "brand.sub": "" });
+Object.assign(translations.ar, { "brand.sub": "" });
