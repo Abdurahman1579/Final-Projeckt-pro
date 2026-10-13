@@ -16,7 +16,7 @@
   <body>
     <!-- ============ LOGIN SCREEN ============ -->
     <div class="login-screen" id="loginScreen">
-      <!-- Theme toggle (top-left) -->
+      <!-- 🌙 THEME TOGGLE (top-left) -->
       <button
         class="login-theme-toggle"
         id="loginThemeToggle"
@@ -26,10 +26,10 @@
         🌙
       </button>
 
-      <!-- Language switcher (top-right) -->
+      <!-- 🌐 LANGUAGE SWITCHER (top-right) -->
       <div class="lang-switcher login-lang" id="langSwitcherLogin">
         <button class="lang-btn" id="langBtnLogin" aria-label="Change language">
-          🌐 <span class="lang-current">AM</span>
+          <span class="lang-current">AM</span>
           <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
             <path
               d="M1 3l4 4 4-4"
@@ -62,7 +62,8 @@
           <p data-i18n="admin.login.subtitle"></p>
         </div>
 
-        <!-- ⚠️ Demo hint removed -->
+        <!-- ❌ DEMO HINT REMOVED — አሁን የለም -->
+        <!-- <div class="login-hint">...</div> -->
 
         <div
           class="login-error"
@@ -116,7 +117,6 @@
 
     <!-- ============ ADMIN APP ============ -->
     <div class="admin-app" id="adminApp">
-      <!-- Mobile overlay -->
       <div class="admin-mobile-overlay" id="mobileOverlay"></div>
 
       <div class="admin-layout">
@@ -128,11 +128,12 @@
               <span data-i18n="admin.brand"></span>
               <small data-i18n="admin.brandSub"></small>
             </div>
-            <!-- Close button (mobile only) -->
+            <!-- ❌ CLOSE BUTTON (×) — only shows on mobile -->
             <button
               class="sidebar-close"
               id="sidebarClose"
               aria-label="Close menu"
+              type="button"
             >
               ×
             </button>
@@ -140,16 +141,16 @@
 
           <ul class="admin-nav" id="adminNav">
             <li>
-              <a href="#" data-view="dashboard" class="active">
-                <span class="ic">📊</span>
-                <span data-i18n="admin.nav.dashboard"></span>
-              </a>
+              <a href="#" data-view="dashboard" class="active"
+                ><span class="ic">📊</span
+                ><span data-i18n="admin.nav.dashboard"></span
+              ></a>
             </li>
             <li>
-              <a href="#" data-view="news">
-                <span class="ic">📰</span>
-                <span data-i18n="admin.nav.news"></span>
-              </a>
+              <a href="#" data-view="news"
+                ><span class="ic">📰</span
+                ><span data-i18n="admin.nav.news"></span
+              ></a>
             </li>
             <li>
               <a
@@ -157,54 +158,53 @@
                 target="_blank"
                 rel="noopener"
                 data-external
-              >
-                <span class="ic">👥</span>
-                <span data-i18n="admin.nav.leadership"></span>
-                <span
+                ><span class="ic">👥</span
+                ><span data-i18n="admin.nav.leadership"></span
+                ><span
                   style="
                     margin-inline-start: auto;
                     font-size: 11px;
                     opacity: 0.55;
                   "
                   >↗</span
-                >
-              </a>
+                ></a
+              >
             </li>
             <li>
-              <a href="#" data-view="reports">
-                <span class="ic">📁</span>
-                <span data-i18n="admin.nav.reports"></span>
-              </a>
+              <a href="#" data-view="reports"
+                ><span class="ic">📁</span
+                ><span data-i18n="admin.nav.reports"></span
+              ></a>
             </li>
             <li>
-              <a href="#" data-view="donations">
-                <span class="ic">💰</span>
-                <span data-i18n="admin.nav.donations"></span>
-              </a>
+              <a href="#" data-view="donations"
+                ><span class="ic">💰</span
+                ><span data-i18n="admin.nav.donations"></span
+              ></a>
             </li>
             <li>
-              <a href="#" data-view="donors">
-                <span class="ic">👥</span>
-                <span data-i18n="admin.nav.donors"></span>
-              </a>
+              <a href="#" data-view="donors"
+                ><span class="ic">👥</span
+                ><span data-i18n="admin.nav.donors"></span
+              ></a>
             </li>
             <li>
-              <a href="#" data-view="messages">
-                <span class="ic">✉️</span>
-                <span data-i18n="admin.nav.messages"></span>
-              </a>
+              <a href="#" data-view="messages"
+                ><span class="ic">✉️</span
+                ><span data-i18n="admin.nav.messages"></span
+              ></a>
             </li>
             <li>
-              <a href="#" data-view="users">
-                <span class="ic">🔐</span>
-                <span data-i18n="admin.nav.users"></span>
-              </a>
+              <a href="#" data-view="users"
+                ><span class="ic">🔐</span
+                ><span data-i18n="admin.nav.users"></span
+              ></a>
             </li>
             <li>
-              <a href="#" data-view="settings">
-                <span class="ic">⚙️</span>
-                <span data-i18n="admin.nav.settings"></span>
-              </a>
+              <a href="#" data-view="settings"
+                ><span class="ic">⚙️</span
+                ><span data-i18n="admin.nav.settings"></span
+              ></a>
             </li>
           </ul>
 
@@ -220,7 +220,6 @@
 
         <!-- ============ MAIN ============ -->
         <main class="admin-main" id="adminMain">
-          <!-- Topbar -->
           <div class="admin-topbar">
             <div class="admin-topbar-left">
               <button
@@ -236,7 +235,7 @@
               </div>
             </div>
             <div class="admin-topbar-right">
-              <!-- Theme toggle (dashboard) -->
+              <!-- 🌙 DASHBOARD THEME TOGGLE -->
               <button
                 class="theme-toggle-btn"
                 id="themeToggle"
@@ -246,14 +245,14 @@
                 🌙
               </button>
 
-              <!-- Language switcher (dashboard) -->
+              <!-- 🌐 LANGUAGE SWITCHER (single globe) -->
               <div class="lang-switcher admin-lang" id="langSwitcherAdmin">
                 <button
                   class="lang-btn"
                   id="langBtnAdmin"
                   aria-label="Change language"
                 >
-                  🌐 <span class="lang-current">AM</span>
+                  <span class="lang-current">AM</span>
                   <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
                     <path
                       d="M1 3l4 4 4-4"
@@ -319,7 +318,6 @@
               </div>
             </div>
 
-            <!-- Leadership Widget -->
             <div class="admin-panel" style="margin-bottom: 24px">
               <div class="admin-panel-head">
                 <h2 data-i18n="admin.dashboard.leadership.title"></h2>
@@ -333,7 +331,6 @@
               <div class="leadership-widget" id="leadershipWidget"></div>
             </div>
 
-            <!-- Leadership Manager -->
             <div class="admin-panel" style="margin-bottom: 24px">
               <div class="admin-panel-head">
                 <h2 data-i18n="admin.dashboard.leadership.manage"></h2>
@@ -416,16 +413,6 @@
                             ></span>
                           </td>
                         </tr>
-                        <tr>
-                          <td>Project Progress — Q1 2026</td>
-                          <td>Apr 10, 2026</td>
-                          <td>
-                            <span
-                              class="status-badge draft"
-                              data-i18n="admin.status.draft"
-                            ></span>
-                          </td>
-                        </tr>
                       </tbody>
                     </table>
                   </div>
@@ -483,20 +470,6 @@
                         ><small data-i18n="admin.act.a2t"></small>
                       </div>
                     </li>
-                    <li class="activity-item">
-                      <div class="av y">👤</div>
-                      <div class="info">
-                        <strong data-i18n="admin.act.a3"></strong
-                        ><small data-i18n="admin.act.a3t"></small>
-                      </div>
-                    </li>
-                    <li class="activity-item">
-                      <div class="av p">📤</div>
-                      <div class="info">
-                        <strong data-i18n="admin.act.a4"></strong
-                        ><small data-i18n="admin.act.a4t"></small>
-                      </div>
-                    </li>
                   </ul>
                 </div>
               </div>
@@ -511,20 +484,6 @@
                 <button class="admin-btn primary" data-add="news">
                   + <span data-i18n="admin.news.new"></span>
                 </button>
-              </div>
-              <div class="panel-tabs">
-                <button
-                  class="panel-tab active"
-                  data-i18n="admin.filter.all"
-                ></button>
-                <button
-                  class="panel-tab"
-                  data-i18n="admin.filter.published"
-                ></button>
-                <button
-                  class="panel-tab"
-                  data-i18n="admin.filter.draft"
-                ></button>
               </div>
               <div style="overflow-x: auto">
                 <table class="admin-table" data-table="news">
@@ -547,7 +506,7 @@
                           padding: 30px;
                         "
                       >
-                        Loading from Supabase...
+                        Loading...
                       </td>
                     </tr>
                   </tbody>
@@ -587,7 +546,7 @@
                           padding: 30px;
                         "
                       >
-                        Loading from Supabase...
+                        Loading...
                       </td>
                     </tr>
                   </tbody>
@@ -604,20 +563,6 @@
                 <button class="admin-btn primary" data-add="donations">
                   + <span data-i18n="admin.donations.new"></span>
                 </button>
-              </div>
-              <div class="panel-tabs">
-                <button
-                  class="panel-tab active"
-                  data-i18n="admin.filter.all"
-                ></button>
-                <button
-                  class="panel-tab"
-                  data-i18n="admin.status.approved"
-                ></button>
-                <button
-                  class="panel-tab"
-                  data-i18n="admin.status.pending"
-                ></button>
               </div>
               <div style="overflow-x: auto">
                 <table class="admin-table" data-table="donations">
@@ -642,7 +587,7 @@
                           padding: 30px;
                         "
                       >
-                        Loading from Supabase...
+                        Loading...
                       </td>
                     </tr>
                   </tbody>
@@ -682,7 +627,7 @@
                           padding: 30px;
                         "
                       >
-                        Loading from Supabase...
+                        Loading...
                       </td>
                     </tr>
                   </tbody>
@@ -701,7 +646,6 @@
                   data-i18n="admin.messages.unread"
                 ></span>
               </div>
-              <!-- Message cards loaded from Supabase -->
             </div>
           </div>
 
@@ -727,112 +671,16 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr data-id="u1">
-                      <td>
-                        <div class="user-cell">
-                          <div class="u-av">AD</div>
-                          <div class="u-info"><strong>Admin User</strong></div>
-                        </div>
-                      </td>
-                      <td>admin@malkanono.org</td>
-                      <td><span class="role-badge admin">Admin</span></td>
-                      <td>Today, 09:45</td>
-                      <td>
-                        <span
-                          class="status-badge approved"
-                          data-i18n="admin.users.active"
-                        ></span>
-                      </td>
-                      <td>
-                        <div class="row-actions">
-                          <button class="icon-btn edit" data-edit="users">
-                            ✏️
-                          </button>
-                          <button class="icon-btn danger" data-delete="users">
-                            🗑️
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr data-id="u2">
-                      <td>
-                        <div class="user-cell">
-                          <div class="u-av">MK</div>
-                          <div class="u-info"><strong>Mohammed K.</strong></div>
-                        </div>
-                      </td>
-                      <td>mohammed@malkanono.org</td>
-                      <td><span class="role-badge editor">Editor</span></td>
-                      <td>Yesterday, 16:22</td>
-                      <td>
-                        <span
-                          class="status-badge approved"
-                          data-i18n="admin.users.active"
-                        ></span>
-                      </td>
-                      <td>
-                        <div class="row-actions">
-                          <button class="icon-btn edit" data-edit="users">
-                            ✏️
-                          </button>
-                          <button class="icon-btn danger" data-delete="users">
-                            🗑️
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr data-id="u3">
-                      <td>
-                        <div class="user-cell">
-                          <div class="u-av">SA</div>
-                          <div class="u-info"><strong>Sarah A.</strong></div>
-                        </div>
-                      </td>
-                      <td>sarah@malkanono.org</td>
-                      <td><span class="role-badge editor">Editor</span></td>
-                      <td>Feb 6, 2026</td>
-                      <td>
-                        <span
-                          class="status-badge approved"
-                          data-i18n="admin.users.active"
-                        ></span>
-                      </td>
-                      <td>
-                        <div class="row-actions">
-                          <button class="icon-btn edit" data-edit="users">
-                            ✏️
-                          </button>
-                          <button class="icon-btn danger" data-delete="users">
-                            🗑️
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr data-id="u4">
-                      <td>
-                        <div class="user-cell">
-                          <div class="u-av">YT</div>
-                          <div class="u-info"><strong>Yusuf T.</strong></div>
-                        </div>
-                      </td>
-                      <td>yusuf@malkanono.org</td>
-                      <td><span class="role-badge viewer">Viewer</span></td>
-                      <td>Jan 28, 2026</td>
-                      <td>
-                        <span
-                          class="status-badge draft"
-                          data-i18n="admin.users.inactive"
-                        ></span>
-                      </td>
-                      <td>
-                        <div class="row-actions">
-                          <button class="icon-btn edit" data-edit="users">
-                            ✏️
-                          </button>
-                          <button class="icon-btn danger" data-delete="users">
-                            🗑️
-                          </button>
-                        </div>
+                    <tr>
+                      <td
+                        colspan="6"
+                        style="
+                          text-align: center;
+                          color: var(--ink500);
+                          padding: 30px;
+                        "
+                      >
+                        Loading...
                       </td>
                     </tr>
                   </tbody>
@@ -850,8 +698,8 @@
                   <label
                     class="form-label"
                     data-i18n="admin.settings.projectName"
-                  ></label>
-                  <input
+                  ></label
+                  ><input
                     class="form-input"
                     type="text"
                     value="Malka Nono Project"
@@ -861,77 +709,14 @@
                   <label
                     class="form-label"
                     data-i18n="admin.settings.orgName"
-                  ></label>
-                  <input
+                  ></label
+                  ><input
                     class="form-input"
                     type="text"
                     value="Malka Nono Islamic Affairs Council"
                   />
                 </div>
-                <div class="form-group full">
-                  <label
-                    class="form-label"
-                    data-i18n="admin.settings.description"
-                  ></label>
-                  <textarea class="form-textarea" rows="3">
-Sustainable Property Development Project.</textarea
-                  >
-                </div>
               </div>
-            </div>
-            <div class="settings-section">
-              <h3 data-i18n="admin.settings.notifications"></h3>
-              <div class="settings-form">
-                <div class="form-group full">
-                  <label
-                    style="
-                      display: flex;
-                      align-items: center;
-                      gap: 10px;
-                      cursor: pointer;
-                      font-size: 14px;
-                      color: var(--ink700);
-                    "
-                  >
-                    <input
-                      type="checkbox"
-                      checked
-                      style="width: 18px; height: 18px"
-                    />
-                    <span data-i18n="admin.settings.emailNotif"></span>
-                  </label>
-                </div>
-                <div class="form-group full">
-                  <label
-                    style="
-                      display: flex;
-                      align-items: center;
-                      gap: 10px;
-                      cursor: pointer;
-                      font-size: 14px;
-                      color: var(--ink700);
-                    "
-                  >
-                    <input
-                      type="checkbox"
-                      checked
-                      style="width: 18px; height: 18px"
-                    />
-                    <span data-i18n="admin.settings.donationNotif"></span>
-                  </label>
-                </div>
-              </div>
-            </div>
-            <div style="display: flex; gap: 12px; justify-content: flex-end">
-              <button
-                class="admin-btn"
-                data-i18n="admin.settings.cancel"
-              ></button>
-              <button
-                class="admin-btn primary"
-                onclick="showToast('Changes saved', 'success')"
-                data-i18n="admin.settings.save"
-              ></button>
             </div>
           </div>
         </main>
@@ -964,10 +749,9 @@ Sustainable Property Development Project.</textarea
       </div>
     </div>
 
-    <!-- ============ TOAST CONTAINER ============ -->
     <div class="toast-container" id="toastContainer"></div>
 
-    <!-- ============ SCRIPTS (order matters!) ============ -->
+    <!-- ============ SCRIPTS ============ -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="js/translations.js"></script>
     <script src="js/i18n.js"></script>

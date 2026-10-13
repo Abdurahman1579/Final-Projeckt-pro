@@ -1,26 +1,19 @@
 /* ============================================================
-   ADMIN MOBILE — Hamburger + Close + Theme Toggle
+   ADMIN MOBILE — Full: Hamburger + Close + Theme Toggle
    ============================================================ */
 
 (function () {
   "use strict";
 
   function init() {
-    const toggle = document.getElementById("mobileMenuToggle");
-    const sidebar = document.querySelector(".admin-sidebar");
-    const overlay = document.getElementById("mobileOverlay");
-    const closeBtn = document.getElementById("sidebarClose");
-    const adminApp = document.getElementById("adminApp");
-    const loginThemeToggle = document.getElementById("loginThemeToggle");
+    console.log("[Admin Mobile] Init...");
 
     /* ============================================================
-       1) THEME TOGGLE (works on both login + dashboard)
+       1) THEME TOGGLE (login + dashboard)
        ============================================================ */
-    function applyThemeFromStorage() {
-      const saved = localStorage.getItem("mkn-theme");
-      const isDark = saved === "dark";
+    function applyTheme() {
+      const isDark = localStorage.getItem("mkn-theme") === "dark";
       document.body.classList.toggle("dark-mode", isDark);
-      // Update all theme buttons
       document
         .querySelectorAll("#loginThemeToggle, #themeToggle, .theme-toggle-btn")
         .forEach((btn) => {
@@ -31,7 +24,6 @@
     function toggleTheme() {
       const isDark = document.body.classList.toggle("dark-mode");
       localStorage.setItem("mkn-theme", isDark ? "dark" : "light");
-      // Update all theme buttons
       document
         .querySelectorAll("#loginThemeToggle, #themeToggle, .theme-toggle-btn")
         .forEach((btn) => {
@@ -39,24 +31,89 @@
         });
     }
 
-    // Apply on load
-    applyThemeFromStorage();
+    applyTheme();
 
-    // Login theme toggle
-    if (loginThemeToggle) {
-      loginThemeToggle.addEventListener("click", toggleTheme);
+    // Login theme button
+    const loginThemeBtn = document.getElementById("loginThemeToggle");
+    if (loginThemeBtn) {
+      loginThemeBtn.addEventListener("click", toggleTheme);
+      console.log("[Admin Mobile] ✓ Login theme toggle bound");
     }
 
-    // Dashboard theme toggle
-    const dashThemeToggle = document.getElementById("themeToggle");
-    if (dashThemeToggle) {
-      dashThemeToggle.addEventListener("click", toggleTheme);
+    // Dashboard theme button
+    const dashThemeBtn = document.getElementById("themeToggle");
+    if (dashThemeBtn) {
+      dashThemeBtn.addEventListener("click", toggleTheme);
+      console.log("[Admin Mobile] ✓ Dashboard theme toggle bound");
     }
 
     /* ============================================================
-       2) SIDEBAR DRAWER (mobile)
+       2) LANGUAGE SWITCHER (login + dashboard)
        ============================================================ */
-    if (!toggle || !sidebar) return;
+    function bindLangSwitcher(switcherId, btnId) {
+      const switcher = document.getElementById(switcherId);
+      const btn = document.getElementById(btnId);
+      if (!switcher || !btn) return;
+
+      // Avoid double binding
+      if (btn.dataset.bound === "1") return;
+      btn.dataset.bound = "1";
+
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        // Close other switchers
+        document.querySelectorAll(".lang-switcher.open").forEach((s) => {
+          if (s !== switcher) s.classList.remove("open");
+        });
+        switcher.classList.toggle("open");
+      });
+
+      switcher.querySelectorAll(".lang-option").forEach((opt) => {
+        opt.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          const lang = opt.dataset.lang;
+          if (window.i18n && window.i18n.setLanguage) {
+            window.i18n.setLanguage(lang);
+          }
+          switcher.classList.remove("open");
+          // Update the visible label
+          const label = switcher.querySelector(".lang-current");
+          if (label) label.textContent = lang.toUpperCase();
+        });
+      });
+
+      console.log(`[Admin Mobile] ✓ Lang switcher bound: ${switcherId}`);
+    }
+
+    bindLangSwitcher("langSwitcherLogin", "langBtnLogin");
+    bindLangSwitcher("langSwitcherAdmin", "langBtnAdmin");
+
+    // Close dropdown on outside click
+    document.addEventListener("click", (e) => {
+      if (!e.target.closest(".lang-switcher")) {
+        document
+          .querySelectorAll(".lang-switcher.open")
+          .forEach((s) => s.classList.remove("open"));
+      }
+    });
+
+    /* ============================================================
+       3) SIDEBAR DRAWER (mobile)
+       ============================================================ */
+    const toggle = document.getElementById("mobileMenuToggle");
+    const sidebar =
+      document.getElementById("adminSidebar") ||
+      document.querySelector(".admin-sidebar");
+    const overlay = document.getElementById("mobileOverlay");
+    const closeBtn = document.getElementById("sidebarClose");
+    const adminApp = document.getElementById("adminApp");
+
+    if (!toggle || !sidebar) {
+      console.warn("[Admin Mobile] Toggle or sidebar not found");
+      return;
+    }
 
     function syncBodyClass() {
       if (adminApp && adminApp.classList.contains("active")) {
@@ -67,11 +124,8 @@
     }
 
     if (adminApp) {
-      const observer = new MutationObserver(syncBodyClass);
-      observer.observe(adminApp, {
-        attributes: true,
-        attributeFilter: ["class"],
-      });
+      const obs = new MutationObserver(syncBodyClass);
+      obs.observe(adminApp, { attributes: true, attributeFilter: ["class"] });
       syncBodyClass();
     }
 
@@ -94,20 +148,26 @@
       else openSidebar();
     }
 
-    // Hamburger
+    // Hamburger click
     toggle.addEventListener("click", (e) => {
       e.preventDefault();
       e.stopPropagation();
       toggleSidebar();
     });
 
-    // Close (×) button
+    // × Close button click
     if (closeBtn) {
       closeBtn.addEventListener("click", (e) => {
         e.preventDefault();
         e.stopPropagation();
         closeSidebar();
+        console.log("[Admin Mobile] ✓ Sidebar closed via ×");
       });
+      console.log("[Admin Mobile] ✓ Close button bound");
+    } else {
+      console.warn(
+        "[Admin Mobile] ⚠ Close button (sidebarClose) not found in HTML",
+      );
     }
 
     // Overlay click
@@ -118,24 +178,22 @@
     // Nav link click
     document.querySelectorAll("#adminNav a").forEach((link) => {
       link.addEventListener("click", () => {
-        if (window.innerWidth <= 860) {
-          setTimeout(closeSidebar, 150);
-        }
+        if (window.innerWidth <= 860) setTimeout(closeSidebar, 150);
       });
     });
 
-    // Escape
+    // Escape key
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && sidebar.classList.contains("open")) {
         closeSidebar();
       }
     });
 
-    // Resize
-    let resizeTimer;
+    // Resize — close on desktop
+    let rz;
     window.addEventListener("resize", () => {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => {
+      clearTimeout(rz);
+      rz = setTimeout(() => {
         if (window.innerWidth > 860 && sidebar.classList.contains("open")) {
           closeSidebar();
         }
@@ -143,13 +201,13 @@
     });
 
     // Swipe left
-    let touchStartX = 0;
-    let touchStartY = 0;
+    let tx = 0,
+      ty = 0;
     sidebar.addEventListener(
       "touchstart",
       (e) => {
-        touchStartX = e.touches[0].clientX;
-        touchStartY = e.touches[0].clientY;
+        tx = e.touches[0].clientX;
+        ty = e.touches[0].clientY;
       },
       { passive: true },
     );
@@ -157,16 +215,14 @@
     sidebar.addEventListener(
       "touchend",
       (e) => {
-        const dx = e.changedTouches[0].clientX - touchStartX;
-        const dy = e.changedTouches[0].clientY - touchStartY;
-        if (Math.abs(dx) > Math.abs(dy) && dx < -60) {
-          closeSidebar();
-        }
+        const dx = e.changedTouches[0].clientX - tx;
+        const dy = e.changedTouches[0].clientY - ty;
+        if (Math.abs(dx) > Math.abs(dy) && dx < -60) closeSidebar();
       },
       { passive: true },
     );
 
-    console.log("[Admin Mobile] ✓ Ready");
+    console.log("[Admin Mobile] ✓ Ready — all bindings complete");
   }
 
   if (document.readyState === "loading") {
