@@ -1,5 +1,5 @@
 /* ============================================================
-   ADMIN MOBILE — Hamburger Drawer + Body Class Manager
+   ADMIN MOBILE — Hamburger + Close + Theme Toggle
    ============================================================ */
 
 (function () {
@@ -9,14 +9,55 @@
     const toggle = document.getElementById("mobileMenuToggle");
     const sidebar = document.querySelector(".admin-sidebar");
     const overlay = document.getElementById("mobileOverlay");
+    const closeBtn = document.getElementById("sidebarClose");
     const adminApp = document.getElementById("adminApp");
+    const loginThemeToggle = document.getElementById("loginThemeToggle");
 
-    if (!toggle || !sidebar) {
-      console.warn("[Admin Mobile] Elements not found");
-      return;
+    /* ============================================================
+       1) THEME TOGGLE (works on both login + dashboard)
+       ============================================================ */
+    function applyThemeFromStorage() {
+      const saved = localStorage.getItem("mkn-theme");
+      const isDark = saved === "dark";
+      document.body.classList.toggle("dark-mode", isDark);
+      // Update all theme buttons
+      document
+        .querySelectorAll("#loginThemeToggle, #themeToggle, .theme-toggle-btn")
+        .forEach((btn) => {
+          btn.textContent = isDark ? "☀️" : "🌙";
+        });
     }
 
-    // Add body class when admin is active (for overflow rules)
+    function toggleTheme() {
+      const isDark = document.body.classList.toggle("dark-mode");
+      localStorage.setItem("mkn-theme", isDark ? "dark" : "light");
+      // Update all theme buttons
+      document
+        .querySelectorAll("#loginThemeToggle, #themeToggle, .theme-toggle-btn")
+        .forEach((btn) => {
+          btn.textContent = isDark ? "☀️" : "🌙";
+        });
+    }
+
+    // Apply on load
+    applyThemeFromStorage();
+
+    // Login theme toggle
+    if (loginThemeToggle) {
+      loginThemeToggle.addEventListener("click", toggleTheme);
+    }
+
+    // Dashboard theme toggle
+    const dashThemeToggle = document.getElementById("themeToggle");
+    if (dashThemeToggle) {
+      dashThemeToggle.addEventListener("click", toggleTheme);
+    }
+
+    /* ============================================================
+       2) SIDEBAR DRAWER (mobile)
+       ============================================================ */
+    if (!toggle || !sidebar) return;
+
     function syncBodyClass() {
       if (adminApp && adminApp.classList.contains("active")) {
         document.body.classList.add("admin-active");
@@ -25,7 +66,6 @@
       }
     }
 
-    // Watch for admin-app class changes (login/logout)
     if (adminApp) {
       const observer = new MutationObserver(syncBodyClass);
       observer.observe(adminApp, {
@@ -54,19 +94,28 @@
       else openSidebar();
     }
 
-    // Hamburger click
+    // Hamburger
     toggle.addEventListener("click", (e) => {
       e.preventDefault();
       e.stopPropagation();
       toggleSidebar();
     });
 
+    // Close (×) button
+    if (closeBtn) {
+      closeBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        closeSidebar();
+      });
+    }
+
     // Overlay click
     if (overlay) {
       overlay.addEventListener("click", closeSidebar);
     }
 
-    // Nav link click — close sidebar (mobile)
+    // Nav link click
     document.querySelectorAll("#adminNav a").forEach((link) => {
       link.addEventListener("click", () => {
         if (window.innerWidth <= 860) {
@@ -75,14 +124,14 @@
       });
     });
 
-    // Escape key
+    // Escape
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && sidebar.classList.contains("open")) {
         closeSidebar();
       }
     });
 
-    // Resize handler
+    // Resize
     let resizeTimer;
     window.addEventListener("resize", () => {
       clearTimeout(resizeTimer);
@@ -93,7 +142,7 @@
       }, 200);
     });
 
-    // Swipe left to close sidebar (mobile)
+    // Swipe left
     let touchStartX = 0;
     let touchStartY = 0;
     sidebar.addEventListener(

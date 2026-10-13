@@ -5610,3 +5610,224 @@ body.dark-mode .admin-table-wrap {
 body.dark-mode footer {
   background: #061a12;
 }
+/* ============================================================
+   FIX 1 — Duplicate globe icon on lang-btn (small screens)
+   ============================================================ */
+
+/* ❌ Remove the extra ::before that creates 2 globes */
+@media (max-width: 480px) {
+  .lang-btn::before {
+    content: none !important;
+    display: none !important;
+  }
+}
+
+/* ✅ Make sure lang-btn has clean spacing */
+.lang-btn {
+  gap: 6px !important;
+  white-space: nowrap;
+}
+
+.lang-btn .lang-current {
+  display: inline-block;
+  min-width: 24px;
+  text-align: center;
+}
+
+/* Make sure lang-switcher is positioned relative
+   so dropdown appears below the button */
+.lang-switcher {
+  position: relative !important;
+  z-index: 55;
+}
+
+/* Dropdown always on top */
+.lang-dropdown {
+  z-index: 9999 !important;
+}
+
+/* ============================================================
+   FIX 2 — Sidebar close button (×)
+   ============================================================ */
+
+.admin-brand {
+  position: relative;
+}
+
+.sidebar-close {
+  display: none;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  border-radius: 10px;
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 1;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  z-index: 5;
+  font-family: inherit;
+  padding: 0;
+}
+
+.sidebar-close:hover {
+  background: rgba(255, 0, 0, 0.15);
+  border-color: rgba(255, 100, 100, 0.4);
+  transform: scale(1.05);
+}
+
+/* Only show on mobile */
+@media (max-width: 860px) {
+  .sidebar-close {
+    display: flex;
+  }
+}
+
+/* ============================================================
+   FIX 3 — Login theme toggle (top-left corner)
+   ============================================================ */
+
+.login-theme-toggle {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  cursor: pointer;
+  font-size: 18px;
+  display: grid;
+  place-items: center;
+  z-index: 10;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  padding: 0;
+}
+
+.login-theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.05);
+}
+
+/* ============================================================
+   DARK MODE — Login screen + general styling
+   ============================================================ */
+
+body.dark-mode {
+  background: #0f1e18 !important;
+  color: #f4f7f5 !important;
+}
+
+body.dark-mode .login-screen {
+  background:
+    radial-gradient(circle at 15% 20%, rgba(33, 154, 117, 0.15), transparent 45%),
+    radial-gradient(circle at 85% 80%, rgba(212, 160, 23, 0.12), transparent 45%),
+    linear-gradient(135deg, #061a12 0%, #0a2a1e 100%);
+}
+
+body.dark-mode .login-card {
+  background: #1a2a22;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode .login-card h1 {
+  color: #f4f7f5;
+}
+
+body.dark-mode .login-card p {
+  color: #94a39b;
+}
+
+body.dark-mode .login-brand p {
+  color: #94a39b;
+}
+
+body.dark-mode .form-label {
+  color: #d8e0da;
+}
+
+body.dark-mode .form-input,
+body.dark-mode .form-select,
+body.dark-mode .form-textarea {
+  background: #0f1e18;
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #f4f7f5;
+}
+
+body.dark-mode .form-input:focus {
+  border-color: var(--g500);
+  background: #0a1a13;
+}
+
+body.dark-mode .login-footer a {
+  color: var(--g500);
+}
+
+body.dark-mode .login-error {
+  background: rgba(192, 57, 43, 0.15);
+  border-color: rgba(231, 76, 60, 0.4);
+  color: #ff8c85;
+}
+
+/* Admin dashboard dark */
+body.dark-mode .admin-sidebar {
+  background: linear-gradient(180deg, #061a12, #04120c);
+}
+
+body.dark-mode .admin-main {
+  background: #0f1e18;
+}
+
+body.dark-mode .admin-topbar {
+  background: #0f1e18;
+}
+
+body.dark-mode .admin-panel {
+  background: #1a2a22;
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+body.dark-mode .admin-table thead th {
+  background: #132920;
+  color: #d8e0da;
+}
+
+body.dark-mode .admin-table tbody td {
+  border-color: rgba(255, 255, 255, 0.06);
+  color: #d8e0da;
+}
+
+body.dark-mode .dash-stat {
+  background: #1a2a22;
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+body.dark-mode .dash-stat .ds-num {
+  color: #f4f7f5;
+}
+
+body.dark-mode .dash-stat .ds-lbl {
+  color: #94a39b;
+}
+
+body.dark-mode .quick-action {
+  background: #132920;
+  border-color: rgba(255, 255, 255, 0.06);
+  color: #d8e0da;
+}
+
+body.dark-mode .quick-action .qa-lbl {
+  color: #d8e0da;
+}

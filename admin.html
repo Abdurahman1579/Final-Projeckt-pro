@@ -16,6 +16,17 @@
   <body>
     <!-- ============ LOGIN SCREEN ============ -->
     <div class="login-screen" id="loginScreen">
+      <!-- Theme toggle (top-left) -->
+      <button
+        class="login-theme-toggle"
+        id="loginThemeToggle"
+        aria-label="Toggle theme"
+        title="Dark mode"
+      >
+        🌙
+      </button>
+
+      <!-- Language switcher (top-right) -->
       <div class="lang-switcher login-lang" id="langSwitcherLogin">
         <button class="lang-btn" id="langBtnLogin" aria-label="Change language">
           🌐 <span class="lang-current">AM</span>
@@ -50,15 +61,15 @@
           <h1 data-i18n="admin.login.title"></h1>
           <p data-i18n="admin.login.subtitle"></p>
         </div>
-        <div class="login-hint">
-          <strong data-i18n="admin.login.demoLabel"></strong>
-          <span data-i18n="admin.login.demoText"></span>
-        </div>
+
+        <!-- ⚠️ Demo hint removed -->
+
         <div
           class="login-error"
           id="loginError"
           data-i18n="admin.login.error"
         ></div>
+
         <form id="loginForm" novalidate>
           <div class="form-group">
             <label
@@ -105,7 +116,7 @@
 
     <!-- ============ ADMIN APP ============ -->
     <div class="admin-app" id="adminApp">
-      <!-- Mobile overlay (for hamburger drawer) -->
+      <!-- Mobile overlay -->
       <div class="admin-mobile-overlay" id="mobileOverlay"></div>
 
       <div class="admin-layout">
@@ -117,6 +128,14 @@
               <span data-i18n="admin.brand"></span>
               <small data-i18n="admin.brandSub"></small>
             </div>
+            <!-- Close button (mobile only) -->
+            <button
+              class="sidebar-close"
+              id="sidebarClose"
+              aria-label="Close menu"
+            >
+              ×
+            </button>
           </div>
 
           <ul class="admin-nav" id="adminNav">
@@ -201,7 +220,7 @@
 
         <!-- ============ MAIN ============ -->
         <main class="admin-main" id="adminMain">
-          <!-- Topbar (with hamburger for mobile) -->
+          <!-- Topbar -->
           <div class="admin-topbar">
             <div class="admin-topbar-left">
               <button
@@ -217,6 +236,17 @@
               </div>
             </div>
             <div class="admin-topbar-right">
+              <!-- Theme toggle (dashboard) -->
+              <button
+                class="theme-toggle-btn"
+                id="themeToggle"
+                aria-label="Toggle dark mode"
+                title="Dark mode"
+              >
+                🌙
+              </button>
+
+              <!-- Language switcher (dashboard) -->
               <div class="lang-switcher admin-lang" id="langSwitcherAdmin">
                 <button
                   class="lang-btn"
@@ -248,6 +278,7 @@
                   </button>
                 </div>
               </div>
+
               <button class="admin-btn" id="topExportBtn">
                 📥 <span data-i18n="admin.actions.export"></span>
               </button>
@@ -547,100 +578,16 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr data-id="r1">
-                      <td>Monthly Financial — Jan 2026</td>
-                      <td data-i18n="reports.type.financial"></td>
-                      <td>Feb 5, 2026</td>
-                      <td>2.4 MB</td>
-                      <td>
-                        <span
-                          class="status-badge approved"
-                          data-i18n="admin.status.published"
-                        ></span>
-                      </td>
-                      <td>
-                        <div class="row-actions">
-                          <button class="icon-btn edit" data-edit="reports">
-                            ✏️</button
-                          ><button
-                            class="icon-btn danger"
-                            data-delete="reports"
-                          >
-                            🗑️
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr data-id="r2">
-                      <td>Project Progress — Q1 2026</td>
-                      <td data-i18n="reports.type.progress"></td>
-                      <td>Apr 10, 2026</td>
-                      <td>1.8 MB</td>
-                      <td>
-                        <span
-                          class="status-badge draft"
-                          data-i18n="admin.status.draft"
-                        ></span>
-                      </td>
-                      <td>
-                        <div class="row-actions">
-                          <button class="icon-btn edit" data-edit="reports">
-                            ✏️</button
-                          ><button
-                            class="icon-btn danger"
-                            data-delete="reports"
-                          >
-                            🗑️
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr data-id="r3">
-                      <td>Independent Audit — 2025</td>
-                      <td data-i18n="reports.type.audit"></td>
-                      <td>Mar 15, 2026</td>
-                      <td>3.1 MB</td>
-                      <td>
-                        <span
-                          class="status-badge approved"
-                          data-i18n="admin.status.published"
-                        ></span>
-                      </td>
-                      <td>
-                        <div class="row-actions">
-                          <button class="icon-btn edit" data-edit="reports">
-                            ✏️</button
-                          ><button
-                            class="icon-btn danger"
-                            data-delete="reports"
-                          >
-                            🗑️
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr data-id="r4">
-                      <td>Quarterly Report — Q4 2025</td>
-                      <td data-i18n="reports.type.quarterly"></td>
-                      <td>Jan 20, 2026</td>
-                      <td>1.2 MB</td>
-                      <td>
-                        <span
-                          class="status-badge approved"
-                          data-i18n="admin.status.published"
-                        ></span>
-                      </td>
-                      <td>
-                        <div class="row-actions">
-                          <button class="icon-btn edit" data-edit="reports">
-                            ✏️</button
-                          ><button
-                            class="icon-btn danger"
-                            data-delete="reports"
-                          >
-                            🗑️
-                          </button>
-                        </div>
+                    <tr>
+                      <td
+                        colspan="6"
+                        style="
+                          text-align: center;
+                          color: var(--ink500);
+                          padding: 30px;
+                        "
+                      >
+                        Loading from Supabase...
                       </td>
                     </tr>
                   </tbody>
@@ -799,8 +746,9 @@
                       <td>
                         <div class="row-actions">
                           <button class="icon-btn edit" data-edit="users">
-                            ✏️</button
-                          ><button class="icon-btn danger" data-delete="users">
+                            ✏️
+                          </button>
+                          <button class="icon-btn danger" data-delete="users">
                             🗑️
                           </button>
                         </div>
@@ -825,8 +773,9 @@
                       <td>
                         <div class="row-actions">
                           <button class="icon-btn edit" data-edit="users">
-                            ✏️</button
-                          ><button class="icon-btn danger" data-delete="users">
+                            ✏️
+                          </button>
+                          <button class="icon-btn danger" data-delete="users">
                             🗑️
                           </button>
                         </div>
@@ -851,8 +800,9 @@
                       <td>
                         <div class="row-actions">
                           <button class="icon-btn edit" data-edit="users">
-                            ✏️</button
-                          ><button class="icon-btn danger" data-delete="users">
+                            ✏️
+                          </button>
+                          <button class="icon-btn danger" data-delete="users">
                             🗑️
                           </button>
                         </div>
@@ -877,8 +827,9 @@
                       <td>
                         <div class="row-actions">
                           <button class="icon-btn edit" data-edit="users">
-                            ✏️</button
-                          ><button class="icon-btn danger" data-delete="users">
+                            ✏️
+                          </button>
+                          <button class="icon-btn danger" data-delete="users">
                             🗑️
                           </button>
                         </div>
@@ -1020,7 +971,6 @@ Sustainable Property Development Project.</textarea
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="js/translations.js"></script>
     <script src="js/i18n.js"></script>
-    <script src="js/theme.js"></script>
     <script src="js/main.js"></script>
     <script src="js/supabase.js"></script>
     <script src="js/admin.js"></script>
