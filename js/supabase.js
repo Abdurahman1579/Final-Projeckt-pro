@@ -2,7 +2,7 @@
    SUPABASE CLIENT — Malka Nono Project
    ------------------------------------------------------------
    Full backend helpers:
-   - Public: contact, pledge, newsletter, news, reports
+   - Public: contact, pledge, newsletter, news, reports, committees
    - Admin: fetch + CRUD for all resources
    - Storage: file upload for reports
    ============================================================ */
@@ -273,7 +273,7 @@
   }
 
   /* ============================================================
-     7) REPORTS (with Supabase Storage)
+     7) REPORTS (with Storage)
      ============================================================ */
   const REPORTS_BUCKET = "mkn-reports";
 
@@ -397,7 +397,77 @@
   }
 
   /* ============================================================
-     8) ADMIN FETCH HELPERS
+     8) COMMITTEES
+     ============================================================ */
+  async function fetchCommittees(options) {
+    const opts = options || {};
+    let query = supabase
+      .from("mkn_committees")
+      .select("*")
+      .order("sort_order", { ascending: true });
+    if (opts.status) query = query.eq("status", opts.status);
+    const { data, error } = await query;
+    if (error) return { success: false, error: error.message };
+    return { success: true, data: data || [] };
+  }
+
+  async function createCommittee(data) {
+    const payload = {
+      committee_key: data.committee_key || "proj-" + Date.now(),
+      icon: data.icon || "📋",
+      title_en: data.title_en || "",
+      title_am: data.title_am || data.title_en || "",
+      title_om: data.title_om || data.title_en || "",
+      title_ar: data.title_ar || data.title_en || "",
+      sub_en: data.sub_en || "",
+      sub_am: data.sub_am || data.sub_en || "",
+      sub_om: data.sub_om || data.sub_en || "",
+      sub_ar: data.sub_ar || data.sub_en || "",
+      desc_en: data.desc_en || "",
+      desc_am: data.desc_am || data.desc_en || "",
+      desc_om: data.desc_om || data.desc_en || "",
+      desc_ar: data.desc_ar || data.desc_en || "",
+      leader_name: data.leader_name || "",
+      leader_role: data.leader_role || "",
+      leader_initials: data.leader_initials || "",
+      leader_photo: data.leader_photo || "",
+      members: data.members || [],
+      sort_order: data.sort_order || 99,
+      status: data.status || "published",
+    };
+    if (!payload.title_en)
+      return { success: false, error: "Title is required" };
+    const { data: result, error } = await supabase
+      .from("mkn_committees")
+      .insert([payload])
+      .select()
+      .single();
+    if (error) return { success: false, error: error.message };
+    return { success: true, data: result };
+  }
+
+  async function updateCommittee(id, data) {
+    const { data: result, error } = await supabase
+      .from("mkn_committees")
+      .update(data)
+      .eq("id", id)
+      .select()
+      .single();
+    if (error) return { success: false, error: error.message };
+    return { success: true, data: result };
+  }
+
+  async function deleteCommittee(id) {
+    const { error } = await supabase
+      .from("mkn_committees")
+      .delete()
+      .eq("id", id);
+    if (error) return { success: false, error: error.message };
+    return { success: true };
+  }
+
+  /* ============================================================
+     9) ADMIN FETCH HELPERS
      ============================================================ */
   async function fetchContacts(options) {
     const opts = options || {};
@@ -466,6 +536,7 @@
       "mkn_newsletter_subscribers",
       "mkn_news",
       "mkn_reports",
+      "mkn_committees",
     ];
     if (!allowed.includes(table))
       return { success: false, error: "Invalid table" };
@@ -505,7 +576,7 @@
   }
 
   /* ============================================================
-     9) EXPOSE GLOBAL API
+     10) EXPOSE GLOBAL API
      ============================================================ */
   window.mknBackend = {
     client: supabase,
@@ -529,6 +600,12 @@
     createReport,
     updateReport,
     deleteReport,
+
+    // Committees
+    fetchCommittees,
+    createCommittee,
+    updateCommittee,
+    deleteCommittee,
 
     // Admin
     fetchContacts,

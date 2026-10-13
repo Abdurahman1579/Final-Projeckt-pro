@@ -16,7 +16,6 @@
   <body>
     <!-- ============ LOGIN SCREEN ============ -->
     <div class="login-screen" id="loginScreen">
-      <!-- 🌙 THEME TOGGLE (top-left) -->
       <button
         class="login-theme-toggle"
         id="loginThemeToggle"
@@ -26,7 +25,6 @@
         🌙
       </button>
 
-      <!-- 🌐 LANGUAGE SWITCHER (top-right) -->
       <div class="lang-switcher login-lang" id="langSwitcherLogin">
         <button class="lang-btn" id="langBtnLogin" aria-label="Change language">
           <span class="lang-current">AM</span>
@@ -61,16 +59,11 @@
           <h1 data-i18n="admin.login.title"></h1>
           <p data-i18n="admin.login.subtitle"></p>
         </div>
-
-        <!-- ❌ DEMO HINT REMOVED — አሁን የለም -->
-        <!-- <div class="login-hint">...</div> -->
-
         <div
           class="login-error"
           id="loginError"
           data-i18n="admin.login.error"
         ></div>
-
         <form id="loginForm" novalidate>
           <div class="form-group">
             <label
@@ -128,7 +121,6 @@
               <span data-i18n="admin.brand"></span>
               <small data-i18n="admin.brandSub"></small>
             </div>
-            <!-- ❌ CLOSE BUTTON (×) — only shows on mobile -->
             <button
               class="sidebar-close"
               id="sidebarClose"
@@ -169,6 +161,12 @@
                   >↗</span
                 ></a
               >
+            </li>
+            <li>
+              <a href="#" data-view="committees"
+                ><span class="ic">🎯</span
+                ><span data-i18n="admin.nav.committees"></span
+              ></a>
             </li>
             <li>
               <a href="#" data-view="reports"
@@ -235,7 +233,6 @@
               </div>
             </div>
             <div class="admin-topbar-right">
-              <!-- 🌙 DASHBOARD THEME TOGGLE -->
               <button
                 class="theme-toggle-btn"
                 id="themeToggle"
@@ -245,7 +242,6 @@
                 🌙
               </button>
 
-              <!-- 🌐 LANGUAGE SWITCHER (single globe) -->
               <div class="lang-switcher admin-lang" id="langSwitcherAdmin">
                 <button
                   class="lang-btn"
@@ -404,13 +400,15 @@
                       </thead>
                       <tbody>
                         <tr>
-                          <td>Monthly Financial — Jan 2026</td>
-                          <td>Feb 5, 2026</td>
-                          <td>
-                            <span
-                              class="status-badge approved"
-                              data-i18n="admin.status.published"
-                            ></span>
+                          <td
+                            colspan="3"
+                            style="
+                              text-align: center;
+                              color: var(--ink500);
+                              padding: 30px;
+                            "
+                          >
+                            Loading...
                           </td>
                         </tr>
                       </tbody>
@@ -511,6 +509,37 @@
                     </tr>
                   </tbody>
                 </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- ==================== COMMITTEES ==================== -->
+          <div class="admin-view" id="view-committees">
+            <div class="admin-panel">
+              <div class="admin-panel-head">
+                <h2 data-i18n="admin.committees.title"></h2>
+                <button class="admin-btn primary" data-add="committee">
+                  + <span data-i18n="admin.committees.add"></span>
+                </button>
+              </div>
+              <p
+                style="
+                  color: var(--ink500);
+                  font-size: 13.5px;
+                  margin: -8px 0 18px;
+                "
+                data-i18n="admin.committees.desc"
+              ></p>
+              <div class="committees-manager-grid" id="committeesManagerGrid">
+                <p
+                  style="
+                    text-align: center;
+                    color: var(--ink500);
+                    padding: 30px;
+                  "
+                >
+                  Loading...
+                </p>
               </div>
             </div>
           </div>
@@ -760,5 +789,6 @@
     <script src="js/admin.js"></script>
     <script src="js/admin-mobile.js"></script>
     <script src="js/admin-data.js"></script>
+    <script src="js/admin-committees.js"></script>
   </body>
 </html>

@@ -1,11 +1,14 @@
 /* ============================================================
-   LAYOUT — Shared Navbar + Footer
+   LAYOUT — Shared Navbar + Footer (Full Version)
    Malka Nono Islamic Affairs Council Project
    ------------------------------------------------------------
+   Features:
    - Injects navbar at <div id="site-nav">
    - Injects footer at <div id="site-footer">
-   - Handles: language switcher, dark mode toggle,
-     mobile menu, nav scroll shadow
+   - Theme toggle (dark / light) with localStorage
+   - Language switcher (EN / AM / OM / AR) with dropdown
+   - Mobile hamburger menu
+   - Nav scroll shadow
    ============================================================ */
 
 (function () {
@@ -30,8 +33,8 @@
 
     const linksHTML = links
       .map(
-        (l) => `
-          <li>
+        (l) =>
+          `<li>
             <a href="${l.href}" class="${activePage === l.href ? "active" : ""}">
               <span class="nav-icon">${l.icon}</span>
               <span data-i18n="${l.key}"></span>
@@ -44,6 +47,7 @@
       <nav class="nav" id="nav">
         <div class="nav-inner">
 
+          <!-- Brand -->
           <a href="index.html" class="brand">
             <div class="brand-mark">☪</div>
             <div class="brand-text">
@@ -52,23 +56,19 @@
             </div>
           </a>
 
+          <!-- Navigation links -->
           <ul class="nav-links" id="navLinks">${linksHTML}</ul>
 
-          <!-- Controls: dark mode + language -->
-          <div class="nav-controls">
+          <!-- Controls (theme + lang + mobile menu) -->
+          <div class="nav-controls" id="navControls">
 
-            <!-- Dark mode toggle -->
-            <button
-              class="theme-toggle-btn"
-              id="themeToggle"
-              aria-label="Toggle dark mode"
-              title="Dark mode"
-            >🌙</button>
+            <!-- Theme toggle -->
+            <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle dark mode" title="Dark mode">🌙</button>
 
             <!-- Language switcher -->
             <div class="lang-switcher" id="langSwitcher">
               <button class="lang-btn" id="langBtn" aria-label="Change language">
-                🌐 <span class="lang-current">AM</span>
+                <span class="lang-current">AM</span>
                 <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
                   <path d="M1 3l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
                 </svg>
@@ -81,12 +81,12 @@
               </div>
             </div>
 
-          </div>
+            <!-- Mobile menu toggle -->
+            <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+              <span></span><span></span><span></span>
+            </button>
 
-          <!-- Hamburger -->
-          <button class="menu-toggle" id="menuToggle" aria-label="Menu">
-            <span></span><span></span><span></span>
-          </button>
+          </div>
 
         </div>
       </nav>
@@ -100,6 +100,8 @@
     return `
       <footer>
         <div class="footer-inner">
+
+          <!-- Column 1: Brand + description -->
           <div>
             <div class="footer-brand">
               <div class="brand-mark">☪</div>
@@ -107,6 +109,8 @@
             </div>
             <p style="max-width:420px;" data-i18n="footer.desc"></p>
           </div>
+
+          <!-- Column 2: Navigation links -->
           <div>
             <h4 data-i18n="footer.dir"></h4>
             <a href="about.html"       data-i18n="nav.about"></a>
@@ -115,12 +119,15 @@
             <a href="fundraising.html" data-i18n="nav.fundraising"></a>
             <a href="news.html"        data-i18n="nav.news"></a>
           </div>
+
+          <!-- Column 3: Address -->
           <div>
             <h4 data-i18n="footer.addr"></h4>
             <p data-i18n="footer.addr.line1"></p>
             <p data-i18n="footer.addr.line2"></p>
             <p style="margin-top:10px;" data-i18n="footer.copyright"></p>
           </div>
+
         </div>
         <div class="footer-bottom" data-i18n="footer.credit"></div>
       </footer>
@@ -128,124 +135,179 @@
   }
 
   /* ============================================================
-     3) DARK MODE
-     ============================================================ */
-  function initDarkMode() {
-    const themeToggle = document.getElementById("themeToggle");
-    if (!themeToggle) return;
-
-    // Load saved preference
-    const savedTheme = localStorage.getItem("mkn-theme");
-    if (savedTheme === "dark") {
-      document.body.classList.add("dark-mode");
-      themeToggle.textContent = "☀️";
-    }
-
-    // Toggle on click
-    themeToggle.addEventListener("click", () => {
-      const isDark = document.body.classList.toggle("dark-mode");
-      themeToggle.textContent = isDark ? "☀️" : "🌙";
-      localStorage.setItem("mkn-theme", isDark ? "dark" : "light");
-    });
-  }
-
-  /* ============================================================
-     4) INIT
+     3) INIT LAYOUT
      ============================================================ */
   function initLayout() {
-    // Detect current page
+    // Detect current page filename (e.g. "about.html")
     const path = window.location.pathname.split("/").pop() || "index.html";
 
-    // Inject navbar
+    /* ---- Inject Navbar ---- */
     const navPlaceholder = document.getElementById("site-nav");
     if (navPlaceholder) navPlaceholder.outerHTML = buildNav(path);
 
-    // Inject footer
+    /* ---- Inject Footer ---- */
     const footerPlaceholder = document.getElementById("site-footer");
     if (footerPlaceholder) footerPlaceholder.outerHTML = buildFooter();
 
-    // ---- Dark mode ----
-    initDarkMode();
+    /* ============================================================
+       THEME TOGGLE (dark / light)
+       ============================================================ */
+    const themeToggle = document.getElementById("themeToggle");
+    if (themeToggle) {
+      // Load saved preference
+      const savedTheme = localStorage.getItem("mkn-theme");
+      if (savedTheme === "dark") {
+        document.body.classList.add("dark-mode");
+        themeToggle.textContent = "☀️";
+      }
 
-    // ---- Language switcher ----
+      themeToggle.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const isDark = document.body.classList.toggle("dark-mode");
+        themeToggle.textContent = isDark ? "☀️" : "🌙";
+        localStorage.setItem("mkn-theme", isDark ? "dark" : "light");
+      });
+    }
+
+    /* ============================================================
+       LANGUAGE SWITCHER
+       ============================================================ */
     const switcher = document.getElementById("langSwitcher");
     const btn = document.getElementById("langBtn");
+
     if (btn && switcher) {
-      btn.addEventListener("click", (e) => {
-        e.stopPropagation();
-        switcher.classList.toggle("open");
-      });
-      document.addEventListener("click", () =>
-        switcher.classList.remove("open"),
-      );
+      // Prevent double binding
+      if (btn.dataset.bound !== "1") {
+        btn.dataset.bound = "1";
+
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          // Close other switchers
+          document.querySelectorAll(".lang-switcher.open").forEach((s) => {
+            if (s !== switcher) s.classList.remove("open");
+          });
+          switcher.classList.toggle("open");
+        });
+      }
 
       switcher.querySelectorAll(".lang-option").forEach((opt) => {
-        opt.addEventListener("click", () => {
-          if (window.i18n) window.i18n.setLanguage(opt.dataset.lang);
+        if (opt.dataset.bound === "1") return;
+        opt.dataset.bound = "1";
+
+        opt.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+
+          const lang = opt.dataset.lang;
+
+          // Change language
+          if (window.i18n && window.i18n.setLanguage) {
+            window.i18n.setLanguage(lang);
+          }
+
+          // Update ALL language labels on the page
+          document.querySelectorAll(".lang-current").forEach((el) => {
+            el.textContent = lang.toUpperCase();
+          });
+
+          // Mark active
+          switcher
+            .querySelectorAll(".lang-option")
+            .forEach((o) => o.classList.remove("active"));
+          opt.classList.add("active");
+
+          // Close dropdown
           switcher.classList.remove("open");
         });
       });
+
+      // Close on outside click
+      document.addEventListener("click", (e) => {
+        if (!e.target.closest(".lang-switcher")) {
+          document
+            .querySelectorAll(".lang-switcher.open")
+            .forEach((s) => s.classList.remove("open"));
+        }
+      });
     }
 
-    // ---- Mobile menu ----
+    /* ============================================================
+       MOBILE MENU TOGGLE
+       ============================================================ */
     const toggle = document.getElementById("menuToggle");
     const links = document.getElementById("navLinks");
-    if (toggle && links) {
-      toggle.addEventListener("click", (e) => {
-        e.stopPropagation();
-        links.classList.toggle("open");
-        toggle.classList.toggle("open");
-      });
 
-      // Close menu when a link is clicked
-      links.querySelectorAll("a").forEach((a) =>
+    if (toggle && links) {
+      if (toggle.dataset.bound !== "1") {
+        toggle.dataset.bound = "1";
+        toggle.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          links.classList.toggle("open");
+          toggle.classList.toggle("open");
+        });
+      }
+
+      // Close menu when a link is clicked (mobile)
+      links.querySelectorAll("a").forEach((a) => {
+        if (a.dataset.bound === "1") return;
+        a.dataset.bound = "1";
         a.addEventListener("click", () => {
           links.classList.remove("open");
           toggle.classList.remove("open");
-        }),
-      );
+        });
+      });
 
-      // Close menu on outside click
+      // Close on outside click
       document.addEventListener("click", (e) => {
-        if (!links.contains(e.target) && !toggle.contains(e.target)) {
+        if (!e.target.closest(".nav")) {
           links.classList.remove("open");
           toggle.classList.remove("open");
         }
-      });
-
-      // Close menu on Escape
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && links.classList.contains("open")) {
-          links.classList.remove("open");
-          toggle.classList.remove("open");
-        }
-      });
-
-      // Close menu when viewport becomes desktop
-      let resizeTimer;
-      window.addEventListener("resize", () => {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(() => {
-          if (window.innerWidth > 860 && links.classList.contains("open")) {
-            links.classList.remove("open");
-            toggle.classList.remove("open");
-          }
-        }, 200);
       });
     }
 
-    // ---- Nav scroll shadow ----
+    /* ============================================================
+       NAV SCROLL SHADOW
+       ============================================================ */
     const nav = document.getElementById("nav");
     if (nav) {
-      const onScroll = () =>
+      const onScroll = () => {
         nav.classList.toggle("scrolled", window.scrollY > 10);
+      };
       window.addEventListener("scroll", onScroll, { passive: true });
       onScroll();
     }
+
+    /* ============================================================
+       SYNC INITIAL LANG LABEL
+       ============================================================ */
+    setTimeout(() => {
+      const currentLang =
+        window.i18n && window.i18n.getLang ? window.i18n.getLang() : "am";
+
+      document.querySelectorAll(".lang-current").forEach((el) => {
+        el.textContent = currentLang.toUpperCase();
+      });
+
+      // Mark active option in dropdown
+      if (switcher) {
+        switcher.querySelectorAll(".lang-option").forEach((opt) => {
+          opt.classList.toggle("active", opt.dataset.lang === currentLang);
+        });
+      }
+    }, 80);
+
+    /* ============================================================
+       LOG
+       ============================================================ */
+    console.log("[Layout] ✓ Navbar + Footer initialized");
   }
 
   /* ============================================================
-     5) EXPORT
+     4) EXPORT
      ============================================================ */
   window.initLayout = initLayout;
 })();

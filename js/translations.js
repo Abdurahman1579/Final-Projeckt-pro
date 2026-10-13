@@ -4082,7 +4082,7 @@ Object.assign(translations.en, {
   "hero.badge": "",
   "hero.title.1": "Grand Project of the",
   "hero.title.2": "Malka Nono Sub-City Islamic Affairs Council",
-  "hero.title.3": ""
+  "hero.title.3": "",
 });
 
 /* ---------- AMHARIC ---------- */
@@ -4090,15 +4090,16 @@ Object.assign(translations.am, {
   "hero.badge": "",
   "hero.title.1": "ትልቅ ፕሮጀክት",
   "hero.title.2": "የመልካ ኖኖ ክ/ከተማ እስልምና ጉዳዮች ምክር ቤት",
-  "hero.title.3": ""
+  "hero.title.3": "",
 });
 
 /* ---------- OROMO ---------- */
 Object.assign(translations.om, {
   "hero.badge": "",
   "hero.title.1": "Piroojektii Gudicha",
-  "hero.title.2": "Mana Marii Dhimmoota Islaamummaa Kutaa Magaalaa Malkaa Noonnoo",
-  "hero.title.3": ""
+  "hero.title.2":
+    "Mana Marii Dhimmoota Islaamummaa Kutaa Magaalaa Malkaa Noonnoo",
+  "hero.title.3": "",
 });
 
 /* ---------- ARABIC ---------- */
@@ -4106,5 +4107,104 @@ Object.assign(translations.ar, {
   "hero.badge": "",
   "hero.title.1": "المشروع الكبير",
   "hero.title.2": "لمجلس الشؤون الإسلامية في منطقة ملقا نونو",
-  "hero.title.3": ""
+  "hero.title.3": "",
+});
+/* ============================================================
+   EXTENSION 25 — Committee members modal
+   ------------------------------------------------------------
+   These keys are REQUIRED for the committee modal:
+   - viewMembers: button label
+   - membersLabel: section heading
+   - common.close: close button
+   ============================================================ */
+
+/* ---------- ENGLISH ---------- */
+Object.assign(translations.en, {
+  "leadership.committee.viewMembers": "View Members",
+  "leadership.committee.membersLabel": "Committee Members",
+  "common.close": "Close",
+});
+
+/* ---------- AMHARIC ---------- */
+Object.assign(translations.am, {
+  "leadership.committee.viewMembers": "አባላትን ይመልከቱ",
+  "leadership.committee.membersLabel": "የኮሚቴ አባላት",
+  "common.close": "ዝጋ",
+});
+
+/* ---------- OROMO ---------- */
+Object.assign(translations.om, {
+  "leadership.committee.viewMembers": "Miseensota Ilaali",
+  "leadership.committee.membersLabel": "Miseensota Koree",
+  "common.close": "Cufi",
+});
+
+/* ---------- ARABIC ---------- */
+Object.assign(translations.ar, {
+  "leadership.committee.viewMembers": "عرض الأعضاء",
+  "leadership.committee.membersLabel": "أعضاء اللجنة",
+  "common.close": "إغلاق",
+});
+/* ============================================================
+   EXTENSION 27 — Committee manager
+   ============================================================ */
+
+Object.assign(translations.en, {
+  "admin.nav.committees": "Committees",
+  "admin.committees.title": "Project Committees",
+  "admin.committees.add": "Add Committee",
+  "admin.committees.edit": "Edit Committee",
+  "admin.committees.desc": "Manage project committees and their members",
+  "admin.committees.members": "members",
+});
+
+Object.assign(translations.am, {
+  "admin.nav.committees": "ኮሚቴዎች",
+  "admin.committees.title": "የፕሮጀክት ኮሚቴዎች",
+  "admin.committees.add": "ኮሚቴ ጨምር",
+  "admin.committees.edit": "ኮሚቴ አስተካክል",
+  "admin.committees.desc": "የፕሮጀክት ኮሚቴዎችንና አባላቶቻቸውን ያስተዳድሩ",
+  "admin.committees.members": "አባላት",
+});
+
+Object.assign(translations.om, {
+  "admin.nav.committees": "Koreewwan",
+  "admin.committees.title": "Koreewwan Pirojektii",
+  "admin.committees.add": "Koree Dabali",
+  "admin.committees.edit": "Koree Sirreessi",
+  "admin.committees.desc": "Koreewwan pirojektii fi miseensota isaanii bulchi",
+  "admin.committees.members": "miseensota",
+});
+
+Object.assign(translations.ar, {
+  "admin.nav.committees": "اللجان",
+  "admin.committees.title": "لجان المشروع",
+  "admin.committees.add": "إضافة لجنة",
+  "admin.committees.edit": "تعديل اللجنة",
+  "admin.committees.desc": "إدارة لجان المشروع وأعضائها",
+  "admin.committees.members": "أعضاء",
+});
+/* ============================================================
+   EXTENSION 28 — Committee photo upload
+   ============================================================ */
+
+Object.assign(translations.en, {
+  "admin.committees.uploadPhoto": "Click to upload photo",
+  "admin.committees.photoHint": "JPG, PNG — recommended 400×400px (max 5MB)",
+});
+
+Object.assign(translations.am, {
+  "admin.committees.uploadPhoto": "ፎቶ ለመስቀል ይጫኑ",
+  "admin.committees.photoHint": "JPG, PNG — 400×400px ይመከራል (ከፍተኛ 5MB)",
+});
+
+Object.assign(translations.om, {
+  "admin.committees.uploadPhoto": "Suuraa ol kaasuuf cuunfi",
+  "admin.committees.photoHint": "JPG, PNG — 400×400px gorfama (ol'aanaan 5MB)",
+});
+
+Object.assign(translations.ar, {
+  "admin.committees.uploadPhoto": "انقر لتحميل صورة",
+  "admin.committees.photoHint":
+    "JPG، PNG — يوصى 400×400 بكسل (بحد أقصى 5 ميجابايت)",
 });
