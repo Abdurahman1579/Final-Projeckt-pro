@@ -5289,3 +5289,72 @@ button {
     padding: 18px 16px 0 !important;
   }
 }
+/* ============================================================
+   FOOTER BRAND — Remove gap between logo and name (mobile)
+   ============================================================ */
+
+@media (max-width: 860px) {
+
+  /* Make footer brand a tight horizontal group, centered */
+  .footer-brand {
+    display: inline-flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    flex-wrap: nowrap !important;
+    width: auto !important;
+    max-width: 100%;
+    margin: 0 auto 16px !important;
+    padding: 0 !important;
+  }
+
+  /* Reset the logo's margin so it stays next to the text */
+  .footer-brand .brand-mark {
+    margin: 0 !important;
+    flex-shrink: 0 !important;
+    width: 42px !important;
+    height: 42px !important;
+  }
+
+  /* The text next to the logo — no extra spacing */
+  .footer-brand > span,
+  .footer-brand > *:not(.brand-mark) {
+    margin: 0 !important;
+    padding: 0 !important;
+    text-align: left !important;
+    white-space: nowrap;
+    line-height: 1.2 !important;
+  }
+
+  /* Ensure the wrapping column doesn't stretch the brand row */
+  .footer-inner > div:first-child {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  /* Description max-width so it doesn't stretch */
+  .footer-inner > div:first-child > p {
+    max-width: 340px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 480px) {
+  .footer-brand {
+    gap: 8px !important;
+  }
+
+  .footer-brand .brand-mark {
+    width: 38px !important;
+    height: 38px !important;
+    font-size: 18px !important;
+  }
+
+  .footer-brand > span {
+    font-size: 15px !important;
+  }
+}
