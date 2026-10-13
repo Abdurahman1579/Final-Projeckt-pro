@@ -1,18 +1,16 @@
 /* ============================================================
-   LAYOUT — Shared Navbar + Footer
+   LAYOUT — Shared Navbar + Footer + Theme Toggle
    Malka Nono Islamic Affairs Council Project
    ------------------------------------------------------------
    - Injects navbar at <div id="site-nav">
    - Injects footer at <div id="site-footer">
-   - Handles language switcher, mobile menu, nav scroll shadow
-   - Brand: single-line name only (no subtitle)
-   - Breakpoint: 1100px (laptop-friendly for Oromo)
+   - Language switcher + Theme toggle
+   - Mobile menu
+   - Nav scroll shadow
    ============================================================ */
 
 (function () {
   "use strict";
-
-  const MOBILE_BREAKPOINT = 1100; // matches CSS media query
 
   /* ============================================================
      1) NAVBAR BUILDER
@@ -48,24 +46,30 @@
             <div class="brand-mark">☪</div>
             <div class="brand-text">
               <span data-i18n="brand.name"></span>
+              <small data-i18n="brand.sub"></small>
             </div>
           </a>
           <ul class="nav-links" id="navLinks">${linksHTML}</ul>
-          <div class="lang-switcher" id="langSwitcher">
-            <button class="lang-btn" id="langBtn" aria-label="Change language">
-              🌐 <span class="lang-current">AM</span>
-              <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-                <path d="M1 3l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-              </svg>
-            </button>
-            <div class="lang-dropdown">
-              <button class="lang-option" data-lang="en"><span class="lang-flag">🇬🇧</span> English</button>
-              <button class="lang-option" data-lang="am"><span class="lang-flag">🇪🇹</span> አማርኛ</button>
-              <button class="lang-option" data-lang="om"><span class="lang-flag">🌳</span> Oromoo</button>
-              <button class="lang-option" data-lang="ar"><span class="lang-flag">🇸🇦</span> العربية</button>
+          <div class="nav-actions">
+            <div class="lang-switcher" id="langSwitcher">
+              <button class="lang-btn" id="langBtn" aria-label="Change language">
+                🌐 <span class="lang-current">AM</span>
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                  <path d="M1 3l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+              </button>
+              <div class="lang-dropdown">
+                <button class="lang-option" data-lang="en"><span class="lang-flag">🇬🇧</span> English</button>
+                <button class="lang-option" data-lang="am"><span class="lang-flag">🇪🇹</span> አማርኛ</button>
+                <button class="lang-option" data-lang="om"><span class="lang-flag">🌳</span> Oromoo</button>
+                <button class="lang-option" data-lang="ar"><span class="lang-flag">🇸🇦</span> العربية</button>
+              </div>
             </div>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">
+              <span class="theme-icon">🌙</span>
+            </button>
           </div>
-          <button class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false">
+          <button class="menu-toggle" id="menuToggle" aria-label="Menu">
             <span></span><span></span><span></span>
           </button>
         </div>
@@ -108,110 +112,10 @@
   }
 
   /* ============================================================
-     3) MOBILE MENU CONTROLLER
-     ============================================================ */
-  function setupMobileMenu() {
-    const toggle = document.getElementById("menuToggle");
-    const links = document.getElementById("navLinks");
-    if (!toggle || !links) return;
-
-    function closeMenu() {
-      links.classList.remove("open");
-      toggle.setAttribute("aria-expanded", "false");
-      document.body.style.overflow = "";
-    }
-
-    function openMenu() {
-      links.classList.add("open");
-      toggle.setAttribute("aria-expanded", "true");
-      if (window.innerWidth <= MOBILE_BREAKPOINT) {
-        document.body.style.overflow = "hidden";
-      }
-    }
-
-    // Toggle button
-    toggle.addEventListener("click", (e) => {
-      e.stopPropagation();
-      if (links.classList.contains("open")) closeMenu();
-      else openMenu();
-    });
-
-    // Close on link click
-    links
-      .querySelectorAll("a")
-      .forEach((a) => a.addEventListener("click", closeMenu));
-
-    // Close when clicking outside
-    document.addEventListener("click", (e) => {
-      if (!links.classList.contains("open")) return;
-      if (links.contains(e.target) || toggle.contains(e.target)) return;
-      closeMenu();
-    });
-
-    // Close on Escape
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && links.classList.contains("open")) closeMenu();
-    });
-
-    // Close on resize to desktop
-    let resizeTimer;
-    window.addEventListener("resize", () => {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => {
-        if (
-          window.innerWidth > MOBILE_BREAKPOINT &&
-          links.classList.contains("open")
-        ) {
-          closeMenu();
-        }
-      }, 200);
-    });
-
-    // Close when language changes (menu should reset)
-    window.addEventListener("langchange", () => {
-      if (links.classList.contains("open")) closeMenu();
-    });
-  }
-
-  /* ============================================================
-     4) LANGUAGE SWITCHER
-     ============================================================ */
-  function setupLangSwitcher() {
-    const switcher = document.getElementById("langSwitcher");
-    const btn = document.getElementById("langBtn");
-    if (!btn || !switcher) return;
-
-    btn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      switcher.classList.toggle("open");
-    });
-
-    document.addEventListener("click", () => switcher.classList.remove("open"));
-
-    switcher.querySelectorAll(".lang-option").forEach((opt) => {
-      opt.addEventListener("click", () => {
-        if (window.i18n) window.i18n.setLanguage(opt.dataset.lang);
-        switcher.classList.remove("open");
-      });
-    });
-  }
-
-  /* ============================================================
-     5) NAV SCROLL SHADOW
-     ============================================================ */
-  function setupNavScroll() {
-    const nav = document.getElementById("nav");
-    if (!nav) return;
-    const onScroll = () =>
-      nav.classList.toggle("scrolled", window.scrollY > 10);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-  }
-
-  /* ============================================================
-     6) INIT
+     3) INIT
      ============================================================ */
   function initLayout() {
+    // Detect current page filename (e.g. "about.html")
     const path = window.location.pathname.split("/").pop() || "index.html";
 
     // Inject navbar
@@ -222,19 +126,93 @@
     const footerPlaceholder = document.getElementById("site-footer");
     if (footerPlaceholder) footerPlaceholder.outerHTML = buildFooter();
 
-    // Setup interactions
-    setupLangSwitcher();
-    setupMobileMenu();
-    setupNavScroll();
+    /* ---------- Language switcher ---------- */
+    const switcher = document.getElementById("langSwitcher");
+    const btn = document.getElementById("langBtn");
+    if (btn && switcher) {
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        switcher.classList.toggle("open");
+      });
+      document.addEventListener("click", () =>
+        switcher.classList.remove("open"),
+      );
 
-    // Re-apply translations after injecting nav/footer
-    if (window.i18n && window.i18n.applyTranslations) {
-      setTimeout(() => window.i18n.applyTranslations(), 30);
+      switcher.querySelectorAll(".lang-option").forEach((opt) => {
+        opt.addEventListener("click", () => {
+          if (window.i18n) window.i18n.setLanguage(opt.dataset.lang);
+          switcher.classList.remove("open");
+        });
+      });
     }
+
+    /* ---------- Theme toggle ---------- */
+    const themeBtn = document.getElementById("themeToggle");
+    if (themeBtn) {
+      themeBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (window.mknTheme && typeof window.mknTheme.toggle === "function") {
+          window.mknTheme.toggle();
+        } else {
+          // Fallback if theme.js not loaded yet
+          const html = document.documentElement;
+          const current = html.getAttribute("data-theme") || "light";
+          const next = current === "dark" ? "light" : "dark";
+          html.setAttribute("data-theme", next);
+          try {
+            localStorage.setItem("mkn-theme", next);
+          } catch (err) {}
+          const icon = themeBtn.querySelector(".theme-icon");
+          if (icon) icon.textContent = next === "dark" ? "☀️" : "🌙";
+        }
+      });
+
+      // Sync icon with current theme
+      if (window.mknTheme && typeof window.mknTheme.get === "function") {
+        const currentTheme = window.mknTheme.get();
+        const icon = themeBtn.querySelector(".theme-icon");
+        if (icon) icon.textContent = currentTheme === "dark" ? "☀️" : "🌙";
+      }
+    }
+
+    /* ---------- Mobile menu ---------- */
+    const toggle = document.getElementById("menuToggle");
+    const links = document.getElementById("navLinks");
+    if (toggle && links) {
+      toggle.addEventListener("click", (e) => {
+        e.stopPropagation();
+        links.classList.toggle("open");
+        // Animate hamburger
+        toggle.classList.toggle("open");
+      });
+      links.querySelectorAll("a").forEach((a) =>
+        a.addEventListener("click", () => {
+          links.classList.remove("open");
+          toggle.classList.remove("open");
+        }),
+      );
+    }
+
+    /* ---------- Nav scroll shadow ---------- */
+    const nav = document.getElementById("nav");
+    if (nav) {
+      const onScroll = () =>
+        nav.classList.toggle("scrolled", window.scrollY > 10);
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+    }
+
+    /* ---------- Listen to theme change event (sync icon) ---------- */
+    window.addEventListener("themechange", (e) => {
+      const theme = e.detail && e.detail.theme;
+      const icon = document.querySelector(".theme-toggle .theme-icon");
+      if (icon) icon.textContent = theme === "dark" ? "☀️" : "🌙";
+    });
   }
 
   /* ============================================================
-     7) EXPORT
+     4) EXPORT
      ============================================================ */
   window.initLayout = initLayout;
 })();
